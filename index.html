@@ -19,43 +19,55 @@
   					margin: 0 auto; /* Center the box horizontally on the page */
   					max-width: 215px; /* Adjust the maximum width as needed */
 					}
-				/* Add padding to the About Me section */
-			#one 	{
-                        padding-top: 10px;    /* Adjust the top padding as needed */
-                        padding-bottom: 10px; /* Adjust the bottom padding as needed */
-                    }
+			/* Add padding to the About Me section */
+			#one {
+        padding-top: 10px;    /* Adjust the top padding as needed */
+        padding-bottom: 10px; /* Adjust the bottom padding as needed */
+    }
 
-                /* Add margin-top to move paragraphs down */
-            .text-justify{
-                        margin-top: 50px; /* Adjust the margin-top as needed */
-                        }
+    /* Add margin-top to move paragraphs down */
+    .text-justify {
+        margin-top: 0px; /* Adjust the margin-top as needed */
+    }
 
-						.text-justify.abc {
-						margin-top: 0;
-						}
+    .text-justify.abc {
+        margin-top: 0;
+    }
 
-                /* Add padding to the inner content */
-                .inner {
-                        padding: 10px; /* Adjust the inner padding as needed */
-                    	}
+    /* Add padding to the inner content */
+    .inner {
+        padding: 10px; /* Adjust the inner padding as needed */
+    }
+	
+	.inner-heading {
+		text-align: center;
+		padding: 10px;
+	}
 
-                .content-with-image {
-                        display: flex;
-                        align-items: top;
-                        justify-content: space-between;
-                        }
-                        .image-container {
-                        flex: 1.5;
-                        padding-right: 30px;
-						padding-top: 61px; /* Adjust spacing as needed */
-						}
-                .profile-image {
-                        max-width: 100%;
-                        height: auto;
-                        }
-                .text-container {
-                        flex: 1.75;
-                        }
+    /* .content-with-image {
+        display: flex;
+        align-items: top;
+        justify-content: space-between;
+    } */
+
+    .image-container {
+        /* flex: 1.5; */
+        padding-right: 30px;
+        padding-top: 61px; /* Adjust spacing as needed */
+    }
+
+    .profile-image {
+        max-width: 40%;
+		margin-right: 20px;
+		margin-bottom: 20px;
+        height: auto;
+        float: left; /* Float the image to the left */
+    }
+
+    .text-container {
+        /* flex: 1.75; */
+        margin-right: 200px; /* Adjust this value according to your image width */
+    }
 				.underline{
     					margin-top: 30px;
     					margin-bottom: 5px;
@@ -94,7 +106,7 @@
 				<!-- Intro -->
 
 					<section id="intro" class="wrapper style1 fullscreen fade-up">
-						<div class="inner">
+						<div class="inner-heading">
 							<h2 class="name overline-underline">Explore with Me: My Tech Odyssey</h2>
 							</div>
 							<section id="welcome" class="main style1 special">
@@ -117,25 +129,30 @@
 
 			<!-- About Me -->
 
-                   <section id="one" class="wrapper style2 fullscreen fade-up">
-                        <div class="inner">
-                            <h2 class="name overline-underline">A Curious Journey into Robotics</h2>
-                            <div class="content-with-image">
-							<div class="image-container">
+            <section id="one" class="wrapper style2 fullscreen fade-up">
+                <div class="inner-heading">
+                    <h2 class="name overline-underline">A Curious Journey into Robotics</h2>
+                    <div class="content-with-image">
+						<div class="image-container">
 							<img src="images\PSX_20230124_121449~3.jpg" alt="Swapnil Meshram" class="profile-image">
-							</div>
-							<div class="text-container" style="margin-top: 0px;">
-                            <p class="text-justify" style="font-size: 1.175rem;">At the age of 14, I became fascinated with how infants learn by observing the world around them as they grow. This sparked a question in my mind: Can machines also perceive the world with such curiosity?</p>
-                            <p class="text-justify" style="font-size: 1.175rem;">Motivated by this curiosity, I discovered the field of robotics and was immediately captivated by the exciting research and work being done. From that moment on, I knew that I was destined to become a robotics engineer. Alongside my regular college courses, I tirelessly worked to develop robot circuitry and create various types of robots. This hands-on experience further fueled my interest in the field and solidified my determination to fully immerse myself in the captivating world of robotics. Driven by a thirst for knowledge, I embarked on a journey to explore the intricate domains of robotics and artificial intelligence.</p>
-                            <ul class="actions">
-                    <!-- You can add any actions or buttons here if needed -->
-                        </ul>
-                    </div>
-                </div>  
-				            <div class="bottom-paragraph">
-							<div class="text-container" style="margin-bottom: 15px;">
-				            <p id='last_para' class="text-justify" style="font-size: 1.175rem;">My early fascination with robotics has led me to pursue a graduate degree in Robotics and Autonomous Systems at Arizona State University. Exploring the intricate domains of robotics and artificial intelligence is a thoroughly enjoyable experience, and I eagerly seize every opportunity to learn more in this ever-evolving and dynamic field. My journey to become a robotics engineer has been incredible so far, and I am excited to see where it takes me in the future.</p>
-				</div>            
+						</div>
+						<div class="text-container" style="margin-top: 0px;margin-right: 0px;">
+                            <p class="text-justify para" style="font-size: 1.175rem;">At the age of 14, I became fascinated with how infants learn by observing the world around them as they grow. This sparked a question in my mind: Can machines also perceive the world with such curiosity?</p>
+                            <p class="text-justify para" style="font-size: 1.175rem;">Motivated by this curiosity, I discovered the field of robotics and was immediately captivated by the exciting research and work being done. From that moment on, I knew that I was destined to become a robotics engineer. Alongside my regular college courses, I tirelessly worked to develop robot circuitry and create various types of robots. This hands-on experience further fueled my interest in the field and solidified my determination to fully immerse myself in the captivating world of robotics. Driven by a thirst for knowledge, I embarked on a journey to explore the intricate domains of robotics and artificial intelligence.</p>
+                            <p class="text-justify para" style="font-size: 1.175rem;">My early fascination with robotics has led me to pursue a graduate degree in Robotics and Autonomous Systems at Arizona State University. Exploring the intricate domains of robotics and artificial intelligence is a thoroughly enjoyable experience, and I eagerly seize every opportunity to learn more in this ever-evolving and dynamic field. My journey to become a robotics engineer has been incredible so far, and I am excited to see where it takes me in the future.</p>
+						</div>      
+							<!-- <ul class="actions"> -->
+                    		<!-- You can add any actions or buttons here if needed -->
+                        	<!-- </ul> -->
+                    	
+                	
+				    <!-- <div class="bottom-paragraph"> -->
+						<!-- <div class="text-container" style="margin-bottom: 15px;"> -->
+				            
+						<!-- </div>   -->
+						    
+					</div>
+				</div>  
 			</section>
 
                 <!-- Work Experience -->
