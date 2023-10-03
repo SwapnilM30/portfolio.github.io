@@ -3524,8 +3524,7 @@ input, select, textarea {
 
 	#sidebar {
 		padding: 2.5em 1.5em 1.5em 2.5em ;
-		background: rgba(31, 24, 21, 0.9); /* Adjust the alpha value (0.8) to control transparency */
-		background-image: url("images\PCB_3.png");
+		background: rgba(31, 24, 21, 0.9) url("images/pcb.png") no-repeat center center;
 		cursor: default;
 		background-size: cover; /* Ensure the entire image covers the sidebar */
 		height: 100vh;
