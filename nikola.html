@@ -1,0 +1,127 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Swapnil Meshram</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+		<style>
+			.image-label {
+    	text-align: center;
+    	font-size: 16px;
+    	margin-top: 10px;
+    	color: rgba(50, 50, 50); /* Adjust the color as needed */
+		}
+		.video-label {
+    	text-align: center;
+    	font-size: 16px;
+    	margin-top: 10px;
+    	color: rgba(50, 50, 50); /* Adjust the color as needed */
+		}
+		</style>
+		<!-- Include Slick Carousel CSS -->
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+        <!-- Include Slick Carousel Theme CSS (optional) -->
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
+	</head>
+	<body class="is-preload">
+
+		<!-- Header -->
+			<header id="header">
+				<a href="electric_scooter.HTML" class="title">From Circuits to Machines: My Robotics & Hardware Journey</a>
+				<nav>
+					<ul>
+						<li><a href="index.html">Home</a></li>
+						<li><a href="electric_scooter.HTML" class="active">Team Nikola Racing</a></li>
+					</ul>
+				</nav>
+			</header>
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+					<section id="main" class="wrapper">
+						<div class="inner">
+							<h1 class="major">Team Nikola Racing</h1>
+							<div class="slider">
+								<div>
+									<img src="\images\Team Nikola_1.png" alt=""style="width: 602px; display: block; margin: 0 auto;" />
+									<p class="image-label">Image 1: Nikola 1.0 (Without Body Panels)</p>
+								</div>
+                                <div>
+									<img src="\images\Team Nikola_3.jpg" alt=""style="width: 450px; display: block; margin: 0 auto;" />
+									<p class="image-label">Image 2: Lithium Titanate Battery Cell</p>
+								</div>
+                                <div>
+									<img src="\images\Team Nikola_4.jpg" alt=""style="width: 450px; display: block; margin: 0 auto;" />
+									<p class="image-label">Image 3: Lithium Titanate Battery Pack Integration with Orion BMS</p>
+								</div>
+								<div>
+									<img src="\images\Team Nikola_2.png" alt=""style="width: 592px; display: block; margin: 0 auto;" />
+									<p class="image-label">Image 4: Lithium Titanate Battery Pack Assembly on Nikola 1.0</p>
+								</div>
+                                <div>
+									<img src="\images\Team Nikola_5.png" alt=""style="width: 599px; display: block; margin: 0 auto;" />
+									<p class="image-label">Image 5: Nikola 1.0 (Assembled & Tested)</p>
+								</div>
+								<div style="text-align: center;">
+									<video controls width="720" height="600" style="display: block; margin: 0 auto;">
+										<source src="\images\Team Nikola_Segway.mp4" type="video/mp4">
+										Your browser does not support the video tag.
+									</video>
+									<p class="video-label">Video 1: Electric Segway Testing</p>
+								</div>
+							</div>
+							<p style="text-align: justify; font-size: 1.175rem;">We designed, fabricated and manufactured an electric motorcycle with a 100-kilometer range, 20-minute charging time, and battery lifespan of over 8 years. At the heart of our development were Lithium-titanate cells, featuring a single-cell capacity of 40Ah and 2.3V. These 20 cells were connected in a series combination, equipped with the advanced Orion Battery Management System (BMS) boasting CAN communication for real-time tracking. The vehicle featured a strong 2kW BLDC motor that was seamlessly integrated with a precise chain drive system.</p>
+							<p style="text-align: justify; font-size: 1.175rem;">My significant contribution to this project, in partnership with my teammate, was the initiation and implementation of a battery pack design consisting of Lithium-titanate cells. This development played a pivotal role in enabling our electric motorcycle to achieve a remarkable 20-minute charging time while ensuring a battery life exceeding 8 years. Our team was one of the first to use Lithium-titanate batteries in an electric bike.</p>
+							<p style="text-align: justify; font-size: 1.175rem;">In addition, as part of our institute's Golden Jubilee celebration, Team Nikola designed and built an Electric Segway—A self-balancing vehicle guided by gyroscopic sensors, powered by two BLDC motors and LiPo batteries.</p>
+						</div>
+					</section>
+					
+			</div>
+
+		<!-- Footer -->
+			<footer id="footer" class="wrapper alt">
+				<div class="inner">
+					<ul class="menu">
+						<li>&copy; 2023 Swapnil Meshram </li>
+					</ul>
+				</div>
+			</footer>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+			<!-- Include Slick Carousel JavaScript -->
+            <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+			<style>
+				/* Adjust the position of the slick-dots */
+				.slick-dots {
+				  position: absolute;
+				  bottom: 5px; /* Adjust the value to control the vertical position */
+				  width: 100%;
+				  text-align: center;
+				}
+			  </style>
+			<script>
+				$(document).ready(function(){
+					$('.slider').slick({
+						autoplay: true, // Set to true for automatic sliding
+						dots: true, // Add navigation dots
+						arrows: true, // Add navigation arrows
+						infinite: true, // Loop through slides
+						speed: 800, // Slide transition speed (milliseconds)
+						slidesToShow: 1, // Number of slides to show at a time
+						slidesToScroll: 1 // Number of slides to scroll at a time
+					});
+				});
+			</script>
+	   </body>
+  </html>
