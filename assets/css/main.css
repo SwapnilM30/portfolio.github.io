@@ -2674,7 +2674,7 @@ input, select, textarea {
 		cursor: default;
 		list-style: none;
 		margin-left: -1em;
-		padding-left: 1em;
+		padding-left: 0.75em;
 	}
 	ul.actions-space{
 		display: -moz-flex;
