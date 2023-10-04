@@ -2674,7 +2674,7 @@ input, select, textarea {
 		cursor: default;
 		list-style: none;
 		margin-left: -1em;
-		padding-left: 0.75em;
+		padding-left: 0em;
 	}
 	ul.actions-space{
 		display: -moz-flex;
@@ -3989,8 +3989,8 @@ input, select, textarea {
 /* Justify the text inside the <p> tags */
 .thumbnail-gallery p {
     text-align: justify;
-	padding-right: 40px;
-	padding-left: 40px;
+	padding-right: 25px;
+	padding-left: 25px;
 }
 .center-image {
     display: block;
@@ -3998,7 +3998,7 @@ input, select, textarea {
     text-align: center; /* Center the image horizontally */
 }
 .project-title{
-    padding-left: 40px; /* Adjust the padding as needed */
+    padding-left: 25px; /* Adjust the padding as needed */
 }
 
 button.slick-prev:before {
