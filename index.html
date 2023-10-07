@@ -303,22 +303,41 @@
 		
 				<!-- Contact Information -->
 				<section id="four" class="wrapper style1 fade-up">
-				<div class="inner">
+					<div class="inner">
 	  				<h1>Get in Touch</h1>
 	  				<p>Feel free to start a conversation or collaborate on exciting projects. I'm just a message away and eager to connect with you to explore new opportunities, whether they are internships or full-time positions. I'm enthusiastic about the prospect of joining your team and contributing to its success.</p>
-  				<div class="split style1">
+	  			<div class="split style1">
 					<section>
-
-		  				<form id="contact-form" onsubmit="return validateForm()">
-  						<input type="text" name="name" id="name" required>
-  						<input type="email" name="email" id="email" required>
-  						<textarea name="message" id="message" required></textarea>
-  						<input type="text" name="spam-filter" style="display:none">
-  						<div id="form-message"></div>
-  						<button type="submit">Send</button>
+      
+						<form method="post" action="\contact-form.php">
+						
+						  <div class="fields">
+				
+							<div class="field half">
+							  <label for="name">Name</label>
+							  <input type="text" id="name" name="name">
+							</div>
+				
+							<div class="field half">
+							  <label for="email">Email</label>
+							  <input type="email" id="email" name="email"> 
+							</div>
+				
+							<div class="field">
+							  <label for="message">Message</label>
+							  <textarea id="message" name="message" rows="5"></textarea>
+							</div>
+				
+						  </div>
+						
+						  <ul class="actions">
+							<li><button type="submit" class="button submit">Send Message</button></li>
+						  </ul>
+						
 						</form>
-
-					</section>
+				
+					  </section>
+  
 						<section>
 									<ul class="contact">
 										<li>
