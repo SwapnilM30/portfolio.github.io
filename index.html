@@ -307,26 +307,18 @@
 	  				<h1>Get in Touch</h1>
 	  				<p>Feel free to start a conversation or collaborate on exciting projects. I'm just a message away and eager to connect with you to explore new opportunities, whether they are internships or full-time positions. I'm enthusiastic about the prospect of joining your team and contributing to its success.</p>
   				<div class="split style1">
-						<section>
-		  				<form id="contact-form" method="post">
-						<div class="fields">
-			  	<div class="field half">
-						<label for="name">Name</label>
-						<input type="text" name="name" id="name">
-			  	</div>
-			  	<div class="field half">
-						<label for="email">Email</label>  
-						<input type="email" name="email" id="email">
-			  	</div>
-			  	<div class="field">
-						<label for="message">Message</label>   
-						<textarea name="message" id="message" rows="5"></textarea>
-			  	</div>
-  				</div>
-					<div id="form-message"></div>
-					<button type="submit">Send Message</button>
-		  		</form>
-				</section>
+					<section>
+
+		  				<form id="contact-form" onsubmit="return validateForm()">
+  						<input type="text" name="name" id="name" required>
+  						<input type="email" name="email" id="email" required>
+  						<textarea name="message" id="message" required></textarea>
+  						<input type="text" name="spam-filter" style="display:none">
+  						<div id="form-message"></div>
+  						<button type="submit">Send</button>
+						</form>
+
+					</section>
 						<section>
 									<ul class="contact">
 										<li>
@@ -379,29 +371,41 @@
 			<!-- Include Slick Carousel JavaScript -->
             <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 			<script>
-				// Get form element
-				const form = document.getElementById('contact-form');
+				function validateForm() {
+  				if (document.getElementById('name').value == '' || 
+      			document.getElementById('email').value == '' ||
+      			document.getElementById('message').value == '') {
+    			document.getElementById('form-message').textContent = 'Please fill in all fields';
+    			return false;
+  				}
 
-				// Listen for submit event
-				form.addEventListener('submit', handleSubmit);
+  				return true;
+				}
 
-				// Handle form submit
-				function handleSubmit(e) {
+				form.addEventListener('submit', function(e) {
+
   				e.preventDefault();
-
+  
   				const data = new FormData(form);
 
-  				fetch('https://formspree.io/f/mbjvpbqa', {
+  				if (data.get('spam-filter')) {
+    			return;
+  				}
+
+  				fetch('/contact', {
     			method: 'POST',
     			body: data
   				})
   				.then(response => {
+    			form.reset();
     			document.getElementById('form-message').textContent = 'Thanks for your message! I will get back to you soon.';
   				})
   				.catch(error => {
-    			document.getElementById('form-message').textContent = 'Oops, something went wrong. Please try again later';
+    			document.getElementById('form-message').textContent = 'Oops, something went wrong. Please try again.';
+    			form.name.focus();
   				});
-				}
+
+				});
 			</script>
 			<script>
 					$(document).ready(function(){
