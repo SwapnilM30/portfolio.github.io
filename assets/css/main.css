@@ -3753,9 +3753,9 @@ input, select, textarea {
 			-ms-transition: color 0.5s ease;
 			transition: color 0.5s ease;
 			border: 0;
-			color: rgba(255, 255, 255, 0.85);
+			color: rgba(255, 255, 255, 0.55);
 			display: block;
-			font-size: 0.6em;
+			font-size: 0.61em;
 			font-weight: bold;
 			letter-spacing: 0.25em;
 			line-height: 1.75;
@@ -3793,7 +3793,7 @@ input, select, textarea {
 			}
 
 			#sidebar nav a:hover {
-				color: rgba(255, 255, 255);
+				color: rgb(255, 255, 255);
 			}
 
 			#sidebar nav a.active {
