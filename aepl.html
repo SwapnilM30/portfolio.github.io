@@ -7,25 +7,27 @@
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 		<style>
-			.image-label {
-				text-align: center;
-				font-size: 16px;
-				margin-top: 5px; /* Adjusted margin-top for reduced spacing */
-				color: rgba(50, 50, 50); /* Adjust the color as needed */
-			}
-		
-			.image-citation,
-			.video-citation {
-				margin-top: 15px; /* Remove the margin-top to reduce spacing */
-				font-size: 12px;
-			}
-		
-			.video-label {
-				text-align: center;
-				font-size: 16px;
-				margin-top: 5px; /* Adjusted margin-top for reduced spacing */
-				color: rgba(50, 50, 50); /* Adjust the color as needed */
-			}
+			        .image-label,
+        .video-label {
+            text-align: center;
+            font-size: 16px;
+            margin-top: 5px; /* Adjusted margin-top for reduced spacing */
+            color: rgba(50, 50, 50); /* Adjust the color as needed */
+        }
+    
+        .image-citation,
+        .video-citation {
+            margin-top: 15px; /* Remove the margin-top to reduce spacing */
+            font-size: 12px;
+        }
+        
+        /* Adjust the position of the slick-dots */
+        .slick-dots {
+            position: absolute;
+            bottom: 5px; /* Adjust the value to control the vertical position */
+            width: 100%;
+            text-align: center;
+        }
 		</style>
 		
 		
@@ -55,19 +57,19 @@
 							<h1 class="major">Autonomous & Undersea Systems Division</h1>
 							<div class="slider">
 								<div style="text-align: center; margin: 20px 0;">
-									<img src="images\Autonomous Surface Vessel_1.jpg" alt=""style="width: 875px; display: block; margin: 0 auto;" />
+									<img src="images/Autonomous Surface Vessel_1.jpg" alt="Autonomous Surface Vessel" style="width: 875px; display: block; margin: 0 auto;" />
 									<p class="image-label">Image 1: Autonomous Surface Vessel</p>
 									<p class="image-citation" style="margin-top: 5px; font-size: 12px;">Image source: Aerospace Engineers Private Limited, 2022</p>
 								</div>
 								<div style="text-align: center; margin: 20px 0;">
-									<img src="images\AUV3.0.jpg" alt=""style="width: 515px; display: block; margin: 0 auto;" />
+									<img src="images/AUV3.0.jpg" alt="Autonomous Underwater Vehicle (named 'Neerakshi' AUV)" style="width: 515px; display: block; margin: 0 auto;" />
 									<p class="image-label">Image 2: Autonomous Underwater Vehicle (named 'Neerakshi' AUV)</p>
-									<p class="image-citation" style="margin-top: 5px; font-size: 12px;">Image source: Vajiram & Ravi (IAS Study Center), 2023, <a href="https://vajiramias.com/current-affairs/what-is-neerakshi/64ce655c9c96bc7864378357/" target="_blank">https://vajiramias.com/</a></p>
+									<p class="image-citation" style="margin-top: 5px; font-size: 12px;">Image source: Vajiram & Ravi (IAS Study Center), 2023, <a href="https://vajiramias.com/current-affairs/what-is-neerakshi/64ce655c9c96bc7864378357/" target="_blank" rel="noopener noreferrer">https://vajiramias.com/</a></p>
 								</div>
 								<div style="text-align: center; margin: 20px 0;">
-									<img src="images\Neerakshi_1.jpg" alt=""style="width: 975px; display: block; margin: 0 auto;" />
+									<img src="images/Neerakshi_1.jpg" alt="'Neerakshi' AUV maneuvering through water with surface current" style="width: 975px; display: block; margin: 0 auto;" />
 									<p class="image-label">Image 3: 'Neerakshi' AUV maneuvering through water with surface current</p>
-									<p class="image-citation" style="margin-top: 5px; font-size: 12px;">Image source: Press Trust of India, 2023, <a href="https://www.ptinews.com/news/national/mine-detector-auv-launched/618679.html" target="_blank">https://www.ptinews.com/</a></p>
+									<p class="image-citation" style="margin-top: 5px; font-size: 12px;">Image source: Press Trust of India, 2023, <a href="https://www.ptinews.com/news/national/mine-detector-auv-launched/618679.html" target="_blank" rel="noopener noreferrer">https://www.ptinews.com/</a></p>
 								</div>
 								<!-- Add more images as needed -->
 							</div>
@@ -109,17 +111,18 @@
 				}
 			  </style>
 			<script>
-				$(document).ready(function(){
-					$('.slider').slick({
-						autoplay: true, // Set to true for automatic sliding
-						dots: true, // Add navigation dots
-						arrows: true, // Add navigation arrows
-						infinite: true, // Loop through slides
-						speed: 800, // Slide transition speed (milliseconds)
-						slidesToShow: 1, // Number of slides to show at a time
-						slidesToScroll: 1 // Number of slides to scroll at a time
-					});
+				$(document).ready(function() {
+    			$('.slider').slick({
+        		autoplay: true, // Set to true for automatic sliding
+        		dots: true, // Add navigation dots
+        		arrows: true, // Add navigation arrows
+        		infinite: true, // Loop through slides
+        		speed: 800, // Slide transition speed (milliseconds)
+        		slidesToShow: 1, // Number of slides to show at a time
+        		slidesToScroll: 1 // Number of slides to scroll at a time
+    				});
 				});
+
 			</script>
 	   </body>
   </html>
