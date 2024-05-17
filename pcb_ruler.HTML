@@ -7,18 +7,21 @@
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 		<style>
-			.image-label {
-    	text-align: center;
-    	font-size: 16px;
-    	margin-top: 10px;
-    	color: rgba(50, 50, 50); /* Adjust the color as needed */
-		}
-		.video-label {
-    	text-align: center;
-    	font-size: 16px;
-    	margin-top: 10px;
-    	color: rgba(50, 50, 50); /* Adjust the color as needed */
-		}
+	.image-label,
+    .video-label {
+        text-align: center;
+        font-size: 16px;
+        margin-top: 10px;
+        color: rgba(50, 50, 50); /* Adjust the color as needed */
+    }
+
+    /* Adjust the position of the slick-dots */
+    .slick-dots {
+        position: absolute;
+        bottom: 5px; /* Adjust the value to control the vertical position */
+        width: 100%;
+        text-align: center;
+    }
 		</style>
 		<!-- Include Slick Carousel CSS -->
         <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
@@ -46,15 +49,15 @@
 							<h1 class="major">Multipurpose PCB Ruler</h1>
 							<div class="slider">
 								<div>
-									<img src="images\project_4_1.png" alt=""style="width: 478px; display: block; margin: 0 auto;" />
+									<img src="images/project_4_1.png" alt="Multipurpose PCB Ruler (Top Side)" style="width: 478px; display: block; margin: 0 auto;" />
 									<p class="image-label">Image 1: Multipurpose PCB Ruler (Top Side)</p>
 								</div>
                                 <div>
-									<img src="images\project_4_2.png" alt=""style="width: 875px; display: block; margin: 0 auto;" />
+									<img src="images/project_4_2.png" alt="Multipurpose PCB Ruler (Bottom Side)" style="width: 875px; display: block; margin: 0 auto;" />
 									<p class="image-label">Image 2: Multipurpose PCB Ruler (Bottom Side)</p>
 								</div>
                                 <div>
-									<img src="images\project_4.jpg" alt=""style="width: 550px; display: block; margin: 0 auto;" />
+									<img src="images/project_4.jpg" alt="Multipurpose PCB Ruler (All Soldermaks)" style="width: 550px; display: block; margin: 0 auto;" />
 									<p class="image-label">Image 3: Multipurpose PCB Ruler (All Soldermaks)</p>
 								</div>
 								<!-- Add more images as needed -->
@@ -96,17 +99,18 @@
 				}
 			  </style>
 			<script>
-				$(document).ready(function(){
-					$('.slider').slick({
-						autoplay: true, // Set to true for automatic sliding
-						dots: true, // Add navigation dots
-						arrows: true, // Add navigation arrows
-						infinite: true, // Loop through slides
-						speed: 800, // Slide transition speed (milliseconds)
-						slidesToShow: 1, // Number of slides to show at a time
-						slidesToScroll: 1 // Number of slides to scroll at a time
-					});
-				});
+				$(document).ready(function() {
+    			$('.slider').slick({
+        		autoplay: true, // Set to true for automatic sliding
+        		dots: true, // Add navigation dots
+        		arrows: true, // Add navigation arrows
+        		infinite: true, // Loop through slides
+        		speed: 800, // Slide transition speed (milliseconds)
+        		slidesToShow: 1, // Number of slides to show at a time
+        		slidesToScroll: 1 // Number of slides to scroll at a time
+    			});
+			});
+
 			</script>
 
 	</body>
