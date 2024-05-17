@@ -12,15 +12,15 @@
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 		<style>
-			.slider {
-  					border: 1px solid rgba(50, 50, 50);; /* Border style */
-  					padding: 10px; /* Padding around the content */
-  					
-  					margin: 0 auto; /* Center the box horizontally on the page */
-  					max-width: 215px; /* Adjust the maximum width as needed */
-					}
-			/* Add padding to the About Me section */
-			#one {
+			    .slider {
+        border: 1px solid rgba(50, 50, 50); /* Border style */
+        padding: 10px; /* Padding around the content */
+        margin: 0 auto; /* Center the box horizontally on the page */
+        max-width: 215px; /* Adjust the maximum width as needed */
+    }
+
+    /* Add padding to the About Me section */
+    #one {
         padding-top: 10px;    /* Adjust the top padding as needed */
         padding-bottom: 10px; /* Adjust the bottom padding as needed */
     }
@@ -38,32 +38,31 @@
     .inner {
         padding: 10px; /* Adjust the inner padding as needed */
     }
-	
-	.inner-heading {
-		text-align: center;
-		padding: 10px;
-	}
+
+    .inner-heading {
+        text-align: center;
+        padding: 10px;
+    }
 
     .content-with-image {
         display: flex;
-		flex-wrap: wrap;
+        flex-wrap: wrap;
         align-items: center;
         justify-content: center;
-		gap: 15px;
+        gap: 15px;
     }
 
     .image-container {
-        /* flex: 1.5; */
+        flex: 1;
         padding-right: 30px;
         padding-top: 20px; /* Adjust spacing as needed */
-		flex: 1;
     }
 
     .profile-image {
         max-width: 100%;
-		height: auto;
-		margin-right: 25px;
-		margin-bottom: 15px;
+        height: auto;
+        margin-right: 25px;
+        margin-bottom: 15px;
         display: block;
     }
 
@@ -72,27 +71,29 @@
         margin-right: 20px; /* Adjust this value according to your image width */
     }
 
-	@media (max-width: 768px) {
-    .image-container {
-        padding-right: 0;
-        padding-top: 0;
-        flex: 1 1 100%;
+    @media (max-width: 768px) {
+        .image-container {
+            padding-right: 0;
+            padding-top: 0;
+            flex: 1 1 100%;
+        }
+
+        .text-container {
+            margin-right: 0;
+            flex: 1 1 100%;
+        }
     }
-	
-	.text-container {
-        margin-right: 0;
-        flex: 1 1 100%;
+
+    .underline {
+        margin-top: 30px;
+        margin-bottom: 5px;
     }
-}
-				.underline{
-    					margin-top: 30px;
-    					margin-bottom: 5px;
-  						}
-					/* Add CSS styles for underlining the specified text */
-				p.underline {
-						text-decoration: underline;
-						padding-bottom: 5px; /* Adjust the padding as needed */
-						}
+
+    /* Add CSS styles for underlining the specified text */
+    p.underline {
+        text-decoration: underline;
+        padding-bottom: 5px; /* Adjust the padding as needed */
+    }
 		</style>
 		<!-- Include Slick Carousel CSS -->
         <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
