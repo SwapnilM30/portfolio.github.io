@@ -7,18 +7,21 @@
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 		<style>
-			.image-label {
-    	text-align: center;
-    	font-size: 16px;
-    	margin-top: 10px;
-    	color: rgba(50, 50, 50); /* Adjust the color as needed */
-		}
-		.video-label {
-    	text-align: center;
-    	font-size: 16px;
-    	margin-top: 10px;
-    	color: rgba(50, 50, 50); /* Adjust the color as needed */
-		}
+	.image-label,
+	.video-label {
+        text-align: center;
+        font-size: 16px;
+        margin-top: 10px;
+        color: rgba(50, 50, 50); /* Adjust the color as needed */
+    }
+
+    /* Adjust the position of the slick-dots */
+    .slick-dots {
+        position: absolute;
+        bottom: 5px; /* Adjust the value to control the vertical position */
+        width: 100%;
+        text-align: center
+	}
 		</style>
 		<!-- Include Slick Carousel CSS -->
         <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
@@ -46,32 +49,32 @@
 							<h1 class="major">Retro-converted Electric Scooter</h1>
 							<div class="slider">
 								<div>
-									<img src="images\project_6_1.jpg" alt=""style="width: 878px; display: block; margin: 0 auto;" />
+									<img src="images/project_6_1.jpg" alt="Honda Aviator (Chassis)" style="width: 878px; display: block; margin: 0 auto;" />
 									<p class="image-label">Image 1: Honda Aviator (Chassis)</p>
 								</div>
                                 <div>
-									<img src="images\project_6_2.jpg" alt=""style="width: 450px; display: block; margin: 0 auto;" />
+									<img src="images/project_6_2.jpg" alt="Honda Aviator (Wire Harnessing)" style="width: 450px; display: block; margin: 0 auto;" />
 									<p class="image-label">Image 2: Honda Aviator (Wire Harnessing)</p>
 								</div>
                                 <div>
-									<img src="images\project_6.jpg" alt=""style="width: 395px; display: block; margin: 0 auto;" />
+									<img src="images/project_6.jpg" alt="Undergoing Retroconversion" style="width: 395px; display: block; margin: 0 auto;" />
 									<p class="image-label">Image 3: Undergoing Retroconversion</p>
 								</div>
 								<div>
-									<img src="images\project_6_3.jpg" alt=""style="width: 338px; display: block; margin: 0 auto;" />
+									<img src="images/project_6_3.jpg" alt="Retro-converted Honda Aviator (Front View)" style="width: 338px; display: block; margin: 0 auto;" />
 									<p class="image-label">Image 4: Retro-converted Honda Aviator (Front View)</p>
 								</div>
 								<div>
-									<img src="images\project_6_5.png" alt=""style="width: 1105px; display: block; margin: 0 auto;" />
+									<img src="images/project_6_5.png" alt="Retro-converted Honda Aviator (Side View)" style="width: 1105px; display: block; margin: 0 auto;" />
 									<p class="image-label">Image 5: Retro-converted Honda Aviator (Side View)</p>
 								</div>
 								<!-- Add more images as needed -->
 								<div style="text-align: center;">
 									<video controls width="720" height="600" style="display: block; margin: 0 auto;">
-										<source src="images\project_6_4.mp4" type="video/mp4">
+										<source src="images/project_6_4.mp4" type="video/mp4">
 										Your browser does not support the video tag.
 									</video>
-									<p class="video-label">Video 1: Retro-converted Honda Aviator Testing</p>
+									<p class="video-label">Video 1: Retro-converted Honda Aviator Testing</p>									
 								</div>
 							</div>
 							<p style="text-align: justify; font-size: 1.175rem;">To retro-convert the conventional Honda Aviator, which runs on petrol, into an electric scooter, it was essential to integrate several significant components. The integration process included the hub motor, controller, converter, rechargeable batteries, throttle, digital display, and main power supply switch, all of which played a vital role in the successful electric conversion.</p>
@@ -112,17 +115,18 @@
 				}
 			  </style>
 			<script>
-				$(document).ready(function(){
-					$('.slider').slick({
-						autoplay: true, // Set to true for automatic sliding
-						dots: true, // Add navigation dots
-						arrows: true, // Add navigation arrows
-						infinite: true, // Loop through slides
-						speed: 800, // Slide transition speed (milliseconds)
-						slidesToShow: 1, // Number of slides to show at a time
-						slidesToScroll: 1 // Number of slides to scroll at a time
-					});
+				$(document).ready(function() {
+    			$('.slider').slick({
+        		autoplay: true, // Set to true for automatic sliding
+        		dots: true, // Add navigation dots
+        		arrows: true, // Add navigation arrows
+        		infinite: true, // Loop through slides
+        		speed: 800, // Slide transition speed (milliseconds)
+        		slidesToShow: 1, // Number of slides to show at a time
+        		slidesToScroll: 1 // Number of slides to scroll at a time
+    				});
 				});
+
 			</script>
 	   </body>
   </html>
