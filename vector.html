@@ -7,18 +7,21 @@
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 		<style>
-			.image-label {
-    	text-align: center;
-    	font-size: 16px;
-    	margin-top: 10px;
-    	color: rgba(50, 50, 50); /* Adjust the color as needed */
-		}
-		.video-label {
-    	text-align: center;
-    	font-size: 16px;
-    	margin-top: 10px;
-    	color: rgba(50, 50, 50); /* Adjust the color as needed */
-		}
+	.image-label,
+    .video-label {
+        text-align: center;
+        font-size: 16px;
+        margin-top: 10px;
+        color: rgba(50, 50, 50); /* Adjust the color as needed */
+    }
+
+    /* Adjust the position of the slick-dots */
+    .slick-dots {
+        position: absolute;
+        bottom: 5px; /* Adjust the value to control the vertical position */
+        width: 100%;
+        text-align: center;
+    }
 		</style>
 		<!-- Include Slick Carousel CSS -->
         <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
@@ -46,44 +49,44 @@
 							<h1 class="major">Team Vector</h1>
 							<div class="slider">
 								<div>
-									<img src="images\Team Vector_Autonomous Robot.JPG" alt=""style="width: 625px; display: block; margin: 0 auto;" />
+									<img src="images/Team Vector_Autonomous Robot.JPG" alt="Autonomous Shuttle Launching Robot" style="width: 625px; display: block; margin: 0 auto;" />
 									<p class="image-label">Image 1: Autonomous Shuttle Launching Robot</p>
 								</div>
                                 <div>
-									<img src="images\Team Vector_Manual Robot.jpg" alt=""style="width: 665px; display: block; margin: 0 auto;" />
+									<img src="images/Team Vector_Manual Robot.jpg" alt="Manual Robot - responsible for shuttlecock transfer to the Autonomous Robot" style="width: 665px; display: block; margin: 0 auto;" />
 									<p class="image-label">Image 2: Manual Robot - responsible for shuttlecock transfer to the Autonomous Robot.</p>
 								</div>
 								<div style="text-align: center;">
 									<video controls width="720" height="500" style="display: block; margin: 0 auto;">
-										<source src="images\Team Vector__Shuttle Launching Autonomous Robot.mp4" type="video/mp4">
+										<source src="images/Team Vector__Shuttle Launching Autonomous Robot.mp4" type="video/mp4">
 										Your browser does not support the video tag.
 									</video>
 									<p class="video-label">Video 1: Autonomous Shuttle Launching Robot (Locomotion Test)</p>
 								</div>
 								<div style="text-align: center;">
 									<video controls width="720" height="500" style="display: block; margin: 0 auto;">
-										<source src="images\Team Vector_Shuttle Launching Autonomous and Manual Robot (Testing).mp4" type="video/mp4">
+										<source src="images/Team Vector_Shuttle Launching Autonomous and Manual Robot (Testing).mp4" type="video/mp4">
 										Your browser does not support the video tag.
 									</video>
 									<p class="video-label">Video 2: Autonomous Shuttle Launching Robot & Manual Robot (Successful task completion)</p>
 								</div>
 								<div style="text-align: center;">
 									<video controls width="720" height="500" style="display: block; margin: 0 auto;">
-										<source src="images\Team Vector_MR2 LOCOMOTION.mp4" type="video/mp4">
+										<source src="images/Team Vector_MR2 LOCOMOTION.mp4" type="video/mp4">
 										Your browser does not support the video tag.
 									</video>
-									<p class="video-label">Video 3: Autonomous Quadraped Robot (Trot Gait Analysis)</p>
+									<p class="video-label">Video 3: Autonomous Quadruped Robot (Trot Gait Analysis)</p>									
 								</div>
 								<div style="text-align: center;">
 									<video controls width="720" height="500" style="display: block; margin: 0 auto;">
-										<source src="images\Team Vector_Gerge holding & Passing Mechanism.mp4" type="video/mp4">
+										<source src="images/Team Vector_Gerge holding & Passing Mechanism.mp4" type="video/mp4">
 										Your browser does not support the video tag.
 									</video>
 									<p class="video-label">Video 4: Autonomous Robot (Gerge Holding & Passing)</p>
 								</div>
 								<div style="text-align: center;">
 									<video controls width="720" height="500" style="display: block; margin: 0 auto;">
-										<source src="images\Team Vector_SHAGAI LOADING AND THROWING.mp4" type="video/mp4">
+										<source src="images/Team Vector_SHAGAI LOADING AND THROWING.mp4" type="video/mp4">
 										Your browser does not support the video tag.
 									</video>
 									<p class="video-label">Video 5: Manual Robot (Shagai Loading & Throwing)</p>
@@ -131,17 +134,18 @@
 				}
 			  </style>
 			<script>
-				$(document).ready(function(){
-					$('.slider').slick({
-						autoplay: true, // Set to true for automatic sliding
-						dots: true, // Add navigation dots
-						arrows: true, // Add navigation arrows
-						infinite: true, // Loop through slides
-						speed: 800, // Slide transition speed (milliseconds)
-						slidesToShow: 1, // Number of slides to show at a time
-						slidesToScroll: 1 // Number of slides to scroll at a time
-					});
-				});
+				$(document).ready(function() {
+    			$('.slider').slick({
+        		autoplay: true, // Set to true for automatic sliding
+        		dots: true, // Add navigation dots
+        		arrows: true, // Add navigation arrows
+        		infinite: true, // Loop through slides
+        		speed: 800, // Slide transition speed (milliseconds)
+        		slidesToShow: 1, // Number of slides to show at a time
+        		slidesToScroll: 1 // Number of slides to scroll at a time
+   	 			});
+			});
+
 			</script>
 	   </body>
   </html>
