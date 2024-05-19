@@ -43,23 +43,23 @@
 <div id="wrapper">
 
     <!-- Main -->
-    <section id="main" class="wrapper">
+    <main id="main" class="wrapper">
         <div class="inner">
             <h1 class="major">Autonomous & Undersea Systems Division</h1>
             <div class="swiper-container">
                 <div class="swiper-wrapper">
                     <div class="swiper-slide" style="text-align: center; margin: 20px 0;">
-                        <img src="images/Autonomous Surface Vessel_1.jpg" alt="Autonomous Surface Vessel" style="width: 875px; display: block; margin: 0 auto;">
+                        <img src="images/Autonomous Surface Vessel_1.jpg" alt="Autonomous Surface Vessel" style="width: 100%; max-width: 875px; display: block; margin: 0 auto;">
                         <p class="image-label">Image 1: Autonomous Surface Vessel</p>
                         <p class="image-citation" style="margin-top: 5px; font-size: 12px;">Image source: Aerospace Engineers Private Limited, 2022</p>
                     </div>
                     <div class="swiper-slide" style="text-align: center; margin: 20px 0;">
-                        <img src="images/AUV3.0.jpg" alt="Autonomous Underwater Vehicle (named 'Neerakshi' AUV)" style="width: 515px; display: block; margin: 0 auto;">
+                        <img src="images/AUV3.0.jpg" alt="Autonomous Underwater Vehicle (named 'Neerakshi' AUV)" style="width: 100%; max-width: 515px; display: block; margin: 0 auto;">
                         <p class="image-label">Image 2: Autonomous Underwater Vehicle (named 'Neerakshi' AUV)</p>
                         <p class="image-citation" style="margin-top: 5px; font-size: 12px;">Image source: Vajiram & Ravi (IAS Study Center), 2023, <a href="https://vajiramias.com/current-affairs/what-is-neerakshi/64ce655c9c96bc7864378357/" target="_blank" rel="noopener noreferrer">https://vajiramias.com/</a></p>
                     </div>
                     <div class="swiper-slide" style="text-align: center; margin: 20px 0;">
-                        <img src="images/Neerakshi_1.jpg" alt="'Neerakshi' AUV maneuvering through water with surface current" style="width: 975px; display: block; margin: 0 auto;">
+                        <img src="images/Neerakshi_1.jpg" alt="'Neerakshi' AUV maneuvering through water with surface current" style="width: 100%; max-width: 975px; display: block; margin: 0 auto;">
                         <p class="image-label">Image 3: 'Neerakshi' AUV maneuvering through water with surface current</p>
                         <p class="image-citation" style="margin-top: 5px; font-size: 12px;">Image source: Press Trust of India, 2023, <a href="https://www.ptinews.com/news/national/mine-detector-auv-launched/618679.html" target="_blank" rel="noopener noreferrer">https://www.ptinews.com/</a></p>
                     </div>
@@ -75,7 +75,7 @@
             <p style="text-align: justify; font-size: 1.175rem;">My role encompassed the entire lifecycle of marine robotic vehicle development. I led the design process from inception to functional prototypes, including hardware selection, schematic and PCB design, board bring-up, and system-level integration. My collaboration with cross-functional teams allowed for the integration of custom-designed hardware, underwater sensors and payloads, and communication systems, resulting in the successful creation of marine robotic vehicles.</p>
             <p style="text-align: justify; font-size: 1.175rem;">Additionally, I facilitated collaboration throughout the product development lifecycle, including design, review, testing, debugging, and thorough documentation. This ensured that all aspects of the project were meticulously recorded and documented for future reference and improvement.</p>
         </div>
-    </section>
+    </main>
 
 </div>
 
@@ -98,20 +98,36 @@
 <script src="assets/js/main.js"></script>
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 <script>
-    var swiper = new Swiper('.swiper-container', {
-        autoplay: {
-            delay: 3000,
-        },
-        pagination: {
-            el: '.swiper-pagination',
-            clickable: true,
-        },
-        navigation: {
-            nextEl: '.swiper-button-next',
-            prevEl: '.swiper-button-prev',
-        },
-        loop: true,
-        speed: 800,
+    document.addEventListener('DOMContentLoaded', function() {
+        var swiper = new Swiper('.swiper-container', {
+            autoplay: {
+                delay: 3000,
+            },
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+            loop: true,
+            speed: 800,
+            breakpoints: {
+                640: {
+                    slidesPerView: 1,
+                    spaceBetween: 10,
+                },
+                768: {
+                    slidesPerView: 2,
+                    spaceBetween: 20,
+                },
+                1024: {
+                    slidesPerView: 3,
+                    spaceBetween: 30,
+                },
+            },
+        });
     });
 </script>
 </body>
