@@ -4,11 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <title>Swapnil Meshram</title>
-    <meta name="description" content="Career Chronicles: Unveiling My Tech Odyssey - Swapnil Meshram's journey in Autonomous & Undersea Systems Division">
-    <meta name="keywords" content="Swapnil Meshram, Autonomous Systems, Undersea Systems, Marine Robotics, AUV, ASV, ROV, Aerospace Engineers Private Limited">
     <link rel="stylesheet" href="assets/css/main.css">
     <noscript><link rel="stylesheet" href="assets/css/noscript.css"></noscript>
-    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css">
     <style>
         .image-label,
         .video-label {
@@ -24,26 +23,11 @@
             font-size: 12px;
         }
 
-        .swiper-pagination {
+        .slick-dots {
+            position: absolute;
             bottom: 5px;
-        }
-
-        .swiper-slide {
+            width: 100%;
             text-align: center;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin: 20px 0;
-            width: auto !important;
-        }
-
-        .swiper-slide img {
-            display: block;
-            margin: 0 auto;
-        }
-
-        .swiper-container {
-            padding: 20px 0;
         }
     </style>
 </head>
@@ -66,29 +50,22 @@
     <section id="main" class="wrapper">
         <div class="inner">
             <h1 class="major">Autonomous & Undersea Systems Division</h1>
-            <div class="swiper-container">
-                <div class="swiper-wrapper">
-                    <div class="swiper-slide">
-                        <img src="images/Autonomous Surface Vessel_1.jpg" alt="Autonomous Surface Vessel" style="width: 875px;">
-                        <p class="image-label">Image 1: Autonomous Surface Vessel</p>
-                        <p class="image-citation">Image source: Aerospace Engineers Private Limited, 2022</p>
-                    </div>
-                    <div class="swiper-slide">
-                        <img src="images/AUV3.0.jpg" alt="Autonomous Underwater Vehicle (named 'Neerakshi' AUV)" style="width: 515px;">
-                        <p class="image-label">Image 2: Autonomous Underwater Vehicle (named 'Neerakshi' AUV)</p>
-                        <p class="image-citation">Image source: Vajiram & Ravi (IAS Study Center), 2023, <a href="https://vajiramias.com/current-affairs/what-is-neerakshi/64ce655c9c96bc7864378357/" target="_blank" rel="noopener noreferrer">https://vajiramias.com/</a></p>
-                    </div>
-                    <div class="swiper-slide">
-                        <img src="images/Neerakshi_1.jpg" alt="'Neerakshi' AUV maneuvering through water with surface current" style="width: 975px;">
-                        <p class="image-label">Image 3: 'Neerakshi' AUV maneuvering through water with surface current</p>
-                        <p class="image-citation">Image source: Press Trust of India, 2023, <a href="https://www.ptinews.com/news/national/mine-detector-auv-launched/618679.html" target="_blank" rel="noopener noreferrer">https://www.ptinews.com/</a></p>
-                    </div>
+            <div class="slider">
+                <div style="text-align: center; margin: 20px 0;">
+                    <img src="images/Autonomous Surface Vessel_1.jpg" alt="Autonomous Surface Vessel" style="width: 875px; display: block; margin: 0 auto;">
+                    <p class="image-label">Image 1: Autonomous Surface Vessel</p>
+                    <p class="image-citation" style="margin-top: 5px; font-size: 12px;">Image source: Aerospace Engineers Private Limited, 2022</p>
                 </div>
-                <!-- Add Pagination -->
-                <div class="swiper-pagination"></div>
-                <!-- Add Navigation -->
-                <div class="swiper-button-next"></div>
-                <div class="swiper-button-prev"></div>
+                <div style="text-align: center; margin: 20px 0;">
+                    <img src="images/AUV3.0.jpg" alt="Autonomous Underwater Vehicle (named 'Neerakshi' AUV)" style="width: 515px; display: block; margin: 0 auto;">
+                    <p class="image-label">Image 2: Autonomous Underwater Vehicle (named 'Neerakshi' AUV)</p>
+                    <p class="image-citation" style="margin-top: 5px; font-size: 12px;">Image source: Vajiram & Ravi (IAS Study Center), 2023, <a href="https://vajiramias.com/current-affairs/what-is-neerakshi/64ce655c9c96bc7864378357/" target="_blank" rel="noopener noreferrer">https://vajiramias.com/</a></p>
+                </div>
+                <div style="text-align: center; margin: 20px 0;">
+                    <img src="images/Neerakshi_1.jpg" alt="'Neerakshi' AUV maneuvering through water with surface current" style="width: 975px; display: block; margin: 0 auto;">
+                    <p class="image-label">Image 3: 'Neerakshi' AUV maneuvering through water with surface current</p>
+                    <p class="image-citation" style="margin-top: 5px; font-size: 12px;">Image source: Press Trust of India, 2023, <a href="https://www.ptinews.com/news/national/mine-detector-auv-launched/618679.html" target="_blank" rel="noopener noreferrer">https://www.ptinews.com/</a></p>
+                </div>
             </div>
             <p style="text-align: justify; font-size: 1.175rem;">During my tenure in the Autonomous & Undersea Systems Division at Aerospace Engineers Private Limited (AEPL), I led the research and development of marine robotic vehicles, resulting in significant cost savings and improved project management within the Electrical & Electronics department.</p>
             <p style="text-align: justify; font-size: 1.175rem;">My responsibilities involved designing complex electrical frameworks for various unmanned marine robotic vehicles. This included the development of a 2.15-meter-long Autonomous Underwater Vehicle (AUV) with an endurance of nearly 4 hours, capable of operating at depths of up to 300 meters. The portfolio also comprised Remotely Operated Vehicles (ROVs) and Autonomous Surface Vessels (ASVs).</p>
@@ -116,40 +93,17 @@
 <script src="assets/js/breakpoints.min.js"></script>
 <script src="assets/js/util.js"></script>
 <script src="assets/js/main.js"></script>
-<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        var swiper = new Swiper('.swiper-container', {
-            autoplay: {
-                delay: 3000,
-            },
-            pagination: {
-                el: '.swiper-pagination',
-                clickable: true,
-            },
-            navigation: {
-                nextEl: '.swiper-button-next',
-                prevEl: '.swiper-button-prev',
-            },
-            loop: true,
+    $(document).ready(function() {
+        $('.slider').slick({
+            autoplay: true,
+            dots: true,
+            arrows: true,
+            infinite: true,
             speed: 800,
-            slidesPerView: 'auto',
-            centeredSlides: false,
-            spaceBetween: 20,
-            breakpoints: {
-                640: {
-                    slidesPerView: 'auto',
-                    spaceBetween: 20,
-                },
-                768: {
-                    slidesPerView: 'auto',
-                    spaceBetween: 20,
-                },
-                1024: {
-                    slidesPerView: 'auto',
-                    spaceBetween: 30,
-                },
-            },
+            slidesToShow: 1,
+            slidesToScroll: 1
         });
     });
 </script>
