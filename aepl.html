@@ -33,31 +33,14 @@
         .responsive-container {
             display: block;
             margin: 0 auto;
-            width: 100%;
+            padding: 0 10px; /* Add padding for spacing */
+            box-sizing: border-box;
         }
 
         .responsive-img {
             width: 100%;
             height: auto;
             display: block;
-            margin: 0 auto;
-        }
-
-        .image-container {
-            text-align: center;
-            margin: 20px 0;
-        }
-
-        @media (min-width: 875px) {
-            .responsive-container.autonomous-surface-vessel {
-                max-width: 875px;
-            }
-            .responsive-container.autonomous-underwater-vehicle {
-                max-width: 515px;
-            }
-            .responsive-container.neerakshi-auv {
-                max-width: 975px;
-            }
         }
 
         @media (max-width: 768px) {
@@ -93,17 +76,17 @@
         <div class="inner">
             <h1 class="major">Autonomous & Undersea Systems Division</h1>
             <div class="slider">
-                <div class="responsive-container image-container autonomous-surface-vessel">
+                <div class="responsive-container" style="max-width: 875px;">
                     <img src="images/Autonomous Surface Vessel_1.jpg" alt="Autonomous Surface Vessel" class="responsive-img">
                     <p class="image-label">Image 1: Autonomous Surface Vessel</p>
                     <p class="image-citation">Image source: Aerospace Engineers Private Limited, 2022</p>
                 </div>
-                <div class="responsive-container image-container autonomous-underwater-vehicle">
+                <div class="responsive-container" style="max-width: 515px;">
                     <img src="images/AUV3.0.jpg" alt="Autonomous Underwater Vehicle (named 'Neerakshi' AUV)" class="responsive-img">
                     <p class="image-label">Image 2: Autonomous Underwater Vehicle (named 'Neerakshi' AUV)</p>
                     <p class="image-citation">Image source: Vajiram & Ravi (IAS Study Center), 2023, <a href="https://vajiramias.com/current-affairs/what-is-neerakshi/64ce655c9c96bc7864378357/" target="_blank" rel="noopener noreferrer">https://vajiramias.com/</a></p>
                 </div>
-                <div class="responsive-container image-container neerakshi-auv">
+                <div class="responsive-container" style="max-width: 975px;">
                     <img src="images/Neerakshi_1.jpg" alt="'Neerakshi' AUV maneuvering through water with surface current" class="responsive-img">
                     <p class="image-label">Image 3: 'Neerakshi' AUV maneuvering through water with surface current</p>
                     <p class="image-citation">Image source: Press Trust of India, 2023, <a href="https://www.ptinews.com/news/national/mine-detector-auv-launched/618679.html" target="_blank" rel="noopener noreferrer">https://www.ptinews.com/</a></p>
@@ -145,7 +128,9 @@
             infinite: true,
             speed: 800,
             slidesToShow: 1,
-            slidesToScroll: 1
+            slidesToScroll: 1,
+            centerMode: true,
+            centerPadding: '40px' /* Adjust the padding as needed */
         });
     });
 </script>
