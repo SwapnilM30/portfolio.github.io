@@ -5,455 +5,417 @@
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 -->
 <html>
-<head>
-	<title>Swapnil Meshram</title>
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-	<meta name="description" content="Swapnil Meshram's Portfolio - Electronics Engineer and Robotics Enthusiast">
-	<meta name="keywords" content="Swapnil Meshram, Electronics Engineer, Robotics, ASU, Projects, Contact">
-	<link rel="stylesheet" href="assets/css/main.css" />
-	<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-	<style>
-		.slider {
-			border: 1px solid rgba(50, 50, 50, 0.5); /* Lighter border for a subtle effect */
-			padding: 15px; /* Increased padding for better spacing */
-			margin: 0 auto; /* Center the box horizontally on the page */
-			max-width: 300px; /* Adjusted max-width for better balance */
-		}
+	<head>
+		<title>Swapnil Meshram</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+		<style>
+	.slider {
+        border: 1px solid rgba(50, 50, 50, 0.5); /* Lighter border for a subtle effect */
+        padding: 15px; /* Increased padding for better spacing */
+        margin: 0 auto; /* Center the box horizontally on the page */
+        max-width: 300px; /* Adjusted max-width for better balance */
+    }
 
-		/* Add padding to the About Me section */
-		#one {
-			padding-top: 20px;    /* Increased top padding */
-			padding-bottom: 20px; /* Increased bottom padding */
-		}
+    /* Add padding to the About Me section */
+    #one {
+        padding-top: 20px;    /* Increased top padding */
+        padding-bottom: 20px; /* Increased bottom padding */
+    }
 
-		/* Add margin-top to move paragraphs down */
-		.text-justify {
-			margin-top: 10px; /* Added margin-top for better spacing */
-		}
+    /* Add margin-top to move paragraphs down */
+    .text-justify {
+		margin-top: 10px; /* Added margin-top for better spacing */
+    }
 
-		.text-justify.abc {
-			margin-top: 10px; /* Consistent margin-top */
-		}
+    .text-justify.abc {
+		margin-top: 10px; /* Consistent margin-top */
+    }
 
-		/* Add padding to the inner content */
-		.inner {
-			padding: 20px; /* Increased inner padding for better spacing */
-		}
+    /* Add padding to the inner content */
+    .inner {
+        padding: 20px; /* Increased inner padding for better spacing */
+    }
 
-		.inner-heading {
-			text-align: center;
-			padding: 20px; /* Increased padding for better alignment */
-		}
+    .inner-heading {
+        text-align: center;
+        padding: 20px; /* Increased padding for better alignment */
+    }
 
-		.content-with-image {
-			display: flex;
-			flex-wrap: wrap;
-			align-items: center;
-			justify-content: center;
-			gap: 20px; /* Increased gap for better spacing */
-		}
+    .content-with-image {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        gap: 20px; /* Increased gap for better spacing */
+    }
 
-		.image-container {
-			padding-right: 20px; /* Reduced padding for better balance */
-			padding-top: 20px; /* Adjusted spacing */
-			flex: 1;
-		}
+    .image-container {
+        padding-right: 20px; /* Reduced padding for better balance */
+        padding-top: 20px; /* Adjusted spacing */
+        flex: 1;
+    }
 
-		.profile-image {
-			max-width: 100%;
-			height: auto;
-			margin-right: 20px; /* Reduced margin for better alignment */
-			margin-bottom: 20px; /* Consistent margin */
-			display: block;
-		}
+    .profile-image {
+        max-width: 100%;
+        height: auto;
+        margin-right: 20px; /* Reduced margin for better alignment */
+        margin-bottom: 20px; /* Consistent margin */
+        display: block;
+    }
 
-		.text-container {
-			flex: 2;
-			margin-right: 20px; /* Adjust this value according to your image width */
-		}
+    .text-container {
+        flex: 2;
+        margin-right: 20px; /* Adjust this value according to your image width */
+    }
 
-		@media (max-width: 768px) {
-			.image-container {
-				padding-right: 0;
-				padding-top: 0;
-				flex: 1 1 100%;
-			}
+    @media (max-width: 768px) {
+        .image-container {
+            padding-right: 0;
+            padding-top: 0;
+            flex: 1 1 100%;
+        }
 
-			.text-container {
-				margin-right: 0;
-				flex: 1 1 100%;
-			}
-		}
+        .text-container {
+            margin-right: 0;
+            flex: 1 1 100%;
+        }
+    }
 
-		.underline {
-			margin-top: 20px; /* Adjusted margin-top for better spacing */
-			margin-bottom: 10px; /* Adjusted margin-bottom for consistency */
-		}
+    .underline {
+        margin-top: 20px; /* Adjusted margin-top for better spacing */
+        margin-bottom: 10px; /* Adjusted margin-bottom for consistency */
+    }
 
-		/* Add CSS styles for underlining the specified text */
-		p.underline {
-			text-decoration: underline;
-			padding-bottom: 10px; /* Increased padding for better spacing */
-		}
-
-		/* Hamburger menu styles */
-		.hamburger-menu {
-			display: none;
-			position: fixed;
-			top: 15px;
-			right: 15px;
-			z-index: 10001;
-			font-size: 2em;
-			cursor: pointer;
-			color: #fff;
-		}
-
-		#sidebar.visible {
-			left: 0;
-		}
-
-		/* Media queries for responsiveness */
-		@media screen and (max-width: 736px) {
-			.hamburger-menu {
-				display: block;
-			}
-
-			#sidebar {
-				width: 100%;
-				height: 100vh;
-				position: fixed;
-				top: 0;
-				left: -100%;
-				transition: left 0.3s ease-in-out;
-			}
-
-			#sidebar.visible {
-				left: 0;
-			}
-		}
-	</style>
-	<!-- Include Slick Carousel CSS -->
-	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
-	<!-- Include Slick Carousel Theme CSS (optional) -->
-	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
-</head>
+    /* Add CSS styles for underlining the specified text */
+    p.underline {
+        text-decoration: underline;
+        padding-bottom: 10px; /* Increased padding for better spacing */
+    }
+		</style>
+		<!-- Include Slick Carousel CSS -->
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+        <!-- Include Slick Carousel Theme CSS (optional) -->
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
+	</head>
 <body class="is-preload">
 
-	<!-- Sidebar -->
-	<section id="sidebar">
-		<div class="inner">
-			<nav>
-				<ul>
-					<li><a href="#intro">Welcome</a></li>
-					<li><a href="#one">About me</a></li>
-					<li><a href="#two">Work experience</a></li>
-					<li><a href="#three">Projects</a></li>
-					<li><a href="#four">Contact information</a></li>
-				</ul>
-			</nav>
-		</div>
-	</section>
-
-	<!-- Hamburger menu for mobile view -->
-	<div class="hamburger-menu" onclick="toggleMenu()">☰</div>
-
-	<!-- Wrapper -->
-	<div id="wrapper">
-
-		<!-- Intro -->
-		<section id="intro" class="wrapper style1 fullscreen fade-up">
-			<div class="inner-heading">
-				<h2 class="name overline-underline">Explore with Me: My Tech Odyssey</h2>
-			</div>
-			<section id="welcome" class="main style1 special">
-				<div class="container">
-					<header class="major"></header>
-					<div class="content">
-						<p class="text-justify abc" style="font-size: 1.175rem;">Hi there, my name is Swapnil Meshram, and I am an Electronics Engineer with a strong passion for robotics. Currently, I am pursuing my Master's degree in Robotics and Autonomous Systems at Arizona State University.</p>
-						<p class="text-justify abc" style="font-size: 1.175rem;">My passion for robotics has led me to delve deeper into this fascinating field, where I am exploring the intricate interplay between robot autonomy, mechanics, and control. As I continue to push boundaries and strive for excellence, I am also committed to maintaining my roots in electronics engineering and hardware design.</p>
-						<p class="text-justify abc" style="font-size: 1.175rem;">This portfolio is a testament to my dedication to both fields. From complex hardware designs to the creation of intelligent robotic systems, each project represents a step towards merging my two core passions.</p>
-						<p class="text-justify abc" style="font-size: 1.175rem;">I invite you to join me on this exciting journey of discovery and exploration in the world of robotics and electronics!</p>
-						<ul class="actions"></ul>
-					</div>
+		<!-- Sidebar -->
+			<section id="sidebar">
+				<div class="inner">
+					<nav>
+						<ul>
+							<li><a href="#intro">Welcome</a></li>
+							<li><a href="#one">About me</a></li>
+							<li><a href="#two">Work experience</a></li>
+							<li><a href="#three">Projects</a></li>
+							<li><a href="#four">Contact information</a></li>
+						</ul>
+					</nav>
 				</div>
 			</section>
-		</section>
 
-		<!-- About Me -->
-		<section id="one" class="wrapper style2 fullscreen fade-up">
-			<div class="inner-heading">
-				<h2 class="name overline-underline">A Curious Journey into Robotics</h2>
-				<div class="content-with-image">
-					<div class="image-container">
-						<img src="images/PSX_20230124_121449~3.jpg" alt="Swapnil Meshram" class="profile-image">
-					</div>
-					<div class="text-container">
-						<p class="text-justify para" style="font-size: 1.175rem;">At the age of 14, I became fascinated with how infants learn by observing the world around them as they grow. This sparked a question in my mind: Can machines also perceive the world with such curiosity?</p>
-						<p class="text-justify para" style="font-size: 1.175rem;">Motivated by this curiosity, I discovered the field of robotics and was immediately captivated by the exciting research and work being done. From that moment on, I knew I was destined to become a robotics engineer. Alongside my regular college courses, I tirelessly worked to develop robot circuitry and create various types of robots. This hands-on experience further fueled my interest in the field and solidified my determination to fully immerse myself in the captivating world of robotics. Driven by a thirst for knowledge, I embarked on a journey to explore the intricate domains of robotics and artificial intelligence.</p>
-						<p class="text-justify para" style="font-size: 1.175rem;">My early fascination with robotics led me to pursue a graduate degree in Robotics and Autonomous Systems at Arizona State University. Exploring the intricate domains of robotics and artificial intelligence has been a thoroughly enjoyable experience, and I eagerly seize every opportunity to learn more in this ever-evolving and dynamic field. My journey to become a robotics engineer has been incredible so far, and I am excited to see where it takes me in the future.</p>
-					</div>
-				</div>
-			</div>
-		</section>
+		<!-- Wrapper -->
+			<div id="wrapper">
 
-		<!-- Work Experience -->
-		<section id="two" class="wrapper style3 fade-up">
-			<div class="inner">
-				<h2 class="name overline-underline">Career Chronicles: Unveiling My Tech Odyssey</h2>
-				<p class="text-justify" style="font-size: 1.175rem;">Before starting my master's program in Robotics and Autonomous Systems at Arizona State University, I proactively sought practical experience in my field. These early experiences only intensified my passion for robotics and electronics engineering and paved the way for my academic journey. During my work experience, I actively participated in various projects, including the development of intricate hardware systems and the initiation of innovative robotics solutions.</p>
-				<div class="slider">
-					<img src="images/AEPL logo.png" alt="AEPL Logo" style="width: 215px; display: block; margin: 0 auto;" />
-				</div>
-				<ul class="actions-space">
-					<li><a href="aepl.html" class="button">More Details</a></li>
-				</ul>
-			</div>
-		</section>
+				<!-- Intro -->
 
-		<!-- Projects -->
-		<section id="three" class="wrapper style2 spotlights">
-			<!-- Project 1 -->
-			<div class="thumbnail-gallery">
-				<div class="thumbnail">
-					<a href="images/project_1.jpeg" class="image"><img src="images/project_1_thumbnail.png" alt="Project 1 Thumbnail" class="project-thumbnail" /></a>
-				</div>
-				<div class="content">
-					<div class="inner">
-						<h2 class="project-title">PCB for Manual and Autonomous Robots</h2>
-						<p class="underline">Problem Statement and Solution:</p>
-						<p style="margin-top: 0; margin-bottom: 20px;">Team Vector, our college's robotics club, encountered a challenge during our participation in ABU Robocon-India, where we had to connect several electronic subsystems using a large number of wires. This led to loose connections, confusion, and EMI/EMC issues during the electrical rack assembly and debugging process. However, we overcame this obstacle by devising a PCB that incorporated all the necessary functionalities and interfaces commonly used in the competition.</p>
-						<ul class="actions">
-							<li><a href="generic.html" class="button">Project details</a></li>
-						</ul>
+					<section id="intro" class="wrapper style1 fullscreen fade-up">
+						<div class="inner-heading">
+							<h2 class="name overline-underline">Explore with Me: My Tech Odyssey</h2>
+							</div>
+							<section id="welcome" class="main style1 special">
+                            <div class="container">
+                            <header class="major">
+						    </header>
+						    <div class="content">
+							<p class="text-justify abc" style="font-size: 1.175rem;">Hi there, my name is Swapnil Meshram, and I am an Electronics Engineer with a strong passion for robotics. Currently, I am pursuing my Master's degree in Robotics and Autonomous Systems at Arizona State University.</p> 
+							<p class="text-justify abc" style="font-size: 1.175rem;">My passion for robotics has led me to delve deeper into this fascinating field, where I am exploring the intricate interplay between robot autonomy, mechanics, and control. As I continue to push boundaries and strive for excellence, I am also committed to maintaining my roots in electronics engineering and hardware design.</p> 
+							<p class="text-justify abc" style="font-size: 1.175rem;">This portfolio is a testament to my dedication to both fields. From complex hardware designs to the creation of intelligent robotic systems, each project represents a step towards merging my two core passions.</p>
+							<p class="text-justify abc" style="font-size: 1.175rem;">I invite you to join me on this exciting journey of discovery and exploration in the world of robotics and electronics!</p>
+							<ul class="actions">
+								
+							</ul>
+						</div>
 					</div>
-				</div>
-			</div>
-			<!-- Project 2 -->
-			<div class="thumbnail-gallery">
-				<div class="thumbnail">
-					<a href="images/project_2.png" class="image"><img src="images/project_2_thumbnail.png" alt="Project 2 Thumbnail" class="project-thumbnail"/></a>
-				</div>
-				<div class="content">
-					<div class="inner">
-						<h2 class="project-title">Battery Fuel Gauge</h2>
-						<p class="underline">Problem Statement and Solution:</p>
-						<p style="margin-top: 0; margin-bottom: 20px;">Team Vector's testing team always had to remove the electrical rack of the robot to check the battery pack's health with the help of a battery checker. This was a repetitive and cumbersome task. However, with the introduction of the 'Battery Fuel Gauge' system, we had a clear display of the robot's battery pack health through an onboard LED array. Additionally, we received an alert message when the battery charge dropped below a particular limit.</p>
-						<ul class="actions">
-							<li><a href="battery_gauge.html" class="button">Project details</a></li>
-						</ul>
-					</div>
-				</div>
-			</div>
-			<!-- Project 3 -->
-			<div class="thumbnail-gallery">
-				<div class="thumbnail">
-					<a href="images/project_3.jpeg" class="image"><img src="images/project_3_thumbnail.png" alt="Project 3 Thumbnail" class="project-thumbnail" /></a>
-				</div>
-				<div class="content">
-					<div class="inner">
-						<h2 class="project-title">LCD & Relay Breakout Board</h2>
-						<p class="underline">Problem Statement and Solution:</p>
-						<p style="margin-top: 0; margin-bottom: 20px;">With the integration of the 'Battery Fuel Gauge' system, Team Vector wanted to have an LCD display outside the robot that would show the status of the battery pack. In addition to displaying the battery status, the LCD display is versatile and can be used for a variety of purposes. The breakout board also includes relays, making this combination suitable for a wide range of applications.</p>
-						<ul class="actions">
-							<li><a href="relay.html" class="button">Project details</a></li>
-						</ul>
-					</div>
-				</div>
-			</div>
-			<!-- Project 4 -->
-			<div class="thumbnail-gallery">
-				<div class="thumbnail">
-					<a href="images/project_4.jpg" class="image"><img src="images/project_4_thumbnail.png" alt="Project 4 Thumbnail" class="project-thumbnail"/></a>
-				</div>
-				<div class="content">
-					<div class="inner">
-						<h2 class="project-title">Multipurpose PCB Ruler</h2>
-						<p class="underline">Problem Statement and Solution:</p>
-						<p style="margin-top: 0; margin-bottom: 20px;">During the PCB design process, we usually find ourselves constantly searching for PCB-related calculations and component footprints online, both during the design and debugging of the boards. As a solution, the PCB Ruler simplifies these issues by integrating all essential PCB calculations and component footprints, making design and debugging more efficient than ever. Say goodbye to endless web searches - the answers are now at your fingertips with our multipurpose PCB ruler.</p>
-						<ul class="actions">
-							<li><a href="pcb_ruler.HTML" class="button">Project details</a></li>
-						</ul>
-					</div>
-				</div>
-			</div>
-			<!-- Project 5 -->
-			<div class="thumbnail-gallery">
-				<div class="thumbnail">
-					<a href="images/project_5.png" class="image"><img src="images/project_5_thumbnail.png" alt="Project 5 Thumbnail" class="project-thumbnail" /></a>
-				</div>
-				<div class="content">
-					<div class="inner">
-						<h2 class="project-title">PCB for Line Follower Robot</h2>
-						<p class="underline">Problem Statement and Solution:</p>
-						<p style="margin-top: 0; margin-bottom: 20px;">Team Vector, our college's robotics club, welcomed new members and organized a workshop featuring a challenge involving obstacle avoidance, path following, and flag retrieval. The Electronics department focused on designing and producing a PCB in-house with the limited set of components available. As the trainer, I led new members through the entire process, from board design to board bring-up, prioritizing practical skills and teamwork.</p>
-						<ul class="actions">
-							<li><a href="line_follower.html" class="button">Project details</a></li>
-						</ul>
-					</div>
-				</div>
-			</div>
-			<!-- Project 6 -->
-			<div class="thumbnail-gallery">
-				<div class="thumbnail">
-					<a href="images/project_6.jpg" class="image"><img src="images/project_6_thumbnail.png" alt="Project 6 Thumbnail" class="project-thumbnail" /></a>
-				</div>
-				<div class="content">
-					<div class="inner">
-						<h2 class="project-title">Retro-converted Electric Scooter</h2>
-						<p class="underline">Problem Statement and Solution:</p>
-						<p style="margin-top: 0; margin-bottom: 20px;">One of my friends had a petrol-driven Honda Aviator, which he was planning to sell at a lower price since he was not using it due to reduced mileage. One day, we had an idea: to convert this petrol-driven scooter into a fully-fledged electric scooter. In search of components, we scoured the local market and were fortunate enough to stumble upon an abandoned electric two-wheeler. This discovery led us to a new plan: retro-converting the petrol-driven Honda Aviator into an electric scooter.</p>
-						<ul class="actions">
-							<li><a href="electric_scooter.HTML" class="button">Project details</a></li>
-						</ul>
-					</div>
-				</div>
-			</div>
-			<!-- Project 7 -->
-			<div class="thumbnail-gallery">
-				<div class="thumbnail">
-					<a href="images/Team Nikola.png" class="image"><img src="images/Team Nikola_thumbnail.png" alt="Team Nikola Thumbnail" class="project-thumbnail" /></a>
-				</div>
-				<div class="content">
-					<div class="inner">
-						<h2 class="project-title">Team Nikola Racing</h2>
-						<p style="margin-top: 0; margin-bottom: 20px;">A team of 20 enthusiastic students from K. K. Wagh Institute of Engineering Education & Research, Nashik, united their passion for electric vehicles (EVs) and embarked on a collaborative journey to turn their vision into reality. Together, they designed, manufactured, and fabricated an outstanding electric bike. The most distinguishing feature of their creation is its exceptional Unique Selling Proposition (USP), which includes an incredibly fast 20-minute charging time and a battery lifespan of over 8 years.</p>
-						<ul class="actions">
-							<li><a href="nikola.html" class="button">More Details</a></li>
-						</ul>
-					</div>
-				</div>
-			</div>
-			<!-- Project 8 -->
-			<div class="thumbnail-gallery">
-				<div class="thumbnail">
-					<a href="images/Team Vector.png" class="image"><img src="images/Team Vector_thumbnail.png" alt="Team Vector Thumbnail" class="project-thumbnail" /></a>
-				</div>
-				<div class="content">
-					<div class="inner">
-						<h2 class="project-title">Team Vector</h2>
-						<p style="margin-top: 0; margin-bottom: 20px;">Team Vector, the robotics club, is a coalition of 40 students from various engineering disciplines at K. K. Wagh Institute of Engineering Education & Research, Nashik. Each team member is a passionate robotics enthusiast with exceptional technical knowledge and resource management skills. Team Vector has been participating in ABU Robocon-India since 2016, steadily improving in rankings, skills, and experience each year.</p>
-						<ul class="actions">
-							<li><a href="vector.html" class="button">More Details</a></li>
-						</ul>
-					</div>
-				</div>
-			</div>
-		</section>
+				</section>
+            </section>
+            
 
-		<!-- Contact Information -->
-		<section id="four" class="wrapper style1 fade-up">
-			<div class="inner">
-				<h1>Get in Touch</h1>
-				<p>Feel free to start a conversation or collaborate on exciting projects. I am just a message away and eager to connect with you to explore new opportunities, whether they are internships or full-time positions. I am enthusiastic about the prospect of joining your team and contributing to its success.</p>
-				<div class="split style1">
-					<section>
-						<form id="contact-form" method="post">
-							<div class="fields">
-								<div class="field half">
-									<label for="name">Name</label>
-									<input type="text" name="name" id="name" required>
+			<!-- About Me -->
+
+            <section id="one" class="wrapper style2 fullscreen fade-up">
+                <div class="inner-heading">
+                    <h2 class="name overline-underline">A Curious Journey into Robotics</h2>
+                    <div class="content-with-image">
+						<div class="image-container">
+							<img src="images\PSX_20230124_121449~3.jpg" alt="Swapnil Meshram" class="profile-image">
+						</div>
+						<div class="text-container">
+                            <p class="text-justify para" style="font-size: 1.175rem;">At the age of 14, I became fascinated with how infants learn by observing the world around them as they grow. This sparked a question in my mind: Can machines also perceive the world with such curiosity?</p>
+                            <p class="text-justify para" style="font-size: 1.175rem;">Motivated by this curiosity, I discovered the field of robotics and was immediately captivated by the exciting research and work being done. From that moment on, I knew I was destined to become a robotics engineer. Alongside my regular college courses, I tirelessly worked to develop robot circuitry and create various types of robots. This hands-on experience further fueled my interest in the field and solidified my determination to fully immerse myself in the captivating world of robotics. Driven by a thirst for knowledge, I embarked on a journey to explore the intricate domains of robotics and artificial intelligence.</p>
+                            <p class="text-justify para" style="font-size: 1.175rem;">My early fascination with robotics led me to pursue a graduate degree in Robotics and Autonomous Systems at Arizona State University. Exploring the intricate domains of robotics and artificial intelligence has been a thoroughly enjoyable experience, and I eagerly seize every opportunity to learn more in this ever-evolving and dynamic field. My journey to become a robotics engineer has been incredible so far, and I am excited to see where it takes me in the future.</p>
+						</div>      			
+					</div>
+				</div>  
+			</section>
+
+                <!-- Work Experience -->
+
+					<section id="two" class="wrapper style3 fade-up">
+						<div class="inner">
+							<h2 class="name overline-underline">Career Chronicles: Unveiling My Tech Odyssey</h2>
+							<p class="text-justify" style="font-size: 1.175rem;">Before starting my master's program in Robotics and Autonomous Systems at Arizona State University, I proactively sought practical experience in my field. These early experiences only intensified my passion for robotics and electronics engineering and paved the way for my academic journey. During my work experience, I actively participated in various projects, including the development of intricate hardware systems and the initiation of innovative robotics solutions.</p>
+								<div class="slider">
+								<img src="images\AEPL logo.png" alt=""style="width: 215px; display: block; margin: 0 auto;" />
 								</div>
-								<div class="field half">
-									<label for="email">Email</label>
-									<input type="email" name="email" id="email" required>
-								</div>
-								<div class="field">
-									<label for="message">Message</label>
-									<textarea name="message" id="message" rows="5" required></textarea>
+								<ul class="actions-space">
+								<li><a href="aepl.html" class="button">More Details</a></li>
+							</ul>
+						</div>
+				</section>
+
+				<!-- Projects -->
+					<section id="three" class="wrapper style2 spotlights">
+						<!-- Slide 1 -->
+						<!-- Project 1 -->
+						<div class="thumbnail-gallery">
+							<div class="thumbnail">
+							        <a href="images\project_1.jpeg" class="image"><img src="images\project_1_thumbnail.png" alt="" class="project-thumbnail" /></a>
+									</div>
+									<div class="content">
+									<div class="inner">
+									<h2 class="project-title">PCB for Manual and Autonomous Robots</h2>
+									<p class="underline">Problem Statement and Solution:</p>
+									<p style="margin-top: 0; margin-bottom: 20px;">Team Vector, our college's robotics club, encountered a challenge during our participation in ABU Robocon-India, where we had to connect several electronic subsystems using a large number of wires. This led to loose connections, confusion, and EMI/EMC issues during the electrical rack assembly and debugging process. However, we overcame this obstacle by devising a PCB that incorporated all the necessary functionalities and interfaces commonly used in the competition.</p>
+									<ul class="actions">
+									<li><a href="generic.html" class="button">Project details</a></li>
+									</ul>
 								</div>
 							</div>
-							<div id="form-message"></div>
-							<button type="submit">Send Message</button>
-						</form>
-					</section>
+						</div>
+						    <!-- Project 2 -->
+						    <div class="thumbnail-gallery">
+						    <div class="thumbnail">
+							        <a href="images\project_2.png" class="image"><img src="images\project_2_thumbnail.png" alt="" class="project-thumbnail"/></a>
+									</div>
+									<div class="content">
+									<div class="inner">
+									<h2 class="project-title">Battery Fuel Gauge</h2>
+									<p class="underline">Problem Statement and Solution:</p>
+									<p style="margin-top: 0; margin-bottom: 20px;">Team Vector's testing team always had to remove the electrical rack of the robot to check the battery pack's health with the help of a battery checker. This was a repetitive and cumbersome task. However, with the introduction of the 'Battery Fuel Gauge' system, we had a clear display of the robot's battery pack health through an onboard LED array. Additionally, we received an alert message when the battery charge dropped below a particular limit.</p>
+									<ul class="actions">
+										<li><a href="battery_gauge.html" class="button">Project details</a></li>
+									</ul>
+								</div>
+							</div>
+						</div>
+						    <!-- Project 3 -->
+						    <div class="thumbnail-gallery">
+						    <div class="thumbnail">
+							        <a href="images\project_3.jpeg" class="image"><img src="images\project_3_thumbnail.png" alt="" class="project-thumbnail" /></a>
+									</div>
+									<div class="content">
+									<div class="inner">
+									<h2 class="project-title">LCD & Relay Breakout Board</h2>
+									<p class="underline">Problem Statement and Solution:</p>
+									<p style="margin-top: 0; margin-bottom: 20px;">With the integration of the 'Battery Fuel Gauge' system, Team Vector wanted to have an LCD display outside the robot that would show the status of the battery pack. In addition to displaying the battery status, the LCD display is versatile and can be used for a variety of purposes. The breakout board also includes relays, making this combination suitable for a wide range of applications.</p>
+									<ul class="actions">
+										<li><a href="relay.html" class="button">Project details</a></li>
+									</ul>
+								</div>
+							</div>
+						</div>
+						<!-- Slide 2 -->
+						<!-- Project 4 -->
+						<div class="thumbnail-gallery">
+						    <div class="thumbnail">
+							        <a href="images\project_4.jpg" class="image"><img src="images\project_4_thumbnail.png" alt="" class="project-thumbnail"/></a>
+									</div>
+									<div class="content">
+									<div class="inner">
+									<h2 class="project-title">Multipurpose PCB Ruler</h2>
+									<p class="underline">Problem Statement and Solution:</p>
+									<p style="margin-top: 0; margin-bottom: 20px;">During the PCB design process, we usually find ourselves constantly searching for PCB-related calculations and component footprints online, both during the design and debugging of the boards. As a solution, the PCB Ruler simplifies these issues by integrating all essential PCB calculations and component footprints, making design and debugging more efficient than ever. Say goodbye to endless web searches - the answers are now at your fingertips with our multipurpose PCB ruler.</p>
+									<ul class="actions">
+										<li><a href="pcb_ruler.HTML" class="button">Project details</a></li>
+									</ul>
+								</div>
+							</div>
+						</div>
+						    <!-- Project 5 -->
+							<div class="thumbnail-gallery">
+						    <div class="thumbnail">
+							        <a href="images\project_5.png" class="image"><img src="images\project_5_thumbnail.png" alt="" class="project-thumbnail" /></a>
+									</div>
+									<div class="content">
+									<div class="inner">
+									<h2 class="project-title">PCB for Line Follower Robot</h2>
+									<p class="underline">Problem Statement and Solution:</p>
+									<p style="margin-top: 0; margin-bottom: 20px;">Team Vector, our college's robotics club, welcomed new members and organized a workshop featuring a challenge involving obstacle avoidance, path following, and flag retrieval. The Electronics department focused on designing and producing a PCB in-house with the limited set of components available. As the trainer, I led new members through the entire process, from board design to board bring-up, prioritizing practical skills and teamwork.</p>
+									<ul class="actions">
+										<li><a href="line_follower.html" class="button">Project details</a></li>
+									</ul>
+								</div>
+							</div>
+						</div>
+						<!-- Project 6 -->
+						<div class="thumbnail-gallery">
+						    <div class="thumbnail">
+							        <a href="images\project_6.jpg" class="image"><img src="images\project_6_thumbnail.png" alt="" class="project-thumbnail" /></a>
+									</div>
+									<div class="content">
+									<div class="inner">
+									<h2 class="project-title">Retro-converted Electric Scooter</h2>
+									<p class="underline">Problem Statement and Solution:</p>
+									<p style="margin-top: 0; margin-bottom: 20px;">One of my friends had a petrol-driven Honda Aviator, which he was planning to sell at a lower price since he was not using it due to reduced mileage. One day, we had an idea: to convert this petrol-driven scooter into a fully-fledged electric scooter. In search of components, we scoured the local market and were fortunate enough to stumble upon an abandoned electric two-wheeler. This discovery led us to a new plan: retro-converting the petrol-driven Honda Aviator into an electric scooter.</p>
+									<ul class="actions">
+										<li><a href="electric_scooter.HTML" class="button">Project details</a></li>
+									</ul>
+								</div>
+							</div>
+							<!-- Slide 3 -->
+							<!-- Project 7 -->
+						<div class="thumbnail-gallery">
+						    <div class="thumbnail">
+							        <a href="images\Team Nikola.png" class="image"><img src="images\Team Nikola_thumbnail.png" alt="" class="project-thumbnail" /></a>
+									</div>
+									<div class="content">
+									<div class="inner">
+									<h2 class="project-title">Team Nikola Racing</h2>
+									<p style="margin-top: 0; margin-bottom: 20px;">A team of 20 enthusiastic students from K. K. Wagh Institute of Engineering Education & Research, Nashik, united their passion for electric vehicles (EVs) and embarked on a collaborative journey to turn their vision into reality. Together, they designed, manufactured, and fabricated an outstanding electric bike. The most distinguishing feature of their creation is its exceptional Unique Selling Proposition (USP), which includes an incredibly fast 20-minute charging time and a battery lifespan of over 8 years.</p>
+									<ul class="actions">
+										<li><a href="nikola.html" class="button">More Details</a></li>
+									</ul>
+								</div>
+							</div>
+							<!-- Project 8 -->
+						<div class="thumbnail-gallery">
+						    <div class="thumbnail">
+							        <a href="images\Team Vector.png" class="image"><img src="images\Team Vector_thumbnail.png" alt="" class="project-thumbnail" /></a>
+									</div>
+									<div class="content">
+									<div class="inner">
+									<h2 class="project-title">Team Vector</h2>
+									<p style="margin-top: 0; margin-bottom: 20px;">Team Vector, the robotics club, is a coalition of 40 students from various engineering disciplines at K. K. Wagh Institute of Engineering Education & Research, Nashik. Each team member is a passionate robotics enthusiast with exceptional technical knowledge and resource management skills. Team Vector has been participating in ABU Robocon-India since 2016, steadily improving in rankings, skills, and experience each year.</p>
+									<ul class="actions">
+										<li><a href="vector.html" class="button">More Details</a></li>
+									</ul>
+								</div>
+							</div>
+						</div>
+            	</section>
+		
+				<!-- Contact Information --> 
+				<section id="four" class="wrapper style1 fade-up"> 
+					<div class="inner"> 
+						<h1>Get in Touch</h1> 
+						<p>Feel free to start a conversation or collaborate on exciting projects. I am just a message away and eager to connect with you to explore new opportunities, whether they are internships or full-time positions. I am enthusiastic about the prospect of joining your team and contributing to its success.</p> 
+						<div class="split style1"> 
+							<section> 
+								<form id="contact-form" method="post"> 
+									<div class="fields"> 
+										<div class="field half"> 
+											<label for="name">Name</label> 
+											<input type="text" name="name" id="name"> 
+										</div> 
+										<div class="field half"> 
+											<label for="email">Email</label> 
+											<input type="email" name="email" id="email"> 
+										</div> 
+										<div class="field"> 
+											<label for="message">Message</label> 
+											<textarea name="message" id="message" rows="5"></textarea> 
+										</div> 
+									</div> 
+									<div id="form-message"></div> 
+									<button type="submit">Send Message</button> 
+								</form> 
+							</section>
+  
+						<section>
+									<ul class="contact">
+										<li>
+											<h3>Email</h3>
+											<a href="mailto:sbmeshra@asu.edu">sbmeshra@asu.edu</a>
+										</li>
+										<li>
+											<h3>Phone</h3>
+											<span>+1(480) 919-5621</span>
+										</li>
+										<li>
+											<h3>LinkedIn & Resume</h3>
+											<ul class="icons">
+												<li><a href="https://www.linkedin.com/in/swapnilmeshram98/" class="icon brands fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
+												<li><a href="pdf\Swapnil Meshram.pdf" class="icon fa-file"><span class="label">Resume</span></a></li>
+											</ul>
+										</li>
+									</ul>
+							</section>
+						</div>
+					</div>
+			</section>
+							
 
-					<section>
-						<ul class="contact">
-							<li>
-								<h3>Email</h3>
-								<a href="mailto:sbmeshra@asu.edu">sbmeshra@asu.edu</a>
-							</li>
-							<li>
-								<h3>Phone</h3>
-								<span>+1(480) 919-5621</span>
-							</li>
-							<li>
-								<h3>LinkedIn & Resume</h3>
-								<ul class="icons">
-									<li><a href="https://www.linkedin.com/in/swapnilmeshram98/" class="icon brands fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
-									<li><a href="pdf/Swapnil Meshram.pdf" class="icon fa-file"><span class="label">Resume</span></a></li>
-								</ul>
-							</li>
-						</ul>
-					</section>
-				</div>
-			</div>
-		</section>
-
+							
 		<!-- Footer -->
-		<footer id="footer" class="wrapper style1-alt">
-			<div class="inner">
-				<ul class="menu">
-					<li>&copy; 2023 Swapnil Meshram</li>
-				</ul>
-			</div>
-		</footer>
+			<footer id="footer" class="wrapper style1-alt">
+				<div class="inner">
+					<ul class="menu">
+						<li>&copy; 2023 Swapnil Meshram </li>
+					</ul>
+				</div>
+			</footer>
 
 		<!-- Scripts -->
-		<script src="assets/js/jquery.min.js"></script>
-		<script src="assets/js/jquery.scrollex.min.js"></script>
-		<script src="assets/js/jquery.scrolly.min.js"></script>
-		<script src="assets/js/browser.min.js"></script>
-		<script src="assets/js/breakpoints.min.js"></script>
-		<script src="assets/js/util.js"></script>
-		<script src="assets/js/main.js"></script>
-		<!-- Include Slick Carousel JavaScript -->
-		<script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-		<script>
-			// Get form element
-			const form = document.getElementById('contact-form');
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>	
+			<!-- Include Slick Carousel JavaScript -->
+            <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+			<script>
+				// Get form element
+				const form = document.getElementById('contact-form');
 
-			// Listen for submit event
-			form.addEventListener('submit', handleSubmit);
+				// Listen for submit event
+				form.addEventListener('submit', handleSubmit);
 
-			// Handle form submit
-			function handleSubmit(e) {
-				e.preventDefault();
-				const data = new FormData(form);
-				const messageElement = document.getElementById('form-message');
-				messageElement.textContent = 'Sending...';
+				// Handle form submit
+				function handleSubmit(e) {
+  				e.preventDefault();
 
-				fetch('https://formspree.io/f/mbjvpbqa', {
-					method: 'POST',
-					body: data
-				})
-				.then(response => {
-					messageElement.textContent = 'Thanks for your message! I will get back to you soon.';
-				})
-				.catch(error => {
-					messageElement.textContent = 'Oops, something went wrong. Please try again later';
-				});
+  				const data = new FormData(form);
+
+  				fetch('https://formspree.io/f/mbjvpbqa', {
+    			method: 'POST',
+    			body: data
+  				})
+  				.then(response => {
+    			document.getElementById('form-message').textContent = 'Thanks for your message! I will get back to you soon.';
+  				})
+  				.catch(error => {
+    			document.getElementById('form-message').textContent = 'Oops, something went wrong. Please try again later';
+  				});
 			}
-
-			// Slick carousel initialization
-			$(document).ready(function(){
-				$('.slider').slick({
-					autoplay: true, // Set to true for automatic sliding
-					dots: true, // Add navigation dots
-					arrows: true, // Add navigation arrows
-					infinite: true, // Loop through slides
-					speed: 800, // Slide transition speed (milliseconds)
-					slidesToShow: 1, // Number of slides to show at a time
-					slidesToScroll: 1 // Number of slides to scroll at a time
-				});
-			});
-
-			// Toggle sidebar menu for mobile view
-			function toggleMenu() {
-				const sidebar = document.getElementById('sidebar');
-				sidebar.classList.toggle('visible');
-			}
-		</script>
-	</body>
-</html>
+			</script>
+			<script>
+					$(document).ready(function(){
+					$('.slider').slick({
+						autoplay: true, // Set to true for automatic sliding
+						dots: true, // Add navigation dots
+						arrows: true, // Add navigation arrows
+						infinite: true, // Loop through slides
+						speed: 800, // Slide transition speed (milliseconds)
+						slidesToShow: 1, // Number of slides to show at a time
+						slidesToScroll: 1 // Number of slides to scroll at a time
+					});
+				});		
+			</script>			  
+	   </body>
+  </html>
