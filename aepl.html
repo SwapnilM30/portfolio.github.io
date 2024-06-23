@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="description" content="Swapnil Meshram's portfolio showcasing projects in Autonomous & Undersea Systems Division.">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <title>Swapnil Meshram</title>
     <link rel="stylesheet" href="assets/css/main.css">
@@ -38,7 +39,7 @@
         }
 
         .slider .slide-content img {
-            max-width: 500px; /* Set the maximum width for the images */
+            max-width: 500px;
             height: auto;
             display: block;
             margin: 0 auto;
@@ -48,6 +49,13 @@
 
         .slider .slide-content {
             margin: 20px 0;
+        }
+
+        @media (max-width: 600px) {
+            .slider .slide-content img {
+                max-width: 100%;
+                padding: 3px;
+            }
         }
     </style>
 </head>
@@ -100,7 +108,7 @@
 <footer id="footer" class="wrapper alt">
     <div class="inner">
         <ul class="menu">
-            <li>&copy; 2023 Swapnil Meshram </li>
+            <li>&copy; 2023 Swapnil Meshram</li>
         </ul>
     </div>
 </footer>
@@ -124,6 +132,8 @@
             speed: 800,
             slidesToShow: 1,
             slidesToScroll: 1
+        }).on('error', function(event, slick, direction){
+            console.error('Error initializing slick carousel:', event);
         });
     });
 </script>
