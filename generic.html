@@ -1,123 +1,168 @@
 <!DOCTYPE HTML>
-<!--
-	Hyperspace by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
-<html>
-	<head>
-		<title>Swapnil Meshram</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="assets/css/main.css" />
-		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-		
-		<style>
-	.image-label,
-    .video-label {
-        text-align: center;
-        font-size: 16px;
-        margin-top: 10px;
-        color: rgba(50, 50, 50); /* Adjust the color as needed */
-    }
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Swapnil Meshram's portfolio showcasing projects in Autonomous & Undersea Systems Division.">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <title>Swapnil Meshram</title>
+    <link rel="stylesheet" href="assets/css/main.css">
+    <noscript><link rel="stylesheet" href="assets/css/noscript.css"></noscript>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css">
+    <style>
+        .image-label,
+        .video-label {
+            text-align: center;
+            font-size: 16px;
+            margin-top: 10px;
+            color: rgba(50, 50, 50);
+        }
 
-    /* Adjust the position of the slick-dots */
-    .slick-dots {
-        position: absolute;
-        bottom: 5px; /* Adjust the value to control the vertical position */
-        width: 100%;
-        text-align: center;
-    }
-		</style>
-		<!-- Include Slick Carousel CSS -->
-        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
-        <!-- Include Slick Carousel Theme CSS (optional) -->
-        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
-	</head>
-	<body class="is-preload">
+        .image-citation,
+        .video-citation {
+            margin-top: 5px;
+            font-size: 12px;
+            text-align: center;
+        }
 
-		<!-- Header -->
-			<header id="header">
-				<a href="generic.html" class="title">From Circuits to Machines: My Robotics & Hardware Journey</a>
-				<nav>
-					<ul>
-						<li><a href="index.html">Home</a></li>
-					</ul>
-				</nav>
-			</header>
-			
-		<!-- Wrapper -->
-			<div id="wrapper">
+        .slick-dots {
+            position: absolute;
+            bottom: 5px;
+            width: 100%;
+            text-align: center;
+        }
 
-				<!-- Main -->
-					<section id="main" class="wrapper">
-						<div class="inner">
-							<h1 class="major">PCB for Manual and Autonomous Robots</h1>
-							<div class="slider">
-								<div>
-									<img src="images/project_1_1.png" alt="PCB for Manual and Autonomous Robots (Top Side)" style="width: 600px; display: block; margin: 0 auto;" />
-									<p class="image-label">Image 1: PCB for Manual and Autonomous Robots (Top Side)</p>
-								</div>
-                                <div>
-									<img src="images/project_1_2.png" alt="PCB for Manual and Autonomous Robots (Bottom Side)" style="width: 600px; display: block; margin: 0 auto;" />
-									<p class="image-label">Image 2: PCB for Manual and Autonomous Robots (Bottom Side)</p>
-								</div>
-                                <div>
-									<img src="images\project_1.jpg" alt="PCB for Manual and Autonomous Robots (Assembled & Tested)" style="width: 755px; display: block; margin: 0 auto;" />
-									<p class="image-label">Image 3: PCB for Manual and Autonomous Robots (Assembled & Tested)</p>
-								</div>
-								<!-- Add more images as needed -->
-							</div>
-							<p style="text-align: justify; font-size: 1.175rem;">This is a double-layered PCB that works seamlessly with both manual and autonomous robots. One of the standout features of this project is the master/slave configuration for buck converters, which allows smooth activation and deactivation of slave buck converters from the master buck converter as needed. This strategic setup ensures efficient power distribution and optimization.</p>
-							<p style="text-align: justify; font-size: 1.175rem;">The PCB has a versatile power conditioning mechanism that operates across multiple voltage levels, thanks to the integration of buck and boost converter modules. Additionally, it boasts an array of sensor and actuator interfaces that allow for seamless interaction with various components.</p>
-							<p style="text-align: justify; font-size: 1.175rem;">Functionality-wise, the PCB is packed with an impressive range of features, including a Serial port, USB port, PWM channel, I2C block, a dedicated 12-pin GPIO with integrated ADC and DAC, an LCD connector, pneumatic control, and dedicated ports designed to accommodate rotary optical encoders, which provide essential and precise feedback mechanisms.</p>
-							<p style="text-align: justify; font-size: 1.175rem;">A defining highlight of this project is the incorporation of a customized 'Battery Fuel Gauge' system. This system effectively monitors single-cell or multi-cell lithium battery packs, seamlessly combining functionality and innovation.</p>
-						</div>
-					</section>
+        .slider {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%;
+        }
 
-			</div>
+        .slider .slide-content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            flex: 1;
+            max-height: 100%;
+        }
 
-		<!-- Footer -->
-			<footer id="footer" class="wrapper alt">
-				<div class="inner">
-					<ul class="menu">
-						<li>&copy; 2023 Swapnil Meshram </li>
-					</ul>
-				</div>
-			</footer>
+        .slider .slide-content img {
+            max-width: 600px;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+            border: 1px solid rgba(50, 50, 50);
+            padding: 6px;
+        }
 
-		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.scrollex.min.js"></script>
-			<script src="assets/js/jquery.scrolly.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
-			<!-- Include Slick Carousel JavaScript -->
-            <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-			<style>
-				/* Adjust the position of the slick-dots */
-				.slick-dots {
-				  position: absolute;
-				  bottom: 5px; /* Adjust the value to control the vertical position */
-				  width: 100%;
-				  text-align: center;
-				}
-			  </style>
-			<script>
-				$(document).ready(function() {
-    			$('.slider').slick({
-        		autoplay: true, // Set to true for automatic sliding
-        		dots: true, // Add navigation dots
-        		arrows: true, // Add navigation arrows
-        		infinite: true, // Loop through slides
-        		speed: 800, // Slide transition speed (milliseconds)
-        		slidesToShow: 1, // Number of slides to show at a time
-        		slidesToScroll: 1 // Number of slides to scroll at a time
-    				});
-				});
+        .slider .slide-content {
+            margin: 20px 0;
+        }
 
-			</script>		
-	</body>
+        @media (max-width: 600px) {
+            .slider .slide-content img {
+                max-width: 100%;
+                padding: 5px;
+            }
+
+            .image-citation,
+            .video-citation {
+                text-align: center;
+                margin-top: 5px;
+            }
+        }
+
+        .image {
+            cursor: pointer;
+            transition: transform 0.25s ease;
+        }
+
+        .image:hover {
+            transform: scale(1.01);
+        }
+    </style>
+</head>
+<body class="is-preload">
+
+<!-- Header -->
+<header id="header">
+    <a href="generic.html" class="title">From Circuits to Machines: My Robotics & Hardware Journey</a>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+        </ul>
+    </nav>
+</header>
+
+<!-- Wrapper -->
+<div id="wrapper">
+
+    <!-- Main -->
+    <section id="main" class="wrapper">
+        <div class="inner">
+            <h1 class="major">PCB for Manual and Autonomous Robots</h1>
+            <div class="slider">
+                <div class="slide-content">
+                    <a href="images/project_1_1.png" class="image">
+                        <img src="images/project_1_1.png" alt="PCB for Manual and Autonomous Robots (Top Side)">
+                    </a>
+                    <p class="image-label">Image 1: PCB for Manual and Autonomous Robots (Top Side)</p>
+                </div>
+                <div class="slide-content">
+                    <a href="images/project_1_2.png" class="image">
+                        <img src="images/project_1_2.png" alt="PCB for Manual and Autonomous Robots (Bottom Side)">
+                    </a>
+                    <p class="image-label">Image 2: PCB for Manual and Autonomous Robots (Bottom Side)</p>
+                </div>
+                <div class="slide-content">
+                    <a href="images/project_1.jpg" class="image">
+                        <img src="images/project_1.jpg" alt="PCB for Manual and Autonomous Robots (Assembled & Tested)">
+                    </a>
+                    <p class="image-label">Image 3: PCB for Manual and Autonomous Robots (Assembled & Tested)</p>
+                </div>
+                <!-- Add more images as needed -->
+            </div>
+            <p style="text-align: justify; font-size: 1.175rem;">This is a double-layered PCB that works seamlessly with both manual and autonomous robots. One of the standout features of this project is the master/slave configuration for buck converters, which allows smooth activation and deactivation of slave buck converters from the master buck converter as needed. This strategic setup ensures efficient power distribution and optimization.</p>
+            <p style="text-align: justify; font-size: 1.175rem;">The PCB has a versatile power conditioning mechanism that operates across multiple voltage levels, thanks to the integration of buck and boost converter modules. Additionally, it boasts an array of sensor and actuator interfaces that allow for seamless interaction with various components.</p>
+            <p style="text-align: justify; font-size: 1.175rem;">Functionality-wise, the PCB is packed with an impressive range of features, including a Serial port, USB port, PWM channel, I2C block, a dedicated 12-pin GPIO with integrated ADC and DAC, an LCD connector, pneumatic control, and dedicated ports designed to accommodate rotary optical encoders, which provide essential and precise feedback mechanisms.</p>
+            <p style="text-align: justify; font-size: 1.175rem;">A defining highlight of this project is the incorporation of a customized 'Battery Fuel Gauge' system. This system effectively monitors single-cell or multi-cell lithium battery packs, seamlessly combining functionality and innovation.</p>
+        </div>
+    </section>
+
+</div>
+
+<!-- Footer -->
+<footer id="footer" class="wrapper alt">
+    <div class="inner">
+        <ul class="menu">
+            <li>&copy; 2023 Swapnil Meshram</li>
+        </ul>
+    </div>
+</footer>
+
+<!-- Scripts -->
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/jquery.scrollex.min.js"></script>
+<script src="assets/js/jquery.scrolly.min.js"></script>
+<script src="assets/js/browser.min.js"></script>
+<script src="assets/js/breakpoints.min.js"></script>
+<script src="assets/js/util.js"></script>
+<script src="assets/js/main.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('.slider').slick({
+            autoplay: true,
+            dots: true,
+            arrows: true,
+            infinite: true,
+            speed: 800,
+            slidesToShow: 1,
+            slidesToScroll: 1
+        });
+    });
+</script>
+</body>
 </html>
