@@ -1,115 +1,166 @@
 <!DOCTYPE HTML>
-<html>
-	<head>
-		<title>Swapnil Meshram</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="assets/css/main.css" />
-		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-		<style>
-	.image-label,
-    .video-label {
-        text-align: center;
-        font-size: 16px;
-        margin-top: 10px;
-        color: rgba(50, 50, 50); /* Adjust the color as needed */
-    }
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Swapnil Meshram's portfolio showcasing projects in Autonomous & Undersea Systems Division.">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <title>Swapnil Meshram</title>
+    <link rel="stylesheet" href="assets/css/main.css">
+    <noscript><link rel="stylesheet" href="assets/css/noscript.css"></noscript>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css">
+    <style>
+        .image-label,
+        .video-label {
+            text-align: center;
+            font-size: 16px;
+            margin-top: 10px;
+            color: rgba(50, 50, 50);
+        }
 
-    /* Adjust the position of the slick-dots */
-    .slick-dots {
-        position: absolute;
-        bottom: 5px; /* Adjust the value to control the vertical position */
-        width: 100%;
-        text-align: center;
-    }
-		</style>
-		<!-- Include Slick Carousel CSS -->
-        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
-        <!-- Include Slick Carousel Theme CSS (optional) -->
-        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
-	</head>
-	<body class="is-preload">
+        .image-citation,
+        .video-citation {
+            margin-top: 5px;
+            font-size: 12px;
+            text-align: center;
+        }
 
-		<!-- Header -->
-			<header id="header">
-				<a href="line_follower.html" class="title">From Circuits to Machines: My Robotics & Hardware Journey</a>
-				<nav>
-					<ul>
-						<li><a href="index.html">Home</a></li>
-					</ul>
-				</nav>
-			</header>
+        .slick-dots {
+            position: absolute;
+            bottom: 5px;
+            width: 100%;
+            text-align: center;
+        }
 
-		<!-- Wrapper -->
-			<div id="wrapper">
+        .slider {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%;
+        }
 
-				<!-- Main -->
-					<section id="main" class="wrapper">
-						<div class="inner">
-							<h1 class="major">PCB for Line Follower Robot</h1>
-							<div class="slider">
-								<div>
-									<img src="images/project_5_1.png" alt="PCB for Line Follower Robot (Assembled & Tested)" style="width: 415px; display: block; margin: 0 auto;" />
-									<p class="image-label">Image 1: PCB for Line Follower Robot (Assembled & Tested)</p>
-								</div>
-                                <div>
-									<img src="images/project_5_2.png" alt="PCB for Line Follower Robot (Assembled & Tested)" style="width: 745px; display: block; margin: 0 auto;" />
-									<p class="image-label">Image 2: PCB for Line Follower Robot (Assembled & Tested)</p>
-								</div>
-                                <div>
-									<img src="images/project_5.png" alt="PCB for Line Follower Robot (Assembled & Tested)" style="width: 550px; display: block; margin: 0 auto;" />
-									<p class="image-label">Image 3: PCB for Line Follower Robot (Assembled & Tested)</p>
-								</div>
-								<!-- Add more images as needed -->
-							</div>
-							<p style="text-align: justify; font-size: 1.175rem;">This single-layered PCB served as the foundational cornerstone for the creation of the 'PCB for Manual and Autonomous Robots'. It is a highly adaptable and efficient circuit board that can handle both obstacle avoidance and precise path-following tasks. Its power conditioning system is sophisticated, equipped with both fixed and variable voltage regulators capable of managing different voltage levels.</p>
-							<p style="text-align: justify; font-size: 1.175rem;">Additionally, the board offers interfaces for various sensors and actuators, such as the Advanced Auto-Calibrating Line Sensor (LSA-08), obstacle avoidance sensors, and motor interfaces. This PCB contains a relay module that acts as a kill switch and is integrated with a mushroom pushbutton switch that can be used to shut down the robot. It can seamlessly integrate with various drive systems, allowing robots to move efficiently and quickly in diverse environments.</p>
-						</div>
-					</section>
-					
-			</div>
+        .slider .slide-content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            flex: 1;
+            max-height: 100%;
+        }
 
-		<!-- Footer -->
-			<footer id="footer" class="wrapper alt">
-				<div class="inner">
-					<ul class="menu">
-						<li>&copy; 2023 Swapnil Meshram </li>
-					</ul>
-				</div>
-			</footer>
+        .slider .slide-content img {
+            max-width: 600px;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+            border: 1px solid rgba(50, 50, 50);
+            padding: 6px;
+        }
 
-		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.scrollex.min.js"></script>
-			<script src="assets/js/jquery.scrolly.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
-			<!-- Include Slick Carousel JavaScript -->
-            <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-			<style>
-				/* Adjust the position of the slick-dots */
-				.slick-dots {
-				  position: absolute;
-				  bottom: 5px; /* Adjust the value to control the vertical position */
-				  width: 100%;
-				  text-align: center;
-				}
-			  </style>
-			<script>
-				$(document).ready(function() {
-    			$('.slider').slick({
-        		autoplay: true, // Set to true for automatic sliding
-        		dots: true, // Add navigation dots
-        		arrows: true, // Add navigation arrows
-        		infinite: true, // Loop through slides
-        		speed: 800, // Slide transition speed (milliseconds)
-        		slidesToShow: 1, // Number of slides to show at a time
-        		slidesToScroll: 1 // Number of slides to scroll at a time
-    			});
-			});
+        .slider .slide-content {
+            margin: 20px 0;
+        }
 
-			</script>
-	   </body>
-  </html>
+        @media (max-width: 600px) {
+            .slider .slide-content img {
+                max-width: 100%;
+                padding: 5px;
+            }
+
+            .image-citation,
+            .video-citation {
+                text-align: center;
+                margin-top: 5px;
+            }
+        }
+
+        .image {
+            cursor: pointer;
+            transition: transform 0.25s ease;
+        }
+
+        .image:hover {
+            transform: scale(1.01);
+        }
+    </style>
+</head>
+<body class="is-preload">
+
+<!-- Header -->
+<header id="header">
+    <a href="line_follower.html" class="title">From Circuits to Machines: My Robotics & Hardware Journey</a>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+        </ul>
+    </nav>
+</header>
+
+<!-- Wrapper -->
+<div id="wrapper">
+
+    <!-- Main -->
+    <section id="main" class="wrapper">
+        <div class="inner">
+            <h1 class="major">PCB for Line Follower Robot</h1>
+            <div class="slider">
+                <div class="slide-content">
+                    <a href="images/project_5_1.png" class="image">
+                        <img src="images/project_5_1.png" alt="PCB for Line Follower Robot (Assembled & Tested)">
+                    </a>
+                    <p class="image-label">Image 1: PCB for Line Follower Robot (Assembled & Tested)</p>
+                </div>
+                <div class="slide-content">
+                    <a href="images/project_5_2.png" class="image">
+                        <img src="images/project_5_2.png" alt="PCB for Line Follower Robot (Assembled & Tested)">
+                    </a>
+                    <p class="image-label">Image 2: PCB for Line Follower Robot (Assembled & Tested)</p>
+                </div>
+                <div class="slide-content">
+                    <a href="images/project_5.png" class="image">
+                        <img src="images/project_5.png" alt="PCB for Line Follower Robot (Assembled & Tested)">
+                    </a>
+                    <p class="image-label">Image 3: PCB for Line Follower Robot (Assembled & Tested)</p>
+                </div>
+                <!-- Add more images as needed -->
+            </div>
+            <p style="text-align: justify; font-size: 1.175rem;">This single-layered PCB served as the foundational cornerstone for the creation of the 'PCB for Manual and Autonomous Robots'. It is a highly adaptable and efficient circuit board that can handle both obstacle avoidance and precise path-following tasks. Its power conditioning system is sophisticated, equipped with both fixed and variable voltage regulators capable of managing different voltage levels.</p>
+            <p style="text-align: justify; font-size: 1.175rem;">Additionally, the board offers interfaces for various sensors and actuators, such as the Advanced Auto-Calibrating Line Sensor (LSA-08), obstacle avoidance sensors, and motor interfaces. This PCB contains a relay module that acts as a kill switch and is integrated with a mushroom pushbutton switch that can be used to shut down the robot. It can seamlessly integrate with various drive systems, allowing robots to move efficiently and quickly in diverse environments.</p>
+        </div>
+    </section>
+
+</div>
+
+<!-- Footer -->
+<footer id="footer" class="wrapper alt">
+    <div class="inner">
+        <ul class="menu">
+            <li>&copy; 2023 Swapnil Meshram</li>
+        </ul>
+    </div>
+</footer>
+
+<!-- Scripts -->
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/jquery.scrollex.min.js"></script>
+<script src="assets/js/jquery.scrolly.min.js"></script>
+<script src="assets/js/browser.min.js"></script>
+<script src="assets/js/breakpoints.min.js"></script>
+<script src="assets/js/util.js"></script>
+<script src="assets/js/main.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('.slider').slick({
+            autoplay: true,
+            dots: true,
+            arrows: true,
+            infinite: true,
+            speed: 800,
+            slidesToShow: 1,
+            slidesToScroll: 1
+        });
+    });
+</script>
+</body>
+</html>
