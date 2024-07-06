@@ -86,6 +86,25 @@
         .video:hover {
             transform: scale(1.01);
         }
+
+        /* Custom styles for video play icon */
+        .video-container {
+            position: relative;
+            display: inline-block;
+        }
+
+        .play-icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 64px;
+            height: 64px;
+            background: url('images/play-icon.png') no-repeat center center;
+            background-size: cover;
+            opacity: 0.8;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body class="is-preload">
@@ -140,10 +159,13 @@
                 </div>
                 <!-- Add more images as needed -->
                 <div class="slide-content">
-                    <video controls class="video">
-                        <source src="images/project_6_4.mp4" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
+                    <div class="video-container">
+                        <video class="video" muted>
+                            <source src="images/project_6_4.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="play-icon" onclick="playFullScreen('images/project_6_4.mp4')"></div>
+                    </div>
                     <p class="video-label">Video 1: Retro-converted Honda Aviator Testing</p>
                 </div>
             </div>
@@ -186,6 +208,24 @@
             slidesToScroll: 1
         });
     });
+
+    function playFullScreen(videoSrc) {
+        const videoElement = document.createElement('video');
+        videoElement.src = videoSrc;
+        videoElement.controls = true;
+        videoElement.style.position = 'fixed';
+        videoElement.style.top = '0';
+        videoElement.style.left = '0';
+        videoElement.style.width = '100%';
+        videoElement.style.height = '100%';
+        videoElement.style.zIndex = '9999';
+        document.body.appendChild(videoElement);
+        videoElement.play();
+
+        videoElement.addEventListener('ended', () => {
+            document.body.removeChild(videoElement);
+        });
+    }
 </script>
 </body>
 </html>
