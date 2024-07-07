@@ -82,6 +82,41 @@
         .image:hover {
             transform: scale(1.01);
         }
+
+        /* Styles for fullscreen image with blurred background */
+        .fullscreen-image {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .fullscreen-image img {
+            max-width: 90%;
+            max-height: 90%;
+        }
+
+        .blurred-background {
+            filter: blur(5px);
+        }
+
+        .close-button {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 32px;
+            height: 32px;
+            background: url('images/close-icon.png') no-repeat center center;
+            background-size: cover;
+            cursor: pointer;
+            z-index: 10000;
+        }
     </style>
 </head>
 <body class="is-preload">
@@ -105,25 +140,25 @@
             <h1 class="major">LCD & Relay Breakout Board</h1>
             <div class="slider">
                 <div class="slide-content">
-                    <a href="images/project_3_1.png" class="image">
+                    <a href="images/project_3_1.png" class="image" onclick="showFullScreenImage('images/project_3_1.png'); return false;">
                         <img src="images/project_3_1.png" alt="LCD & Relay Breakout Board (Top Side)">
                     </a>
                     <p class="image-label">Image 1: LCD & Relay Breakout Board (Top Side)</p>
                 </div>
                 <div class="slide-content">
-                    <a href="images/project_3_2.png" class="image">
+                    <a href="images/project_3_2.png" class="image" onclick="showFullScreenImage('images/project_3_2.png'); return false;">
                         <img src="images/project_3_2.png" alt="LCD & Relay Breakout Board (Bottom Side)">
                     </a>
                     <p class="image-label">Image 2: LCD & Relay Breakout Board (Bottom Side)</p>
                 </div>
                 <div class="slide-content">
-                    <a href="images/project_3.png" class="image">
+                    <a href="images/project_3.png" class="image" onclick="showFullScreenImage('images/project_3.png'); return false;">
                         <img src="images/project_3.png" alt="LCD & Relay Breakout Board (Assembled)">
                     </a>
                     <p class="image-label">Image 3: LCD & Relay Breakout Board (Assembled)</p>
                 </div>
                 <div class="slide-content">
-                    <a href="images/project_3_4.png" class="image">
+                    <a href="images/project_3_4.png" class="image" onclick="showFullScreenImage('images/project_3_4.png'); return false;">
                         <img src="images/project_3_4.png" alt="LCD & Relay Breakout Board (Testing)">
                     </a>
                     <p class="image-label">Image 4: LCD & Relay Breakout Board (Testing)</p>
@@ -167,6 +202,25 @@
             slidesToScroll: 1
         });
     });
+
+    function showFullScreenImage(imageSrc) {
+        const fullscreenDiv = document.createElement('div');
+        fullscreenDiv.className = 'fullscreen-image';
+        fullscreenDiv.innerHTML = `
+            <div class="close-button" onclick="closeFullScreen()"></div>
+            <img src="${imageSrc}" alt="Full Screen Image">
+        `;
+        document.body.appendChild(fullscreenDiv);
+        document.getElementById('wrapper').classList.add('blurred-background');
+    }
+
+    function closeFullScreen() {
+        const fullscreenDiv = document.querySelector('.fullscreen-image');
+        if (fullscreenDiv) {
+            document.body.removeChild(fullscreenDiv);
+        }
+        document.getElementById('wrapper').classList.remove('blurred-background');
+    }
 </script>
 </body>
 </html>
