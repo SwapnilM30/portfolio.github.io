@@ -104,10 +104,16 @@
             background-size: cover;
             opacity: 0.8;
             cursor: pointer;
+            transition: transform 0.25s ease;
+        }
+
+        .play-icon:hover {
+            transform: translate(-50%, -50%) scale(1.2);
         }
 
         /* Styles for fullscreen video with blurred background */
-        .fullscreen-video {
+        .fullscreen-video,
+        .fullscreen-image {
             position: fixed;
             top: 0;
             left: 0;
@@ -120,7 +126,8 @@
             align-items: center;
         }
 
-        .fullscreen-video video {
+        .fullscreen-video video,
+        .fullscreen-image img {
             max-width: 90%;
             max-height: 90%;
         }
@@ -163,31 +170,31 @@
             <h1 class="major">Retro-converted Electric Scooter</h1>
             <div class="slider">
                 <div class="slide-content">
-                    <a href="images/project_6_1.png" class="image">
+                    <a href="images/project_6_1.png" class="image" onclick="showFullScreenImage('images/project_6_1.png')">
                         <img src="images/project_6_1.png" alt="Honda Aviator (Chassis)">
                     </a>
                     <p class="image-label">Image 1: Honda Aviator (Chassis)</p>
                 </div>
                 <div class="slide-content">
-                    <a href="images/project_6_2.png" class="image">
+                    <a href="images/project_6_2.png" class="image" onclick="showFullScreenImage('images/project_6_2.png')">
                         <img src="images/project_6_2.png" alt="Honda Aviator (Wire Harnessing)">
                     </a>
                     <p class="image-label">Image 2: Honda Aviator (Wire Harnessing)</p>
                 </div>
                 <div class="slide-content">
-                    <a href="images/project_6.png" class="image">
+                    <a href="images/project_6.png" class="image" onclick="showFullScreenImage('images/project_6.png')">
                         <img src="images/project_6.png" alt="Undergoing Retroconversion">
                     </a>
                     <p class="image-label">Image 3: Undergoing Retroconversion</p>
                 </div>
                 <div class="slide-content">
-                    <a href="images/project_6_3.png" class="image">
+                    <a href="images/project_6_3.png" class="image" onclick="showFullScreenImage('images/project_6_3.png')">
                         <img src="images/project_6_3.png" alt="Retro-converted Honda Aviator (Front View)">
                     </a>
                     <p class="image-label">Image 4: Retro-converted Honda Aviator (Front View)</p>
                 </div>
                 <div class="slide-content">
-                    <a href="images/project_6_5.png" class="image"> 
+                    <a href="images/project_6_5.png" class="image" onclick="showFullScreenImage('images/project_6_5.png')"> 
                         <img src="images/project_6_5.png" alt="Retro-converted Honda Aviator (Side View)">
                     </a>
                     <p class="image-label">Image 5: Retro-converted Honda Aviator (Side View)</p>
@@ -255,8 +262,19 @@
         document.getElementById('wrapper').classList.add('blurred-background');
     }
 
+    function showFullScreenImage(imageSrc) {
+        const fullscreenDiv = document.createElement('div');
+        fullscreenDiv.className = 'fullscreen-image';
+        fullscreenDiv.innerHTML = `
+            <div class="close-button" onclick="closeFullScreen()"></div>
+            <img src="${imageSrc}" alt="Full Screen Image">
+        `;
+        document.body.appendChild(fullscreenDiv);
+        document.getElementById('wrapper').classList.add('blurred-background');
+    }
+
     function closeFullScreen() {
-        const fullscreenDiv = document.querySelector('.fullscreen-video');
+        const fullscreenDiv = document.querySelector('.fullscreen-video') || document.querySelector('.fullscreen-image');
         if (fullscreenDiv) {
             document.body.removeChild(fullscreenDiv);
         }
