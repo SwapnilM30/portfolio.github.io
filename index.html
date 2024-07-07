@@ -1,9 +1,4 @@
 <!DOCTYPE HTML>
-<!--
-	Hyperspace by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
 <html>
 <head>
 	<title>Swapnil Meshram</title>
@@ -127,33 +122,16 @@
 			right: 20px;
 			width: 32px;
 			height: 32px;
-			background: url('images/close-icon.png') no-repeat center center;
-			background-size: cover;
+			background: white;
+			border: none;
+			font-size: 24px;
+			font-weight: bold;
 			cursor: pointer;
+			color: black;
 			z-index: 10000;
-		}
-
-		/* Custom styles for video play icon */
-		.video-container {
-			position: relative;
-			display: inline-block;
-		}
-
-		.play-icon {
-			position: absolute;
-			top: 50%;
-			left: 50%;
-			transform: translate(-50%, -50%);
-			width: 64px;
-			height: 64px;
-			background: url('images/play-icon.png') no-repeat center center;
-			background-size: cover;
-			opacity: 0.8;
-			cursor: pointer;
-		}
-
-		.play-icon:hover {
-			transform: translate(-50%, -50%) scale(1.2);
+			display: flex;
+			justify-content: center;
+			align-items: center;
 		}
 	</style>
 	<!-- Include Slick Carousel CSS -->
@@ -493,7 +471,7 @@
 				const fullscreenDiv = document.createElement('div');
 				fullscreenDiv.className = 'fullscreen-image';
 				fullscreenDiv.innerHTML = `
-					<div class="close-button" onclick="closeFullScreen()"></div>
+					<div class="close-button" onclick="closeFullScreen()">X</div>
 					<img src="${imageSrc}" alt="Full Screen Image">
 				`;
 				document.body.appendChild(fullscreenDiv);
