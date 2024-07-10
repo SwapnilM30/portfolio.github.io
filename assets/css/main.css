@@ -4009,5 +4009,75 @@ button.slick-next:before {
 	color: rgba(50, 50, 50);
 }
 
+/* Add this at the end of your CSS file */
+
+/* Hamburger Menu Icon */
+.hamburger {
+	display: none;
+	cursor: pointer;
+  }
+  
+  .hamburger div {
+	width: 25px;
+	height: 3px;
+	background-color: rgba(31, 24, 21, 0.9); /* Matching color with the sidebar */
+	margin: 5px;
+	transition: all 0.3s ease;
+  }
+  
+  /* Media Query for Mobile */
+  @media screen and (max-width: 736px) {
+  
+	/* Display Hamburger Menu Icon */
+	.hamburger {
+	  display: block;
+	  position: absolute;
+	  top: 1em;
+	  right: 1em;
+	}
+  
+	/* Hide the Navigation Menu */
+	#sidebar {
+	  display: none;
+	}
+  
+	/* Show Menu on Hamburger Click */
+	#sidebar.active {
+	  display: block;
+	  position: absolute;
+	  top: 0;
+	  right: 0;
+	  width: 200px;
+	  background: rgba(31, 24, 21, 0.9);
+	  z-index: 10000;
+	  padding: 1em;
+	}
+  
+	/* Adjust Sidebar Menu */
+	#sidebar nav ul {
+	  display: block;
+	}
+  
+	#sidebar nav ul li {
+	  display: block;
+	  margin: 0.5em 0;
+	}
+  }
+  
+  /* Change Hamburger Icon to Cross when Active */
+  .hamburger.active div:nth-child(1) {
+	transform: rotate(-45deg) translate(-5px, 6px);
+  }
+  
+  .hamburger.active div:nth-child(2) {
+	opacity: 0;
+  }
+  
+  .hamburger.active div:nth-child(3) {
+	transform: rotate(45deg) translate(-5px, -6px);
+  }
+  
+  
+
 
 
