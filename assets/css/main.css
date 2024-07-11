@@ -4042,36 +4042,38 @@ button.slick-next:before {
         position: fixed;
         top: 0;
         left: 0;
-        width: 15.5em;
+        width: 16.5em;
         height: 100%;
         background: rgba(31, 24, 21, 0.9) url("images/pcb.png") no-repeat center center;
         background-size: cover;
         z-index: 10000;
         padding: 2.5em 1.5em 1.5em 2.5em;
-        overflow-y: auto;
+        overflow: hidden; /* Ensure no scrollbars are shown */
+        display: flex;
+        flex-direction: column;
     }
 
     #sidebar > .inner {
+        flex: 1; /* Ensure the inner content takes up the remaining space */
+        overflow: hidden; /* Ensure inner content doesn't overflow */
         display: flex;
         flex-direction: column;
-        justify-content: center;
-        min-height: 100%;
-        opacity: 1;
-        width: 100%;
-        transition: opacity 1s ease;
     }
 
     #sidebar nav ul {
         list-style: none;
         padding: 0;
         margin: 0;
-        display: block;
+        flex: 1; /* Allow the list to take up remaining space */
+        display: flex;
+        flex-direction: column;
+        justify-content: center; /* Center the items vertically */
     }
 
     #sidebar nav ul li {
         transform: translateY(0);
         transition: opacity 0.15s ease, transform 0.75s ease;
-        margin: 1.25em 0; /* Adjusted margin */
+        margin: 0.5em 0; /* Adjusted margin to bring items closer */
         opacity: 1;
         padding: 0;
         position: relative;
@@ -4083,12 +4085,12 @@ button.slick-next:before {
         border: 0;
         color: rgba(255, 255, 255, 0.55);
         display: block;
-        font-size: 0.70em;
+        font-size: 0.61em;
         font-weight: bold;
         letter-spacing: 0.25em;
         line-height: 1.75;
         outline: 0;
-        padding: 1.25em 0; /* Adjusted padding */
+        padding: 0.75em 0; /* Adjusted padding to bring items closer */
         position: relative;
         text-decoration: none;
         text-transform: uppercase;
@@ -4138,6 +4140,7 @@ button.slick-next:before {
 .hamburger.active div:nth-child(3) {
     transform: rotate(45deg) translate(-5px, -6px);
 }
+
 
 
 
