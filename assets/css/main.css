@@ -4009,83 +4009,83 @@ button.slick-next:before {
 	color: rgba(50, 50, 50);
 }
 
-/* Hamburger Menu Icon */
-.hamburger {
-    display: none;
-    cursor: pointer;
-}
+        /* Hamburger Menu Icon */
+        .hamburger {
+            display: none;
+            cursor: pointer;
+        }
 
-.hamburger div {
-    width: 30px;
-    height: 5px;
-    background-color: #283a8b;
-    margin: 5px;
-    transition: all 0.3s ease;
-}
+        .hamburger div {
+            width: 35px;
+            height: 5px;
+            background-color: #283a8b;
+            margin: 5px;
+            transition: all 0.3s ease;
+        }
 
-/* Media Query for Mobile */
-@media screen and (max-width: 736px) {
-    .hamburger {
-        display: block;
-        position: fixed;
-        top: 20px;
-        right: 20px;
-        z-index: 10001;
-    }
+        /* Media Query for Mobile */
+        @media screen and (max-width: 736px) {
+            .hamburger {
+                display: block;
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                z-index: 10001;
+            }
 
-    #sidebar {
-        display: none;
-    }
+            #sidebar {
+                display: none;
+            }
 
-    #sidebar.active {
-        display: block;
-        position: fixed;
-        top: 0;
-        right: 0;
-        width: 200px;
-        height: 100%;
-        background: rgba(31, 24, 21, 0.9) url("images/pcb.png") no-repeat center center;
-        z-index: 10000;
-        padding: 1em;
-        overflow-y: auto;
-    }
+            #sidebar.active {
+                display: block;
+                position: fixed;
+                top: 0;
+                right: 0;
+                width: 200px;
+                height: 100%;
+                background: rgba(31, 24, 21, 0.9) url("images/pcb.png") no-repeat center center;
+                z-index: 10000;
+                padding: 1em;
+                overflow-y: auto;
+            }
 
-    #sidebar nav ul {
-        display: block;
-        padding: 0;
-        margin: 0;
-        list-style: none;
-    }
+            #sidebar nav ul {
+                display: block;
+                padding: 0;
+                margin: 0;
+                list-style: none;
+            }
 
-    #sidebar nav ul li {
-        display: block;
-        margin: 0.5em 0;
-        text-align: center; /* Center align text */
-    }
+            #sidebar nav ul li {
+                display: block;
+                margin: 0.5em 0;
+                text-align: center; /* Center align text */
+            }
 
-    #sidebar nav ul li a {
-        color: white;
-        text-decoration: none;
-        padding: 0.5em 0;
-        display: block; /* Make links block-level for better touch target size */
-    }
+            #sidebar nav ul li a {
+                color: white;
+                text-decoration: none;
+                padding: 0.5em 0;
+                display: block; /* Make links block-level for better touch target size */
+            }
 
-    #sidebar nav ul li a:hover {
-        background-color: rgba(255, 255, 255, 0.1); /* Add hover effect */
-    }
-}
+            #sidebar nav ul li a:hover {
+                background-color: rgba(255, 255, 255, 0.1); /* Add hover effect */
+            }
+        }
 
-.hamburger.active div:nth-child(1) {
-    transform: rotate(-45deg) translate(-5px, 6px);
-}
+        .hamburger.active div:nth-child(1) {
+            transform: rotate(-45deg) translate(-5px, 6px);
+        }
 
-.hamburger.active div:nth-child(2) {
-    opacity: 0;
-}
+        .hamburger.active div:nth-child(2) {
+            opacity: 0;
+        }
 
-.hamburger.active div:nth-child(3) {
-    transform: rotate(45deg) translate(-5px, -6px);
-}
+        .hamburger.active div:nth-child(3) {
+            transform: rotate(45deg) translate(-5px, -6px);
+        }
 
 
   
