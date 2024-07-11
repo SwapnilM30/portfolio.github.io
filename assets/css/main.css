@@ -4083,7 +4083,7 @@ button.slick-next:before {
     #sidebar nav a {
         transition: color 0.5s ease;
         border: 0;
-        color: rgba(255, 255, 255, 0.55);
+        color: rgba(255, 255, 255, 0.45);
         display: block;
         font-size: 0.61em;
         font-weight: bold;
@@ -4098,9 +4098,9 @@ button.slick-next:before {
 
     #sidebar nav a:before, #sidebar nav a:after {
         border-radius: 0.2em;
-        bottom: 0.5em; /* Move lines closer to the text */
+        bottom: 0.1em; /* Move lines closer to the text */
         content: '';
-        height: 0.30em;
+        height: 0.2em; /* Adjust height if needed */
         position: absolute;
         right: 0;
         width: 100%;
@@ -4140,6 +4140,7 @@ button.slick-next:before {
 .hamburger.active div:nth-child(3) {
     transform: rotate(45deg) translate(-5px, -6px);
 }
+
 
 
 
