@@ -4074,6 +4074,12 @@ button.slick-next:before {
     #sidebar nav ul li a:hover {
         background-color: rgba(255, 255, 255, 0.1); /* Add hover effect */
     }
+
+    /* Override the existing margin and padding for normal screens */
+    #sidebar nav > ul > li {
+        margin: 0.5em 0; /* Reduced margin */
+        padding: 0.5em 0; /* Reduced padding */
+    }
 }
 
 .hamburger.active div:nth-child(1) {
@@ -4087,6 +4093,7 @@ button.slick-next:before {
 .hamburger.active div:nth-child(3) {
     transform: rotate(45deg) translate(-5px, -6px);
 }
+
 
 
 
