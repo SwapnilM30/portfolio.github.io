@@ -4090,7 +4090,7 @@ button.slick-next:before {
         letter-spacing: 0.25em;
         line-height: 1.75;
         outline: 0;
-        padding: 0.50em 0; /* Adjusted padding to bring items closer */
+        padding: 0.5em 0; /* Adjusted padding to bring items closer */
         position: relative;
         text-decoration: none;
         text-transform: uppercase;
@@ -4098,7 +4098,7 @@ button.slick-next:before {
 
     #sidebar nav a:before, #sidebar nav a:after {
         border-radius: 0.2em;
-        bottom: 0;
+        bottom: -0.2em; /* Move lines closer to the text */
         content: '';
         height: 0.2em;
         position: absolute;
@@ -4140,6 +4140,8 @@ button.slick-next:before {
 .hamburger.active div:nth-child(3) {
     transform: rotate(45deg) translate(-5px, -6px);
 }
+
+
 
 
 
