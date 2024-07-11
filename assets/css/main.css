@@ -4009,74 +4009,84 @@ button.slick-next:before {
 	color: rgba(50, 50, 50);
 }
 
-/* Add this at the end of your CSS file */
-
 /* Hamburger Menu Icon */
 .hamburger {
-	display: none;
-	cursor: pointer;
+    display: none;
+    cursor: pointer;
 }
 
 .hamburger div {
-	width: 25px;
-	height: 3px;
-	background-color: rgba(31, 24, 21, 0.9); /* Matching color with the sidebar */
-	margin: 5px;
-	transition: all 0.3s ease;
+    width: 30px;
+    height: 5px;
+    background-color: #283a8b;
+    margin: 5px;
+    transition: all 0.3s ease;
 }
 
 /* Media Query for Mobile */
 @media screen and (max-width: 736px) {
+    .hamburger {
+        display: block;
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 10001;
+    }
 
-	/* Display Hamburger Menu Icon */
-	.hamburger {
-		display: block;
-		position: absolute;
-		top: 1em;
-		right: 1em;
-		z-index: 10001; /* Ensure it is above the sidebar */
-	}
+    #sidebar {
+        display: none;
+    }
 
-	/* Hide the Navigation Menu */
-	#sidebar {
-		display: none;
-	}
+    #sidebar.active {
+        display: block;
+        position: fixed;
+        top: 0;
+        right: 0;
+        width: 200px;
+        height: 100%;
+        background: rgba(31, 24, 21, 0.9) url("images/pcb.png") no-repeat center center;
+        z-index: 10000;
+        padding: 1em;
+        overflow-y: auto;
+    }
 
-	/* Show Menu on Hamburger Click */
-	#sidebar.active {
-		display: block;
-		position: absolute;
-		top: 0;
-		right: 0;
-		width: 200px;
-		background: rgba(31, 24, 21, 0.9) url("images/pcb.png") no-repeat center center;
-		z-index: 10000;
-		padding: 1em;
-	}
+    #sidebar nav ul {
+        display: block;
+        padding: 0;
+        margin: 0;
+        list-style: none;
+    }
 
-	/* Adjust Sidebar Menu */
-	#sidebar nav ul {
-		display: block;
-	}
+    #sidebar nav ul li {
+        display: block;
+        margin: 0.5em 0;
+        text-align: center; /* Center align text */
+    }
 
-	#sidebar nav ul li {
-		display: block;
-		margin: 0.5em 0;
-	}
+    #sidebar nav ul li a {
+        color: white;
+        text-decoration: none;
+        padding: 0.5em 0;
+        display: block; /* Make links block-level for better touch target size */
+    }
+
+    #sidebar nav ul li a:hover {
+        background-color: rgba(255, 255, 255, 0.1); /* Add hover effect */
+    }
 }
 
-/* Change Hamburger Icon to Cross when Active */
 .hamburger.active div:nth-child(1) {
-	transform: rotate(-45deg) translate(-5px, 6px);
+    transform: rotate(-45deg) translate(-5px, 6px);
 }
 
 .hamburger.active div:nth-child(2) {
-	opacity: 0;
+    opacity: 0;
 }
 
 .hamburger.active div:nth-child(3) {
-	transform: rotate(45deg) translate(-5px, -6px);
+    transform: rotate(45deg) translate(-5px, -6px);
 }
+
 
   
   
