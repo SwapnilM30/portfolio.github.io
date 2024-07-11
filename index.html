@@ -1,9 +1,4 @@
 <!DOCTYPE HTML>
-<!--
-    Hyperspace by HTML5 UP
-    html5up.net | @ajlkn
-    Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
 <html>
 <head>
     <title>Swapnil Meshram</title>
@@ -14,35 +9,35 @@
     <style>
         /* Styling for centering the slider */
         .slider {
-            border: 1px solid rgba(50, 50, 50, 0.5); /* Lighter border for a subtle effect */
-            padding: 15px; /* Increased padding for better spacing */
-            margin: 0 auto; /* Center the box horizontally on the page */
-            max-width: 300px; /* Adjusted max-width for better balance */
+            border: 1px solid rgba(50, 50, 50, 0.5); 
+            padding: 15px; 
+            margin: 0 auto; 
+            max-width: 300px; 
         }
 
         /* Add padding to the About Me section */
         #one {
-            padding-top: 20px;    /* Increased top padding */
-            padding-bottom: 20px; /* Increased bottom padding */
+            padding-top: 20px; 
+            padding-bottom: 20px; 
         }
 
         /* Add margin-top to move paragraphs down */
         .text-justify {
-            margin-top: 10px; /* Added margin-top for better spacing */
+            margin-top: 10px; 
         }
 
         .text-justify.abc {
-            margin-top: 10px; /* Consistent margin-top */
+            margin-top: 10px; 
         }
 
         /* Add padding to the inner content */
         .inner {
-            padding: 20px; /* Increased inner padding for better spacing */
+            padding: 20px; 
         }
 
         .inner-heading {
             text-align: center;
-            padding: 20px; /* Increased padding for better alignment */
+            padding: 20px; 
         }
 
         .content-with-image {
@@ -50,26 +45,26 @@
             flex-wrap: wrap;
             align-items: center;
             justify-content: center;
-            gap: 20px; /* Increased gap for better spacing */
+            gap: 20px; 
         }
 
         .image-container {
-            padding-right: 20px; /* Reduced padding for better balance */
-            padding-top: 20px; /* Adjusted spacing */
+            padding-right: 20px; 
+            padding-top: 20px; 
             flex: 1;
         }
 
         .profile-image {
             max-width: 100%;
             height: auto;
-            margin-right: 20px; /* Reduced margin for better alignment */
-            margin-bottom: 20px; /* Consistent margin */
+            margin-right: 20px; 
+            margin-bottom: 20px; 
             display: block;
         }
 
         .text-container {
             flex: 2;
-            margin-right: 20px; /* Adjust this value according to your image width */
+            margin-right: 20px; 
         }
 
         @media (max-width: 768px) {
@@ -86,14 +81,14 @@
         }
 
         .underline {
-            margin-top: 20px; /* Adjusted margin-top for better spacing */
-            margin-bottom: 10px; /* Adjusted margin-bottom for consistency */
+            margin-top: 20px; 
+            margin-bottom: 10px; 
         }
 
         /* Add CSS styles for underlining the specified text */
         p.underline {
             text-decoration: underline;
-            padding-bottom: 10px; /* Increased padding for better spacing */
+            padding-bottom: 10px; 
         }
 
         /* Custom styles for video play icon */
@@ -173,33 +168,30 @@
 
         /* Media Query for Mobile */
         @media screen and (max-width: 736px) {
-            /* Display Hamburger Menu Icon */
             .hamburger {
                 display: block;
-                position: absolute;
+                position: fixed;
                 top: 20px;
                 right: 20px;
                 z-index: 10001;
             }
 
-            /* Hide the Navigation Menu */
             #sidebar {
                 display: none;
             }
 
-            /* Show Menu on Hamburger Click */
             #sidebar.active {
                 display: block;
-                position: absolute;
+                position: fixed;
                 top: 0;
                 right: 0;
                 width: 200px;
+                height: 100%;
                 background: rgba(31, 24, 21, 0.9);
                 z-index: 10000;
                 padding: 1em;
             }
 
-            /* Adjust Sidebar Menu */
             #sidebar nav ul {
                 display: block;
             }
@@ -210,7 +202,6 @@
             }
         }
 
-        /* Change Hamburger Icon to Cross when Active */
         .hamburger.active div:nth-child(1) {
             transform: rotate(-45deg) translate(-5px, 6px);
         }
@@ -225,7 +216,6 @@
     </style>
     <!-- Include Slick Carousel CSS -->
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
-    <!-- Include Slick Carousel Theme CSS (optional) -->
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
 </head>
 <body class="is-preload">
@@ -237,7 +227,6 @@
         <div></div>
     </div>
     
-
     <!-- Sidebar -->
     <section id="sidebar">
         <div class="inner">
@@ -255,7 +244,6 @@
 
     <!-- Wrapper -->
     <div id="wrapper">
-
         <!-- Intro -->
         <section id="intro" class="wrapper style1 fullscreen fade-up">
             <div class="inner-heading">
@@ -283,7 +271,7 @@
                 <h2 class="name overline-underline">A Curious Journey into Robotics</h2>
                 <div class="content-with-image">
                     <div class="image-container">
-                        <img src="images\PSX_20230124_121449~3.jpg" alt="Swapnil Meshram" class="profile-image">
+                        <img src="images/PSX_20230124_121449~3.jpg" alt="Swapnil Meshram" class="profile-image">
                     </div>
                     <div class="text-container">
                         <p class="text-justify para" style="font-size: 1.175rem;">At the age of 14, I became fascinated with how infants learn by observing the world around them as they grow. This sparked a question in my mind: Can machines also perceive the world with such curiosity?</p>
@@ -300,7 +288,7 @@
                 <h2 class="name overline-underline">Career Chronicles: Unveiling My Tech Odyssey</h2>
                 <p class="text-justify" style="font-size: 1.175rem;">Before starting my master's program in Robotics and Autonomous Systems at Arizona State University, I proactively sought practical experience in my field. These early experiences only intensified my passion for robotics and electronics engineering and paved the way for my academic journey. During my work experience, I actively participated in various projects, including the development of intricate hardware systems and the initiation of innovative robotics solutions.</p>
                 <div class="slider">
-                    <img src="images\AEPL logo.png" alt="" style="width: 200px; display: block; margin: 0 auto;" />
+                    <img src="images/AEPL logo.png" alt="" style="width: 200px; display: block; margin: 0 auto;" />
                 </div>
                 <ul class="actions">
                     <li><a href="aepl.html" class="button">More Details</a></li>
@@ -314,7 +302,7 @@
             <!-- Project 1 -->
             <div class="thumbnail-gallery">
                 <div class="thumbnail">
-                    <a href="images\project_1.jpeg" class="image" onclick="showFullScreenImage('images/project_1.jpeg')"><img src="images\project_1_thumbnail.png" alt="" class="project-thumbnail" /></a>
+                    <a href="images/project_1.jpeg" class="image" onclick="showFullScreenImage('images/project_1.jpeg')"><img src="images/project_1_thumbnail.png" alt="" class="project-thumbnail" /></a>
                 </div>
                 <div class="content">
                     <div class="inner">
@@ -330,7 +318,7 @@
             <!-- Project 2 -->
             <div class="thumbnail-gallery">
                 <div class="thumbnail">
-                    <a href="images\project_2.png" class="image" onclick="showFullScreenImage('images/project_2.png')"><img src="images\project_2_thumbnail.png" alt="" class="project-thumbnail"/></a>
+                    <a href="images/project_2.png" class="image" onclick="showFullScreenImage('images/project_2.png')"><img src="images/project_2_thumbnail.png" alt="" class="project-thumbnail"/></a>
                 </div>
                 <div class="content">
                     <div class="inner">
@@ -346,7 +334,7 @@
             <!-- Project 3 -->
             <div class="thumbnail-gallery">
                 <div class="thumbnail">
-                    <a href="images\project_3.jpeg" class="image" onclick="showFullScreenImage('images/project_3.jpeg')"><img src="images\project_3_thumbnail.png" alt="" class="project-thumbnail" /></a>
+                    <a href="images/project_3.jpeg" class="image" onclick="showFullScreenImage('images/project_3.jpeg')"><img src="images/project_3_thumbnail.png" alt="" class="project-thumbnail" /></a>
                 </div>
                 <div class="content">
                     <div class="inner">
@@ -363,7 +351,7 @@
             <!-- Project 4 -->
             <div class="thumbnail-gallery">
                 <div class="thumbnail">
-                    <a href="images\project_4.jpg" class="image" onclick="showFullScreenImage('images/project_4.jpg')"><img src="images\project_4_thumbnail.png" alt="" class="project-thumbnail"/></a>
+                    <a href="images/project_4.jpg" class="image" onclick="showFullScreenImage('images/project_4.jpg')"><img src="images/project_4_thumbnail.png" alt="" class="project-thumbnail"/></a>
                 </div>
                 <div class="content">
                     <div class="inner">
@@ -371,7 +359,7 @@
                         <p class="underline">Problem Statement and Solution:</p>
                         <p style="margin-top: 0; margin-bottom: 20px;">During the PCB design process, we usually find ourselves constantly searching for PCB-related calculations and component footprints online, both during the design and debugging of the boards. As a solution, the PCB Ruler simplifies these issues by integrating all essential PCB calculations and component footprints, making design and debugging more efficient than ever. Say goodbye to endless web searches - the answers are now at your fingertips with our multipurpose PCB ruler.</p>
                         <ul class="actions">
-                            <li><a href="pcb_ruler.HTML" class="button">Project details</a></li>
+                            <li><a href="pcb_ruler.html" class="button">Project details</a></li>
                         </ul>
                     </div>
                 </div>
@@ -379,7 +367,7 @@
             <!-- Project 5 -->
             <div class="thumbnail-gallery">
                 <div class="thumbnail">
-                    <a href="images\project_5.png" class="image" onclick="showFullScreenImage('images/project_5.png')"><img src="images\project_5_thumbnail.png" alt="" class="project-thumbnail" /></a>
+                    <a href="images/project_5.png" class="image" onclick="showFullScreenImage('images/project_5.png')"><img src="images/project_5_thumbnail.png" alt="" class="project-thumbnail" /></a>
                 </div>
                 <div class="content">
                     <div class="inner">
@@ -395,7 +383,7 @@
             <!-- Project 6 -->
             <div class="thumbnail-gallery">
                 <div class="thumbnail">
-                    <a href="images\project_6_thumbnail_image.png" class="image" onclick="showFullScreenImage('images/project_6_thumbnail_image.png')"><img src="images\project_6_thumbnail.png" alt="" class="project-thumbnail" /></a>
+                    <a href="images/project_6_thumbnail_image.png" class="image" onclick="showFullScreenImage('images/project_6_thumbnail_image.png')"><img src="images/project_6_thumbnail.png" alt="" class="project-thumbnail" /></a>
                 </div>
                 <div class="content">
                     <div class="inner">
@@ -403,7 +391,7 @@
                         <p class="underline">Problem Statement and Solution:</p>
                         <p style="margin-top: 0; margin-bottom: 20px;">One of my friends had a petrol-driven Honda Aviator, which he was planning to sell at a lower price since he was not using it due to reduced mileage. One day, we had an idea: to convert this petrol-driven scooter into a fully-fledged electric scooter. In search of components, we scoured the local market and were fortunate enough to stumble upon an abandoned electric two-wheeler. This discovery led us to a new plan: retro-converting the petrol-driven Honda Aviator into an electric scooter.</p>
                         <ul class="actions">
-                            <li><a href="electric_scooter.HTML" class="button">Project details</a></li>
+                            <li><a href="electric_scooter.html" class="button">Project details</a></li>
                         </ul>
                     </div>
                 </div>
@@ -412,7 +400,7 @@
             <!-- Project 7 -->
             <div class="thumbnail-gallery">
                 <div class="thumbnail">
-                    <a href="images\Team Nikola.png" class="image" onclick="showFullScreenImage('images/Team Nikola.png')"><img src="images\Team Nikola_thumbnail.png" alt="" class="project-thumbnail" /></a>
+                    <a href="images/Team Nikola.png" class="image" onclick="showFullScreenImage('images/Team Nikola.png')"><img src="images/Team Nikola_thumbnail.png" alt="" class="project-thumbnail" /></a>
                 </div>
                 <div class="content">
                     <div class="inner">
@@ -427,7 +415,7 @@
             <!-- Project 8 -->
             <div class="thumbnail-gallery">
                 <div class="thumbnail">
-                    <a href="images\Team Vector.png" class="image" onclick="showFullScreenImage('images/Team Vector.png')"><img src="images\Team Vector_thumbnail.png" alt="" class="project-thumbnail" /></a>
+                    <a href="images/Team Vector.png" class="image" onclick="showFullScreenImage('images/Team Vector.png')"><img src="images/Team Vector_thumbnail.png" alt="" class="project-thumbnail" /></a>
                 </div>
                 <div class="content">
                     <div class="inner">
@@ -501,111 +489,109 @@
             color: #f44336; /* Error message color */
         }
         </style>
+    </div>
 
-        <!-- Footer -->
-        <footer id="footer" class="wrapper style1-alt">
-            <div class="inner">
-                <ul class="menu">
-                    <li>&copy; 2023 Swapnil Meshram </li>
-                </ul>
-            </div>
-        </footer>
+    <!-- Footer -->
+    <footer id="footer" class="wrapper style1-alt">
+        <div class="inner">
+            <ul class="menu">
+                <li>&copy; 2023 Swapnil Meshram </li>
+            </ul>
+        </div>
+    </footer>
 
-        <!-- Scripts -->
-        <script src="assets/js/jquery.min.js"></script>
-        <script src="assets/js/jquery.scrollex.min.js"></script>
-        <script src="assets/js/jquery.scrolly.min.js"></script>
-        <script src="assets/js/browser.min.js"></script>
-        <script src="assets/js/breakpoints.min.js"></script>
-        <script src="assets/js/util.js"></script>
-        <script src="assets/js/main.js"></script>    
-        <!-- Include Slick Carousel JavaScript -->
-        <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-        <script>
-            // Get form element
-            const form = document.getElementById('contact-form');
+    <!-- Scripts -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery.scrollex.min.js"></script>
+    <script src="assets/js/jquery.scrolly.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>    
+    <!-- Include Slick Carousel JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <script>
+        // Form submit script
+        const form = document.getElementById('contact-form');
 
-            // Listen for submit event
-            form.addEventListener('submit', handleSubmit);
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
 
-            // Handle form submit
-            function handleSubmit(e) {
-                e.preventDefault();
+            const data = new FormData(form);
 
-                const data = new FormData(form);
-
-                fetch('https://formspree.io/f/mbjvpbqa', {
-                    method: 'POST',
-                    body: data
-                })
-                .then(response => {
-                    if (response.ok) {
-                        document.getElementById('form-message').textContent = 'Thanks for your message! I will get back to you soon.';
-                        document.getElementById('form-message').classList.remove('error');
-                    } else {
-                        throw new Error('Network response was not ok.');
-                    }
-                })
-                .catch(error => {
-                    document.getElementById('form-message').textContent = 'Oops, something went wrong. Please try again later';
-                    document.getElementById('form-message').classList.add('error');
-                });
-            }
-        </script>
-        <script>
-            $(document).ready(function(){
-                $('.slider').slick({
-                    autoplay: true, // Set to true for automatic sliding
-                    dots: true, // Add navigation dots
-                    arrows: true, // Add navigation arrows
-                    infinite: true, // Loop through slides
-                    speed: 800, // Slide transition speed (milliseconds)
-                    slidesToShow: 1, // Number of slides to show at a time
-                    slidesToScroll: 1 // Number of slides to scroll at a time
-                });
-            });
-        </script>
-        <script>
-            function showFullScreenImage(imageSrc) {
-                const fullscreenDiv = document.createElement('div');
-                fullscreenDiv.className = 'fullscreen-image';
-                fullscreenDiv.innerHTML = `
-                    <div class="close-button" onclick="closeFullScreen()"></div>
-                    <img src="${imageSrc}" alt="Full Screen Image">
-                `;
-                document.body.appendChild(fullscreenDiv);
-                document.getElementById('wrapper').classList.add('blurred-background');
-            }
-
-            function closeFullScreen() {
-                const fullscreenDiv = document.querySelector('.fullscreen-video') || document.querySelector('.fullscreen-image');
-                if (fullscreenDiv) {
-                    document.body.removeChild(fullscreenDiv);
+            fetch('https://formspree.io/f/mbjvpbqa', {
+                method: 'POST',
+                body: data
+            })
+            .then(response => {
+                if (response.ok) {
+                    document.getElementById('form-message').textContent = 'Thanks for your message! I will get back to you soon.';
+                    document.getElementById('form-message').classList.remove('error');
+                } else {
+                    throw new Error('Network response was not ok.');
                 }
-                document.getElementById('wrapper').classList.remove('blurred-background');
-            }
-
-            function playFullScreen(videoSrc) {
-                const fullscreenDiv = document.createElement('div');
-                fullscreenDiv.className = 'fullscreen-video';
-                fullscreenDiv.innerHTML = `
-                    <div class="close-button" onclick="closeFullScreen()"></div>
-                    <video src="${videoSrc}" controls autoplay></video>
-                `;
-                document.body.appendChild(fullscreenDiv);
-                document.getElementById('wrapper').classList.add('blurred-background');
-            }
-        </script>
-        <script>
-            document.addEventListener('DOMContentLoaded', function () {
-                const hamburger = document.querySelector('.hamburger');
-                const sidebar = document.getElementById('sidebar');
-
-                hamburger.addEventListener('click', function () {
-                    hamburger.classList.toggle('active');
-                    sidebar.classList.toggle('active');
-                });
+            })
+            .catch(error => {
+                document.getElementById('form-message').textContent = 'Oops, something went wrong. Please try again later';
+                document.getElementById('form-message').classList.add('error');
             });
-        </script>
-    </body>
+        });
+
+        // Slick carousel script
+        $(document).ready(function(){
+            $('.slider').slick({
+                autoplay: true,
+                dots: true,
+                arrows: true,
+                infinite: true,
+                speed: 800,
+                slidesToShow: 1,
+                slidesToScroll: 1
+            });
+        });
+
+        // Fullscreen image script
+        function showFullScreenImage(imageSrc) {
+            const fullscreenDiv = document.createElement('div');
+            fullscreenDiv.className = 'fullscreen-image';
+            fullscreenDiv.innerHTML = `
+                <div class="close-button" onclick="closeFullScreen()"></div>
+                <img src="${imageSrc}" alt="Full Screen Image">
+            `;
+            document.body.appendChild(fullscreenDiv);
+            document.getElementById('wrapper').classList.add('blurred-background');
+        }
+
+        function closeFullScreen() {
+            const fullscreenDiv = document.querySelector('.fullscreen-video') || document.querySelector('.fullscreen-image');
+            if (fullscreenDiv) {
+                document.body.removeChild(fullscreenDiv);
+            }
+            document.getElementById('wrapper').classList.remove('blurred-background');
+        }
+
+        // Fullscreen video script
+        function playFullScreen(videoSrc) {
+            const fullscreenDiv = document.createElement('div');
+            fullscreenDiv.className = 'fullscreen-video';
+            fullscreenDiv.innerHTML = `
+                <div class="close-button" onclick="closeFullScreen()"></div>
+                <video src="${videoSrc}" controls autoplay></video>
+            `;
+            document.body.appendChild(fullscreenDiv);
+            document.getElementById('wrapper').classList.add('blurred-background');
+        }
+
+        // Hamburger menu script
+        document.addEventListener('DOMContentLoaded', function () {
+            const hamburger = document.querySelector('.hamburger');
+            const sidebar = document.getElementById('sidebar');
+
+            hamburger.addEventListener('click', function () {
+                hamburger.classList.toggle('active');
+                sidebar.classList.toggle('active');
+            });
+        });
+    </script>
+</body>
 </html>
