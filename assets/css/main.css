@@ -4083,10 +4083,10 @@ button.slick-next:before {
         border: 0;
         color: rgba(255, 255, 255, 0.55);
         display: block;
-        font-size: 0.61em;
+        font-size: 0.75em;
         font-weight: bold;
         letter-spacing: 0.25em;
-        line-height: 1.75;
+        line-height: 0.75;
         outline: 0;
         padding: 1.35em 0; /* Adjusted padding */
         position: relative;
