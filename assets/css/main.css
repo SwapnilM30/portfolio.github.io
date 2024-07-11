@@ -4071,7 +4071,7 @@ button.slick-next:before {
     #sidebar nav ul li {
         transform: translateY(0);
         transition: opacity 0.15s ease, transform 0.75s ease;
-        margin: 1.5em 0; /* Adjusted margin */
+        margin: 1.0em 0; /* Adjusted margin */
         opacity: 1;
         padding: 0;
         position: relative;
@@ -4083,12 +4083,12 @@ button.slick-next:before {
         border: 0;
         color: rgba(255, 255, 255, 0.55);
         display: block;
-        font-size: 0.75em;
+        font-size: 0.70em;
         font-weight: bold;
         letter-spacing: 0.25em;
-        line-height: 0.75;
+        line-height: 1.75;
         outline: 0;
-        padding: 1.35em 0; /* Adjusted padding */
+        padding: 1.00em 0; /* Adjusted padding */
         position: relative;
         text-decoration: none;
         text-transform: uppercase;
