@@ -4042,7 +4042,7 @@ button.slick-next:before {
         position: fixed;
         top: 0;
         left: 0;
-        width: 16.5em;
+        width: 14.5em;
         height: 100%;
         background: rgba(31, 24, 21, 0.9) url("images/pcb.png") no-repeat center center;
         background-size: cover;
@@ -4090,7 +4090,7 @@ button.slick-next:before {
         letter-spacing: 0.25em;
         line-height: 1.75;
         outline: 0;
-        padding: 0.75em 0; /* Adjusted padding to bring items closer */
+        padding: 0.50em 0; /* Adjusted padding to bring items closer */
         position: relative;
         text-decoration: none;
         text-transform: uppercase;
