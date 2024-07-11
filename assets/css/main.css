@@ -4059,15 +4059,15 @@ button.slick-next:before {
 
     #sidebar nav ul li {
         display: block;
-        margin: 0.2em 0; /* Reduced margin */
-        padding: 0.5em 0; /* Reduced padding */
+        margin: 0.1em 0; /* Further reduced margin */
+        padding: 0.3em 0; /* Further reduced padding */
         text-align: center; /* Center align text */
     }
 
     #sidebar nav ul li a {
         color: white;
         text-decoration: none;
-        padding: 0.5em 0;
+        padding: 0.3em 0; /* Adjust padding for the links */
         display: block; /* Make links block-level for better touch target size */
     }
 
@@ -4087,6 +4087,7 @@ button.slick-next:before {
 .hamburger.active div:nth-child(3) {
     transform: rotate(45deg) translate(-5px, -6px);
 }
+
 
 
   
