@@ -4042,7 +4042,7 @@ button.slick-next:before {
         position: fixed;
         top: 0;
         left: 0;
-        width: 17.5em;
+        width: 16.5em;
         height: 100%;
         background: rgba(31, 24, 21, 0.9) url("images/pcb.png") no-repeat center center;
         background-size: cover;
@@ -4073,7 +4073,7 @@ button.slick-next:before {
     #sidebar nav ul li {
         transform: translateY(0);
         transition: opacity 0.15s ease, transform 0.75s ease;
-        margin: 0.35em 0; /* Adjusted margin to bring items closer */
+        margin: 0.5em 0; /* Adjusted margin to bring items closer */
         opacity: 1;
         padding: 0;
         position: relative;
@@ -4098,7 +4098,7 @@ button.slick-next:before {
 
     #sidebar nav a:before, #sidebar nav a:after {
         border-radius: 0.2em;
-        bottom: -0.5em; /* Move lines closer to the text */
+        bottom: 0.5em; /* Move lines closer to the text */
         content: '';
         height: 0.30em;
         position: absolute;
