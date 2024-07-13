@@ -4068,6 +4068,8 @@ button.slick-next:before {
         display: flex;
         flex-direction: column;
         justify-content: center; /* Center the items vertically */
+        padding-top: 1em; /* Add padding at the top */
+        padding-bottom: 1em; /* Add padding at the bottom */
     }
 
     #sidebar nav ul li {
@@ -4078,6 +4080,8 @@ button.slick-next:before {
         padding: 0;
         position: relative;
         text-align: right;
+        padding-top: 0.2em; /* Add padding at the top */
+        padding-bottom: 0.2em; /* Add padding at the bottom */
     }
 
     #sidebar nav a {
@@ -4140,6 +4144,7 @@ button.slick-next:before {
 .hamburger.active div:nth-child(3) {
     transform: rotate(45deg) translate(-5px, -6px);
 }
+
 
 
 
