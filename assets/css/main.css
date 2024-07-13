@@ -4013,6 +4013,10 @@ button.slick-next:before {
 .hamburger {
     display: none;
     cursor: pointer;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 10001;
 }
 
 .hamburger div {
@@ -4023,22 +4027,27 @@ button.slick-next:before {
     transition: all 0.3s ease;
 }
 
+/* Transform the first and last lines to form an "X" */
+.hamburger.active div:nth-child(1) {
+    transform: rotate(-45deg) translate(-5px, 6px);
+}
+
+.hamburger.active div:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.active div:nth-child(3) {
+    transform: rotate(45deg) translate(-5px, -6px);
+}
+
 /* Media Query for Mobile */
 @media screen and (max-width: 736px) {
     .hamburger {
         display: block;
-        position: fixed;
-        top: 20px;
-        right: 20px;
-        z-index: 10001;
     }
 
     #sidebar {
         display: none;
-    }
-
-    #sidebar.active {
-        display: block;
         position: fixed;
         top: 0;
         left: 0;
@@ -4051,6 +4060,10 @@ button.slick-next:before {
         overflow: hidden; /* Ensure no scrollbars are shown */
         display: flex;
         flex-direction: column;
+    }
+
+    #sidebar.active {
+        display: block;
     }
 
     #sidebar > .inner {
@@ -4129,17 +4142,6 @@ button.slick-next:before {
     }
 }
 
-.hamburger.active div:nth-child(1) {
-    transform: rotate(-45deg) translate(-5px, 6px);
-}
-
-.hamburger.active div:nth-child(2) {
-    opacity: 0;
-}
-
-.hamburger.active div:nth-child(3) {
-    transform: rotate(45deg) translate(-5px, -6px);
-}
 
 
 
