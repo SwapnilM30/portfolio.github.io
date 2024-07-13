@@ -4100,7 +4100,7 @@ button.slick-next:before {
         border-radius: 0.2em;
         bottom: -0.1em; /* Move lines closer to the text */
         content: '';
-        height: 0.2em;
+        height: 0.1em; /* Reduced height */
         position: absolute;
         right: 0;
         width: 100%;
@@ -4140,6 +4140,7 @@ button.slick-next:before {
 .hamburger.active div:nth-child(3) {
     transform: rotate(45deg) translate(-5px, -6px);
 }
+
 
 
 
