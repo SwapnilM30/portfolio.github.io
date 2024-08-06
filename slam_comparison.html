@@ -1,0 +1,276 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Swapnil Meshram's portfolio showcasing projects in Embedded Machine Learning.">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <title>Swapnil Meshram</title>
+    <link rel="stylesheet" href="assets/css/main.css">
+    <noscript><link rel="stylesheet" href="assets/css/noscript.css"></noscript>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css">
+    <style>
+        .image-label,
+        .video-label {
+            text-align: center;
+            font-size: 16px;
+            margin-top: 10px;
+            color: rgba(50, 50, 50);
+        }
+
+        .image-citation,
+        .video-citation {
+            margin-top: 10px;
+            font-size: 15px;
+            text-align: center;
+        }
+
+        .slick-dots {
+            position: absolute;
+            bottom: 5px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .slider {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%;
+        }
+
+        .slider .slide-content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            flex: 1;
+            max-height: 100%;
+        }
+
+        .slider .slide-content img,
+        .slider .slide-content video {
+            max-width: 600px;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+            border: 1px solid rgba(50, 50, 50);
+            padding: 6px;
+        }
+
+        .slider .slide-content {
+            margin: 20px 0;
+        }
+
+        @media (max-width: 600px) {
+            .slider .slide-content img,
+            .slider .slide-content video {
+                max-width: 100%;
+                padding: 5px;
+            }
+
+            .image-citation,
+            .video-citation {
+                text-align: center;
+                margin-top: 5px;
+            }
+        }
+
+        .image,
+        .video {
+            cursor: pointer;
+            transition: transform 0.25s ease;
+        }
+
+        .image:hover,
+        .video:hover {
+            transform: scale(1.01);
+        }
+
+        /* Styles for fullscreen video with blurred background */
+        .fullscreen-video,
+        .fullscreen-image {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .fullscreen-video video,
+        .fullscreen-image img {
+            max-width: 90%;
+            max-height: 90%;
+        }
+
+        .blurred-background {
+            filter: blur(5px);
+        }
+
+        .close-button {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 32px;
+            height: 32px;
+            background: url('images/close-icon.png') no-repeat center center;
+            background-size: cover;
+            cursor: pointer;
+            z-index: 10000;
+        }
+
+        /* Custom styles for video play icon */
+        .video-container {
+            position: relative;
+            display: inline-block;
+        }
+
+        .play-icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 64px;
+            height: 64px;
+            background: url('images/play-icon.png') no-repeat center center;
+            background-size: cover;
+            opacity: 0.8;
+            cursor: pointer;
+        }
+
+        .play-icon:hover {
+            transform: translate(-50%, -50%) scale(1.2);
+        }
+    </style>
+</head>
+<body class="is-preload">
+
+<!-- Header -->
+<header id="header">
+    <a href="generic.html" class="title">From Circuits to Machines: My Robotics & Embedded Systems Journey</a>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+        </ul>
+    </nav>
+</header>
+
+<!-- Wrapper -->
+<div id="wrapper">
+
+    <!-- Main -->
+    <section id="main" class="wrapper">
+        <div class="inner">
+            <h1 class="major">Comparative Analysis of SLAM Algorithms</h1>
+            <div class="slider">
+                <div class="slide-content">
+                    <a href="images/slam_1.png" class="image" onclick="showFullScreenImage('images/slam_1.png'); return false;">
+                        <img src="images/slam_1.png" alt="GMapping Algorithm">
+                    </a>
+                    <p class="image-label">Image 1: GMapping Algorithm</p>
+                    <p class="image-citation">Description: Illustration of GMapping in action, showcasing its 2D grid-based particle filter approach in a simple environment.</p>
+                </div>
+                <div class="slide-content">
+                    <a href="images/slam_2.png" class="image" onclick="showFullScreenImage('images/slam_2.png'); return false;">
+                        <img src="images/slam_2.png" alt="Cartographer Algorithm">
+                    </a>
+                    <p class="image-label">Image 2: Cartographer Algorithm</p>
+                    <p class="image-citation">Description: Demonstration of the Cartographer algorithm, highlighting its capability for both 2D and 3D mapping in complex settings.</p>
+                </div>
+                <div class="slide-content">
+                    <div class="video-container">
+                        <video class="video" muted>
+                            <source src="videos/slam_demo_1.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="play-icon" onclick="playFullScreen('videos/slam_demo_1.mp4')"></div>
+                    </div>
+                    <p class="video-label">Video 1: SLAM Algorithms Demonstration</p>
+                    <p class="video-citation">Description: This video shows the real-time operation of both GMapping and Cartographer algorithms, capturing their mapping and localization processes in various environments.</p>
+                </div>
+                <div class="slide-content">
+                    <div class="video-container">
+                        <video class="video" muted>
+                            <source src="videos/slam_demo_2.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="play-icon" onclick="playFullScreen('videos/slam_demo_2.mp4')"></div>
+                    </div>
+                    <p class="video-label">Video 2: Advanced Mapping Scenarios</p>
+                    <p class="video-citation">Description: This video highlights the Cartographer algorithm's capabilities in handling more complex scenarios with dynamic obstacles and challenging layouts.</p>
+                </div>
+            </div>
+            <p style="text-align: justify; font-size: 1.175rem;">This project explores the performance and accuracy of two prominent SLAM (Simultaneous Localization and Mapping) algorithms—GMapping and Cartographer—in indoor environments. SLAM is crucial for autonomous vehicles as it enables them to create maps and localize themselves within unfamiliar surroundings. In our study, we compared GMapping, which employs a 2D grid-based particle filter approach, and Cartographer, which utilizes a graph-based method capable of both 2D and 3D mapping. Using an RPLIDAR sensor, we collected real-time data to assess how each algorithm performed in controlled environments with varying complexities. Our findings revealed that GMapping is better suited for simpler environments with fewer obstacles, whereas Cartographer excels in more complex scenarios. We faced challenges in quantitatively comparing the SLAM algorithms due to the absence of standardized metrics and issues such as LIDAR blind spots, which underscored the need for more nuanced evaluation methods. Moving forward, we propose integrating additional sensors and employing depth cameras to enhance obstacle detection and overcome some of the limitations identified. This research contributes to developing more robust autonomous systems, emphasizing the vital role of SLAM in modern robotics.</p>
+        </div>
+    </section>
+
+</div>
+
+<!-- Footer -->
+<footer id="footer" class="wrapper alt">
+    <div class="inner">
+        <ul class="menu">
+            <li>&copy; 2024 Swapnil Meshram</li>
+        </ul>
+    </div>
+</footer>
+
+<!-- Scripts -->
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/jquery.scrollex.min.js"></script>
+<script src="assets/js/jquery.scrolly.min.js"></script>
+<script src="assets/js/browser.min.js"></script>
+<script src="assets/js/breakpoints.min.js"></script>
+<script src="assets/js/util.js"></script>
+<script src="assets/js/main.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('.slider').slick({
+            autoplay: true,
+            dots: true,
+            arrows: true,
+            infinite: true,
+            speed: 800,
+            slidesToShow: 1,
+            slidesToScroll: 1
+        });
+    });
+
+    function showFullScreenImage(imageSrc) {
+        const fullscreenDiv = document.createElement('div');
+        fullscreenDiv.className = 'fullscreen-image';
+        fullscreenDiv.innerHTML = `
+            <div class="close-button" onclick="closeFullScreen()"></div>
+            <img src="${imageSrc}" alt="Full Screen Image">
+        `;
+        document.body.appendChild(fullscreenDiv);
+        document.getElementById('wrapper').classList.add('blurred-background');
+    }
+
+    function playFullScreen(videoSrc) {
+        const fullscreenDiv = document.createElement('div');
+        fullscreenDiv.className = 'fullscreen-video';
+        fullscreenDiv.innerHTML = `
+            <div class="close-button" onclick="closeFullScreen()"></div>
+            <video src="${videoSrc}" controls autoplay></video>
+        `;
+        document.body.appendChild(fullscreenDiv);
+        document.getElementById('wrapper').classList.add('blurred-background');
+    }
+
+    function closeFullScreen() {
+        const fullscreenDiv = document.querySelector('.fullscreen-video') || document.querySelector('.fullscreen-image');
+        if (fullscreenDiv) {
+            document.body.removeChild(fullscreenDiv);
+        }
+        document.getElementById('wrapper').classList.remove('blurred-background');
+    }
+</script>
+</body>
+</html>
