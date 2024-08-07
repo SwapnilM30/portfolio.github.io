@@ -176,13 +176,6 @@
                     <p class="image-citation">Description: Illustration of GMapping in action, showcasing its 2D grid-based particle filter approach in a simple environment.</p>
                 </div>
                 <div class="slide-content">
-                    <a href="images/slam_2.png" class="image" onclick="showFullScreenImage('images/slam_2.png'); return false;">
-                        <img src="images/slam_2.png" alt="Cartographer Algorithm">
-                    </a>
-                    <p class="image-label">Image 2: Cartographer Algorithm</p>
-                    <p class="image-citation">Description: Demonstration of the Cartographer algorithm, highlighting its capability for both 2D and 3D mapping in complex settings.</p>
-                </div>
-                <div class="slide-content">
                     <div class="video-container">
                         <video class="video" muted>
                             <source src="images/slam_demo_1.mp4" type="video/mp4">
@@ -203,6 +196,20 @@
                     </div>
                     <p class="video-label">Video 2: Advanced Mapping Scenarios</p>
                     <p class="video-citation">Description: This video highlights the Cartographer algorithm's capabilities in handling more complex scenarios with dynamic obstacles and challenging layouts.</p>
+                </div>
+                <div class="slide-content">
+                    <a href="images/slam_3.png" class="image" onclick="showFullScreenImage('images/slam_3.png'); return false;">
+                        <img src="images/slam_3.png" alt="SLAM Mapping Results">
+                    </a>
+                    <p class="image-label">Image 3: SLAM Mapping Results</p>
+                    <p class="image-citation">Description: A detailed comparison of the mapping results produced by both algorithms, highlighting the precision and challenges encountered in real-time scenarios.</p>
+                </div>
+                <div class="slide-content">
+                    <a href="images/slam_4.png" class="image" onclick="showFullScreenImage('images/slam_4.png'); return false;">
+                        <img src="images/slam_4.png" alt="SLAM in Complex Environments">
+                    </a>
+                    <p class="image-label">Image 4: SLAM in Complex Environments</p>
+                    <p class="image-citation">Description: An illustration of how the SLAM algorithms adapt to complex indoor environments, dealing with obstacles and varied layouts effectively.</p>
                 </div>
             </div>
             <p style="text-align: justify; font-size: 1.175rem;">This project explores the performance and accuracy of two prominent SLAM (Simultaneous Localization and Mapping) algorithms—GMapping and Cartographer—in indoor environments. SLAM is crucial for autonomous vehicles as it enables them to create maps and localize themselves within unfamiliar surroundings. In our study, we compared GMapping, which employs a 2D grid-based particle filter approach, and Cartographer, which utilizes a graph-based method capable of both 2D and 3D mapping. Using an RPLIDAR sensor, we collected real-time data to assess how each algorithm performed in controlled environments with varying complexities. Our findings revealed that GMapping is better suited for simpler environments with fewer obstacles, whereas Cartographer excels in more complex scenarios. We faced challenges in quantitatively comparing the SLAM algorithms due to the absence of standardized metrics and issues such as LIDAR blind spots, which underscored the need for more nuanced evaluation methods. Moving forward, we propose integrating additional sensors and employing depth cameras to enhance obstacle detection and overcome some of the limitations identified. This research contributes to developing more robust autonomous systems, emphasizing the vital role of SLAM in modern robotics.</p>
