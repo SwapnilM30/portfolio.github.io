@@ -49,6 +49,7 @@
         }
 
         .image-container {
+            position: relative; /* Make sure image container is relatively positioned */
             padding-right: 20px; 
             padding-top: 20px; 
             flex: 1;
@@ -142,8 +143,8 @@
 
         .close-button {
             position: absolute;
-            top: 20px;
-            right: 20px;
+            top: 10px; /* Adjust as necessary */
+            right: 10px; /* Adjust as necessary */
             width: 32px;
             height: 32px;
             background: url('images/close-icon.png') no-repeat center center;
@@ -332,6 +333,7 @@
                 </div>
             </div>
 
+            <!-- Slide 2 -->
             <!-- Project 6 -->
             <div class="thumbnail-gallery">
                 <div class="thumbnail">
@@ -383,6 +385,7 @@
                 </div>
             </div>
 
+            <!-- Slide 3 -->
             <!-- Project 9 -->
             <div class="thumbnail-gallery">
                 <div class="thumbnail">
@@ -531,15 +534,14 @@
             const fullscreenDiv = document.createElement('div');
             fullscreenDiv.className = 'fullscreen-image';
             fullscreenDiv.innerHTML = `
-                <div class="close-button" onclick="closeFullScreen(event)"></div>
+                <div class="close-button" onclick="closeFullScreen()"></div>
                 <img src="${imageSrc}" alt="Full Screen Image">
             `;
             document.body.appendChild(fullscreenDiv);
             document.getElementById('wrapper').classList.add('blurred-background');
         }
 
-        function closeFullScreen(event) {
-            event.stopPropagation(); // Prevent event propagation
+        function closeFullScreen() {
             const fullscreenDiv = document.querySelector('.fullscreen-video') || document.querySelector('.fullscreen-image');
             if (fullscreenDiv) {
                 document.body.removeChild(fullscreenDiv);
@@ -552,7 +554,7 @@
             const fullscreenDiv = document.createElement('div');
             fullscreenDiv.className = 'fullscreen-video';
             fullscreenDiv.innerHTML = `
-                <div class="close-button" onclick="closeFullScreen(event)"></div>
+                <div class="close-button" onclick="closeFullScreen()"></div>
                 <video src="${videoSrc}" controls autoplay></video>
             `;
             document.body.appendChild(fullscreenDiv);
