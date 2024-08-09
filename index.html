@@ -550,12 +550,15 @@
         });
 
     // Fullscreen image script
-    function showFullScreenImage(imageSrc, event) {
+function showFullScreenImage(imageSrc, event) {
     // Prevent the default behavior of the anchor tag
     event.preventDefault();
 
     // Hide the sidebar
     document.getElementById('sidebar').style.display = 'none';
+
+    // Add fullscreen mode class to body
+    document.body.classList.add('fullscreen-mode');
 
     // Create the fullscreen div
     const fullscreenDiv = document.createElement('div');
@@ -581,6 +584,9 @@ function closeFullScreen() {
     }
     document.getElementById('wrapper').classList.remove('blurred-background');
 
+    // Remove fullscreen mode class from body
+    document.body.classList.remove('fullscreen-mode');
+
     // Show the sidebar again depending on screen size
     const sidebar = document.getElementById('sidebar');
     if (window.innerWidth > 768) {
@@ -589,6 +595,7 @@ function closeFullScreen() {
         sidebar.style.display = ''; // Reset to the default behavior
     }
 }
+
         // Fullscreen video script
         function playFullScreen(videoSrc) {
             const fullscreenDiv = document.createElement('div');
