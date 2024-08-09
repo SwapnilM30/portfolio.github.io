@@ -4144,10 +4144,17 @@ button.slick-next:before {
     transform: rotate(45deg) translate(-5px, -6px);
 }
 
+/* Hide hamburger menu when fullscreen image is active */
+.fullscreen-image .hamburger,
+.fullscreen-image.active .hamburger {
+    display: none;
+}
+
 /* Hide hamburger menu when full-screen image is displayed */
 .fullscreen-mode .hamburger {
     display: none;
 }
+
 
 
 
