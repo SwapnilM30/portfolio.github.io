@@ -550,34 +550,40 @@
         });
 
         // Fullscreen image script
-        function showFullScreenImage(imageSrc, event) {
-            // Prevent the default behavior of the anchor tag
-            event.preventDefault();
+function showFullScreenImage(imageSrc, event) {
+    // Prevent the default behavior of the anchor tag
+    event.preventDefault();
 
-            // Create the fullscreen div
-            const fullscreenDiv = document.createElement('div');
-            fullscreenDiv.className = 'fullscreen-image';
+    // Hide the sidebar
+    document.getElementById('sidebar').style.display = 'none';
 
-            // Add the image and close button to the fullscreen div
-            fullscreenDiv.innerHTML = `
-                <div class="close-button" onclick="closeFullScreen()"></div>
-                <img src="${imageSrc}" alt="Full Screen Image">
-            `;
+    // Create the fullscreen div
+    const fullscreenDiv = document.createElement('div');
+    fullscreenDiv.className = 'fullscreen-image';
 
-            // Append the fullscreen div to the body
-            document.body.appendChild(fullscreenDiv);
+    // Add the image and close button to the fullscreen div
+    fullscreenDiv.innerHTML = `
+        <div class="close-button" onclick="closeFullScreen()"></div>
+        <img src="${imageSrc}" alt="Full Screen Image">
+    `;
 
-            // Add the blurred background class to the wrapper
-            document.getElementById('wrapper').classList.add('blurred-background');
-        }
+    // Append the fullscreen div to the body
+    document.body.appendChild(fullscreenDiv);
 
-        function closeFullScreen() {
-            const fullscreenDiv = document.querySelector('.fullscreen-video') || document.querySelector('.fullscreen-image');
-            if (fullscreenDiv) {
-                document.body.removeChild(fullscreenDiv);
-            }
-            document.getElementById('wrapper').classList.remove('blurred-background');
-        }
+    // Add the blurred background class to the wrapper
+    document.getElementById('wrapper').classList.add('blurred-background');
+}
+
+function closeFullScreen() {
+    const fullscreenDiv = document.querySelector('.fullscreen-video') || document.querySelector('.fullscreen-image');
+    if (fullscreenDiv) {
+        document.body.removeChild(fullscreenDiv);
+    }
+    document.getElementById('wrapper').classList.remove('blurred-background');
+
+    // Show the sidebar again
+    document.getElementById('sidebar').style.display = 'block';
+}
 
         // Fullscreen video script
         function playFullScreen(videoSrc) {
