@@ -549,8 +549,8 @@
             });
         });
 
-        // Fullscreen image script
-function showFullScreenImage(imageSrc, event) {
+    // Fullscreen image script
+    function showFullScreenImage(imageSrc, event) {
     // Prevent the default behavior of the anchor tag
     event.preventDefault();
 
@@ -581,10 +581,14 @@ function closeFullScreen() {
     }
     document.getElementById('wrapper').classList.remove('blurred-background');
 
-    // Show the sidebar again
-    document.getElementById('sidebar').style.display = 'block';
+    // Show the sidebar again depending on screen size
+    const sidebar = document.getElementById('sidebar');
+    if (window.innerWidth > 768) {
+        sidebar.style.display = 'block';
+    } else {
+        sidebar.style.display = ''; // Reset to the default behavior
+    }
 }
-
         // Fullscreen video script
         function playFullScreen(videoSrc) {
             const fullscreenDiv = document.createElement('div');
