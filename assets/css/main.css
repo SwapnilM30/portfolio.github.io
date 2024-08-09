@@ -4011,7 +4011,7 @@ button.slick-next:before {
 
 /* Hamburger Menu Icon */
 .hamburger {
-    display: none;
+    display: block; /* Ensure the hamburger menu is always displayed */
     cursor: pointer;
 }
 
@@ -4026,7 +4026,6 @@ button.slick-next:before {
 /* Media Query for Mobile */
 @media screen and (max-width: 736px) {
     .hamburger {
-        display: block;
         position: fixed;
         top: 20px;
         right: 20px;
@@ -4144,6 +4143,12 @@ button.slick-next:before {
 .hamburger.active div:nth-child(3) {
     transform: rotate(45deg) translate(-5px, -6px);
 }
+
+/* Hide hamburger menu when full-screen image is displayed */
+.fullscreen-mode .hamburger {
+    display: none;
+}
+
 
 
 
