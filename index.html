@@ -9,74 +9,55 @@
         <!-- Custom ClustrMaps CSS -->
 <style>
     .map-container {
-        text-align: center;
-        padding: 20px 0;
-    }
+    text-align: center;
+    padding: 20px 0;
+}
 
+.responsive-iframe-wrapper {
+    width: 100%;
+    height: 450px; /* Increased height for larger map display */
+    margin: 0 auto;
+    border-radius: 10px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 768px) {
     .responsive-iframe-wrapper {
-        position: relative;
-        width: 100%;
-        padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
-        height: 0;
-        overflow: hidden;
+        height: 350px; /* Smaller height for mobile */
     }
+}
 
-    .responsive-iframe-wrapper iframe {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        border: 2px solid #ddd;
-        border-radius: 10px;
-    }
+.map-container:hover::after {
+    content: "Hover to explore visitor locations!";
+    display: block;
+    font-size: 0.875rem;
+    color: #767676;
+    margin-top: 10px;
+    text-align: center;
+}
 
-    .map-container:hover::after {
-        content: "Hover to explore visitor locations!";
-        display: block;
-        font-size: 0.875rem;
-        color: #767676;
-        margin-top: 10px;
-        text-align: center;
-    }
+.map-container:hover {
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    transform: scale(1.02);
+}
 
-    .map-container:hover {
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-        transform: scale(1.02);
-    }
+.map-legend {
+    margin-top: 20px;
+    text-align: center;
+}
 
-    .button {
-        cursor: pointer;
-        background-color: #1d4e89;
-        color: #ffffff;
-        padding: 10px 20px;
-        border: none;
-        border-radius: 5px;
-        font-size: 1rem;
-        transition: background-color 0.3s;
-    }
+.map-legend h3 {
+    margin-bottom: 10px;
+    font-size: 1.125rem;
+}
 
-    .button:hover {
-        background-color: #14517a;
-    }
-
-    .map-legend {
-            margin-top: 20px;
-            text-align: center;
-        }
-
-        .map-legend h3 {
-            margin-bottom: 10px;
-            font-size: 1.125rem;
-        }
-
-        .map-legend span {
-            display: inline-block;
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            margin-right: 8px;
-        }
+.map-legend span {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    margin-right: 8px;
+}
         
         /* Styling for centering the slider */
         .slider {
