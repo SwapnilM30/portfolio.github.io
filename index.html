@@ -9,47 +9,32 @@
         
     <!-- Custom ClustrMaps CSS -->
 <style>
-    /* Removed unnecessary wrapper styles */
-.map-container {
-    text-align: center;
-    padding: 20px 0;
-}
+    /* ClustrMaps: minimal styling */
+    #visitor-map {
+            width: 100%;       /* The map spans the full width */
+            display: none;     /* Hidden by default, toggled via button */
+        }
 
-#visitor-map {
-    width: 100%; /* Make it span the full width */
-    height: auto; /* Let the content (script) control the height */
-}
+        #clustrmaps {
+            border: none;      /* No border */
+            box-shadow: none;  /* No shadow */
+        }
 
-#clustrmaps {
-    border: none; /* Ensure no border is applied */
-    box-shadow: none; /* Remove shadow */
-}
-
-.map-legend {
-    margin-top: 20px;
-    text-align: center;
-}
-
-.map-legend h3 {
-    margin-bottom: 10px;
-    font-size: 1.125rem;
-}
-
-.map-legend span {
-    display: inline-block;
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    margin-right: 8px;
-}
-
-/* Remove the hover effect for the container */
-.map-container:hover::after,
-.map-container:hover {
-    content: none;
-    box-shadow: none;
-    transform: none;
-}
+        .map-legend {
+            margin-top: 20px;
+            text-align: center;
+        }
+        .map-legend h3 {
+            margin-bottom: 10px;
+            font-size: 1.125rem;
+        }
+        .map-legend span {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
         
         /* Styling for centering the slider */
         .slider {
@@ -542,38 +527,41 @@
         </ul>
 
         <!-- Visitor Map Section -->
-<section id="visitor-map-section" class="wrapper style1 fade-up">
-    <div class="inner">
-        <h2 class="name overline-underline">Global Visitor Footprint</h2>
-        <p style="text-align: center; font-size: 1.125rem; margin-bottom: 20px;">
-            See where our visitors come from across the globe!
-        </p>
+        <section id="visitor-map-section" class="wrapper style1 fade-up">
+            <div class="inner">
+                <h2 class="name overline-underline">Global Visitor Footprint</h2>
+                <p style="text-align: center; font-size: 1.125rem; margin-bottom: 20px;">
+                    See where our visitors come from across the globe!
+                </p>
 
-        <!-- Show Map Button -->
-        <button onclick="toggleMap()" class="button" style="margin-bottom: 20px;">Show Visitor Map</button>
+                <!-- Show Map Button -->
+                <button onclick="toggleMap()" class="button" style="margin-bottom: 20px;">Show Visitor Map</button>
 
-        <!-- Map without extra containers -->
-        <div id="visitor-map" style="display: none;">
-            <script type='text/javascript' id='clustrmaps' src='//cdn.clustrmaps.com/map_v2.js?cl=a67c52&w=a&t=tt&d=BtnTG-J7EyPAd3PMvp8QHdXHhRUlSKyg_ZZOy3_ADDU&co=1d4e89&cmo=32cd32&cmn=ff4500&ct=f4f4f4'></script>
-        </div>
+                <!-- Map without extra containers -->
+                <div id="visitor-map">
+                    <!-- ClustrMaps script is initially hidden (toggleMap() function) -->
+                    <script type='text/javascript' id='clustrmaps'
+                        src='//cdn.clustrmaps.com/map_v2.js?cl=a67c52&w=a&t=tt&d=BtnTG-J7EyPAd3PMvp8QHdXHhRUlSKyg_ZZOy3_ADDU&co=1d4e89&cmo=32cd32&cmn=ff4500&ct=f4f4f4'>
+                    </script>
+                </div>
 
-        <!-- No-script Message -->
-        <noscript>
-            <p style="text-align: center; font-size: 1.125rem; color: #f44336;">
-                The visitor map requires JavaScript to be enabled.
-            </p>
-        </noscript>
+                <!-- No-script Message -->
+                <noscript>
+                    <p style="text-align: center; font-size: 1.125rem; color: #f44336;">
+                        The visitor map requires JavaScript to be enabled.
+                    </p>
+                </noscript>
 
-        <!-- Legend -->
-        <div class="map-legend" style="margin-top: 20px; text-align: center;">
-            <h3 style="margin-bottom: 10px;">Map Legend</h3>
-            <span style="display: inline-block; background-color: #32cd32; width: 20px; height: 20px; margin-right: 8px; border-radius: 50%;"></span> Past Visitors
-            <br>
-            <span style="display: inline-block; background-color: #ff4500; width: 20px; height: 20px; margin-right: 8px; border-radius: 50%;"></span> Recent Visitors
-        </div>
+                <!-- Legend -->
+                <div class="map-legend" style="margin-top: 20px; text-align: center;">
+                    <h3 style="margin-bottom: 10px;">Map Legend</h3>
+                    <span style="background-color: #32cd32;"></span> Past Visitors
+                    <br>
+                    <span style="background-color: #ff4500;"></span> Recent Visitors
+                </div>
+            </div>
+        </section>
     </div>
-</section>
-</div>
 </footer>
 
     <!-- Scripts -->
@@ -585,13 +573,13 @@
     <script src="assets/js/util.js"></script>
     <script src="assets/js/main.js"></script>
 
-    <!-- Toggle Script -->
+    <!-- Toggle Script for ClustrMaps -->
     <script>
         function toggleMap() {
             const map = document.getElementById('visitor-map');
-            if (map.style.display === 'none') {
+            if (map.style.display === 'none' || map.style.display === '') {
                 map.style.display = 'block';
-                } else {
+            } else {
                 map.style.display = 'none';
             }
         }
