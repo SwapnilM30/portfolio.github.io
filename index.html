@@ -6,7 +6,78 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <link rel="stylesheet" href="assets/css/main.css" />
     <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-    <style>
+        <!-- Custom ClustrMaps CSS -->
+<style>
+    .map-container {
+        text-align: center;
+        padding: 20px 0;
+    }
+
+    .responsive-iframe-wrapper {
+        position: relative;
+        width: 100%;
+        padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+        height: 0;
+        overflow: hidden;
+    }
+
+    .responsive-iframe-wrapper iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: 2px solid #ddd;
+        border-radius: 10px;
+    }
+
+    .map-container:hover::after {
+        content: "Hover to explore visitor locations!";
+        display: block;
+        font-size: 0.875rem;
+        color: #767676;
+        margin-top: 10px;
+        text-align: center;
+    }
+
+    .map-container:hover {
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        transform: scale(1.02);
+    }
+
+    .button {
+        cursor: pointer;
+        background-color: #1d4e89;
+        color: #ffffff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        font-size: 1rem;
+        transition: background-color 0.3s;
+    }
+
+    .button:hover {
+        background-color: #14517a;
+    }
+
+    .map-legend {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .map-legend h3 {
+            margin-bottom: 10px;
+            font-size: 1.125rem;
+        }
+
+        .map-legend span {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+        
         /* Styling for centering the slider */
         .slider {
             border: 1px solid rgba(50, 50, 50, 0.5); 
@@ -164,7 +235,7 @@
             color: #f44336; /* Error message color */
         }
     </style>
-    <!-- Include Slick Carousel CSS -->
+<!-- Include Slick Carousel CSS -->
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
 </head>
@@ -496,11 +567,42 @@
         <ul class="menu">
             <li>&copy; 2023 Swapnil Meshram </li>
         </ul>
-        <!-- ClustrMaps Widget -->
-        <div id="visitor-map">
-            <script type='text/javascript' id='clustrmaps' src='//cdn.clustrmaps.com/map_v2.js?cl=a67c52&w=a&t=tt&d=BtnTG-J7EyPAd3PMvp8QHdXHhRUlSKyg_ZZOy3_ADDU&co=1d4e89&cmo=32cd32&cmn=ff4500&ct=f4f4f4'></script>
+
+        <!-- Visitor Map Section -->
+        <section id="visitor-map-section" class="wrapper style1 fade-up">
+            <div class="inner">
+                <h2 class="name overline-underline">Global Visitor Footprint</h2>
+                <p style="text-align: center; font-size: 1.125rem; margin-bottom: 20px;">
+                    See where our visitors come from across the globe!
+                </p>
+
+        <!-- Show Map Button -->
+        <button onclick="toggleMap()" class="button" style="margin-bottom: 20px;">Show Visitor Map</button>
+
+        <!-- Responsive Map Container -->
+        <div id="visitor-map" class="map-container" style="display: none;">
+            <div class="responsive-iframe-wrapper">
+                <iframe id="clustrmaps-iframe" src="//cdn.clustrmaps.com/map_v2.js?cl=a67c52&w=a&t=tt&d=BtnTG-J7EyPAd3PMvp8QHdXHhRUlSKyg_ZZOy3_ADDU&co=1d4e89&cmo=32cd32&cmn=ff4500&ct=f4f4f4" frameborder="0"></iframe>
+            </div>
+        </div>
+
+        <!-- No-script Message -->
+        <noscript>
+            <p style="text-align: center; font-size: 1.125rem; color: #f44336;">
+                The visitor map requires JavaScript to be enabled.
+            </p>
+        </noscript>
+
+        <!-- Legend -->
+        <div class="map-legend" style="margin-top: 20px; text-align: center;">
+            <h3 style="margin-bottom: 10px;">Map Legend</h3>
+            <span style="display: inline-block; background-color: #32cd32; width: 20px; height: 20px; margin-right: 8px; border-radius: 50%;"></span> Past Visitors
+            <br>
+            <span style="display: inline-block; background-color: #ff4500; width: 20px; height: 20px; margin-right: 8px; border-radius: 50%;"></span> Recent Visitors
         </div>
     </div>
+</section>
+</div>
 </footer>
 
     <!-- Scripts -->
@@ -510,7 +612,20 @@
     <script src="assets/js/browser.min.js"></script>
     <script src="assets/js/breakpoints.min.js"></script>
     <script src="assets/js/util.js"></script>
-    <script src="assets/js/main.js"></script>    
+    <script src="assets/js/main.js"></script>
+
+    <!-- Toggle Script -->
+    <script>
+        function toggleMap() {
+            const map = document.getElementById('visitor-map');
+            if (map.style.display === 'none') {
+                map.style.display = 'block';
+                } else {
+                map.style.display = 'none';
+            }
+        }
+    </script>
+
     <!-- Include Slick Carousel JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
     <script>
