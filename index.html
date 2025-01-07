@@ -9,37 +9,20 @@
         
     <!-- Custom ClustrMaps CSS -->
 <style>
-    .map-container {
+    /* Removed unnecessary wrapper styles */
+.map-container {
     text-align: center;
     padding: 20px 0;
 }
 
-.responsive-iframe-wrapper {
-    width: 100%; /* Full width of the container */
-    height: 450px; /* Fixed height, adjustable as needed */
-    margin: 0 auto;
-    border-radius: 10px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); /* Adds a soft shadow */
+#visitor-map {
+    width: 100%; /* Make it span the full width */
+    height: auto; /* Let the content (script) control the height */
 }
 
-@media (max-width: 768px) {
-    .responsive-iframe-wrapper {
-        height: 350px; /* Slightly smaller height for mobile */
-    }
-}
-
-.map-container:hover::after {
-    content: "Hover to explore visitor locations!";
-    display: block;
-    font-size: 0.875rem;
-    color: #767676;
-    margin-top: 10px;
-    text-align: center;
-}
-
-.map-container:hover {
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-    transform: scale(1.02);
+#clustrmaps {
+    border: none; /* Ensure no border is applied */
+    box-shadow: none; /* Remove shadow */
 }
 
 .map-legend {
@@ -58,6 +41,14 @@
     height: 20px;
     border-radius: 50%;
     margin-right: 8px;
+}
+
+/* Remove the hover effect for the container */
+.map-container:hover::after,
+.map-container:hover {
+    content: none;
+    box-shadow: none;
+    transform: none;
 }
         
         /* Styling for centering the slider */
