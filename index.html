@@ -476,25 +476,38 @@
                 <p>I’m always open to conversations, collaborations, and exploring exciting opportunities. Whether you’re looking to connect for internships, full-time positions, or just to discuss innovative ideas, I’m just a message away. Let’s connect and see how we can work together to achieve great things!</p>
                 <div class="split style1">
                     <section>
-                        <form id="contact-form" method="post">
-                            <div class="fields">
-                                <div class="field half">
-                                    <label for="name">Name</label>
-                                    <input type="text" name="name" id="name" required>
-                                </div>
-                                <div class="field half">
-                                    <label for="email">Email</label>
-                                    <input type="email" name="email" id="email" required>
-                                </div>
-                                <div class="field">
-                                    <label for="message">Message</label>
-                                    <textarea name="message" id="message" rows="5" required></textarea>
-                                </div>
-                            </div>
-                            <div id="form-message" class="form-message"></div>
-                            <button type="submit">Send Message</button>
-                        </form>
-                    </section>
+                  <!-- Final Form Code -->
+      <form
+      id="contact-form"
+      method="POST"
+      action="https://formspree.io/f/mbjvpbqa"
+    >
+      <!-- Hidden Honeypot -->
+      <div style="display: none;">
+        <label>Do not fill this out if you're human:</label>
+        <input type="text" name="_gotcha" tabindex="-1">
+      </div>
+      
+      <div class="fields">
+        <div class="field half">
+          <label for="name">Name</label>
+          <input type="text" name="name" id="name" required>
+        </div>
+        <div class="field half">
+          <label for="email">Email</label>
+          <input type="email" name="email" id="email" required>
+        </div>
+        <div class="field">
+          <label for="message">Message</label>
+          <textarea name="message" id="message" rows="5" required></textarea>
+        </div>
+      </div>
+      <div id="form-message" class="form-message"></div>
+      <button type="submit">Send Message</button>
+    </form>
+  </div>
+</section>
+
                     <section>
                         <ul class="contact">
                             <li>
@@ -578,32 +591,73 @@
 
     <!-- Include Slick Carousel JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-    <script>
-        // Form submit script
-        const form = document.getElementById('contact-form');
+  <!-- Your Form Script -->
+  <script>
+    const form = document.getElementById('contact-form');
+    const submitButton = form.querySelector('button[type="submit"]');
+    const formMsg = document.getElementById('form-message');
 
-        form.addEventListener('submit', function(e) {
-            e.preventDefault();
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
 
-            const data = new FormData(form);
+      // Honeypot check
+      const gotcha = form.querySelector('input[name="_gotcha"]');
+      if (gotcha.value) {
+        formMsg.textContent = "Spam detected. Form not submitted.";
+        formMsg.classList.add('error');
+        return;
+      }
 
-            fetch('https://formspree.io/f/mbjvpbqa', {
-                method: 'POST',
-                body: data
-            })
-            .then(response => {
-                if (response.ok) {
-                    document.getElementById('form-message').textContent = 'Thanks for your message! I will get back to you soon.';
-                    document.getElementById('form-message').classList.remove('error');
-                } else {
-                    throw new Error('Network response was not ok.');
-                }
-            })
-            .catch(error => {
-                document.getElementById('form-message').textContent = 'Oops, something went wrong. Please try again later';
-                document.getElementById('form-message').classList.add('error');
-            });
-        });
+      // Basic validation
+      const nameField = document.getElementById('name');
+      const emailField = document.getElementById('email');
+      
+      if (!nameField.value.trim()) {
+        formMsg.textContent = "Please enter your name.";
+        formMsg.classList.add('error');
+        return;
+      }
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(emailField.value.trim())) {
+        formMsg.textContent = "Please enter a valid email address.";
+        formMsg.classList.add('error');
+        return;
+      }
+
+      // Clear previous error
+      formMsg.textContent = '';
+      formMsg.classList.remove('error');
+
+      // Provide loading feedback
+      submitButton.disabled = true;
+      submitButton.textContent = "Sending...";
+
+      // Send the form
+      const data = new FormData(form);
+      fetch('https://formspree.io/f/mbjvpbqa', {
+        method: 'POST',
+        body: data
+      })
+      .then(response => {
+        submitButton.disabled = false;
+        submitButton.textContent = "Send Message";
+
+        if (response.ok) {
+          formMsg.textContent = "Thanks for your message! I will get back to you soon.";
+          formMsg.classList.remove('error');
+          form.reset();
+        } else {
+          throw new Error('Network response was not ok.');
+        }
+      })
+      .catch(error => {
+        submitButton.disabled = false;
+        submitButton.textContent = "Send Message";
+        console.error(error);
+        formMsg.textContent = "Oops, something went wrong. Please try again later or email me directly.";
+        formMsg.classList.add('error');
+      });
+    });
 
         // Slick carousel script
         $(document).ready(function(){
