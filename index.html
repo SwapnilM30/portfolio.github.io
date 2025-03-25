@@ -203,8 +203,8 @@
   
     /* Square Card Styling */
     .card {
-      width: 400px;
-      height: 350px;
+      width: 450px;
+      height: 450px;
       background: #fff;
       border-radius: 16px;
       box-shadow: 0 4px 8px rgba(50, 50, 50, 0.25);
@@ -218,18 +218,17 @@
     .card:hover {
       transform: scale(1.03);
     }
-    /* The image takes the top 50% of the card */
+    /* Image takes the top 45% of the card, ensuring the entire image is visible */
     .card-img {
       width: 100%;
-      height: 50%;
-      object-fit: cover;
+      height: 45%;
+      object-fit: contain;
     }
-    /* The content takes the bottom 50% */
+    /* Content takes the bottom 55% */
     .card-content {
-      height: 50%;
+      height: 55%;
       padding: 10px;
       box-sizing: border-box;
-      overflow: auto;
     }
     .card-content h3 {
       margin: 0.5em 0;
@@ -283,7 +282,7 @@
     }
     /* Optional: Custom arrows can be added here if desired */
   </style>
-
+  
 </head>
 <body class="is-preload">
 
