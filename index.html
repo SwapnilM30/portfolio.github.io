@@ -172,13 +172,12 @@
       color: #f44336;
     }
   
-    /* ========== Card Slider Styles for Uniform Look (Circles Removed) ========== */
+    /* ========== Card Slider Styles ========== */
   
     /* Card Slider Section Background */
     #three {
       position: relative;
       padding: 40px 0;
-      overflow: hidden;
       background: #dfdfdf;
     }
     #three .inner {
@@ -201,32 +200,37 @@
       padding: 0 20px;
     }
   
-    /* Square Card Styling */
+    /* ========== Card Sizing ========== */
+    /* All cards are the same dimension, e.g., 350×400 (adjust as needed) */
     .card {
-      width: 450px;
-      height: 450px;
+      width: 350px;
+      height: 400px;
       background: #fff;
       border-radius: 16px;
       box-shadow: 0 4px 8px rgba(50, 50, 50, 0.25);
       overflow: hidden;
-      text-align: center;
-      transition: transform 0.3s ease;
-      margin: 10px;
+      margin: 10px auto;
       display: flex;
       flex-direction: column;
+      text-align: center;
+      transition: transform 0.3s ease;
     }
+    /* The center card scales up (via Slick) */
     .card:hover {
-      transform: scale(1.03);
+      cursor: pointer;
     }
-    /* Image takes the top 45% of the card, ensuring the entire image is visible */
+  
+    /* Image occupies the top portion of the card */
     .card-img {
       width: 100%;
-      height: 45%;
-      object-fit: contain;
+      height: 50%;
+      object-fit: contain; /* ensures full image is visible */
+      background: #fff;
     }
-    /* Content takes the bottom 55% */
+  
+    /* Content occupies the bottom portion */
     .card-content {
-      height: 55%;
+      height: 50%;
       padding: 10px;
       box-sizing: border-box;
     }
@@ -241,7 +245,7 @@
       color: #333;
     }
   
-    /* Button styling inside card slider matching main.css */
+    /* Buttons match main.css styling */
     .card-content a.button {
       -moz-appearance: none;
       -webkit-appearance: none;
@@ -250,7 +254,6 @@
       transition: border-color 0.5s ease;
       background-color: transparent;
       border: solid 1px rgba(50, 50, 50) !important;
-      border-color: rgba(50, 50, 50) !important;
       border-radius: 2.25em;
       color: rgba(50, 50, 50) !important;
       cursor: pointer;
@@ -272,7 +275,20 @@
       border-color: #283a8b !important;
     }
   
-    /* Slick dots & arrows styling (optional) */
+    /* ========== Center Card Scaling via Slick ========== */
+    /* Default scale & opacity for all slides */
+    .slick-slide {
+      transform: scale(0.85);
+      opacity: 0.6;
+      transition: transform 0.3s, opacity 0.3s;
+    }
+    /* Scale & highlight the center slide */
+    .slick-center {
+      transform: scale(1) !important;
+      opacity: 1 !important;
+    }
+  
+    /* Dots styling (optional) */
     .slick-dots li button:before {
       font-size: 10px;
       color: #555;
@@ -280,8 +296,8 @@
     .slick-dots li.slick-active button:before {
       color: #283a8b;
     }
-    /* Optional: Custom arrows can be added here if desired */
   </style>
+  
   
 </head>
 <body class="is-preload">
@@ -773,31 +789,35 @@
       });
     });
 
-    // Slick slider initialization for the Projects card carousel
-    $(document).ready(function () {
-      $(".project-slider").slick({
-        slidesToShow: 3,
-        slidesToScroll: 1,
-        autoplay: true,
-        autoplaySpeed: 3000,
-        dots: true,
-        arrows: true,
-        responsive: [
-          {
-            breakpoint: 1024,
-            settings: {
-              slidesToShow: 2,
-            },
-          },
-          {
-            breakpoint: 600,
-            settings: {
-              slidesToShow: 1,
-            },
-          },
-        ],
-      });
-    });
+    $(document).ready(function(){
+  $('.project-slider').slick({
+    centerMode: true,
+    centerPadding: '60px', // adjust for spacing
+    slidesToShow: 3,
+    autoplay: true,
+    autoplaySpeed: 3000,
+    dots: true,
+    arrows: true,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 3,
+          centerPadding: '40px'
+        }
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 1,
+          centerMode: true,
+          centerPadding: '20px'
+        }
+      }
+    ]
+  });
+});
+
 
     // Fullscreen image script
     function showFullScreenImage(imageSrc, event) {
