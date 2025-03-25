@@ -174,41 +174,19 @@
   
     /* ========== Card Slider Styles for Uniform Look ========== */
   
-    /* 1. Background circles/gradients behind the cards */
+    /* 1. Background for the Card Slider Section (Circles Removed) */
     #three {
       position: relative;
       padding: 40px 0;
-      overflow: hidden; /* Ensures circles don’t spill out */
+      overflow: hidden;
       background: #dfdfdf; /* Uniform background */
     }
-    #three::before,
-    #three::after {
-      content: "";
-      position: absolute;
-      border-radius: 50%;
-      opacity: 0.4;
-      z-index: 0; /* behind content */
-    }
-    /* Top-right circle */
-    #three::before {
-      top: -200px;
-      right: -200px;
-      width: 400px;
-      height: 400px;
-      background: radial-gradient(#a3b2e8, #283a8b); /* Light-to-primary gradient */
-    }
-    /* Bottom-left circle */
-    #three::after {
-      bottom: -200px;
-      left: -200px;
-      width: 400px;
-      height: 400px;
-      background: radial-gradient(#a3b2e8, #283a8b);
-    }
+    /* Removed ::before and ::after pseudo-elements for circles */
+  
     #three .inner {
       max-width: 1200px;
       margin: 0 auto;
-      position: relative; /* So we can place content above the circles */
+      position: relative;
       z-index: 1;
     }
     #three h2 {
@@ -221,7 +199,7 @@
     /* 2. Slick carousel container */
     .project-slider {
       position: relative;
-      z-index: 1; /* Above the background circles */
+      z-index: 1;
       padding: 0 20px;
     }
   
@@ -229,22 +207,22 @@
     .card {
       background: #fff;
       border-radius: 16px;
-      box-shadow: 0 4px 8px rgba(50, 50, 50, 0.25); /* Lighter shadow for uniformity */
+      box-shadow: 0 4px 8px rgba(50, 50, 50, 0.25);
       overflow: hidden;
-      text-align: center; /* Center the text */
+      text-align: center;
       transition: transform 0.3s ease;
       margin: 10px;
     }
     .card:hover {
-      transform: scale(1.03); /* Slight zoom on hover */
+      transform: scale(1.03);
     }
     .card-img {
       display: block;
       margin: 0 auto;
-      max-width: 200px; /* Limit image size */
+      max-width: 200px;
       height: auto;
-      margin-top: 20px; /* Spacing above image */
-      border-radius: 8px; /* Slight rounding for a soft look */
+      margin-top: 20px;
+      border-radius: 8px;
     }
     .card-content {
       padding: 20px;
@@ -270,6 +248,7 @@
       transition: border-color 0.5s ease;
       background-color: transparent;
       border: solid 1px rgba(50, 50, 50) !important;
+      border-color: rgba(50, 50, 50) !important;
       border-radius: 2.25em;
       color: rgba(50, 50, 50) !important;
       cursor: pointer;
@@ -301,7 +280,7 @@
     }
     /* Optional: Custom arrows can be added here if desired */
   </style>
-    
+  
 </head>
 <body class="is-preload">
 
