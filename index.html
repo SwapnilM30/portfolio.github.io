@@ -43,7 +43,7 @@
       border-radius: 50%;
       margin-right: 8px;
     }
-
+  
     /* Existing/General Styles */
     .slider {
       border: 1px solid rgba(50, 50, 50, 0.5);
@@ -171,18 +171,16 @@
     .form-message.error {
       color: #f44336;
     }
-
-    /* ========== Card Slider Styles to Mimic the GIF ========== */
-
+  
+    /* ========== Card Slider Styles for Uniform Look ========== */
+  
     /* 1. Background circles/gradients behind the cards */
     #three {
       position: relative;
       padding: 40px 0;
       overflow: hidden; /* Ensures circles don’t spill out */
-      background: #dfdfdfbb; /* Base color (adjust if you want a gradient) */
+      background: #dfdfdf; /* Base background color updated for uniformity */
     }
-
-    /* Example of adding two big circles in the background */
     #three::before,
     #three::after {
       content: "";
@@ -197,7 +195,7 @@
       right: -200px;
       width: 400px;
       height: 400px;
-      background: radial-gradient(#f8b061, #283a8b);
+      background: radial-gradient(#a3b2e8, #283a8b); /* Light-to-primary gradient */
     }
     /* Bottom-left circle */
     #three::after {
@@ -205,9 +203,8 @@
       left: -200px;
       width: 400px;
       height: 400px;
-      background: radial-gradient(#ffce85, #283a8b);
+      background: radial-gradient(#a3b2e8, #283a8b);
     }
-
     #three .inner {
       max-width: 1200px;
       margin: 0 auto;
@@ -220,37 +217,35 @@
       position: relative;
       z-index: 1;
     }
-
+  
     /* 2. Slick carousel container */
     .project-slider {
       position: relative;
       z-index: 1; /* Above the background circles */
       padding: 0 20px;
     }
-
+  
     /* 3. Card styling */
     .card {
       background: #fff;
       border-radius: 16px;
-      box-shadow: 0 4px 8px rgba(50, 50, 50);
+      box-shadow: 0 4px 8px rgba(50, 50, 50, 0.25); /* Lighter shadow for uniformity */
       overflow: hidden;
-      text-align: center; /* Center the text, like the GIF example */
+      text-align: center; /* Center the text */
       transition: transform 0.3s ease;
       margin: 10px;
     }
     .card:hover {
       transform: scale(1.03); /* Slight zoom on hover */
     }
-
     .card-img {
       display: block;
       margin: 0 auto;
       max-width: 200px; /* Limit image size */
       height: auto;
       margin-top: 20px; /* Spacing above image */
-      border-radius: 8px; /* Slight rounding if you want a soft look */
+      border-radius: 8px; /* Slight rounding for a soft look */
     }
-
     .card-content {
       padding: 20px;
     }
@@ -277,7 +272,7 @@
     .card-content a.button:hover {
       background-color: #283a8b;
     }
-
+  
     /* 4. Slick dots & arrows styling (optional) */
     .slick-dots li button:before {
       font-size: 10px;
@@ -286,13 +281,12 @@
     .slick-dots li.slick-active button:before {
       color: #283a8b;
     }
-    /* If you want custom arrows, you can do something like: 
-       .slick-prev:before, .slick-next:before {
+    /* Optional: Custom arrows can be added here */
+    /* .slick-prev:before, .slick-next:before {
          font-size: 24px;
-         color: #ff8450;
-       } 
-    */
-  </style>
+         color: #283a8b;
+    } */
+  </style>  
 </head>
 <body class="is-preload">
 
