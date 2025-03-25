@@ -172,9 +172,9 @@
       color: #f44336;
     }
   
-    /* ========== Card Slider Styles for Uniform Look ========== */
+    /* ========== Card Slider Styles for Uniform Look (Circles Removed) ========== */
   
-    /* 1. Background for the Card Slider Section (Circles Removed) */
+    /* Card Slider Section Background */
     #three {
       position: relative;
       padding: 40px 0;
@@ -194,17 +194,17 @@
       z-index: 1;
     }
   
-    /* 2. Slick carousel container */
+    /* Slick carousel container */
     .project-slider {
       position: relative;
       z-index: 1;
       padding: 0 20px;
     }
   
-    /* 3. Card styling - Square Cards */
+    /* Square Card Styling */
     .card {
-      width: 300px;
-      height: 300px;
+      width: 350px;
+      height: 350px;
       background: #fff;
       border-radius: 16px;
       box-shadow: 0 4px 8px rgba(50, 50, 50, 0.25);
@@ -218,15 +218,17 @@
     .card:hover {
       transform: scale(1.03);
     }
+    /* The image takes the top 50% of the card */
     .card-img {
       width: 100%;
       height: 50%;
       object-fit: cover;
-      border-radius: 8px;
     }
+    /* The content takes the bottom 50% */
     .card-content {
       height: 50%;
       padding: 10px;
+      box-sizing: border-box;
       overflow: auto;
     }
     .card-content h3 {
@@ -240,7 +242,7 @@
       color: #333;
     }
   
-    /* 4. Button styling inside card slider matching main.css */
+    /* Button styling inside card slider matching main.css */
     .card-content a.button {
       -moz-appearance: none;
       -webkit-appearance: none;
@@ -271,7 +273,7 @@
       border-color: #283a8b !important;
     }
   
-    /* 5. Slick dots & arrows styling (optional) */
+    /* Slick dots & arrows styling (optional) */
     .slick-dots li button:before {
       font-size: 10px;
       color: #555;
@@ -281,7 +283,7 @@
     }
     /* Optional: Custom arrows can be added here if desired */
   </style>
-    
+        
 </head>
 <body class="is-preload">
 
