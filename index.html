@@ -179,7 +179,7 @@
       position: relative;
       padding: 40px 0;
       overflow: hidden; /* Ensures circles don’t spill out */
-      background: #dfdfdf; /* Base background color updated for uniformity */
+      background: #dfdfdf; /* Uniform background */
     }
     #three::before,
     #three::after {
@@ -260,20 +260,38 @@
       margin-bottom: 15px;
       color: #333;
     }
+  
+    /* 4. Button styling inside card slider matching main.css */
     .card-content a.button {
+      -moz-appearance: none;
+      -webkit-appearance: none;
+      -ms-appearance: none;
+      appearance: none;
+      transition: border-color 0.5s ease;
+      background-color: transparent;
+      border: solid 1px rgba(50, 50, 50) !important;
+      border-radius: 2.25em;
+      color: rgba(50, 50, 50) !important;
+      cursor: pointer;
       display: inline-block;
-      padding: 8px 16px;
-      border-radius: 20px;
-      background-color: #dfdfdfbb;
-      color: #fff;
+      font-size: 0.61em;
+      font-weight: bold;
+      height: calc(4.75em + 2px);
+      letter-spacing: 0.25em;
+      line-height: 4.75em;
+      outline: 0;
+      padding: 0 3.75em;
+      position: relative;
+      text-align: center;
       text-decoration: none;
-      transition: background-color 0.3s ease;
+      text-transform: uppercase;
+      white-space: nowrap;
     }
     .card-content a.button:hover {
-      background-color: #283a8b;
+      border-color: #283a8b !important;
     }
   
-    /* 4. Slick dots & arrows styling (optional) */
+    /* 5. Slick dots & arrows styling (optional) */
     .slick-dots li button:before {
       font-size: 10px;
       color: #555;
@@ -281,12 +299,9 @@
     .slick-dots li.slick-active button:before {
       color: #283a8b;
     }
-    /* Optional: Custom arrows can be added here */
-    /* .slick-prev:before, .slick-next:before {
-         font-size: 24px;
-         color: #283a8b;
-    } */
-  </style>  
+    /* Optional: Custom arrows can be added here if desired */
+  </style>
+    
 </head>
 <body class="is-preload">
 
