@@ -222,8 +222,9 @@
   
     /* Image occupies the top portion of the card */
     .card-img {
-      width: 100%;
+      width: calc(100% - 10px);
       height: 40%;
+      margin: 5px auto;
       object-fit: contain; /* ensures full image is visible */
       background: #fff;
     }
@@ -233,6 +234,7 @@
       height: 60%;
       padding: 10px;
       box-sizing: border-box;
+      text-align: justify;
     }
     .card-content h3 {
       margin: 0.5em 0;
