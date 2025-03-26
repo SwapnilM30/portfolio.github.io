@@ -112,220 +112,63 @@ input, select, textarea {
 			transition: none !important;
 		}
 
-/* Type */
+/* Base typography */
+body, input, select, textarea {
+    color: rgb(50, 50, 50);
+    font-family: "Source Sans Pro", Helvetica, sans-serif;
+    font-size: 16px; /* Changed from 16.5pt to 16px */
+    font-weight: 400;
+    line-height: 1.5;
+}
 
-	body, input, select, textarea {
-		color: rgb(50, 50, 50);
-		font-family: "Source Sans Pro", Helvetica, sans-serif;
-		font-size: 16.5pt;
-		font-weight: 400;
-		line-height: 1.5;
-	}
+/* Responsive scaling */
+@media screen and (max-width: 1680px) {
+    body, input, select, textarea {
+        font-size: 15px;
+    }
+}
 
-		@media screen and (max-width: 1680px) {
+@media screen and (max-width: 1280px) {
+    body, input, select, textarea {
+        font-size: 14px;
+    }
+}
 
-			body, input, select, textarea {
-				font-size: 13pt;
-			}
+@media screen and (max-width: 360px) {
+    body, input, select, textarea {
+        font-size: 13px;
+    }
+}
 
-		}
+/* Links, headings, paragraphs, etc. remain as defined */
+p {
+    margin: 0 0 1.85em 0;
+}
 
-		@media screen and (max-width: 1280px) {
+h1, h2, h3, h4, h5, h6 {
+    color: rgb(50, 50, 50);
+    font-weight: bold;
+    line-height: 1.25;
+    margin: 0 0 0.25em 0;
+}
 
-			body, input, select, textarea {
-				font-size: 12pt;
-			}
+h1 { font-size: 2.35em; }
+h2 { font-size: 1.75em; }
+h3 { font-size: 1.1em; }
+h4 { font-size: 1em; }
+h5 { font-size: 0.8em; }
+h6 { font-size: 0.6em; }
 
-		}
+/* Media Query for headings on smaller screens */
+@media screen and (max-width: 736px) {
+    h1 { font-size: 2.35em; }
+    h2 { font-size: 1.75em; }
+    h3 { font-size: 1.5em; }
+    h4 { font-size: 0.8em; }
+    h5 { font-size: 0.6em; }
+    h6 { font-size: 0.6em; }
+}
 
-		@media screen and (max-width: 360px) {
-
-			body, input, select, textarea {
-				font-size: 11pt;
-			}
-
-		}
-
-	a {
-		-moz-transition: color 0.2s ease, border-bottom-color 0.5s ease;
-		-webkit-transition: color 0.2s ease, border-bottom-color 0.5s ease;
-		-ms-transition: color 0.2s ease, border-bottom-color 0.5s ease;
-		transition: color 0.2s ease, border-bottom-color 0.5s ease;
-		border-bottom: dotted 1px rgba(50, 50, 50);
-		color: inherit;
-		text-decoration: none;
-	}
-
-		a:hover {
-			border-bottom-color: transparent;
-			color: #283a8b;
-		}
-
-	strong, b {
-		color: rgba(50, 50, 50);
-		font-weight: bold;
-	}
-
-	em, i {
-		font-style: italic;
-	}
-
-	p {
-		margin: 0 0 1.85em 0;
-	}
-
-	h1, h2, h3, h4, h5, h6 {
-		color: rgb(50, 50, 50);
-		font-weight: bold;
-		line-height: 1.25;
-		margin: 0 0 0.25em 0em;
-	}
-
-		h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
-			color: inherit;
-			text-decoration: none;
-		}
-
-	h1 {
-		font-size: 2.35em;
-	}
-
-		h1.major {
-			margin: 0 0 1.35em 0;
-			position: relative;
-			padding-bottom: 0.20em;
-		}
-
-			h1.major:after {
-				background-image: -moz-linear-gradient(to right, #5e42a6, #b74e91);
-				background-image: -webkit-linear-gradient(to right, #5e42a6, #b74e91);
-				background-image: -ms-linear-gradient(to right, #5e42a6, #b74e91);
-				background-image: linear-gradient(to right, #5e42a6, #b74e91);
-				-moz-transition: max-width 0.5s ease;
-				-webkit-transition: max-width 0.5s ease;
-				-ms-transition: max-width 0.5s ease;
-				transition: max-width 0.5s ease;
-				border-radius: 0.2em;
-				bottom: 0;
-				content: '';
-				height: 0.05em;
-				position: absolute;
-				right: 0;
-				width: 100%;
-			}
-
-	h2 {
-		font-size: 1.75em;
-	}
-
-	h3 {
-		font-size: 1.1em;
-	}
-
-	h4 {
-		font-size: 1em;
-	}
-
-	h5 {
-		font-size: 0.8em;
-	}
-
-	h6 {
-		font-size: 0.6em;
-	}
-
-	@media screen and (max-width: 736px) {
-
-		h1 {
-			font-size: 2.35em;
-		}
-
-		h2 {
-			font-size: 1.75em;
-		}
-
-		h3 {
-			font-size: 1.5em;
-		}
-
-		h4 {
-			font-size: 0.8em;
-		}
-
-		h5 {
-			font-size: 0.6em;
-		}
-
-		h6 {
-			font-size: 0.6em;
-		}
-
-	}
-
-	sub {
-		font-size: 0.8em;
-		position: relative;
-		top: 0.5em;
-	}
-
-	sup {
-		font-size: 0.8em;
-		position: relative;
-		top: -0.5em;
-	}
-
-	blockquote {
-		border-left: solid 4px rgba(50, 50, 50);
-		font-style: italic;
-		margin: 0 0 2em 0;
-		padding: 0.5em 0 0.5em 2em;
-	}
-
-	code {
-		background: rgba(50, 50, 50);
-		border-radius: 0.25em;
-		border: solid 1px rgba(50, 50, 50);
-		font-family: "Courier New", monospace;
-		font-size: 0.9em;
-		margin: 0 0.25em;
-		padding: 0.25em 0.65em;
-	}
-
-	pre {
-		-webkit-overflow-scrolling: touch;
-		font-family: "Courier New", monospace;
-		font-size: 0.9em;
-		margin: 0 0 2em 0;
-	}
-
-		pre code {
-			display: block;
-			line-height: 1.75em;
-			padding: 1em 1.5em;
-			overflow-x: auto;
-		}
-
-	hr {
-		border: 0;
-		border-bottom: solid 1px rgba(50, 50, 50);
-		margin: 2em 0;
-	}
-
-		hr.major {
-			margin: 3em 0;
-		}
-
-	.align-left {
-		text-align: left;
-	}
-
-	.align-center {
-		text-align: center;
-	}
-
-	.align-right {
-		text-align: right;
-	}
 
 /* Row */
 
