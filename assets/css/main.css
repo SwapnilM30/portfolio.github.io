@@ -116,9 +116,9 @@ input, select, textarea {
 body, input, select, textarea {
     color: rgb(50, 50, 50);
     font-family: "Source Sans Pro", Helvetica, sans-serif;
-    font-size: 16px; /* Changed from 16.5pt to 16px */
-    font-weight: 400;
-    line-height: 1.5;
+    font-size: 18px; /* Changed from 16.5pt to 16px */
+    font-weight: 500;
+    line-height: 1.6;
 }
 
 /* Responsive scaling */
@@ -3997,6 +3997,15 @@ button.slick-next:before {
 .fullscreen-mode .hamburger {
     display: none;
 }
+
+/* Center inner containers for Work Experience, Contact Information, and Visitor Map sections */
+#two .inner,
+#four .inner,
+#visitor-map-section .inner {
+  margin: 0 auto;
+  max-width: 1200px; /* Adjust as needed for your design */
+}
+
 
 
 
