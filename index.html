@@ -200,8 +200,7 @@
       padding: 0 20px;
     }
   
-    /* ========== Card Sizing ========== */
-    /* All cards are the same dimension, e.g., 350×400 (adjust as needed) */
+    /* ========== Card Sizing (Do Not Change Dimensions) ========== */
     .card {
       width: 2500px;
       height: 750px;
@@ -212,42 +211,47 @@
       margin: 10px auto;
       display: flex;
       flex-direction: column;
-      text-align: center;
+      /* Set a default text alignment for content; individual elements will override */
+      text-align: justify;
       transition: transform 0.3s ease;
     }
-    /* The center card scales up (via Slick) */
     .card:hover {
       cursor: pointer;
     }
   
-    /* Image occupies the top portion of the card */
+    /* Image occupies the top portion of the card (100% of the width & 100% of its container) */
     .card-img {
       width: calc(100% - 10px);
       height: 40%;
       margin: 5px auto;
-      object-fit: contain; /* ensures full image is visible */
+      object-fit: contain;
       background: #fff;
     }
   
-    /* Content occupies the bottom portion */
+    /* Content occupies the bottom portion (100% of the width & 100% of its container) */
     .card-content {
       height: 60%;
       padding: 10px;
       box-sizing: border-box;
+      /* Default justified text */
       text-align: justify;
     }
+    /* Center align <h3> headings inside card content */
     .card-content h3 {
       margin: 0.5em 0;
       font-size: 1.25rem;
+      text-align: center;
     }
-    .card-content p {
-      font-size: 0.9rem;
-      line-height: 1.4;
-      margin-bottom: 0.5em;
-      color: #333;
+    /* Left align the "Problem Statement and Solution:" paragraph */
+    .card-content p.underline {
+      text-align: left;
+    }
+    /* Ensure other paragraphs remain justified */
+    .card-content p:not(.underline) {
+      text-align: justify;
     }
   
-    /* Buttons match main.css styling */
+    /* Center align "Project details" buttons */
     .card-content a.button {
       -moz-appearance: none;
       -webkit-appearance: none;
@@ -259,7 +263,7 @@
       border-radius: 2.25em;
       color: rgba(50, 50, 50) !important;
       cursor: pointer;
-      display: inline-block;
+      display: block;
       font-size: 0.61em;
       font-weight: bold;
       height: calc(4.75em + 2px);
@@ -267,7 +271,7 @@
       line-height: 4.75em;
       outline: 0;
       padding: 0 3.75em;
-      position: relative;
+      margin: 0 auto;
       text-align: center;
       text-decoration: none;
       text-transform: uppercase;
@@ -278,19 +282,17 @@
     }
   
     /* ========== Center Card Scaling via Slick ========== */
-    /* Default scale & opacity for all slides */
     .slick-slide {
       transform: scale(0.85);
       opacity: 0.6;
       transition: transform 0.3s, opacity 0.3s;
     }
-    /* Scale & highlight the center slide */
     .slick-center {
       transform: scale(1) !important;
       opacity: 1 !important;
     }
   
-    /* Dots styling (optional) */
+    /* Slick dots styling (optional) */
     .slick-dots li button:before {
       font-size: 10px;
       color: #555;
@@ -299,8 +301,7 @@
       color: #283a8b;
     }
   </style>
-  
-  
+
 </head>
 <body class="is-preload">
 
