@@ -66,42 +66,37 @@
       text-align: center;
       padding: 20px;
     }
-    
-    /* About Me Section: Image on left, text on right with a consistent gap */
-    .content-with-image {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: flex-start; /* image on left, text follows */
-      gap: 20px;
-    }
-    .image-container {
-      position: relative;
-      padding-right: 20px;
-      padding-top: 20px;
-      flex: 1;
-    }
-    /* Reduced image size from 80% to 40% */
-    .profile-image {
-    max-width: 90%;
+  /* About Me Section: Text on left, Image on right with consistent gap */
+  .content-with-image {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    flex-direction: row-reverse; /* reverses the order: text on left, image on right */
+    gap: 20px;
+  }
+  .image-container {
+    position: relative;
+    padding: 20px; /* adjust if needed for consistent spacing */
+    flex: 1;
+  }
+  .profile-image {
+    max-width: 95%; /* reduced image size to 95% */
     height: auto;
     display: block;
+  }
+  .text-container {
+    flex: 2;
+  }
+  @media (max-width: 768px) {
+    .content-with-image {
+      flex-direction: column;
     }
-
+    .image-container,
     .text-container {
-      flex: 2;
+      width: 100%;
+      padding: 0;
     }
-    @media (max-width: 768px) {
-      .content-with-image {
-        flex-direction: column;
-      }
-      .image-container,
-      .text-container {
-        width: 100%;
-        padding: 0;
-      }
-    }
-    
+  } 
     .underline {
       margin-top: 20px;
       margin-bottom: 10px;
