@@ -43,7 +43,7 @@
       border-radius: 50%;
       margin-right: 8px;
     }
-  
+    
     /* Existing/General Styles */
     .slider {
       border: 1px solid rgba(50, 50, 50, 0.5);
@@ -61,27 +61,29 @@
     .text-justify.abc {
       margin-top: 10px;
     }
-    /* Removed .inner to let main.css control it */
+    /* Removed .inner so that main.css controls it */
     .inner-heading {
       text-align: center;
       padding: 20px;
     }
-  
+    
     /* About Me Section: Image on left, text on right with a consistent gap */
     .content-with-image {
       display: flex;
       flex-wrap: wrap;
       align-items: center;
-      justify-content: flex-start; /* ensures image is left, text follows */
+      justify-content: flex-start; /* image on left, text follows */
       gap: 20px;
     }
     .image-container {
       position: relative;
-      padding: 20px; /* you can adjust this value if needed */
+      padding-right: 20px;
+      padding-top: 20px;
       flex: 1;
     }
+    /* Reduced image size from 80% to 40% */
     .profile-image {
-      max-width: 100%;
+      max-width: 40%;
       height: auto;
       display: block;
     }
@@ -98,7 +100,7 @@
         padding: 0;
       }
     }
-  
+    
     .underline {
       margin-top: 20px;
       margin-bottom: 10px;
@@ -167,7 +169,7 @@
     .form-message.error {
       color: #f44336;
     }
-  
+    
     /* ========== #three (Projects Section) ========== */
     #three {
       position: relative;
@@ -192,7 +194,7 @@
       padding: 0 20px;
     }
     
-    /* Card styles */
+    /* Card styles (Projects) */
     .card {
       width: 2000px;
       height: 850px;
@@ -280,7 +282,7 @@
       color: #283a8b;
     }
   </style>
-    
+      
 </head>
 <body class="is-preload">
 
