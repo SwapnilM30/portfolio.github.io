@@ -3999,12 +3999,13 @@ button.slick-next:before {
 }
 
 /* Center inner containers for key sections */
+#intro .inner,
 #one .inner,
 #two .inner,
 #four .inner,
 #visitor-map-section .inner {
   margin: 0 auto;
-  max-width: 1250px; /* Adjust as desired */
+  max-width: 1225px; /* Adjust as desired */
 }
 
 
