@@ -66,44 +66,39 @@
       text-align: center;
       padding: 20px;
     }
-  
-    /* About Me Section: Image on left, Text on right with consistent gap */
-.content-with-image {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: stretch; /* make children stretch vertically */
-  flex-direction: row-reverse; /* reverses the order: text on left, image on right */
-  gap: 10px;
-}
 
-.image-container {
-  position: relative;
-  padding: 10px; /* adjust if needed */
-  flex: 1;
-}
-
-.profile-image {
-  width: auto;
-  height: 100%;
-  object-fit: cover; /* covers the container */
-  display: block;
-}
-
-.text-container {
-  flex: 2;
-}
-
-/* For smaller screens, stack the image and text vertically */
-@media (max-width: 768px) {
+  /* About Me Section: Text on left, Image on right with consistent gap */
   .content-with-image {
-    flex-direction: column;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    flex-direction: row-reverse; /* reverses the order: text on left, image on right */
+    gap: 10px;
   }
-  .image-container,
+  .image-container {
+    position: relative;
+    padding: 10px; /* adjust if needed for consistent spacing */
+    flex: 1;
+  }
+  .profile-image {
+    max-width: 80%; /* reduced image size to 80% */
+    height: auto;
+    display: block;
+  }
   .text-container {
-    width: 100%;
-    padding: 0;
+    flex: 2;
   }
-} 
+  
+  @media (max-width: 768px) {
+    .content-with-image {
+      flex-direction: column;
+    }
+    .image-container,
+    .text-container {
+      width: 100%;
+      padding: 0;
+    }
+  } 
     .underline {
       margin-top: 20px;
       margin-bottom: 10px;
