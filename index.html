@@ -61,36 +61,41 @@
     .text-justify.abc {
       margin-top: 10px;
     }
-    /* Removed .inner rule here so that main.css controls it */
+    /* Removed .inner to let main.css control it */
     .inner-heading {
       text-align: center;
       padding: 20px;
     }
-    
-    /* Flex container for image and text with consistent gap */
+  
+    /* About Me Section: Image on left, text on right with a consistent gap */
     .content-with-image {
       display: flex;
       flex-wrap: wrap;
       align-items: center;
-      justify-content: center;
+      justify-content: flex-start; /* ensures image is left, text follows */
       gap: 20px;
     }
-    /* Remove extra margins/paddings from the child containers */
-    .image-container,
-    .text-container {
-      margin: 0;
-      padding: 0;
+    .image-container {
+      position: relative;
+      padding: 20px; /* you can adjust this value if needed */
+      flex: 1;
     }
-    /* Profile image settings */
     .profile-image {
-      max-width: 80%;
+      max-width: 100%;
       height: auto;
       display: block;
     }
+    .text-container {
+      flex: 2;
+    }
     @media (max-width: 768px) {
+      .content-with-image {
+        flex-direction: column;
+      }
       .image-container,
       .text-container {
-        flex: 1 1 100%;
+        width: 100%;
+        padding: 0;
       }
     }
   
@@ -162,8 +167,8 @@
     .form-message.error {
       color: #f44336;
     }
-    
-    /* The #three rules remain as-is for your custom project section */
+  
+    /* ========== #three (Projects Section) ========== */
     #three {
       position: relative;
       padding: 40px 0;
@@ -187,7 +192,7 @@
       padding: 0 20px;
     }
     
-    /* Card sizing remains untouched as defined */
+    /* Card styles */
     .card {
       width: 2000px;
       height: 850px;
@@ -206,13 +211,13 @@
     }
     .card-img {
       width: calc(100% - 10px);
-      height: 44%;
+      height: 45%;
       margin: 5px auto;
       object-fit: contain;
       background: #fff;
     }
     .card-content {
-      height: 56%;
+      height: 55%;
       padding: 10px;
       box-sizing: border-box;
       text-align: justify;
@@ -275,8 +280,7 @@
       color: #283a8b;
     }
   </style>
-  
-  
+    
 </head>
 <body class="is-preload">
 
