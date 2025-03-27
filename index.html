@@ -67,14 +67,20 @@
       padding: 20px;
     }
 
-  /* About Me Section: Text on left, Image on right with consistent gap */
-  .content-with-image {
+    /* About Me Section: Text on left, Image on right with consistent gap */
+    .content-with-image {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    flex-direction: row-reverse; /* reverses the order: text on left, image on right */
+    flex-direction: row-reverse; /* text on left, image on right */
     gap: 15px;
-  }
+
+    /* NEW: Constrain width and add horizontal padding */
+    max-width: 1200px;        /* Or whichever max width you prefer */
+    margin: 0 auto;           /* Centers the container */
+    padding: 0 20px;          /* Equal padding on left & right */
+    }
+
   .image-container {
     position: relative;
     padding: 15px; /* adjust if needed for consistent spacing */
