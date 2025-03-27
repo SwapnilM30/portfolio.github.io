@@ -3998,13 +3998,15 @@ button.slick-next:before {
     display: none;
 }
 
-/* Center inner containers for Work Experience, Contact Information, and Visitor Map sections */
+/* Center inner containers for key sections */
+#one .inner,
 #two .inner,
 #four .inner,
 #visitor-map-section .inner {
   margin: 0 auto;
-  max-width: 1200px; /* Adjust as needed for your design */
+  max-width: 1200px; /* Adjust as desired */
 }
+
 
 
 

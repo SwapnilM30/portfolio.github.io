@@ -61,9 +61,10 @@
     .text-justify.abc {
       margin-top: 10px;
     }
-    .inner {
+    /* Removed the .inner rule here to let main.css control it */
+    /* .inner {
       padding: 20px;
-    }
+    } */
     .inner-heading {
       text-align: center;
       padding: 20px;
@@ -173,8 +174,7 @@
     }
   
     /* ========== Card Slider Styles ========== */
-  
-    /* Card Slider Section Background */
+    /* (Keep the #three rules as is since you want to customize them separately) */
     #three {
       position: relative;
       padding: 40px 0;
@@ -218,42 +218,32 @@
     .card:hover {
       cursor: pointer;
     }
-  
-    /* Image occupies the top portion of the card (100% of the width & 100% of its container) */
     .card-img {
       width: calc(100% - 10px);
-      height: 40%;
+      height: 45%;
       margin: 5px auto;
       object-fit: contain;
       background: #fff;
     }
-  
-    /* Content occupies the bottom portion (100% of the width & 100% of its container) */
     .card-content {
-      height: 60%;
+      height: 55%;
       padding: 10px;
       box-sizing: border-box;
-      /* Default justified text */
       text-align: justify;
     }
-    /* Center align <h3> headings inside card content */
     .card-content h3 {
       margin: 0.5em 0;
       font-size: 1.25rem;
       text-align: center;
     }
-    /* Left align the "Problem Statement and Solution:" paragraph and set its font size */
     .card-content p.underline {
       text-align: left;
-      font-size: 1rem; /* Modified font size for Problem Statement and Solution */
+      font-size: 1rem;
     }
-    /* Ensure other paragraphs remain justified and set their font size */
     .card-content p:not(.underline) {
       text-align: justify;
-      font-size: 0.9rem; /* Modified font size for content paragraphs */
+      font-size: 0.9rem;
     }
-  
-    /* Center align "Project details" buttons */
     .card-content a.button {
       -moz-appearance: none;
       -webkit-appearance: none;
@@ -282,8 +272,6 @@
     .card-content a.button:hover {
       border-color: #283a8b !important;
     }
-  
-    /* ========== Center Card Scaling via Slick ========== */
     .slick-slide {
       transform: scale(0.85);
       opacity: 0.6;
@@ -293,8 +281,6 @@
       transform: scale(1) !important;
       opacity: 1 !important;
     }
-  
-    /* Slick dots styling (optional) */
     .slick-dots li button:before {
       font-size: 10px;
       color: #555;
@@ -303,8 +289,7 @@
       color: #283a8b;
     }
   </style>
-
-
+  
 </head>
 <body class="is-preload">
 
