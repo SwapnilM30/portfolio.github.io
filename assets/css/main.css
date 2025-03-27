@@ -116,7 +116,7 @@ input, select, textarea {
 body, input, select, textarea {
     color: rgb(50, 50, 50);
     font-family: "Source Sans Pro", Helvetica, sans-serif;
-    font-size: 18px; /* Changed from 16.5pt to 16px */
+    font-size: 20px; /* Changed from 16.5pt to 16px */
     font-weight: 500;
     line-height: 1.6;
 }
