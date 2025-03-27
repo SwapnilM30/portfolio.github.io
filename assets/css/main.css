@@ -3739,9 +3739,9 @@ h6 { font-size: 0.6em; }
 		background-size: 100% 100%;
 	}
 
-		#intro p {
+		/*#intro p {
 			font-size: 1.175em;
-		}
+		}*/
 
 			@media screen and (max-width: 980px) {
 
