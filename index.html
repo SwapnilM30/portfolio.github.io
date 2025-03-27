@@ -61,14 +61,13 @@
     .text-justify.abc {
       margin-top: 10px;
     }
-    /* Removed the .inner rule here to let main.css control it */
-    /* .inner {
-      padding: 20px;
-    } */
+    /* Removed .inner rule here so that main.css controls it */
     .inner-heading {
       text-align: center;
       padding: 20px;
     }
+    
+    /* Flex container for image and text with consistent gap */
     .content-with-image {
       display: flex;
       flex-wrap: wrap;
@@ -76,34 +75,25 @@
       justify-content: center;
       gap: 20px;
     }
-    .image-container {
-      position: relative;
-      padding-right: 20px;
-      padding-top: 20px;
-      flex: 1;
+    /* Remove extra margins/paddings from the child containers */
+    .image-container,
+    .text-container {
+      margin: 0;
+      padding: 0;
     }
+    /* Profile image settings */
     .profile-image {
       max-width: 80%;
       height: auto;
-      margin-right: 20px;
-      margin-bottom: 20px;
       display: block;
     }
-    .text-container {
-      flex: 2;
-      margin-right: 20px;
-    }
     @media (max-width: 768px) {
-      .image-container {
-        padding-right: 0;
-        padding-top: 0;
-        flex: 1 1 100%;
-      }
+      .image-container,
       .text-container {
-        margin-right: 0;
         flex: 1 1 100%;
       }
     }
+  
     .underline {
       margin-top: 20px;
       margin-bottom: 10px;
@@ -172,9 +162,8 @@
     .form-message.error {
       color: #f44336;
     }
-  
-    /* ========== Card Slider Styles ========== */
-    /* (Keep the #three rules as is since you want to customize them separately) */
+    
+    /* The #three rules remain as-is for your custom project section */
     #three {
       position: relative;
       padding: 40px 0;
@@ -192,15 +181,13 @@
       position: relative;
       z-index: 1;
     }
-  
-    /* Slick carousel container */
     .project-slider {
       position: relative;
       z-index: 1;
       padding: 0 20px;
     }
-  
-    /* ========== Card Sizing (Do Not Change Dimensions) ========== */
+    
+    /* Card sizing remains untouched as defined */
     .card {
       width: 2000px;
       height: 850px;
@@ -211,7 +198,6 @@
       margin: 10px auto;
       display: flex;
       flex-direction: column;
-      /* Set a default text alignment for content; individual elements will override */
       text-align: justify;
       transition: transform 0.3s ease;
     }
@@ -220,13 +206,13 @@
     }
     .card-img {
       width: calc(100% - 10px);
-      height: 45%;
+      height: 44%;
       margin: 5px auto;
       object-fit: contain;
       background: #fff;
     }
     .card-content {
-      height: 55%;
+      height: 56%;
       padding: 10px;
       box-sizing: border-box;
       text-align: justify;
@@ -289,6 +275,7 @@
       color: #283a8b;
     }
   </style>
+  
   
 </head>
 <body class="is-preload">
