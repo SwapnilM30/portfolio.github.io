@@ -117,7 +117,7 @@ body, input, select, textarea {
     color: rgb(50, 50, 50);
     font-family: "Source Sans Pro", Helvetica, sans-serif;
     font-size: 19px; /* Changed from 16.5pt to 18.75px */
-    font-weight: 600;
+    font-weight: 500;
     line-height: 1.7;
 }
 
@@ -4007,6 +4007,20 @@ button.slick-next:before {
   margin: 0 auto;
   max-width: 1225px; /* Adjust as desired */
 }
+
+@media screen and (min-width: 1600px) {
+	/* Constrain the main content container */
+	.wrapper > .inner,
+	#three .inner,
+	.content-with-image {
+	  max-width: 1400px;  /* Or another value that suits your design */
+	  margin-left: auto;
+	  margin-right: auto;
+	  padding-left: 20px;  /* Optional: keep some padding */
+	  padding-right: 20px;
+	}
+  }
+  
 
 
 
