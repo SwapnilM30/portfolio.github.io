@@ -73,43 +73,43 @@
 
     /* About Me Section: Text on left, Image on right with consistent gap */
     .content-with-image {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: flex-start;
-    flex-direction: row-reverse; /* text on left, image on right */
-    gap: 15px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-start;
+      flex-direction: row-reverse; /* text on left, image on right */
+      gap: 15px;
 
-    /* NEW: Constrain width and add horizontal padding */
-    max-width: 1225px;        /* Or whichever max width you prefer */
-    margin: 0 auto;           /* Centers the container */
-    padding: 0 20px;          /* Equal padding on left & right */
+      /* NEW: Constrain width and add horizontal padding */
+      max-width: 1225px;        /* Or whichever max width you prefer */
+      margin: 0 auto;           /* Centers the container */
+      padding: 0 20px;          /* Equal padding on left & right */
     }
 
-  .image-container {
-    position: relative;
-    padding: 15px; /* adjust if needed for consistent spacing */
-    flex: 1;
-    align-self: center; /* centers the image container vertically */
-  }
-  .profile-image {
-    max-width: 80%; /* reduced image size to 80% */
-    height: auto;
-    display: block;
-  }
-  .text-container {
-    flex: 2;
-  }
-
-  @media (max-width: 768px) {
-    .content-with-image {
-      flex-direction: column;
+    .image-container {
+      position: relative;
+      padding: 15px; /* adjust if needed for consistent spacing */
+      flex: 1;
+      align-self: center; /* centers the image container vertically */
     }
-    .image-container,
+    .profile-image {
+      max-width: 80%; /* reduced image size to 80% */
+      height: auto;
+      display: block;
+    }
     .text-container {
-      width: 100%;
-      padding: 0;
+      flex: 2;
     }
-  } 
+
+    @media (max-width: 768px) {
+      .content-with-image {
+        flex-direction: column;
+      }
+      .image-container,
+      .text-container {
+        width: 100%;
+        padding: 0;
+      }
+    } 
     .underline {
       margin-top: 20px;
       margin-bottom: 10px;
@@ -605,13 +605,11 @@
                     <a
                       href="https://www.linkedin.com/in/swapnilmeshram98/"
                       class="icon brands fa-linkedin-in"
-                      ><span class="label">LinkedIn</span></a
-                    >
+                      ><span class="label">LinkedIn</span></a>
                   </li>
                   <li>
                     <a href="pdf/Swapnil Meshram.pdf" class="icon fa-file"
-                      ><span class="label">Resume</span></a
-                    >
+                      ><span class="label">Resume</span></a>
                   </li>
                 </ul>
               </li>
@@ -629,16 +627,11 @@
         <li>&copy; 2023 Swapnil Meshram</li>
       </ul>
       <!-- Visitor Map Section (with Intro Text + Legend) -->
+      <!--
       <section id="visitor-map-section" class="wrapper style1 fade-up">
         <div class="inner">
           <p style="text-align: center; margin-bottom: 15px; font-size: 1rem;">
-            <strong
-              ><em
-                >Take a quick trip around the globe and see where visitors to my
-                portfolio are coming from. This map tracks my worldwide audience
-                in real time!</em
-              ></strong
-            >
+            <strong><em>Take a quick trip around the globe and see where visitors to my portfolio are coming from. This map tracks my worldwide audience in real time!</em></strong>
           </p>
           <div id="visitor-map">
             <script
@@ -648,40 +641,21 @@
             ></script>
           </div>
           <noscript>
-            <p
-              style="text-align: center; font-size: 1.125rem; color: #f44336;"
-            >
+            <p style="text-align: center; font-size: 1.125rem; color: #f44336;">
               The visitor map requires JavaScript to be enabled.
             </p>
           </noscript>
           <div class="map-legend" style="margin-top: 20px; text-align: center;">
             <h3 style="margin-bottom: 10px;">Map Legend</h3>
-            <span
-              style="
-                background-color: #32cd32;
-                width: 20px;
-                height: 20px;
-                display: inline-block;
-                border-radius: 50%;
-                margin-right: 8px;
-              "
-            ></span>
+            <span style="background-color: #32cd32; width: 20px; height: 20px; display: inline-block; border-radius: 50%; margin-right: 8px;"></span>
             Past Visitors
             <br />
-            <span
-              style="
-                background-color: #ff4500;
-                width: 20px;
-                height: 20px;
-                display: inline-block;
-                border-radius: 50%;
-                margin-right: 8px;
-              "
-            ></span>
+            <span style="background-color: #ff4500; width: 20px; height: 20px; display: inline-block; border-radius: 50%; margin-right: 8px;"></span>
             Recent Visitors
           </div>
         </div>
       </section>
+      -->
     </div>
   </footer>
 
@@ -783,42 +757,40 @@
     });
 
     $(document).ready(function(){
-  $('.project-slider').slick({
-    centerMode: true,
-    centerPadding: '20px',
-    slidesToShow: 4,  // Show 4 slides by default on large screens
-    autoplay: true,
-    autoplaySpeed: 3000,
-    dots: true,
-    arrows: true,
-    responsive: [
-      {
-        breakpoint: 1600,
-        settings: {
-          slidesToShow: 3,
-          centerPadding: '20px'
-        }
-      },
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 2,
-          centerPadding: '40px'
-        }
-      },
-      {
-        breakpoint: 600,
-        settings: {
-          slidesToShow: 1,
-          centerMode: true,
-          centerPadding: '20px'
-        }
-      }
-    ]
-  });
-});
-
-
+      $('.project-slider').slick({
+        centerMode: true,
+        centerPadding: '20px',
+        slidesToShow: 4,  // Show 4 slides by default on large screens
+        autoplay: true,
+        autoplaySpeed: 3000,
+        dots: true,
+        arrows: true,
+        responsive: [
+          {
+            breakpoint: 1600,
+            settings: {
+              slidesToShow: 3,
+              centerPadding: '20px'
+            }
+          },
+          {
+            breakpoint: 1024,
+            settings: {
+              slidesToShow: 2,
+              centerPadding: '40px'
+            }
+          },
+          {
+            breakpoint: 600,
+            settings: {
+              slidesToShow: 1,
+              centerMode: true,
+              centerPadding: '20px'
+            }
+          }
+        ]
+      });
+    });
 
     // Fullscreen image script
     function showFullScreenImage(imageSrc, event) {
