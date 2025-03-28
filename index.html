@@ -785,17 +785,24 @@
     $(document).ready(function(){
   $('.project-slider').slick({
     centerMode: true,
-    centerPadding: '20px', // adjust for spacing
-    slidesToShow: 3,
+    centerPadding: '20px',
+    slidesToShow: 4,  // Show 4 slides by default on large screens
     autoplay: true,
     autoplaySpeed: 3000,
     dots: true,
     arrows: true,
     responsive: [
       {
-        breakpoint: 1024,
+        breakpoint: 1600,
         settings: {
           slidesToShow: 3,
+          centerPadding: '20px'
+        }
+      },
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 2,
           centerPadding: '40px'
         }
       },
@@ -810,6 +817,7 @@
     ]
   });
 });
+
 
 
     // Fullscreen image script
