@@ -26,24 +26,34 @@
     .text-justify.abc { margin-top:10px; }
     .inner-heading { text-align:center; padding:20px; }
   
-    /* About Me Section */
+    /* About Me Section: float-based so text wraps under the image */
     .content-with-image {
-      display:flex;
-      flex-wrap:wrap;
-      align-items:flex-start;
-      flex-direction:row-reverse;
-      gap:15px;
-      max-width:1225px;
-      margin:0 auto;
-      padding:0 20px;
+      overflow: auto;           /* contain the float */
+      max-width: 1225px;
+      margin: 0 auto;
+      padding: 0 20px;
     }
-    .image-container { position:relative; padding:15px; flex:1; align-self:center; }
-    .profile-image { max-width:100%; height:auto; display:block; }
-    .text-container { flex:2; }
-  
+    .image-container {
+      float: right;
+      width: 30%;               /* adjust as needed */
+      margin: 0 0 15px 15px;    /* gap on left & bottom */
+    }
+    .profile-image {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+    .text-container {
+      overflow: hidden;         /* clear the float */
+    }
     @media (max-width:768px) {
-      .content-with-image { flex-direction:column; }
-      .image-container, .text-container { width:100%; padding:0; }
+      .image-container,
+      .text-container {
+        float: none;
+        width: auto;
+        margin: 0;
+        overflow: visible;
+      }
     }
   
     .underline { margin-top:20px; margin-bottom:10px; }
@@ -105,8 +115,7 @@
       }
     }
   </style>
-  
-  
+    
   <!-- Include Slick Carousel CSS (for your work‑experience slider) -->
   <link rel="stylesheet" type="text/css"
         href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
