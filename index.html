@@ -28,14 +28,9 @@
   
     /* About Me Section */
     .content-with-image {
-      display:flex;
-      flex-wrap:wrap;
-      align-items:flex-start;
-      flex-direction:row-reverse;
-      gap:15px;
-      max-width:1225px;
-      margin:0 auto;
-      padding:0 20px;
+      display:flex; flex-wrap:wrap;
+      align-items:flex-start; flex-direction:row-reverse;
+      gap:15px; max-width:1225px; margin:0 auto; padding:0 20px;
     }
     .image-container { position:relative; padding:15px; flex:1; align-self:center; }
     .profile-image { max-width:80%; height:auto; display:block; }
@@ -77,23 +72,23 @@
     .form-message { margin-top:15px; font-size:1.1rem; color:#4caf50; }
     .form-message.error { color:#f44336; }
   
-    /* ========== Projects Section (Original thumbnail‐gallery) ========== */
+    /* ========== Projects Section (Original thumbnail-gallery) ========== */
+    /* tightened the gutter from 1rem → 0.5rem, and padding to 0.25rem */
     #three.spotlights .thumbnail-gallery {
       display: flex;
-      align-items: center;    /* vertical center */
-      gap: 1rem;              /* tighten space between image & text */
-      margin-bottom: 2rem;    /* consistent bottom spacing */
+      align-items: flex-start;  /* top align image & text */
+      gap: 0.5rem;               /* smaller space between them */
+      margin-bottom: 1.5rem;
     }
     #three.spotlights .thumbnail-gallery .thumbnail {
       flex: 1;
-      padding-right: 0.5rem;  /* small right gutter */
+      padding-right: 0.25rem;
     }
     #three.spotlights .thumbnail-gallery .content {
       flex: 2;
-      padding-left: 0.5rem;   /* small left gutter */
+      padding-left: 0.25rem;
     }
   
-    /* mobile stack */
     @media (max-width:768px) {
       #three.spotlights .thumbnail-gallery {
         flex-direction: column;
@@ -101,10 +96,11 @@
       }
       #three.spotlights .thumbnail-gallery .thumbnail,
       #three.spotlights .thumbnail-gallery .content {
-        padding: 0;           /* remove side padding on mobile */
+        padding: 0;
       }
     }
   </style>
+  
   
   <!-- Include Slick Carousel CSS (for your work‑experience slider) -->
   <link rel="stylesheet" type="text/css"
