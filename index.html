@@ -26,33 +26,35 @@
     .text-justify.abc { margin-top:10px; }
     .inner-heading { text-align:center; padding:20px; }
   
-    /* About Me Section: float-based so text wraps under the image */
+    /* About Me Section: flex-based for equal-height columns */
     .content-with-image {
-      overflow: auto;           /* contain the float */
+      display: flex;
+      align-items: stretch;   /* make image & text same height */
+      gap: 1rem;              /* space between image & text */
       max-width: 1225px;
       margin: 0 auto;
       padding: 0 20px;
     }
-    .image-container {
-      float: right;
-      width: 30%;               /* adjust as needed */
-      margin: 0 0 15px 15px;    /* gap on left & bottom */
+    .content-with-image .image-container {
+      flex: 0 0 30%;          /* fixed 30% width */
+      margin: 0;              /* gutter handled by gap */
     }
-    .profile-image {
+    .content-with-image .profile-image {
       display: block;
       width: 100%;
       height: auto;
     }
-    .text-container {
-      overflow: hidden;         /* clear the float */
+    .content-with-image .text-container {
+      flex: 1;                /* fill remaining space */
     }
     @media (max-width:768px) {
-      .image-container,
-      .text-container {
-        float: none;
+      .content-with-image {
+        flex-direction: column;
+      }
+      .content-with-image .image-container,
+      .content-with-image .text-container {
+        flex: none;
         width: auto;
-        margin: 0;
-        overflow: visible;
       }
     }
   
@@ -91,7 +93,7 @@
     #three.spotlights .thumbnail-gallery {
       display: flex;
       align-items: center;    /* vertical center */
-      gap: 1rem;              /* tighten space between image & text */
+      gap: 1rem;              /* space between image & text */
       margin-bottom: 2rem;    /* consistent bottom spacing */
     }
     #three.spotlights .thumbnail-gallery .thumbnail {
@@ -103,7 +105,7 @@
       padding-left: 0.5rem;   /* small left gutter */
     }
   
-    /* mobile stack */
+    /* mobile stack for projects */
     @media (max-width:768px) {
       #three.spotlights .thumbnail-gallery {
         flex-direction: column;
@@ -115,6 +117,7 @@
       }
     }
   </style>
+  
     
   <!-- Include Slick Carousel CSS (for your work‑experience slider) -->
   <link rel="stylesheet" type="text/css"
