@@ -11,297 +11,79 @@
   <link rel="stylesheet" href="assets/css/main.css" />
   <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 
-  <!-- Slick Carousel CSS -->
-  <link
-    rel="stylesheet"
-    type="text/css"
-    href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"
-  />
-  <link
-    rel="stylesheet"
-    type="text/css"
-    href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"
-  />
-
   <style>
     /* ClustrMaps: minimal styling */
-    #visitor-map {
-      width: 100%;
-    }
-    #clustrmaps {
-      border: none;
-      box-shadow: none;
-    }
-    .map-legend {
-      margin-top: 20px;
-      text-align: center;
-    }
-    .map-legend h3 {
-      margin-bottom: 10px;
-      font-size: 1.125rem;
-    }
-    .map-legend span {
-      display: inline-block;
-      width: 20px;
-      height: 20px;
-      border-radius: 50%;
-      margin-right: 8px;
-    }
-    
+    #visitor-map { width: 100%; }
+    #clustrmaps { border: none; box-shadow: none; }
+    .map-legend { margin-top: 20px; text-align: center; }
+    .map-legend h3 { margin-bottom: 10px; font-size: 1.125rem; }
+    .map-legend span { display: inline-block; width: 20px; height: 20px; border-radius:50%; margin-right:8px; }
+
     /* Existing/General Styles */
-    .slider {
-      border: 1px solid rgba(50, 50, 50, 0.5);
-      padding: 15px;
-      margin: 0 auto;
-      max-width: 300px;
-    }
-    #one {
-      padding-top: 20px;
-      padding-bottom: 20px;
-    }
-    .text-justify {
-      margin-top: 10px;
-    }
-    .text-justify.abc {
-      margin-top: 10px;
-    }
-    /* Removed .inner so that main.css controls it */
-    .inner-heading {
-      text-align: center;
-      padding: 20px;
-    }
+    .slider { border:1px solid rgba(50,50,50,0.5); padding:15px; margin:0 auto; max-width:300px; }
+    #one { padding-top:20px; padding-bottom:20px; }
+    .text-justify { margin-top:10px; }
+    .text-justify.abc { margin-top:10px; }
+    .inner-heading { text-align:center; padding:20px; }
 
-    /* About Me Section: Text on left, Image on right with consistent gap */
+    /* About Me Section */
     .content-with-image {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: flex-start;
-      flex-direction: row-reverse; /* text on left, image on right */
-      gap: 15px;
+      display:flex; flex-wrap:wrap;
+      align-items:flex-start; flex-direction:row-reverse;
+      gap:15px; max-width:1225px; margin:0 auto; padding:0 20px;
+    }
+    .image-container { position:relative; padding:15px; flex:1; align-self:center; }
+    .profile-image { max-width:80%; height:auto; display:block; }
+    .text-container { flex:2; }
 
-      /* NEW: Constrain width and add horizontal padding */
-      max-width: 1225px;        /* Or whichever max width you prefer */
-      margin: 0 auto;           /* Centers the container */
-      padding: 0 20px;          /* Equal padding on left & right */
-    }
-
-    .image-container {
-      position: relative;
-      padding: 15px; /* adjust if needed for consistent spacing */
-      flex: 1;
-      align-self: center; /* centers the image container vertically */
-    }
-    .profile-image {
-      max-width: 80%; /* reduced image size to 80% */
-      height: auto;
-      display: block;
-    }
-    .text-container {
-      flex: 2;
+    @media (max-width:768px) {
+      .content-with-image { flex-direction:column; }
+      .image-container, .text-container { width:100%; padding:0; }
     }
 
-    @media (max-width: 768px) {
-      .content-with-image {
-        flex-direction: column;
-      }
-      .image-container,
-      .text-container {
-        width: 100%;
-        padding: 0;
-      }
-    } 
-    .underline {
-      margin-top: 20px;
-      margin-bottom: 10px;
-    }
-    p.underline {
-      text-decoration: underline;
-      padding-bottom: 10px;
-    }
-    .video-container {
-      position: relative;
-      display: inline-block;
-    }
+    .underline { margin-top:20px; margin-bottom:10px; }
+    p.underline { text-decoration:underline; padding-bottom:10px; }
+    .video-container { position:relative; display:inline-block; }
     .play-icon {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 64px;
-      height: 64px;
-      background: url('images/play-icon.png') no-repeat center center;
-      background-size: cover;
-      opacity: 0.8;
-      cursor: pointer;
-      transition: transform 0.25s ease;
+      position:absolute; top:50%; left:50%;
+      transform:translate(-50%,-50%);
+      width:64px; height:64px;
+      background:url('images/play-icon.png') no-repeat center center;
+      background-size:cover; opacity:0.8;
+      cursor:pointer; transition:transform .25s ease;
     }
-    .play-icon:hover {
-      transform: translate(-50%, -50%) scale(1.2);
+    .play-icon:hover { transform:translate(-50%,-50%) scale(1.2); }
+    .fullscreen-video, .fullscreen-image {
+      position:fixed; top:0; left:0;
+      width:100%; height:100%;
+      background:rgba(0,0,0,0.8); z-index:9999;
+      display:flex; justify-content:center; align-items:center;
     }
-    .fullscreen-video,
-    .fullscreen-image {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.8);
-      z-index: 9999;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+    .fullscreen-video video, .fullscreen-image img {
+      max-width:90%; max-height:90%;
     }
-    .fullscreen-video video,
-    .fullscreen-image img {
-      max-width: 90%;
-      max-height: 90%;
-    }
-    .blurred-background {
-      filter: blur(5px);
-    }
+    .blurred-background { filter:blur(5px); }
     .close-button {
-      position: absolute;
-      top: 25px;
-      right: 25px;
-      width: 32px;
-      height: 32px;
-      background: url('images/close-icon.png') no-repeat center center;
-      background-size: cover;
-      cursor: pointer;
-      z-index: 10000;
+      position:absolute; top:25px; right:25px;
+      width:32px; height:32px;
+      background:url('images/close-icon.png') no-repeat center center;
+      background-size:cover; cursor:pointer; z-index:10000;
     }
-    .form-message {
-      margin-top: 15px;
-      font-size: 1.1rem;
-      color: #4caf50;
-    }
-    .form-message.error {
-      color: #f44336;
-    }
-    
-    /* ========== #three (Projects Section) ========== */
-    #three {
-      position: relative;
-      padding: 40px 0;
-      background: #dfdfdf;
-    }
-    #three .inner {
-      max-width: 1300px;
-      margin: 0 auto;
-      position: relative;
-      z-index: 1;
-    }
-    #three h2 {
-      text-align: center;
-      margin-bottom: 30px;
-      position: relative;
-      z-index: 1;
-    }
-    .project-slider {
-      position: relative;
-      z-index: 1;
-      padding: 0 20px;
-    }
-    
-    /* Card styles (Projects) */
-    .card {
-      width: 2000px;
-      height: 850px;
-      background: #fff;
-      border-radius: 16px;
-      box-shadow: 0 4px 8px rgba(50, 50, 50, 0.25);
-      overflow: hidden;
-      margin: 10px auto;
-      display: flex;
-      flex-direction: column;
-      text-align: justify;
-      transition: transform 0.3s ease;
-    }
-    .card:hover {
-      cursor: pointer;
-    }
-    .card-img {
-      width: calc(100% - 10px);
-      height: 43%;
-      margin: 5px auto;
-      object-fit: contain;
-      background: #fff;
-    }
-    .card-content {
-      height: 57%;
-      padding: 10px;
-      box-sizing: border-box;
-      text-align: justify;
-    }
-    .card-content h3 {
-      margin: 0.5em 0;
-      font-size: 1.25rem;
-      text-align: center;
-    }
-    .card-content p.underline {
-      text-align: left;
-      font-size: 1rem;
-    }
-    .card-content p:not(.underline) {
-      text-align: justify;
-      font-size: 0.9rem;
-    }
-    .card-content a.button {
-      -moz-appearance: none;
-      -webkit-appearance: none;
-      -ms-appearance: none;
-      appearance: none;
-      transition: border-color 0.5s ease;
-      background-color: transparent;
-      border: solid 1px rgba(50, 50, 50) !important;
-      border-radius: 2.25em;
-      color: rgba(50, 50, 50) !important;
-      cursor: pointer;
-      display: block;
-      font-size: 0.61em;
-      font-weight: bold;
-      height: calc(4.75em + 2px);
-      letter-spacing: 0.25em;
-      line-height: 4.75em;
-      outline: 0;
-      padding: 0 3.75em;
-      margin: 0 auto;
-      text-align: center;
-      text-decoration: none;
-      text-transform: uppercase;
-      white-space: nowrap;
-    }
-    .card-content a.button:hover {
-      border-color: #283a8b !important;
-    }
-    .slick-slide {
-      transform: scale(0.85);
-      opacity: 0.6;
-      transition: transform 0.3s, opacity 0.3s;
-    }
-    .slick-center {
-      transform: scale(1) !important;
-      opacity: 1 !important;
-    }
-    .slick-dots li button:before {
-      font-size: 8px;
-      color: #555;
-    }
-    .slick-dots li.slick-active button:before {
-      color: #283a8b;
-    }
+    .form-message { margin-top:15px; font-size:1.1rem; color:#4caf50; }
+    .form-message.error { color:#f44336; }
   </style>
-      
+
+  <!-- Include Slick Carousel CSS (for your work‑experience slider) -->
+  <link rel="stylesheet" type="text/css"
+        href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+  <link rel="stylesheet" type="text/css"
+        href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
 </head>
 <body class="is-preload">
 
   <!-- Hamburger Menu -->
-  <div class="hamburger">
-    <div></div>
-    <div></div>
-    <div></div>
-  </div>
-  
+  <div class="hamburger"><div></div><div></div><div></div></div>
+
   <!-- Sidebar -->
   <section id="sidebar">
     <div class="inner">
@@ -319,6 +101,7 @@
 
   <!-- Wrapper -->
   <div id="wrapper">
+
     <!-- Intro -->
     <section id="intro" class="wrapper style1 fullscreen fade-up">
       <div class="inner-heading">
@@ -344,22 +127,14 @@
         <h2 class="name overline-underline">A Curious Journey into Robotics</h2>
         <div class="content-with-image">
           <div class="image-container">
-            <img
-              src="images/PSX_20230124_121449~3.jpg"
-              alt="Swapnil Meshram"
-              class="profile-image"
-            />
+            <img src="images/PSX_20230124_121449~3.jpg"
+                 alt="Swapnil Meshram"
+                 class="profile-image" />
           </div>
           <div class="text-container">
-            <p class="text-justify para">
-              At 14, I became captivated by how infants learn through observing their surroundings. This sparked a profound question: Can machines also perceive the world with the same curiosity?
-            </p>
-            <p class="text-justify para">
-              Driven by this thought, I discovered robotics—a field that immediately captivated me with its potential and ongoing innovations. From that point, I dedicated myself to becoming a robotics engineer. Beyond my college coursework, I immersed myself in hands-on projects, developing robot circuitry and creating various types of robots. These experiences not only deepened my fascination but also solidified my resolve to dive deeper into robotics and artificial intelligence.
-            </p>
-            <p class="text-justify para">
-              My early fascination has since evolved into a dedicated academic pursuit. Currently, I am pursuing a master’s degree in Robotics and Autonomous Systems at Arizona State University, where each day presents new challenges and opportunities to learn. The journey has been incredible, and I am excited to see where this passion for robotics will lead me next.
-            </p>
+            <p class="text-justify para">At 14, I became captivated by how infants learn through observing their surroundings. This sparked a profound question: Can machines also perceive the world with the same curiosity?</p>
+            <p class="text-justify para">Driven by this thought, I discovered robotics—a field that immediately captivated me with its potential and ongoing innovations. From that point, I dedicated myself to becoming a robotics engineer. Beyond my college coursework, I immersed myself in hands-on projects, developing robot circuitry and creating various types of robots. These experiences not only deepened my fascination but also solidified my resolve to dive deeper into robotics and artificial intelligence.</p>
+            <p class="text-justify para">My early fascination has since evolved into a dedicated academic pursuit. Currently, I am pursuing a master’s degree in Robotics and Autonomous Systems at Arizona State University, where each day presents new challenges and opportunities to learn. The journey has been incredible, and I am excited to see where this passion for robotics will lead me next.</p>
           </div>
         </div>
       </div>
@@ -369,220 +144,200 @@
     <section id="two" class="wrapper style3 fade-up">
       <div class="inner">
         <h2 class="name overline-underline">Career Chronicles: Unveiling My Tech Odyssey</h2>
-        <p class="text-justify">
-          Before starting my master’s program in Robotics and Autonomous Systems at Arizona State University, I was eager to get my hands dirty and gain real-world experience. My early roles in the field of robotics and electronics engineering were pivotal—they not only deepened my passion but also set the stage for my academic journey. I dove into projects that challenged me, from crafting intricate hardware systems to kickstarting innovative robotics solutions, each experience sharpening my skills and fueling my drive to push further.
-        </p>
+        <p class="text-justify">Before starting my master’s program in Robotics and Autonomous Systems at Arizona State University, I was eager to get my hands dirty and gain real-world experience. My early roles in the field of robotics and electronics engineering were pivotal—they not only deepened my passion but also set the stage for my academic journey. I dove into projects that challenged me, from crafting intricate hardware systems to kickstarting innovative robotics solutions, each experience sharpening my skills and fueling my drive to push further.</p>
         <div class="slider">
-          <img
-            src="images/AEPL logo.png"
-            alt=""
-            style="width: 200px; display: block; margin: 0 auto;"
-          />
+          <img src="images/AEPL logo.png" alt="" style="width:200px; display:block; margin:0 auto;"/>
         </div>
-        <ul class="actions">
-          <li><a href="aepl.html" class="button">More Details</a></li>
-        </ul>
+        <ul class="actions"><li><a href="aepl.html" class="button">More Details</a></li></ul>
       </div>
     </section>
 
-    <!-- Projects (Card Slider Carousel) -->
-    <section id="three" class="wrapper style2">
-      <div class="inner">
-        <h2>My Projects</h2>
-        <div class="project-slider">
-          <!-- Project Card 1 -->
-          <div class="card">
-            <img
-              src="images/slam_thumbnail.png"
-              alt="Comparative Analysis of SLAM Algorithms"
-              class="card-img"
-            />
-            <div class="card-content">
-              <h3>Comparative Analysis of SLAM Algorithms</h3>
-              <p class="underline">Problem Statement and Solution:</p>
-              <p style="margin-top: 0; margin-bottom: 20px;">
-                This project investigates the performance of two prominent SLAM algorithms, GMapping and Cartographer, using the Yahboom ROS Master X3 robot. By assessing their mapping accuracy and computational efficiency in various indoor settings, we address identified limitations by proposing the integration of additional sensors and depth cameras to enhance obstacle detection, ultimately improving SLAM accuracy and reliability in diverse environments.
-              </p>
-              <a href="slam_comparison.html" class="button">Project details</a>
-            </div>
-          </div>
-          <!-- Project Card 2 -->
-          <div class="card">
-            <img
-              src="images/edgevision_2.png"
-              alt="EdgeVision: User Defined Object-Counting"
-              class="card-img"
-            />
-            <div class="card-content">
-              <h3>EdgeVision: User Defined Object-Counting</h3>
-              <p class="underline">Problem Statement and Solution:</p>
-              <p style="margin-top: 0; margin-bottom: 20px;">
-                This project aims to develop a machine learning toolbox capable of detecting and tracking objects in video streams. The toolbox includes an interactive feature that allows users to draw line segments on the video, which automatically counts the number of objects passing through these lines. Key features of the toolbox include object detection, tracking of detected objects, and the interactive tool for drawing line segments that facilitate real-time object counting.
-              </p>
-              <a href="edge_vision.html" class="button">Project details</a>
-            </div>
-          </div>
-          <!-- Project Card 3 -->
-          <div class="card">
-            <img
-              src="images/project_1_thumbnail.png"
-              alt="PCB for Manual and Autonomous Robots"
-              class="card-img"
-            />
-            <div class="card-content">
-              <h3>PCB for Manual and Autonomous Robots</h3>
-              <p class="underline">Problem Statement and Solution:</p>
-              <p style="margin-top: 0; margin-bottom: 20px;">
-                Team Vector, our college's robotics club, encountered a challenge during our participation in ABU Robocon-India, where we had to connect several electronic subsystems using a large number of wires. This led to loose connections, confusion, and EMI/EMC issues during the electrical rack assembly and debugging process. However, we overcame this obstacle by devising a PCB that incorporated all the necessary functionalities and interfaces commonly used in the competition.
-              </p>
-              <a href="pcb_manual_autonomous_robots.html" class="button">Project details</a>
-            </div>
-          </div>
-          <!-- Project Card 4 -->
-          <div class="card">
-            <img
-              src="images/project_2_thumbnail.png"
-              alt="Battery Fuel Gauge"
-              class="card-img"
-            />
-            <div class="card-content">
-              <h3>Battery Fuel Gauge</h3>
-              <p class="underline">Problem Statement and Solution:</p>
-              <p style="margin-top: 0; margin-bottom: 20px;">
-                Team Vector's testing team always had to remove the electrical rack of the robot to check the battery pack's health with the help of a battery checker. This was a repetitive and cumbersome task. However, with the introduction of the 'Battery Fuel Gauge' system, we had a clear display of the robot's battery pack health through an onboard LED array. Additionally, we received an alert message when the battery charge dropped below a particular limit.
-              </p>
-              <a href="battery_gauge.html" class="button">Project details</a>
-            </div>
-          </div>
-          <!-- Project Card 5 -->
-          <div class="card">
-            <img
-              src="images/project_3_thumbnail.png"
-              alt="LCD & Relay Breakout Board"
-              class="card-img"
-            />
-            <div class="card-content">
-              <h3>LCD & Relay Breakout Board</h3>
-              <p class="underline">Problem Statement and Solution:</p>
-              <p style="margin-top: 0; margin-bottom: 20px;">
-                With the integration of the 'Battery Fuel Gauge' system, Team Vector wanted to have an LCD display outside the robot that would show the status of the battery pack. In addition to displaying the battery status, the LCD display is versatile and can be used for a variety of purposes. The breakout board also includes relays, making this combination suitable for a wide range of applications.
-              </p>
-              <a href="relay.html" class="button">Project details</a>
-            </div>
-          </div>
-          <!-- Project Card 6 -->
-          <div class="card">
-            <img
-              src="images/project_4_thumbnail.png"
-              alt="Multipurpose PCB Ruler"
-              class="card-img"
-            />
-            <div class="card-content">
-              <h3>Multipurpose PCB Ruler</h3>
-              <p class="underline">Problem Statement and Solution:</p>
-              <p style="margin-top: 0; margin-bottom: 20px;">
-                During the PCB design process, we usually find ourselves constantly searching for PCB-related calculations and component footprints online, both during the design and debugging of the boards. As a solution, the PCB Ruler simplifies these issues by integrating all essential PCB calculations and component footprints, making design and debugging more efficient than ever. Say goodbye to endless web searches - the answers are now at your fingertips with our multipurpose PCB ruler.
-              </p>
-              <a href="pcb_ruler.html" class="button">Project details</a>
-            </div>
-          </div>
-          <!-- Project Card 7 -->
-          <div class="card">
-            <img
-              src="images/project_5_thumbnail.png"
-              alt="PCB for Line Follower Robot"
-              class="card-img"
-            />
-            <div class="card-content">
-              <h3>PCB for Line Follower Robot</h3>
-              <p class="underline">Problem Statement and Solution:</p>
-              <p style="margin-top: 0; margin-bottom: 20px;">
-                Team Vector, our college's robotics club, welcomed new members and organized a workshop featuring a challenge involving obstacle avoidance, path following, and flag retrieval. The Electronics department focused on designing and producing a PCB in-house with the limited set of components available. As the trainer, I led new members through the entire process, from board design to board bring-up, prioritizing practical skills and teamwork.
-              </p>
-              <a href="line_follower.html" class="button">Project details</a>
-            </div>
-          </div>
-          <!-- Project Card 8 -->
-          <div class="card">
-            <img
-              src="images/project_6_thumbnail.png"
-              alt="Retro-converted Electric Scooter"
-              class="card-img"
-            />
-            <div class="card-content">
-              <h3>Retro-converted Electric Scooter</h3>
-              <p class="underline">Problem Statement and Solution:</p>
-              <p style="margin-top: 0; margin-bottom: 20px;">
-                One of my friends had a petrol-driven Honda Aviator, which he was planning to sell at a lower price since he was not using it due to reduced mileage. One day, we had an idea: to convert this petrol-driven scooter into a fully-fledged electric scooter. In search of components, we scoured the local market and were fortunate enough to stumble upon an abandoned electric two-wheeler. This discovery led us to a new plan: retro-converting the petrol-driven Honda Aviator into an electric scooter.
-              </p>
-              <a href="electric_scooter.html" class="button">Project details</a>
-            </div>
-          </div>
-          <!-- Project Card 9 -->
-          <div class="card">
-            <img
-              src="images/Team Nikola_thumbnail.png"
-              alt="Team Nikola Racing"
-              class="card-img"
-            />
-            <div class="card-content">
-              <h3>Team Nikola Racing</h3>
-              <p class="underline">Problem Statement and Solution:</p>
-              <p style="margin-top: 0; margin-bottom: 20px;">
-                A team of 20 enthusiastic students from K. K. Wagh Institute of Engineering Education & Research, Nashik, united their passion for electric vehicles (EVs) and embarked on a collaborative journey to turn their vision into reality. Together, they designed, manufactured, and fabricated an outstanding electric bike. The most distinguishing feature of their creation is its exceptional Unique Selling Proposition (USP), which includes an incredibly fast 20-minute charging time and a battery lifespan of over 8 years.
-              </p>
-              <a href="nikola.html" class="button">More Details</a>
-            </div>
-          </div>
-          <!-- Project Card 10 -->
-          <div class="card">
-            <img
-              src="images/Team Vector_thumbnail.png"
-              alt="Team Vector"
-              class="card-img"
-            />
-            <div class="card-content">
-              <h3>Team Vector</h3>
-              <p class="underline">Problem Statement and Solution:</p>
-              <p style="margin-top: 0; margin-bottom: 20px;">
-                Team Vector, the robotics club, is a coalition of 40 students from various engineering disciplines at K. K. Wagh Institute of Engineering Education & Research, Nashik. Each team member is a passionate robotics enthusiast with exceptional technical knowledge and resource management skills. Team Vector has been participating in ABU Robocon-India since 2016, steadily improving in rankings, skills, and experience each year.
-              </p>
-              <a href="vector.html" class="button">More Details</a>
-            </div>
+    <!-- Projects -->
+    <section id="three" class="wrapper style2 spotlights">
+
+      <!-- Project 1 -->
+      <div class="thumbnail-gallery">
+        <div class="thumbnail">
+          <a href="images/slam_thumbnail.png" class="image" onclick="showFullScreenImage('images/slam_thumbnail.png', event)">
+            <img src="images/slam_thumbnail.png" alt="" class="project-thumbnail"/>
+          </a>
+        </div>
+        <div class="content">
+          <div class="inner">
+            <h2 class="project-title">Comparative Analysis of SLAM Algorithms</h2>
+            <p class="underline">Problem Statement and Solution:</p>
+            <p style="margin-top:0; margin-bottom:20px;">This project investigates the performance of two prominent SLAM algorithms, GMapping and Cartographer, using the Yahboom ROS Master X3 robot. By assessing their mapping accuracy and computational efficiency in various indoor settings, we address identified limitations by proposing the integration of additional sensors and depth cameras to enhance obstacle detection, ultimately improving SLAM accuracy and reliability in diverse environments.</p>
+            <ul class="actions"><li><a href="slam_comparison.html" class="button">Project details</a></li></ul>
           </div>
         </div>
       </div>
+
+      <!-- Project 2 -->
+      <div class="thumbnail-gallery">
+        <div class="thumbnail">
+          <a href="images/edgevision_2.png" class="image" onclick="showFullScreenImage('images/edgevision_2.png', event)">
+            <img src="images/edgevision_2.png" alt="" class="project-thumbnail"/>
+          </a>
+        </div>
+        <div class="content">
+          <div class="inner">
+            <h2 class="project-title">EdgeVision: User Defined Object-Counting</h2>
+            <p class="underline">Problem Statement and Solution:</p>
+            <p style="margin-top:0; margin-bottom:20px;">This project aims to develop a machine learning toolbox capable of detecting and tracking objects in video streams. The toolbox includes an interactive feature that allows users to draw line segments on the video, which automatically counts the number of objects passing through these lines. Key features of the toolbox include object detection, tracking of detected objects, and the interactive tool for drawing line segments that facilitate real-time object counting.</p>
+            <ul class="actions"><li><a href="edge_vision.html" class="button">Project details</a></li></ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 3 -->
+      <div class="thumbnail-gallery">
+        <div class="thumbnail">
+          <a href="images/project_1.jpeg" class="image" onclick="showFullScreenImage('images/project_1.jpeg', event)">
+            <img src="images/project_1_thumbnail.png" alt="" class="project-thumbnail"/>
+          </a>
+        </div>
+        <div class="content">
+          <div class="inner">
+            <h2 class="project-title">PCB for Manual and Autonomous Robots</h2>
+            <p class="underline">Problem Statement and Solution:</p>
+            <p style="margin-top:0; margin-bottom:20px;">Team Vector, our college's robotics club, encountered a challenge during our participation in ABU Robocon-India, where we had to connect several electronic subsystems using a large number of wires. This led to loose connections, confusion, and EMI/EMC issues during the electrical rack assembly and debugging process. However, we overcame this obstacle by devising a PCB that incorporated all the necessary functionalities and interfaces commonly used in the competition.</p>
+            <ul class="actions"><li><a href="pcb_manual_autonomous_robots.html" class="button">Project details</a></li></ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 4 -->
+      <div class="thumbnail-gallery">
+        <div class="thumbnail">
+          <a href="images/project_2.png" class="image" onclick="showFullScreenImage('images/project_2.png', event)">
+            <img src="images/project_2_thumbnail.png" alt="" class="project-thumbnail"/>
+          </a>
+        </div>
+        <div class="content">
+          <div class="inner">
+            <h2 class="project-title">Battery Fuel Gauge</h2>
+            <p class="underline">Problem Statement and Solution:</p>
+            <p style="margin-top:0; margin-bottom:20px;">Team Vector's testing team always had to remove the electrical rack of the robot to check the battery pack's health with the help of a battery checker. This was a repetitive and cumbersome task. However, with the introduction of the 'Battery Fuel Gauge' system, we had a clear display of the robot's battery pack health through an onboard LED array. Additionally, we received an alert message when the battery charge dropped below a particular limit.</p>
+            <ul class="actions"><li><a href="battery_gauge.html" class="button">Project details</a></li></ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 5 -->
+      <div class="thumbnail-gallery">
+        <div class="thumbnail">
+          <a href="images/project_3.jpeg" class="image" onclick="showFullScreenImage('images/project_3.jpeg', event)">
+            <img src="images/project_3_thumbnail.png" alt="" class="project-thumbnail"/>
+          </a>
+        </div>
+        <div class="content">
+          <div class="inner">
+            <h2 class="project-title">LCD & Relay Breakout Board</h2>
+            <p class="underline">Problem Statement and Solution:</p>
+            <p style="margin-top:0; margin-bottom:20px;">With the integration of the 'Battery Fuel Gauge' system, Team Vector wanted to have an LCD display outside the robot that would show the status of the battery pack. In addition to displaying the battery status, the LCD display is versatile and can be used for a variety of purposes. The breakout board also includes relays, making this combination suitable for a wide range of applications.</p>
+            <ul class="actions"><li><a href="relay.html" class="button">Project details</a></li></ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 6 -->
+      <div class="thumbnail-gallery">
+        <div class="thumbnail">
+          <a href="images/project_4.jpg" class="image" onclick="showFullScreenImage('images/project_4.jpg', event)">
+            <img src="images/project_4_thumbnail.png" alt="" class="project-thumbnail"/>
+          </a>
+        </div>
+        <div class="content">
+          <div class="inner">
+            <h2 class="project-title">Multipurpose PCB Ruler</h2>
+            <p class="underline">Problem Statement and Solution:</p>
+            <p style="margin-top:0; margin-bottom:20px;">During the PCB design process, we usually find ourselves constantly searching for PCB-related calculations and component footprints online, both during the design and debugging of the boards. As a solution, the PCB Ruler simplifies these issues by integrating all essential PCB calculations and component footprints, making design and debugging more efficient than ever. Say goodbye to endless web searches - the answers are now at your fingertips with our multipurpose PCB ruler.</p>
+            <ul class="actions"><li><a href="pcb_ruler.html" class="button">Project details</a></li></ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 7 -->
+      <div class="thumbnail-gallery">
+        <div class="thumbnail">
+          <a href="images/project_5.png" class="image" onclick="showFullScreenImage('images/project_5.png', event)">
+            <img src="images/project_5_thumbnail.png" alt="" class="project-thumbnail"/>
+          </a>
+        </div>
+        <div class="content">
+          <div class="inner">
+            <h2 class="project-title">PCB for Line Follower Robot</h2>
+            <p class="underline">Problem Statement and Solution:</p>
+            <p style="margin-top:0; margin-bottom:20px;">Team Vector, our college's robotics club, welcomed new members and organized a workshop featuring a challenge involving obstacle avoidance, path following, and flag retrieval. The Electronics department focused on designing and producing a PCB in-house with the limited set of components available. As the trainer, I led new members through the entire process, from board design to board bring-up, prioritizing practical skills and teamwork.</p>
+            <ul class="actions"><li><a href="line_follower.html" class="button">Project details</a></li></ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 8 -->
+      <div class="thumbnail-gallery">
+        <div class="thumbnail">
+          <a href="images/project_6_thumbnail_image.png" class="image" onclick="showFullScreenImage('images/project_6_thumbnail_image.png', event)">
+            <img src="images/project_6_thumbnail.png" alt="" class="project-thumbnail"/>
+          </a>
+        </div>
+        <div class="content">
+          <div class="inner">
+            <h2 class="project-title">Retro-converted Electric Scooter</h2>
+            <p class="underline">Problem Statement and Solution:</p>
+            <p style="margin-top:0; margin-bottom:20px;">One of my friends had a petrol-driven Honda Aviator, which he was planning to sell at a lower price since he was not using it due to reduced mileage. One day, we had an idea: to convert this petrol-driven scooter into a fully-fledged electric scooter. In search of components, we scoured the local market and were fortunate enough to stumble upon an abandoned electric two-wheeler. This discovery led us to a new plan: retro-converting the petrol-driven Honda Aviator into an electric scooter.</p>
+            <ul class="actions"><li><a href="electric_scooter.html" class="button">Project details</a></li></ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 9 -->
+      <div class="thumbnail-gallery">
+        <div class="thumbnail">
+          <a href="images/Team Nikola.png" class="image" onclick="showFullScreenImage('images/Team Nikola.png', event)">
+            <img src="images/Team Nikola_thumbnail.png" alt="" class="project-thumbnail"/>
+          </a>
+        </div>
+        <div class="content">
+          <div class="inner">
+            <h2 class="project-title">Team Nikola Racing</h2>
+            <p style="margin-top:0; margin-bottom:20px;">A team of 20 enthusiastic students from K. K. Wagh Institute of Engineering Education & Research, Nashik, united their passion for electric vehicles (EVs) and embarked on a collaborative journey to turn their vision into reality. Together, they designed, manufactured, and fabricated an outstanding electric bike. The most distinguishing feature of their creation is its exceptional USP: a fast 20-minute charging time and a battery lifespan over 8 years.</p>
+            <ul class="actions"><li><a href="nikola.html" class="button">More Details</a></li></ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 10 -->
+      <div class="thumbnail-gallery">
+        <div class="thumbnail">
+          <a href="images/Team Vector.png" class="image" onclick="showFullScreenImage('images/Team Vector.png', event)">
+            <img src="images/Team Vector_thumbnail.png" alt="" class="project-thumbnail"/>
+          </a>
+        </div>
+        <div class="content">
+          <div class="inner">
+            <h2 class="project-title">Team Vector</h2>
+            <p style="margin-top:0; margin-bottom:20px;">Team Vector, the robotics club, is a coalition of 40 students from various engineering disciplines at K. K. Wagh Institute of Engineering Education & Research, Nashik. Each team member is a passionate robotics enthusiast with exceptional technical knowledge and resource management skills. Team Vector has participated in ABU Robocon-India since 2016, steadily improving in rankings, skills, and experience each year.</p>
+            <ul class="actions"><li><a href="vector.html" class="button">More Details</a></li></ul>
+          </div>
+        </div>
+      </div>
+
     </section>
 
     <!-- Contact Information -->
     <section id="four" class="wrapper style1 fade-up">
       <div class="inner">
         <h1>Get in Touch</h1>
-        <p>
-          I’m always open to conversations, collaborations, and exploring exciting opportunities. Whether you’re looking to connect for internships, full-time positions, or just to discuss innovative ideas, I’m just a message away. Let’s connect and see how we can work together to achieve great things!
-        </p>
+        <p>I’m always open to conversations, collaborations, and exploring opportunities. Whether you’re looking to connect for internships, full-time positions, or just to discuss innovative ideas, reach out—I’m just a message away!</p>
         <div class="split style1">
           <section>
-            <!-- Final Form Code -->
             <form id="contact-form" method="POST" action="https://formspree.io/f/mbjvpbqa">
-              <!-- Hidden Honeypot -->
-              <div style="display: none;">
-                <label>Do not fill this out if you're human:</label>
-                <input type="text" name="_gotcha" tabindex="-1">
-              </div>
+              <div style="display:none;"><label>Do not fill this out if you're human:</label><input name="_gotcha" tabindex="-1"/></div>
               <div class="fields">
-                <div class="field half">
-                  <label for="name">Name</label>
-                  <input type="text" name="name" id="name" required>
-                </div>
-                <div class="field half">
-                  <label for="email">Email</label>
-                  <input type="email" name="email" id="email" required>
-                </div>
-                <div class="field">
-                  <label for="message">Message</label>
-                  <textarea name="message" id="message" rows="5" required></textarea>
-                </div>
+                <div class="field half"><label for="name">Name</label><input type="text" name="name" id="name" required/></div>
+                <div class="field half"><label for="email">Email</label><input type="email" name="email" id="email" required/></div>
+                <div class="field"><label for="message">Message</label><textarea name="message" id="message" rows="5" required></textarea></div>
               </div>
               <div id="form-message" class="form-message"></div>
               <button type="submit">Send Message</button>
@@ -590,27 +345,12 @@
           </section>
           <section>
             <ul class="contact">
-              <li>
-                <h3>Email</h3>
-                <a href="mailto:sbmeshra@asu.edu">sbmeshra@asu.edu</a>
-              </li>
-              <li>
-                <h3>Phone</h3>
-                <span>+1(480) 919-5621</span>
-              </li>
-              <li>
-                <h3>LinkedIn & Resume</h3>
+              <li><h3>Email</h3><a href="mailto:sbmeshra@asu.edu">sbmeshra@asu.edu</a></li>
+              <li><h3>Phone</h3><span>+1(480) 919‑5621</span></li>
+              <li><h3>LinkedIn & Resume</h3>
                 <ul class="icons">
-                  <li>
-                    <a
-                      href="https://www.linkedin.com/in/swapnilmeshram98/"
-                      class="icon brands fa-linkedin-in"
-                      ><span class="label">LinkedIn</span></a>
-                  </li>
-                  <li>
-                    <a href="pdf/Swapnil Meshram.pdf" class="icon fa-file"
-                      ><span class="label">Resume</span></a>
-                  </li>
+                  <li><a href="https://www.linkedin.com/in/swapnilmeshram98/" class="icon brands fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
+                  <li><a href="pdf/Swapnil Meshram.pdf" class="icon fa-file"><span class="label">Resume</span></a></li>
                 </ul>
               </li>
             </ul>
@@ -618,44 +358,14 @@
         </div>
       </div>
     </section>
+
   </div>
 
   <!-- Footer -->
   <footer id="footer" class="wrapper style1-alt">
     <div class="inner">
-      <ul class="menu">
-        <li>&copy; 2023 Swapnil Meshram</li>
-      </ul>
-      <!-- Visitor Map Section (with Intro Text + Legend) -->
-      <!--
-      <section id="visitor-map-section" class="wrapper style1 fade-up">
-        <div class="inner">
-          <p style="text-align: center; margin-bottom: 15px; font-size: 1rem;">
-            <strong><em>Take a quick trip around the globe and see where visitors to my portfolio are coming from. This map tracks my worldwide audience in real time!</em></strong>
-          </p>
-          <div id="visitor-map">
-            <script
-              type="text/javascript"
-              id="clustrmaps"
-              src="//cdn.clustrmaps.com/map_v2.js?cl=a67c52&w=a&t=tt&d=BtnTG-J7EyPAd3PMvp8QHdXHhRUlSKyg_ZZOy3_ADDU&co=1d4e89&cmo=32cd32&cmn=ff4500&ct=f4f4f4"
-            ></script>
-          </div>
-          <noscript>
-            <p style="text-align: center; font-size: 1.125rem; color: #f44336;">
-              The visitor map requires JavaScript to be enabled.
-            </p>
-          </noscript>
-          <div class="map-legend" style="margin-top: 20px; text-align: center;">
-            <h3 style="margin-bottom: 10px;">Map Legend</h3>
-            <span style="background-color: #32cd32; width: 20px; height: 20px; display: inline-block; border-radius: 50%; margin-right: 8px;"></span>
-            Past Visitors
-            <br />
-            <span style="background-color: #ff4500; width: 20px; height: 20px; display: inline-block; border-radius: 50%; margin-right: 8px;"></span>
-            Recent Visitors
-          </div>
-        </div>
-      </section>
-      -->
+      <ul class="menu"><li>&copy; 2023 Swapnil Meshram</li></ul>
+      <!-- Visitor Map Section commented out by default -->
     </div>
   </footer>
 
@@ -668,181 +378,110 @@
   <script src="assets/js/util.js"></script>
   <script src="assets/js/main.js"></script>
 
-  <!-- Include Slick Carousel JavaScript -->
-  <script
-    src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"
-  ></script>
-
-  <!-- Your Form + Slider Script -->
+  <!-- Slick for the work‑experience slider -->
+  <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
   <script>
-    const form = document.getElementById("contact-form");
+    // Contact form
+    const form = document.getElementById('contact-form');
     const submitButton = form.querySelector('button[type="submit"]');
-    const formMsg = document.getElementById("form-message");
-
-    form.addEventListener("submit", function (e) {
+    const formMsg = document.getElementById('form-message');
+    form.addEventListener('submit', e => {
       e.preventDefault();
-
-      // Honeypot check
       const gotcha = form.querySelector('input[name="_gotcha"]');
       if (gotcha.value) {
         formMsg.textContent = "Spam detected. Form not submitted.";
-        formMsg.classList.add("error");
+        formMsg.classList.add('error');
         return;
       }
-
-      // Basic validation
-      const nameField = document.getElementById("name");
-      const emailField = document.getElementById("email");
-
-      if (!nameField.value.trim()) {
+      const nameF = document.getElementById('name');
+      const emailF = document.getElementById('email');
+      if (!nameF.value.trim()) {
         formMsg.textContent = "Please enter your name.";
-        formMsg.classList.add("error");
+        formMsg.classList.add('error');
         return;
       }
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (!emailRegex.test(emailField.value.trim())) {
+      if (!emailRegex.test(emailF.value.trim())) {
         formMsg.textContent = "Please enter a valid email address.";
-        formMsg.classList.add("error");
+        formMsg.classList.add('error');
         return;
       }
-
-      // Clear previous error
-      formMsg.textContent = "";
-      formMsg.classList.remove("error");
-
-      // Provide loading feedback
+      formMsg.textContent = '';
+      formMsg.classList.remove('error');
       submitButton.disabled = true;
       submitButton.textContent = "Sending...";
-
-      // Send the form
-      const data = new FormData(form);
-      fetch("https://formspree.io/f/mbjvpbqa", {
-        method: "POST",
-        body: data,
+      fetch('https://formspree.io/f/mbjvpbqa', {
+        method: 'POST',
+        body: new FormData(form)
       })
-        .then((response) => {
-          submitButton.disabled = false;
-          submitButton.textContent = "Send Message";
-
-          if (response.ok) {
-            formMsg.textContent =
-              "Thanks for your message! I will get back to you soon.";
-            formMsg.classList.remove("error");
-            form.reset();
-          } else {
-            throw new Error("Network response was not ok.");
-          }
-        })
-        .catch((error) => {
-          submitButton.disabled = false;
-          submitButton.textContent = "Send Message";
-          console.error(error);
-          formMsg.textContent =
-            "Oops, something went wrong. Please try again later or email me directly.";
-          formMsg.classList.add("error");
-        });
+      .then(res => {
+        submitButton.disabled = false;
+        submitButton.textContent = "Send Message";
+        if (res.ok) {
+          formMsg.textContent = "Thanks for your message! I'll get back to you soon.";
+          formMsg.classList.remove('error');
+          form.reset();
+        } else {
+          throw new Error('Network response was not ok.');
+        }
+      })
+      .catch(err => {
+        submitButton.disabled = false;
+        submitButton.textContent = "Send Message";
+        console.error(err);
+        formMsg.textContent = "Oops, something went wrong. Please try again later or email me directly.";
+        formMsg.classList.add('error');
+      });
     });
 
-    // Existing Slick slider for work experience
-    $(document).ready(function () {
-      $(".slider").slick({
+    // Work-experience slider
+    $(document).ready(() => {
+      $('.slider').slick({
         autoplay: true,
         dots: true,
         arrows: true,
         infinite: true,
         speed: 800,
         slidesToShow: 1,
-        slidesToScroll: 1,
+        slidesToScroll: 1
       });
     });
 
-    $(document).ready(function(){
-      $('.project-slider').slick({
-        centerMode: true,
-        centerPadding: '25px',
-        slidesToShow: 3,  // Show 3 slides by default on large screens
-        autoplay: true,
-        autoplaySpeed: 3000,
-        dots: true,
-        arrows: true,
-        responsive: [
-          {
-            breakpoint: 1600,
-            settings: {
-              slidesToShow: 3,
-              centerPadding: '20px'
-            }
-          },
-          {
-            breakpoint: 1024,
-            settings: {
-              slidesToShow: 2,
-              centerPadding: '40px'
-            }
-          },
-          {
-            breakpoint: 600,
-            settings: {
-              slidesToShow: 1,
-              centerMode: true,
-              centerPadding: '20px'
-            }
-          }
-        ]
-      });
-    });
-
-    // Fullscreen image script
-    function showFullScreenImage(imageSrc, event) {
-      event.preventDefault();
-      document.getElementById("sidebar").style.display = "none";
-      document.body.classList.add("fullscreen-mode");
-      const fullscreenDiv = document.createElement("div");
-      fullscreenDiv.className = "fullscreen-image";
-      fullscreenDiv.innerHTML = `
-        <div class="close-button" onclick="closeFullScreen()"></div>
-        <img src="${imageSrc}" alt="Full Screen Image">
-      `;
-      document.body.appendChild(fullscreenDiv);
-      document.getElementById("wrapper").classList.add("blurred-background");
+    // Fullscreen image/video
+    function showFullScreenImage(src,e) {
+      e.preventDefault();
+      document.getElementById('sidebar').style.display='none';
+      document.body.classList.add('fullscreen-mode');
+      const d=document.createElement('div');
+      d.className='fullscreen-image';
+      d.innerHTML=`<div class="close-button" onclick="closeFullScreen()"></div><img src="${src}" alt="Full Screen Image"/>`;
+      document.body.appendChild(d);
+      document.getElementById('wrapper').classList.add('blurred-background');
     }
-
+    function playFullScreen(src) {
+      const d=document.createElement('div');
+      d.className='fullscreen-video';
+      d.innerHTML=`<div class="close-button" onclick="closeFullScreen()"></div><video src="${src}" controls autoplay></video>`;
+      document.body.appendChild(d);
+      document.getElementById('wrapper').classList.add('blurred-background');
+    }
     function closeFullScreen() {
-      const fullscreenDiv =
-        document.querySelector(".fullscreen-video") ||
-        document.querySelector(".fullscreen-image");
-      if (fullscreenDiv) {
-        document.body.removeChild(fullscreenDiv);
-      }
-      document.getElementById("wrapper").classList.remove("blurred-background");
-      document.body.classList.remove("fullscreen-mode");
-      const sidebar = document.getElementById("sidebar");
-      if (window.innerWidth > 768) {
-        sidebar.style.display = "block";
-      } else {
-        sidebar.style.display = "";
-      }
+      const f=document.querySelector('.fullscreen-video')||document.querySelector('.fullscreen-image');
+      if(f)document.body.removeChild(f);
+      document.getElementById('wrapper').classList.remove('blurred-background');
+      document.body.classList.remove('fullscreen-mode');
+      const sb=document.getElementById('sidebar');
+      if(window.innerWidth>768) sb.style.display='block';
+      else sb.style.display='';
     }
 
-    // Fullscreen video script
-    function playFullScreen(videoSrc) {
-      const fullscreenDiv = document.createElement("div");
-      fullscreenDiv.className = "fullscreen-video";
-      fullscreenDiv.innerHTML = `
-        <div class="close-button" onclick="closeFullScreen()"></div>
-        <video src="${videoSrc}" controls autoplay></video>
-      `;
-      document.body.appendChild(fullscreenDiv);
-      document.getElementById("wrapper").classList.add("blurred-background");
-    }
-
-    // Hamburger menu script
-    document.addEventListener("DOMContentLoaded", function () {
-      const hamburger = document.querySelector(".hamburger");
-      const sidebar = document.getElementById("sidebar");
-      hamburger.addEventListener("click", function () {
-        hamburger.classList.toggle("active");
-        sidebar.classList.toggle("active");
+    // Hamburger toggle
+    document.addEventListener('DOMContentLoaded', () => {
+      const hb=document.querySelector('.hamburger'),
+            sb=document.getElementById('sidebar');
+      hb.addEventListener('click', () => {
+        hb.classList.toggle('active');
+        sb.classList.toggle('active');
       });
     });
   </script>
