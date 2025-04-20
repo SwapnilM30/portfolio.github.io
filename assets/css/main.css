@@ -3808,7 +3808,7 @@ h6 { font-size: 0.6em; }
 
 /* Apply styles to the individual thumbnails */
 .thumbnail {
-    flex: 0 0 calc(35% - 60x); /* Adjust this value to control the width of each thumbnail */
+    flex: 0 0 calc(35% - 60px); /* Adjust this value to control the width of each thumbnail */
     margin: 1px 5px 20px; /* Add margin to the sides and bottom of each thumbnail */
     display: flex;
     flex-direction: column; /* Display content in a column */
