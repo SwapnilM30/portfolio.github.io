@@ -18,14 +18,14 @@
     .map-legend { margin-top: 20px; text-align: center; }
     .map-legend h3 { margin-bottom: 10px; font-size: 1.125rem; }
     .map-legend span { display: inline-block; width: 20px; height: 20px; border-radius:50%; margin-right:8px; }
-  
+
     /* Existing/General Styles */
     .slider { border:1px solid rgba(50,50,50,0.5); padding:15px; margin:0 auto; max-width:300px; }
     #one { padding-top:20px; padding-bottom:20px; }
     .text-justify { margin-top:10px; }
     .text-justify.abc { margin-top:10px; }
     .inner-heading { text-align:center; padding:20px; }
-  
+
     /* About Me Section: flex-based for equal-height columns */
     .content-with-image {
       display: flex;
@@ -36,8 +36,11 @@
       padding: 0 20px;
     }
     .content-with-image .image-container {
-      flex: 0 0 30%;          /* fixed 30% width */
-      margin: 0;              /* gutter handled by gap */
+      flex: 0 0 30%;                   /* fixed 30% width */
+      margin: 0;                       /* gutter handled by gap */
+      border: 1px solid rgba(50,50,50,0.5);
+      border-radius: 4px;
+      padding: 0.5rem;                 /* space inside the border */
     }
     .content-with-image .profile-image {
       display: block;
@@ -45,7 +48,7 @@
       height: auto;
     }
     .content-with-image .text-container {
-      flex: 1;                /* fill remaining space */
+      flex: 1;                         /* fill remaining space */
     }
     @media (max-width:768px) {
       .content-with-image {
@@ -57,7 +60,7 @@
         width: auto;
       }
     }
-  
+
     .underline { margin-top:20px; margin-bottom:10px; }
     p.underline { text-decoration:underline; padding-bottom:10px; }
     .video-container { position:relative; display:inline-block; }
@@ -88,13 +91,16 @@
     }
     .form-message { margin-top:15px; font-size:1.1rem; color:#4caf50; }
     .form-message.error { color:#f44336; }
-  
+
     /* ========== Projects Section (Original thumbnail‐gallery) ========== */
     #three.spotlights .thumbnail-gallery {
       display: flex;
       align-items: center;    /* vertical center */
       gap: 1rem;              /* space between image & text */
       margin-bottom: 2rem;    /* consistent bottom spacing */
+      border: 1px solid rgba(50,50,50,0.5);
+      padding: 1rem;
+      border-radius: 4px;
     }
     #three.spotlights .thumbnail-gallery .thumbnail {
       flex: 1;
@@ -104,7 +110,7 @@
       flex: 2;
       padding-left: 0.5rem;   /* small left gutter */
     }
-  
+
     /* mobile stack for projects */
     @media (max-width:768px) {
       #three.spotlights .thumbnail-gallery {
@@ -117,8 +123,7 @@
       }
     }
   </style>
-  
-    
+   
   <!-- Include Slick Carousel CSS (for your work‑experience slider) -->
   <link rel="stylesheet" type="text/css"
         href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
