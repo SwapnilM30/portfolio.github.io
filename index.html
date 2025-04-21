@@ -28,28 +28,36 @@
   
     /* About Me Section: flex-based for equal-height columns */
     .content-with-image {
-      display: flex;
-      align-items: stretch;   /* make image & text same height */
-      gap: 1rem;              /* space between image & text */
-      max-width: 1225px;
-      margin: 0 auto;
-      padding: 0 20px;
-    }
+    display: flex;
+    align-items: stretch;   /* make image & text same height */
+    gap: 1rem;              /* space between image & text */
+    max-width: 1225px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
     .content-with-image .image-container {
-      flex: 0 0 28%;                   /* fixed 30% width */
-      margin: 0;                       /* gutter handled by gap */
-      border: 1px solid rgba(50,50,50,0.5);
-      border-radius: 4px;
-      padding: 0.5rem;                 /* space inside the border */
-    }
+    flex: 0 0 25%;          /* was 28%, now 25% */
+    max-width: 25%;
+    margin: 0;
+    border: 1px solid rgba(50,50,50,0.5);
+    border-radius: 4px;
+    padding: 0.5rem;
+  }
+
     .content-with-image .profile-image {
-      display: block;
-      width: 100%;
-      height: auto;
-    }
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
     .content-with-image .text-container {
-      flex: 1;                         /* fill remaining space */
-    }
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
     @media (max-width: 768px) {
       .content-with-image {
         flex-direction: column;
