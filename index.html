@@ -17,15 +17,15 @@
     #clustrmaps { border: none; box-shadow: none; }
     .map-legend { margin-top: 20px; text-align: center; }
     .map-legend h3 { margin-bottom: 10px; font-size: 1.125rem; }
-    .map-legend span { display: inline-block; width: 20px; height: 20px; border-radius:50%; margin-right:8px; }
-
+    .map-legend span { display: inline-block; width: 20px; height: 20px; border-radius: 50%; margin-right: 8px; }
+  
     /* Existing/General Styles */
-    .slider { border:1px solid rgba(50,50,50,0.5); padding:15px; margin:0 auto; max-width:300px; }
-    #one { padding-top:20px; padding-bottom:20px; }
-    .text-justify { margin-top:10px; }
-    .text-justify.abc { margin-top:10px; }
-    .inner-heading { text-align:center; padding:20px; }
-
+    .slider { border: 1px solid rgba(50,50,50,0.5); padding: 15px; margin: 0 auto; max-width: 300px; }
+    #one { padding-top: 20px; padding-bottom: 20px; }
+    .text-justify { margin-top: 10px; }
+    .text-justify.abc { margin-top: 10px; }
+    .inner-heading { text-align: center; padding: 20px; }
+  
     /* About Me Section: flex-based for equal-height columns */
     .content-with-image {
       display: flex;
@@ -50,7 +50,7 @@
     .content-with-image .text-container {
       flex: 1;                         /* fill remaining space */
     }
-    @media (max-width:768px) {
+    @media (max-width: 768px) {
       .content-with-image {
         flex-direction: column;
       }
@@ -60,44 +60,46 @@
         width: auto;
       }
     }
-
-    .underline { margin-top:20px; margin-bottom:10px; }
-    p.underline { text-decoration:underline; padding-bottom:10px; }
-    .video-container { position:relative; display:inline-block; }
+  
+    .underline { margin-top: 20px; margin-bottom: 10px; }
+    p.underline { text-decoration: underline; padding-bottom: 10px; }
+    .video-container { position: relative; display: inline-block; }
     .play-icon {
-      position:absolute; top:50%; left:50%;
-      transform:translate(-50%,-50%);
-      width:64px; height:64px;
-      background:url('images/play-icon.png') no-repeat center center;
-      background-size:cover; opacity:0.8;
-      cursor:pointer; transition:transform .25s ease;
+      position: absolute; top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 64px; height: 64px;
+      background: url('images/play-icon.png') no-repeat center center;
+      background-size: cover; opacity: 0.8;
+      cursor: pointer; transition: transform .25s ease;
     }
-    .play-icon:hover { transform:translate(-50%,-50%) scale(1.2); }
+    .play-icon:hover { transform: translate(-50%, -50%) scale(1.2); }
     .fullscreen-video, .fullscreen-image {
-      position:fixed; top:0; left:0;
-      width:100%; height:100%;
-      background:rgba(0,0,0,0.8); z-index:9999;
-      display:flex; justify-content:center; align-items:center;
+      position: fixed; top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.8); z-index: 9999;
+      display: flex; justify-content: center; align-items: center;
     }
     .fullscreen-video video, .fullscreen-image img {
-      max-width:90%; max-height:90%;
+      max-width: 90%; max-height: 90%;
     }
-    .blurred-background { filter:blur(5px); }
+    .blurred-background { filter: blur(5px); }
     .close-button {
-      position:absolute; top:25px; right:25px;
-      width:32px; height:32px;
-      background:url('images/close-icon.png') no-repeat center center;
-      background-size:cover; cursor:pointer; z-index:10000;
+      position: absolute; top: 25px; right: 25px;
+      width: 32px; height: 32px;
+      background: url('images/close-icon.png') no-repeat center center;
+      background-size: cover; cursor: pointer; z-index: 10000;
     }
-    .form-message { margin-top:15px; font-size:1.1rem; color:#4caf50; }
-    .form-message.error { color:#f44336; }
-
+    .form-message { margin-top: 15px; font-size: 1.1rem; color: #4caf50; }
+    .form-message.error { color: #f44336; }
+  
     /* ========== Projects Section (Original thumbnail‐gallery) ========== */
     #three.spotlights .thumbnail-gallery {
       display: flex;
       align-items: center;    /* vertical center */
       gap: 1rem;              /* space between image & text */
       margin-bottom: 2rem;    /* consistent bottom spacing */
+  
+      /* frame the project card */
       border: 1px solid rgba(50,50,50,0.5);
       padding: 1rem;
       border-radius: 4px;
@@ -110,9 +112,19 @@
       flex: 2;
       padding-left: 0.5rem;   /* small left gutter */
     }
-
+  
+    /* frame just the image inside */
+    #three.spotlights .thumbnail-gallery .thumbnail img {
+      display: block;
+      width: 100%;
+      height: auto;
+      border: 1px solid rgba(50,50,50,0.5);
+      border-radius: 4px;
+      padding: 0.5rem;
+    }
+  
     /* mobile stack for projects */
-    @media (max-width:768px) {
+    @media (max-width: 768px) {
       #three.spotlights .thumbnail-gallery {
         flex-direction: column;
         gap: 1rem;
@@ -123,6 +135,7 @@
       }
     }
   </style>
+  
    
   <!-- Include Slick Carousel CSS (for your work‑experience slider) -->
   <link rel="stylesheet" type="text/css"
