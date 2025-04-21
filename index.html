@@ -37,7 +37,7 @@
   }
 
     .content-with-image .image-container {
-    flex: 0 0 28.5%;          /* was 28%, now 25% */
+    flex: 0 0 28.5%;          /* was 25%, now 28.5% */
     max-width: 28.5%;
     margin: 0;
     border: 1px solid rgba(50,50,50,0.5);
@@ -52,10 +52,15 @@
   }
 
     .content-with-image .text-container {
-    flex: 1;
+    flex: 1;  
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    gap: 1rem;            /* or whatever spacing you prefer */
+  }
+
+    .content-with-image .text-container p {
+    margin: 0;            /* kills the extra default <p> margins */
   }
 
     @media (max-width: 768px) {
