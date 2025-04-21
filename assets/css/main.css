@@ -124,19 +124,19 @@ body, input, select, textarea {
 /* Responsive scaling */
 @media screen and (max-width: 1680px) {
     body, input, select, textarea {
-        font-size: 15px;
+        font-size: 16px;
     }
 }
 
 @media screen and (max-width: 1280px) {
     body, input, select, textarea {
-        font-size: 14px;
+        font-size: 15px;
     }
 }
 
 @media screen and (max-width: 360px) {
     body, input, select, textarea {
-        font-size: 13px;
+        font-size: 14px;
     }
 }
 
