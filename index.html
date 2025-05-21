@@ -18,45 +18,45 @@
     .map-legend { margin-top: 20px; text-align: center; }
     .map-legend h3 { margin-bottom: 10px; font-size: 1.125rem; }
     .map-legend span { display: inline-block; width: 20px; height: 20px; border-radius: 50%; margin-right: 8px; }
-  
+
     /* Existing/General Styles */
     .slider { border: 1px solid rgba(50,50,50,0.5); padding: 15px; margin: 0 auto; max-width: 300px; }
     #one { padding-top: 20px; padding-bottom: 20px; }
     .text-justify { margin-top: 10px; }
     .text-justify.abc { margin-top: 10px; }
     .inner-heading { text-align: center; padding: 20px; }
-  
+
     /* About Me Section: flex-based for equal-height columns */
     .content-with-image {
-    display: flex;
-    align-items: stretch;   /* make image & text same height */
-    gap: 1rem;              /* space between image & text */
-    max-width: 1225px;
-    margin: 0 auto;
-    padding: 0 20px;
-  }
+      display: flex;
+      align-items: stretch;   /* make image & text same height */
+      gap: 1rem;              /* space between image & text */
+      max-width: 1225px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
 
     .content-with-image .image-container {
-    flex: 0 0 28.5%;          /* was 28%, now 25% */
-    max-width: 28.5%;
-    margin: 0;
-    border: 1px solid rgba(50,50,50,0.5);
-    border-radius: 4px;
-    padding: 0.5rem;
-  }
+      flex: 0 0 28.5%;          /* was 28%, now 25% */
+      max-width: 28.5%;
+      margin: 0;
+      border: 1px solid rgba(50,50,50,0.5);
+      border-radius: 4px;
+      padding: 0.5rem;
+    }
 
     .content-with-image .profile-image {
-    display: block;
-    width: 100%;
-    height: auto;
-  }
+      display: block;
+      width: 100%;
+      height: auto;
+    }
 
     .content-with-image .text-container {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
 
     @media (max-width: 768px) {
       .content-with-image {
@@ -68,7 +68,7 @@
         width: auto;
       }
     }
-  
+
     .underline { margin-top: 20px; margin-bottom: 10px; }
     p.underline { text-decoration: underline; padding-bottom: 10px; }
     .video-container { position: relative; display: inline-block; }
@@ -99,17 +99,14 @@
     }
     .form-message { margin-top: 15px; font-size: 1.1rem; color: #4caf50; }
     .form-message.error { color: #f44336; }
-  
+
     /* ========== Projects Section (Original thumbnail‐gallery) ========== */
     #three.spotlights .thumbnail-gallery {
       display: flex;
       align-items: center;    /* vertical center */
       gap: 1rem;              /* space between image & text */
       margin-bottom: 2rem;    /* consistent bottom spacing */
-  
-    /* no border on the card container */
       border: none;
-    /* you can still keep padding if you like the spacing */
       padding: 1rem;
       border-radius: 0;
     }
@@ -121,18 +118,6 @@
       flex: 2;
       padding-left: 0.5rem;   /* small left gutter */
     }
-  
-    /* frame just the image inside */
-    #three.spotlights .thumbnail-gallery .thumbnail img {
-      display: block;
-      width: 100%;
-      height: auto;
-      border: 1px solid rgba(50,50,50,0.5);
-      border-radius: 4px;
-      padding: 0.5rem;
-    }
-  
-    /* mobile stack for projects */
     @media (max-width: 768px) {
       #three.spotlights .thumbnail-gallery {
         flex-direction: column;
@@ -143,14 +128,44 @@
         padding: 0;           /* remove side padding on mobile */
       }
     }
+
+    /* Zoom‐in/out controls */
+    .fullscreen-image img.zoomable {
+      cursor: grab;
+      transition: transform 0.1s ease-out;
+    }
+    .zoom-controls {
+      position: absolute; top: 20px; right: 80px;
+      display: flex; flex-direction: column; gap: 8px;
+    }
+    .zoom-btn {
+      width: 32px; height: 32px; border: none; border-radius: 4px;
+      background: rgba(255,255,255,0.8); font-size: 1.2rem;
+      cursor: pointer;
+    }
+    .zoom-btn:hover { background: #fff; }
+
+    /* Hamburger Menu Icon */
+    .hamburger { display: block; cursor: pointer; }
+    .hamburger div {
+      width: 35px; height: 5px; background-color: #283a8b;
+      margin: 5px; transition: all 0.3s ease;
+    }
+    .hamburger.active div:nth-child(1) {
+      transform: rotate(-45deg) translate(-5px, 6px);
+    }
+    .hamburger.active div:nth-child(2) { opacity: 0; }
+    .hamburger.active div:nth-child(3) {
+      transform: rotate(45deg) translate(-5px, -6px);
+    }
+    @media (max-width: 736px) {
+      .hamburger { position: fixed; top: 20px; right: 20px; z-index: 10001; }
+    }
   </style>
-  
-   
-  <!-- Include Slick Carousel CSS (for your work‑experience slider) -->
-  <link rel="stylesheet" type="text/css"
-        href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
-  <link rel="stylesheet" type="text/css"
-        href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
+
+  <!-- Include Slick Carousel CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
 </head>
 <body class="is-preload">
 
@@ -185,9 +200,9 @@
           <header class="major"></header>
           <div class="content">
             <p class="text-justify abc">Hey there! I am Swapnil Meshram, an electronics engineer with a passion for robotics. I am pursuing my M.S. in Robotics and Autonomous Systems at Arizona State University, and I love how each project and coursework pushes me to learn something new.</p>
-            <p class="text-justify abc">My journey into robotics has been centered on understanding how robots think, move, and interact with their surroundings. I am fascinated by autonomy, control systems, and mechanical challenges, and I thrive on pushing the boundaries of what these machines can do. I draw on my electronics engineering and hardware‑design expertise to build robust, high‑performing systems.</p>
+            <p class="text-justify abc">My journey into robotics has been centered on understanding how robots think, move, and interact with their surroundings. I am fascinated by autonomy, control systems, and mechanical challenges, and I thrive on pushing the boundaries of what these machines can do. I draw on my electronics engineering and hardware-design expertise to build robust, high-performing systems.</p>
             <p class="text-justify abc">This portfolio is not just a showcase of my work. It is a look at how I have grown in robotics and electronics. Each project, from designing intricate hardware to developing intelligent systems, demonstrates my dedication to both fields.</p>
-            <p class="text-justify abc">Take a look around to see how I tackle real‑world engineering challenges with curiosity and creativity. Welcome aboard!</p>
+            <p class="text-justify abc">Take a look around to see how I tackle real-world engineering challenges with curiosity and creativity. Welcome aboard!</p>
             <ul class="actions"></ul>
           </div>
         </div>
@@ -200,9 +215,7 @@
         <h2 class="name overline-underline">A Curious Journey into Robotics</h2>
         <div class="content-with-image">
           <div class="image-container">
-            <img src="images/PSX_20230124_121449~3.jpg"
-                 alt="Swapnil Meshram"
-                 class="profile-image" />
+            <img src="images/PSX_20230124_121449~3.jpg" alt="Swapnil Meshram" class="profile-image" />
           </div>
           <div class="text-container">
             <p class="text-justify para">When I was 14, I became captivated by how infants learn simply by observing the world around them. It left me wondering if machines could develop a similar curiosity and ability to learn from their surroundings. That question sparked a fascination that grew into a deep passion for robotics and machine learning.</p>
@@ -219,7 +232,7 @@
         <h2 class="name overline-underline">Career Chronicles: Unveiling My Tech Odyssey</h2>
         <p class="text-justify">Before starting my master’s degree in Robotics and Autonomous Systems at Arizona State University, I was eager to get my hands dirty and gain real-world experience. My early work experience in the field of robotics and electronics engineering was important because it not only deepened my passion for these domains but also set the stage for my academic journey. Throughout this time, I worked on many projects that challenged me: from designing intricate hardware systems to developing innovative robotics solutions, I constantly spent time sharpening my skills and pushing myself further.</p>
         <div class="slider">
-          <img src="images/AEPL logo.png" alt="" style="width:200px; display:block; margin:0 auto;"/>
+          <img src="images/AEPL logo.png" alt="AEPL Logo" style="width:200px; display:block; margin:0 auto;"/>
         </div>
         <ul class="actions"><li><a href="aepl.html" class="button">More Details</a></li></ul>
       </div>
@@ -231,8 +244,8 @@
       <!-- Project 1 -->
       <div class="thumbnail-gallery">
         <div class="thumbnail">
-          <a href="images/slam_thumbnail.png" class="image" onclick="showFullScreenImage('images/slam_thumbnail.png', event)">
-            <img src="images/slam_thumbnail.png" alt="" class="project-thumbnail"/>
+          <a href="images/slam_thumbnail.png" onclick="showFullScreenImage('images/slam_thumbnail.png', event)">
+            <img src="images/slam_thumbnail.png" alt="SLAM Thumbnail" class="project-thumbnail zoomable"/>
           </a>
         </div>
         <div class="content">
@@ -248,8 +261,8 @@
       <!-- Project 2 -->
       <div class="thumbnail-gallery">
         <div class="thumbnail">
-          <a href="images/edgevision_2.png" class="image" onclick="showFullScreenImage('images/edgevision_2.png', event)">
-            <img src="images/edgevision_2.png" alt="" class="project-thumbnail"/>
+          <a href="images/edgevision_2.png" onclick="showFullScreenImage('images/edgevision_2.png', event)">
+            <img src="images/edgevision_2.png" alt="EdgeVision Thumbnail" class="project-thumbnail zoomable"/>
           </a>
         </div>
         <div class="content">
@@ -262,11 +275,11 @@
         </div>
       </div>
 
-      <!-- Project 3 -->
+      <!-- Project 3 -->  
       <div class="thumbnail-gallery">
         <div class="thumbnail">
-          <a href="images/project_1.jpeg" class="image" onclick="showFullScreenImage('images/project_1.jpeg', event)">
-            <img src="images/project_1_thumbnail.png" alt="" class="project-thumbnail"/>
+          <a href="images/project_1.jpeg" onclick="showFullScreenImage('images/project_1.jpeg', event)">
+            <img src="images/project_1_thumbnail.png" alt="PCB Project Thumbnail" class="project-thumbnail zoomable"/>
           </a>
         </div>
         <div class="content">
@@ -282,8 +295,8 @@
       <!-- Project 4 -->
       <div class="thumbnail-gallery">
         <div class="thumbnail">
-          <a href="images/project_2.png" class="image" onclick="showFullScreenImage('images/project_2.png', event)">
-            <img src="images/project_2_thumbnail.png" alt="" class="project-thumbnail"/>
+          <a href="images/project_2.png" onclick="showFullScreenImage('images/project_2.png', event)">
+            <img src="images/project_2_thumbnail.png" alt="Battery Fuel Gauge Thumbnail" class="project-thumbnail zoomable"/>
           </a>
         </div>
         <div class="content">
@@ -299,8 +312,8 @@
       <!-- Project 5 -->
       <div class="thumbnail-gallery">
         <div class="thumbnail">
-          <a href="images/project_3.jpeg" class="image" onclick="showFullScreenImage('images/project_3.jpeg', event)">
-            <img src="images/project_3_thumbnail.png" alt="" class="project-thumbnail"/>
+          <a href="images/project_3.jpeg" onclick="showFullScreenImage('images/project_3.jpeg', event)">
+            <img src="images/project_3_thumbnail.png" alt="LCD & Relay Board Thumbnail" class="project-thumbnail zoomable"/>
           </a>
         </div>
         <div class="content">
@@ -316,8 +329,8 @@
       <!-- Project 6 -->
       <div class="thumbnail-gallery">
         <div class="thumbnail">
-          <a href="images/project_4.jpg" class="image" onclick="showFullScreenImage('images/project_4.jpg', event)">
-            <img src="images/project_4_thumbnail.png" alt="" class="project-thumbnail"/>
+          <a href="images/project_4.jpg" onclick="showFullScreenImage('images/project_4.jpg', event)">
+            <img src="images/project_4_thumbnail.png" alt="PCB Ruler Thumbnail" class="project-thumbnail zoomable"/>
           </a>
         </div>
         <div class="content">
@@ -333,8 +346,8 @@
       <!-- Project 7 -->
       <div class="thumbnail-gallery">
         <div class="thumbnail">
-          <a href="images/project_5.png" class="image" onclick="showFullScreenImage('images/project_5.png', event)">
-            <img src="images/project_5_thumbnail.png" alt="" class="project-thumbnail"/>
+          <a href="images/project_5.png" onclick="showFullScreenImage('images/project_5.png', event)">
+            <img src="images/project_5_thumbnail.png" alt="Line Follower PCB Thumbnail" class="project-thumbnail zoomable"/>
           </a>
         </div>
         <div class="content">
@@ -350,8 +363,8 @@
       <!-- Project 8 -->
       <div class="thumbnail-gallery">
         <div class="thumbnail">
-          <a href="images/project_6_thumbnail_image.png" class="image" onclick="showFullScreenImage('images/project_6_thumbnail_image.png', event)">
-            <img src="images/project_6_thumbnail.png" alt="" class="project-thumbnail"/>
+          <a href="images/project_6_thumbnail_image.png" onclick="showFullScreenImage('images/project_6_thumbnail_image.png', event)">
+            <img src="images/project_6_thumbnail.png" alt="Electric Scooter Thumbnail" class="project-thumbnail zoomable"/>
           </a>
         </div>
         <div class="content">
@@ -367,8 +380,8 @@
       <!-- Project 9 -->
       <div class="thumbnail-gallery">
         <div class="thumbnail">
-          <a href="images/Team Nikola.png" class="image" onclick="showFullScreenImage('images/Team Nikola.png', event)">
-            <img src="images/Team Nikola_thumbnail.png" alt="" class="project-thumbnail"/>
+          <a href="images/Team Nikola.png" onclick="showFullScreenImage('images/Team Nikola.png', event)">
+            <img src="images/Team Nikola_thumbnail.png" alt="Team Nikola Thumbnail" class="project-thumbnail zoomable"/>
           </a>
         </div>
         <div class="content">
@@ -383,8 +396,8 @@
       <!-- Project 10 -->
       <div class="thumbnail-gallery">
         <div class="thumbnail">
-          <a href="images/Team Vector.png" class="image" onclick="showFullScreenImage('images/Team Vector.png', event)">
-            <img src="images/Team Vector_thumbnail.png" alt="" class="project-thumbnail"/>
+          <a href="images/Team Vector.png" onclick="showFullScreenImage('images/Team Vector.png', event)">
+            <img src="images/Team Vector_thumbnail.png" alt="Team Vector Thumbnail" class="project-thumbnail zoomable"/>
           </a>
         </div>
         <div class="content">
@@ -396,7 +409,7 @@
         </div>
       </div>
 
-    </section>
+    </section> <!-- end #three -->
 
     <!-- Contact Information -->
     <section id="four" class="wrapper style1 fade-up">
@@ -419,8 +432,8 @@
           <section>
             <ul class="contact">
               <li><h3>Email</h3><a href="mailto:sbmeshra@asu.edu">sbmeshra@asu.edu</a></li>
-              <li><h3>Phone</h3><span>+1(480) 919‑5621</span></li>
-              <li><h3>LinkedIn & Resume</h3>
+              <li><h3>Phone</h3><span>+1(480) 919-5621</span></li>
+              <li><h3>LinkedIn &amp; Resume</h3>
                 <ul class="icons">
                   <li><a href="https://www.linkedin.com/in/swapnilmeshram98/" class="icon brands fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
                   <li><a href="pdf/Swapnil_Meshram_Resume.pdf" class="icon fa-file"><span class="label">Resume</span></a></li>
@@ -430,15 +443,14 @@
           </section>
         </div>
       </div>
-    </section>
+    </section> <!-- end #four -->
 
-  </div>
+  </div> <!-- end #wrapper -->
 
   <!-- Footer -->
   <footer id="footer" class="wrapper style1-alt">
     <div class="inner">
-      <ul class="menu"><li>&copy; 2023 Swapnil Meshram</li></ul>
-      <!-- Visitor Map Section commented out by default -->
+      <ul class="menu"><li>&copy; 2023 Swapnil Meshram</li></ul>
     </div>
   </footer>
 
@@ -450,8 +462,6 @@
   <script src="assets/js/breakpoints.min.js"></script>
   <script src="assets/js/util.js"></script>
   <script src="assets/js/main.js"></script>
-
-  <!-- Slick for the work‑experience slider -->
   <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
   <script>
     // Contact form
@@ -466,92 +476,97 @@
         formMsg.classList.add('error');
         return;
       }
-      const nameF = document.getElementById('name');
-      const emailF = document.getElementById('email');
+      const nameF = document.getElementById('name'), emailF = document.getElementById('email');
       if (!nameF.value.trim()) {
-        formMsg.textContent = "Please enter your name.";
-        formMsg.classList.add('error');
-        return;
+        formMsg.textContent = "Please enter your name."; formMsg.classList.add('error'); return;
       }
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       if (!emailRegex.test(emailF.value.trim())) {
-        formMsg.textContent = "Please enter a valid email address.";
-        formMsg.classList.add('error');
-        return;
+        formMsg.textContent = "Please enter a valid email address."; formMsg.classList.add('error'); return;
       }
-      formMsg.textContent = '';
-      formMsg.classList.remove('error');
-      submitButton.disabled = true;
-      submitButton.textContent = "Sending...";
-      fetch('https://formspree.io/f/mbjvpbqa', {
-        method: 'POST',
-        body: new FormData(form)
-      })
-      .then(res => {
-        submitButton.disabled = false;
-        submitButton.textContent = "Send Message";
-        if (res.ok) {
-          formMsg.textContent = "Thanks for your message! I'll get back to you soon.";
-          formMsg.classList.remove('error');
-          form.reset();
-        } else {
-          throw new Error('Network response was not ok.');
-        }
-      })
-      .catch(err => {
-        submitButton.disabled = false;
-        submitButton.textContent = "Send Message";
-        console.error(err);
-        formMsg.textContent = "Oops, something went wrong. Please try again later or email me directly.";
-        formMsg.classList.add('error');
-      });
+      formMsg.textContent = ''; formMsg.classList.remove('error');
+      submitButton.disabled = true; submitButton.textContent = "Sending...";
+      fetch(form.action, { method:'POST', body:new FormData(form) })
+        .then(res => {
+          submitButton.disabled = false; submitButton.textContent = "Send Message";
+          if (res.ok) {
+            formMsg.textContent = "Thanks for your message! I'll get back to you soon.";
+            form.reset();
+          } else throw new Error('Network response was not ok.');
+        })
+        .catch(() => {
+          submitButton.disabled = false; submitButton.textContent = "Send Message";
+          formMsg.textContent = "Oops, something went wrong. Please try again later or email me directly.";
+          formMsg.classList.add('error');
+        });
     });
 
-    // Work-experience slider
+    // Slick slider init
     $(document).ready(() => {
       $('.slider').slick({
-        autoplay: true,
-        dots: true,
-        arrows: true,
-        infinite: true,
-        speed: 800,
-        slidesToShow: 1,
-        slidesToScroll: 1
+        autoplay: true, dots: true, arrows: true,
+        infinite: true, speed: 800,
+        slidesToShow: 1, slidesToScroll: 1
       });
     });
 
-    // Fullscreen image/video
-    function showFullScreenImage(src,e) {
+    // Show full-screen image/video with zoom
+    function showFullScreenImage(src, e) {
       e.preventDefault();
-      document.getElementById('sidebar').style.display='none';
+      document.getElementById('sidebar').style.display = 'none';
       document.body.classList.add('fullscreen-mode');
-      const d=document.createElement('div');
-      d.className='fullscreen-image';
-      d.innerHTML=`<div class="close-button" onclick="closeFullScreen()"></div><img src="${src}" alt="Full Screen Image"/>`;
-      document.body.appendChild(d);
       document.getElementById('wrapper').classList.add('blurred-background');
+
+      const overlay = document.createElement('div');
+      overlay.className = 'fullscreen-image';
+      let scale = 1;
+
+      overlay.innerHTML = `
+        <div class="close-button" onclick="closeFullScreen()"></div>
+        <div class="zoom-controls">
+          <button class="zoom-btn zoom-in">+</button>
+          <button class="zoom-btn zoom-out">–</button>
+        </div>
+        <img src="${src}" alt="Full Screen Image" class="zoomable"/>
+      `;
+      document.body.appendChild(overlay);
+
+      const img = overlay.querySelector('.zoomable');
+      img.style.transformOrigin = 'center center';
+      img.style.transform = `scale(${scale})`;
+
+      // wheel-to-zoom
+      overlay.addEventListener('wheel', evt => {
+        evt.preventDefault();
+        scale *= (evt.deltaY < 0 ? 1.1 : 0.9);
+        scale = Math.min(Math.max(0.5, scale), 3);
+        img.style.transform = `scale(${scale})`;
+      }, { passive: false });
+
+      // button zoom
+      overlay.querySelector('.zoom-in').onclick = () => {
+        scale = Math.min(scale * 1.2, 3);
+        img.style.transform = `scale(${scale})`;
+      };
+      overlay.querySelector('.zoom-out').onclick = () => {
+        scale = Math.max(scale * 0.8, 0.5);
+        img.style.transform = `scale(${scale})`;
+      };
     }
-    function playFullScreen(src) {
-      const d=document.createElement('div');
-      d.className='fullscreen-video';
-      d.innerHTML=`<div class="close-button" onclick="closeFullScreen()"></div><video src="${src}" controls autoplay></video>`;
-      document.body.appendChild(d);
-      document.getElementById('wrapper').classList.add('blurred-background');
-    }
+
+    // Close full-screen
     function closeFullScreen() {
-      const f=document.querySelector('.fullscreen-video')||document.querySelector('.fullscreen-image');
-      if(f)document.body.removeChild(f);
-      document.getElementById('wrapper').classList.remove('blurred-background');
+      const overlay = document.querySelector('.fullscreen-image');
+      if (overlay) document.body.removeChild(overlay);
       document.body.classList.remove('fullscreen-mode');
-      const sb=document.getElementById('sidebar');
-      if(window.innerWidth>768) sb.style.display='block';
-      else sb.style.display='';
+      document.getElementById('wrapper').classList.remove('blurred-background');
+      document.getElementById('sidebar').style.display = window.innerWidth > 736 ? 'block' : '';
     }
 
     // Hamburger toggle
     document.addEventListener('DOMContentLoaded', () => {
-      const hb=document.querySelector('.hamburger'),
-            sb=document.getElementById('sidebar');
+      const hb = document.querySelector('.hamburger'),
+            sb = document.getElementById('sidebar');
       hb.addEventListener('click', () => {
         hb.classList.toggle('active');
         sb.classList.toggle('active');
