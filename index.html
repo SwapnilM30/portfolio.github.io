@@ -142,6 +142,9 @@
       width: 32px; height: 32px; border: none; border-radius: 4px;
       background: rgba(255,255,255,0.8); font-size: 1.2rem;
       cursor: pointer;
+      color: #283a8b !important;
+      font-size: 1.5rem !important;
+      font-weight: bold !important;
     }
     .zoom-btn:hover { background: #fff; }
 
@@ -511,57 +514,58 @@
     });
 
     // Show full-screen image/video with zoom
-    function showFullScreenImage(src, e) {
-      e.preventDefault();
-      document.getElementById('sidebar').style.display = 'none';
-      document.body.classList.add('fullscreen-mode');
-      document.getElementById('wrapper').classList.add('blurred-background');
+  function showFullScreenImage(src, e) {
+  e.preventDefault();
+  document.getElementById('sidebar').style.display = 'none';
+  document.body.classList.add('fullscreen-mode');
+  document.getElementById('wrapper').classList.add('blurred-background');
 
-      const overlay = document.createElement('div');
-      overlay.className = 'fullscreen-image';
-      let scale = 1;
+  const overlay = document.createElement('div');
+  overlay.className = 'fullscreen-image';
+  let scale = 1;
 
-      overlay.innerHTML = `
-        <div class="close-button" onclick="closeFullScreen()"></div>
-        <div class="zoom-controls">
-          <button class="zoom-btn zoom-in">+</button>
-          <button class="zoom-btn zoom-out">–</button>
-        </div>
-        <img src="${src}" alt="Full Screen Image" class="zoomable"/>
-      `;
-      document.body.appendChild(overlay);
+  overlay.innerHTML = `
+    <div class="close-button" onclick="closeFullScreen()"></div>
+    <div class="zoom-controls">
+      <button class="zoom-btn zoom-in">+</button>
+      <button class="zoom-btn zoom-out">-</button>
+    </div>
+    <img src="${src}" alt="Full Screen Image" class="zoomable"/>
+  `;
+  document.body.appendChild(overlay);
 
-      const img = overlay.querySelector('.zoomable');
-      img.style.transformOrigin = 'center center';
-      img.style.transform = `scale(${scale})`;
+  const img = overlay.querySelector('.zoomable');
+  img.style.transformOrigin = 'center center';
+  img.style.transform = `scale(${scale})`;
 
-      // wheel-to-zoom
-      overlay.addEventListener('wheel', evt => {
-        evt.preventDefault();
-        scale *= (evt.deltaY < 0 ? 1.1 : 0.9);
-        scale = Math.min(Math.max(0.5, scale), 3);
-        img.style.transform = `scale(${scale})`;
-      }, { passive: false });
+  // wheel-to-zoom
+  overlay.addEventListener('wheel', evt => {
+    evt.preventDefault();
+    scale *= (evt.deltaY < 0 ? 1.1 : 0.9);
+    scale = Math.min(Math.max(0.5, scale), 3);
+    img.style.transform = `scale(${scale})`;
+  }, { passive: false });
 
-      // button zoom
-      overlay.querySelector('.zoom-in').onclick = () => {
-        scale = Math.min(scale * 1.2, 3);
-        img.style.transform = `scale(${scale})`;
-      };
-      overlay.querySelector('.zoom-out').onclick = () => {
-        scale = Math.max(scale * 0.8, 0.5);
-        img.style.transform = `scale(${scale})`;
-      };
-    }
+  // button zoom
+  overlay.querySelector('.zoom-in').onclick = () => {
+    scale = Math.min(scale * 1.2, 3);
+    img.style.transform = `scale(${scale})`;
+  };
+  overlay.querySelector('.zoom-out').onclick = () => {
+    scale = Math.max(scale * 0.8, 0.5);
+    img.style.transform = `scale(${scale})`;
+  };
+}
 
-    // Close full-screen
-    function closeFullScreen() {
-      const overlay = document.querySelector('.fullscreen-image');
-      if (overlay) document.body.removeChild(overlay);
-      document.body.classList.remove('fullscreen-mode');
-      document.getElementById('wrapper').classList.remove('blurred-background');
-      document.getElementById('sidebar').style.display = window.innerWidth > 736 ? 'block' : '';
-    }
+// Close full-screen
+function closeFullScreen() {
+  const overlay = document.querySelector('.fullscreen-image');
+  if (overlay) document.body.removeChild(overlay);
+  document.body.classList.remove('fullscreen-mode');
+  document.getElementById('wrapper').classList.remove('blurred-background');
+  document.getElementById('sidebar').style.display = window.innerWidth > 736 ? 'block' : '';
+}
+
 
     // Hamburger toggle
     document.addEventListener('DOMContentLoaded', () => {
