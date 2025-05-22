@@ -44,6 +44,7 @@
     border: 1px solid rgba(50,50,50,0.5);
     border-radius: 4px;
     padding: 0.5rem;
+    overflow: hidden;
   }
   .content-with-image .profile-image {
     display: block;
@@ -59,7 +60,7 @@
   @media (max-width: 768px) {
     .content-with-image { flex-direction: column; }
     .content-with-image .image-container,
-    .content-with-image .text-container { flex: none; width: auto; }
+    .content-with-image .text-container { flex: none; width: 100%; }
   }
 
   .underline { margin-top: 20px; margin-bottom: 10px; }
