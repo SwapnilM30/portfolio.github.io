@@ -133,19 +133,20 @@
 }
 
 .zoom-btn {
-  background: rgba(0, 0, 0, 0.6);
+  box-sizing: content-box;        /* ensure width/height are pure content */
+  margin: 0;
+  padding: 0;
+  width: 25px;
+  height: 25px;
+  background: rgba(0,0,0,0.6);
   color: #fff;
-  font-size: 1.2rem;
-  width: 36px;
-  height: 36px;
   border: none;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  cursor: pointer;
-  transition: background 0.1s ease-out;
 }
+
 
 .zoom-btn:hover,
 .zoom-btn:focus {
