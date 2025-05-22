@@ -120,38 +120,37 @@
     cursor: grab;
     transition: transform 0.1s ease-out;
   }
+
   .zoom-controls {
-  position: absolute;
-  bottom: 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.25rem 0.75rem;    /* vertical / horizontal padding */
+  background: rgba(0,0,0,0.6);
+  border-radius: 9999px;       /* fully rounded ends */
+  bottom: 1rem;
   left: 50%;
   transform: translateX(-50%);
-  display: inline-flex;
-  gap: 8px;
-  align-items: center;
   z-index: 10001;
-  background: rgba(0,0,0,0.6);
-}
+  }
 
-.zoom-btn {
-  box-sizing: content-box;        /* ensure width/height are pure content */
-  margin: 0;
-  padding: 0;
-  width: 35px;
-  height: 35px;
-  background: rgba(0,0,0,0.6);
-  color: #fff !important; 
+  .zoom-btn {
+  background: transparent;     /* remove per-button circle */
   border: none;
-  border-radius: 50%;
+  width: auto; height: auto;   /* let padding define hit area */
+  padding: 0.25rem;            /* click‐area around the icon */
   display: flex;
   align-items: center;
   justify-content: center;
-}
+  cursor: pointer;
+  color: #fff;                 /* icon color */
+  font-size: 1.25rem;          /* scale the icon up a bit */
+  }
 
-.zoom-btn:hover,
-.zoom-btn:focus {
-  background: rgba(0, 0, 0, 0.85);
-  outline: none;
-}
+  .zoom-btn:hover {
+  background: rgba(255,255,255,0.15);
+  border-radius: 50%;
+  }
 
   /* Hamburger Menu Icon */
   .hamburger { display: block; cursor: pointer; }
