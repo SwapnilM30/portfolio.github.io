@@ -121,34 +121,37 @@
     transition: transform 0.1s ease-out;
   }
   .zoom-controls {
-    position: absolute;
-    bottom: 12px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: rgb(165, 165, 165, 0.2);
-    padding: 2px 4px;
-    border-radius: 18px;
-    display: flex;
-    gap: 8px;
-    align-items: center;
-    z-index: 10001;
-  }
-  .zoom-btn {
-    background: transparent;
-    border: 1px solid rgba(0, 0, 0, 0.8);
-    color: rgba(0, 0, 0, 0.8);
-    font-size: 0.75rem;
-    width: 10px;
-    height: 15px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-  }
-  .zoom-btn:hover {
-    background: rgba(255,255,255,0.6);
-    border-radius: 1px;
-  }
+  position: absolute;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  z-index: 10001;
+  background: transparent;
+}
+
+.zoom-btn {
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  font-size: 1.2rem;
+  width: 36px;
+  height: 36px;
+  border: none;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.1s ease-out;
+}
+
+.zoom-btn:hover,
+.zoom-btn:focus {
+  background: rgba(0, 0, 0, 0.85);
+  outline: none;
+}
 
   /* Hamburger Menu Icon */
   .hamburger { display: block; cursor: pointer; }
