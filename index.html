@@ -8,176 +8,165 @@
 
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+
+  <!-- FontAwesome -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+  />
+
   <link rel="stylesheet" href="assets/css/main.css" />
   <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 
-<style>
-  /* Load FontAwesome for the reset icon */
-  @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css');
+  <style>
+    /* ClustrMaps: minimal styling */
+    #visitor-map { width: 100%; }
+    #clustrmaps { border: none; box-shadow: none; }
+    .map-legend { margin-top: 20px; text-align: center; }
+    .map-legend h3 { margin-bottom: 10px; font-size: 1.125rem; }
+    .map-legend span { display: inline-block; width: 20px; height: 20px; border-radius: 50%; margin-right: 8px; }
 
-  /* ClustrMaps: minimal styling */
-  #visitor-map { width: 100%; }
-  #clustrmaps { border: none; box-shadow: none; }
-  .map-legend { margin-top: 20px; text-align: center; }
-  .map-legend h3 { margin-bottom: 10px; font-size: 1.125rem; }
-  .map-legend span { display: inline-block; width: 20px; height: 20px; border-radius: 50%; margin-right: 8px; }
+    /* Existing/General Styles */
+    .slider { border: 1px solid rgba(50,50,50,0.5); padding: 15px; margin: 0 auto; max-width: 300px; }
+    #one { padding-top: 20px; padding-bottom: 20px; }
+    .text-justify { margin-top: 10px; }
+    .text-justify.abc { margin-top: 10px; }
+    .inner-heading { text-align: center; padding: 20px; }
 
-  /* Existing/General Styles */
-  .slider { border: 1px solid rgba(50,50,50,0.5); padding: 15px; margin: 0 auto; max-width: 300px; }
-  #one { padding-top: 20px; padding-bottom: 20px; }
-  .text-justify { margin-top: 10px; }
-  .text-justify.abc { margin-top: 10px; }
-  .inner-heading { text-align: center; padding: 20px; }
+    /* About Me Section: flex-based for equal-height columns */
+    .content-with-image {
+      display: flex;
+      align-items: stretch;   /* make image & text same height */
+      gap: 1rem;              /* space between image & text */
+      max-width: 1225px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    .content-with-image .image-container {
+      flex: 0 0 28.5%;
+      max-width: 28.5%;
+      border: 1px solid rgba(50,50,50,0.5);
+      border-radius: 4px;
+      padding: 0.5rem;
+      overflow: hidden;
+    }
+    .content-with-image .profile-image {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .content-with-image .text-container {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    @media (max-width: 768px) {
+      .content-with-image { flex-direction: column; }
+      .content-with-image .image-container,
+      .content-with-image .text-container { flex: none; width: 100%; max-width: none; }
+    }
 
-  /* About Me Section: flex-based for equal-height columns */
-  .content-with-image {
-    display: flex;
-    align-items: stretch;   /* make image & text same height */
-    gap: 1rem;              /* space between image & text */
-    max-width: 1225px;
-    margin: 0 auto;
-    padding: 0 20px;
-  }
-  .content-with-image .image-container {
-    flex: 0 0 28.5%;
-    max-width: 28.5%;
-    border: 1px solid rgba(50,50,50,0.5);
-    border-radius: 4px;
-    padding: 0.5rem;
-    overflow: hidden;
-  }
-  .content-with-image .profile-image {
-    display: block;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-  .content-with-image .text-container {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-  @media (max-width: 768px) {
-    .content-with-image { flex-direction: column; }
-    .content-with-image .image-container,
-    .content-with-image .text-container { flex: none; width: 100%; max-width: none; }
-  }
+    .underline { margin-top: 20px; margin-bottom: 10px; }
+    p.underline { text-decoration: underline; padding-bottom: 10px; }
+    .video-container { position: relative; display: inline-block; }
+    .play-icon {
+      position: absolute; top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 64px; height: 64px;
+      background: url('images/play-icon.png') no-repeat center center;
+      background-size: cover; opacity: 0.8;
+      cursor: pointer; transition: transform .25s ease;
+    }
+    .play-icon:hover { transform: translate(-50%, -50%) scale(1.2); }
 
-  .underline { margin-top: 20px; margin-bottom: 10px; }
-  p.underline { text-decoration: underline; padding-bottom: 10px; }
-  .video-container { position: relative; display: inline-block; }
-  .play-icon {
-    position: absolute; top: 50%; left: 50%;
-    transform: translate(-50%, -50%);
-    width: 64px; height: 64px;
-    background: url('images/play-icon.png') no-repeat center center;
-    background-size: cover; opacity: 0.8;
-    cursor: pointer; transition: transform .25s ease;
-  }
-  .play-icon:hover { transform: translate(-50%, -50%) scale(1.2); }
-  .fullscreen-video, .fullscreen-image {
-    position: fixed; top: 0; left: 0;
-    width: 100%; height: 100%;
-    background: rgba(0,0,0,0.8); z-index: 9999;
-    display: flex; justify-content: center; align-items: center;
-  }
-  .fullscreen-video video, .fullscreen-image img {
-    max-width: 90%; max-height: 90%;
-  }
-  .blurred-background { filter: blur(5px); }
-  .close-button {
-    position: absolute; top: 25px; right: 25px;
-    width: 32px; height: 32px;
-    background: url('images/close-icon.png') no-repeat center center;
-    background-size: cover; cursor: pointer; z-index: 10000;
-  }
-  .form-message { margin-top: 15px; font-size: 1.1rem; color: #4caf50; }
-  .form-message.error { color: #f44336; }
+    /* Fullscreen overlay: dark background, centering & pinch-disabled */
+    .fullscreen-video,
+    .fullscreen-image {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.8);
+      z-index: 9999;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      touch-action: none;
+    }
+    .fullscreen-video video, .fullscreen-image img {
+      max-width: 90%; max-height: 90%;
+    }
 
-  /* ========== Projects Section (Original thumbnail‐gallery) ========== */
-  #three.spotlights .thumbnail-gallery {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    margin-bottom: 2rem;
-    border: none;
-    padding: 1rem;
-    border-radius: 0;
-  }
-  #three.spotlights .thumbnail-gallery .thumbnail {
-    flex: 1; padding-right: 0.5rem;
-  }
-  #three.spotlights .thumbnail-gallery .content {
-    flex: 2; padding-left: 0.5rem;
-  }
-  @media (max-width: 768px) {
-    #three.spotlights .thumbnail-gallery { flex-direction: column; gap:1rem; }
-    #three.spotlights .thumbnail-gallery .thumbnail,
-    #three.spotlights .thumbnail-gallery .content { padding:0; }
-  }
+    .blurred-background { filter: blur(5px); }
+    .close-button {
+      position: absolute; top: 25px; right: 25px;
+      width: 32px; height: 32px;
+      background: url('images/close-icon.png') no-repeat center center;
+      background-size: cover; cursor: pointer; z-index: 10000;
+    }
+    .form-message { margin-top: 15px; font-size: 1.1rem; color: #4caf50; }
+    .form-message.error { color: #f44336; }
 
-  /* Zoom‐in/out/reset controls */
-  .fullscreen-image img.zoomable {
-    cursor: grab;
-    transition: transform 0.1s ease-out;
-  }
+    /* ========== Projects Section ========== */
+    #three.spotlights .thumbnail-gallery {
+      display: flex; align-items: center;
+      gap: 1rem; margin-bottom: 2rem;
+      border: none; padding: 1rem; border-radius: 0;
+    }
+    #three.spotlights .thumbnail-gallery .thumbnail { flex: 1; padding-right: .5rem; }
+    #three.spotlights .thumbnail-gallery .content   { flex: 2; padding-left: .5rem; }
+    @media (max-width: 768px) {
+      #three.spotlights .thumbnail-gallery { flex-direction: column; gap:1rem; }
+      #three.spotlights .thumbnail-gallery .thumbnail,
+      #three.spotlights .thumbnail-gallery .content { padding:0; }
+    }
 
-  .zoom-controls {
-  position: absolute;      /* take it out of the flow */  
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.25rem 0.75rem;    /* vertical / horizontal padding */
-  background: rgba(0,0,0,0.6);
-  border-radius: 9999px;       /* fully rounded ends */
-  bottom: 1rem;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 10001;
-  }
+    /* Zoom controls */
+    .zoom-controls {
+      position: absolute;
+      bottom: 1rem; left: 50%;
+      transform: translateX(-50%);
+      display: inline-flex; align-items: center;
+      gap: .5rem; padding: .25rem .75rem;
+      background: rgba(0,0,0,0.6);
+      border-radius: 9999px; z-index: 10001;
+      opacity: 0; transition: opacity .3s ease;
+    }
+    .fullscreen-image:hover .zoom-controls,
+    .zoom-controls:focus-within { opacity: 1; }
 
-  .zoom-btn {
-  background: transparent;     /* remove per-button circle */
-  border: none;
-  width: auto; height: auto;   /* let padding define hit area */
-  padding: 0.25rem;            /* click‐area around the icon */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  color: #fff !important;                /* icon color */
-  font-size: 1rem;          /* scale the icon up a bit */
-  }
+    .zoom-btn {
+      background: transparent; border: none;
+      padding: .25rem; display: flex;
+      align-items: center; justify-content: center;
+      cursor: pointer; color: #fff !important;
+      font-size: 1rem;
+    }
+    .zoom-btn:hover { background: rgba(255,255,255,0.15); border-radius: 50%; }
+    .zoom-btn:focus { outline: 2px solid #fff; outline-offset: 2px; }
 
-  .zoom-btn:hover {
-  background: rgba(255,255,255,0.15);
-  border-radius: 50%;
-  }
-
-  /* Hamburger Menu Icon */
-  .hamburger { display: block; cursor: pointer; }
-  .hamburger div {
-    width: 35px; height: 5px; background-color: #283a8b;
-    margin: 5px; transition: all 0.3s ease;
-  }
-  .hamburger.active div:nth-child(1) {
-    transform: rotate(-45deg) translate(-5px, 6px);
-  }
-  .hamburger.active div:nth-child(2) { opacity: 0; }
-  .hamburger.active div:nth-child(3) {
-    transform: rotate(45deg) translate(-5px, -6px);
-  }
-  @media (max-width: 736px) {
-    .hamburger { position: fixed; top: 20px; right: 20px; z-index: 10001; }
-  }
-</style>
-
+    /* Hamburger Menu Icon */
+    .hamburger { display: block; cursor: pointer; }
+    .hamburger div {
+      width: 35px; height: 5px; background-color: #283a8b;
+      margin: 5px; transition: all .3s ease;
+    }
+    .hamburger.active div:nth-child(1) { transform: rotate(-45deg) translate(-5px,6px); }
+    .hamburger.active div:nth-child(2) { opacity: 0; }
+    .hamburger.active div:nth-child(3) { transform: rotate(45deg) translate(-5px,-6px); }
+    @media (max-width:736px) {
+      .hamburger { position: fixed; top:20px; right:20px; z-index:10001; }
+    }
+  </style>
 
   <!-- Include Slick Carousel CSS -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" />
 </head>
+
 <body class="is-preload">
 
   <!-- Hamburger Menu -->
@@ -521,60 +510,89 @@
       });
     });
 
-// Show full-screen image/video with zoom
 function showFullScreenImage(src, e) {
   e.preventDefault();
+
+  // Hide sidebar & blur page
   document.getElementById('sidebar').style.display = 'none';
   document.body.classList.add('fullscreen-mode');
   document.getElementById('wrapper').classList.add('blurred-background');
 
+  // Create overlay
   const overlay = document.createElement('div');
   overlay.className = 'fullscreen-image';
-  let scale = 1;
+  overlay.style.touchAction = 'none'; // disable native pinch-zoom
 
   overlay.innerHTML = `
     <div class="close-button" onclick="closeFullScreen()"></div>
     <div class="zoom-controls">
-      <button class="zoom-btn zoom-out"><i class="fas fa-minus"></i></button>
-      <button class="zoom-btn zoom-reset"><i class="fas fa-search"></i></button>
-      <button class="zoom-btn zoom-in"><i class="fas fa-plus"></i></button>
+      <button class="zoom-btn zoom-out" aria-label="Zoom out"><i class="fas fa-minus"></i></button>
+      <button class="zoom-btn zoom-reset" aria-label="Reset zoom"><i class="fas fa-search"></i></button>
+      <button class="zoom-btn zoom-in" aria-label="Zoom in"><i class="fas fa-plus"></i></button>
     </div>
     <img src="${src}" alt="Full Screen Image" class="zoomable"/>
   `;
   document.body.appendChild(overlay);
 
+  // Grab the image and set up initial scale
   const img = overlay.querySelector('.zoomable');
   img.style.transformOrigin = 'center center';
+  let scale = 1;
   img.style.transform = `scale(${scale})`;
 
-  // wheel-to-zoom
+  // 1) Wheel-to-zoom
   overlay.addEventListener('wheel', evt => {
     evt.preventDefault();
     scale *= (evt.deltaY < 0 ? 1.1 : 0.9);
-    scale = Math.min(Math.max(0.5, scale), 3);
+    scale = Math.min(Math.max(scale, 0.5), 3);
     img.style.transform = `scale(${scale})`;
   }, { passive: false });
 
-  // button zoom-in
+  // 2) Button zoom-in/out/reset
   overlay.querySelector('.zoom-in').onclick = () => {
     scale = Math.min(scale * 1.2, 3);
     img.style.transform = `scale(${scale})`;
   };
-
-  // button zoom-out
   overlay.querySelector('.zoom-out').onclick = () => {
     scale = Math.max(scale * 0.8, 0.5);
     img.style.transform = `scale(${scale})`;
   };
-
-  // button reset
   overlay.querySelector('.zoom-reset').onclick = () => {
     scale = 1;
     img.style.transform = `scale(${scale})`;
   };
+
+  // 3) Pinch-to-zoom
+  function getDistance(t1, t2) {
+    const dx = t1.clientX - t2.clientX;
+    const dy = t1.clientY - t2.clientY;
+    return Math.hypot(dx, dy);
+  }
+  let initialPinchDist = null;
+
+  overlay.addEventListener('touchstart', evt => {
+    if (evt.touches.length === 2) {
+      initialPinchDist = getDistance(evt.touches[0], evt.touches[1]);
+    }
+  }, { passive: false });
+
+  overlay.addEventListener('touchmove', evt => {
+    if (evt.touches.length === 2 && initialPinchDist !== null) {
+      evt.preventDefault();
+      const newDist = getDistance(evt.touches[0], evt.touches[1]);
+      const pinchRatio = newDist / initialPinchDist;
+      scale = Math.min(Math.max(scale * pinchRatio, 0.5), 3);
+      img.style.transform = `scale(${scale})`;
+      initialPinchDist = newDist;
+    }
+  }, { passive: false });
+
+  overlay.addEventListener('touchend', evt => {
+    if (evt.touches.length < 2) initialPinchDist = null;
+  });
 }
 
-// Close full-screen
+// Make sure you have this function too:
 function closeFullScreen() {
   const overlay = document.querySelector('.fullscreen-image');
   if (overlay) document.body.removeChild(overlay);
@@ -582,7 +600,6 @@ function closeFullScreen() {
   document.getElementById('wrapper').classList.remove('blurred-background');
   document.getElementById('sidebar').style.display = window.innerWidth > 736 ? 'block' : '';
 }
-
 
     // Hamburger toggle
     document.addEventListener('DOMContentLoaded', () => {
