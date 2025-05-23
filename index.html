@@ -33,11 +33,11 @@
     .text-justify.abc { margin-top: 10px; }
     .inner-heading { text-align: center; padding: 20px; }
 
-    /* About Me Section: flex-based for equal-height columns */
+    /* About Me Section */
     .content-with-image {
       display: flex;
-      align-items: stretch;   /* make image & text same height */
-      gap: 1rem;              /* space between image & text */
+      align-items: stretch;
+      gap: 1rem;
       max-width: 1225px;
       margin: 0 auto;
       padding: 0 20px;
@@ -65,7 +65,7 @@
     @media (max-width: 768px) {
       .content-with-image { flex-direction: column; }
       .content-with-image .image-container,
-      .content-with-image .text-container { flex: none; width: 100%; max-width: none; }
+      .content-with-image .text-container { width: 100%; max-width: none; }
     }
 
     .underline { margin-top: 20px; margin-bottom: 10px; }
@@ -81,25 +81,19 @@
     }
     .play-icon:hover { transform: translate(-50%, -50%) scale(1.2); }
 
-    /* Fullscreen overlay: dark background, centering & pinch-disabled */
+    /* Fullscreen overlay */
     .fullscreen-video,
     .fullscreen-image {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+      position: fixed; top: 0; left: 0;
+      width: 100%; height: 100%;
       background: rgba(0,0,0,0.8);
       z-index: 9999;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      display: flex; justify-content: center; align-items: center;
       touch-action: none;
     }
     .fullscreen-video video, .fullscreen-image img {
       max-width: 90%; max-height: 90%;
     }
-
     .blurred-background { filter: blur(5px); }
     .close-button {
       position: absolute; top: 25px; right: 25px;
@@ -110,7 +104,7 @@
     .form-message { margin-top: 15px; font-size: 1.1rem; color: #4caf50; }
     .form-message.error { color: #f44336; }
 
-    /* ========== Projects Section ========== */
+    /* Projects Section */
     #three.spotlights .thumbnail-gallery {
       display: flex; align-items: center;
       gap: 1rem; margin-bottom: 2rem;
@@ -124,56 +118,24 @@
       #three.spotlights .thumbnail-gallery .content { padding:0; }
     }
 
-/* Zoom‐in/out/reset controls */
-.fullscreen-image img.zoomable {
-  cursor: grab;               /* original grab cursor */
-  touch-action: none;         /* still disable native pinch-zoom */
-  transition: transform 0.1s ease-out;
-}
+    /* Zoom controls */
+    .fullscreen-image img.zoomable { cursor: grab; touch-action: none; transition: transform 0.1s ease-out; }
+    .zoom-controls {
+      position: absolute; display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.25rem 0.75rem; background: rgba(0,0,0,0.6); border-radius: 9999px;
+      bottom: 1rem; left: 50%; transform: translateX(-50%); z-index: 10001;
+      opacity: 0; transition: opacity 0.3s ease;
+    }
+    .fullscreen-image:hover .zoom-controls,
+    .zoom-controls:focus-within { opacity: 1; }
+    .zoom-btn {
+      background: transparent; border: none; padding: 0.25rem;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; color: #fff !important; font-size: 1rem;
+    }
+    .zoom-btn:hover { background: rgba(255,255,255,0.15); border-radius: 50%; }
 
-.zoom-controls {
-  position: absolute;         /* take it out of the flow */
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.25rem 0.75rem;    /* vertical / horizontal padding */
-  background: rgba(0,0,0,0.6);
-  border-radius: 9999px;      /* fully rounded ends */
-  bottom: 1rem;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 10001;
-
-  /* start hidden & fade-in on hover/focus */
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  }
-
-  .fullscreen-image:hover .zoom-controls,
-  .zoom-controls:focus-within {
-    opacity: 1;
-}
-
-.zoom-btn {
-  background: transparent;    /* remove per-button circle */
-  border: none;
-  width: auto; height: auto;  /* let padding define hit area */
-  padding: 0.25rem;           /* click‐area around the icon */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  color: #fff !important;     /* icon color */
-  font-size: 1rem;            /* scale the icon up a bit */
-}
-
-.zoom-btn:hover {
-  background: rgba(255,255,255,0.15);
-  border-radius: 50%;
-}
-
-
-    /* Hamburger Menu Icon */
+    /* Hamburger */
     .hamburger { display: block; cursor: pointer; }
     .hamburger div {
       width: 35px; height: 5px; background-color: #283a8b;
@@ -187,14 +149,14 @@
     }
   </style>
 
-  <!-- Include Slick Carousel CSS -->
+  <!-- Slick Carousel CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" />
 </head>
 
 <body class="is-preload">
 
-  <!-- Hamburger Menu -->
+  <!-- Hamburger -->
   <div class="hamburger"><div></div><div></div><div></div></div>
 
   <!-- Sidebar -->
@@ -240,7 +202,12 @@
         <h2 class="name overline-underline">A Curious Journey into Robotics</h2>
         <div class="content-with-image">
           <div class="image-container">
-            <img src="images/PSX_20230124_121449~3.jpg" alt="Swapnil Meshram" class="profile-image" />
+            <img
+              src="images/PSX_20230124_121449~3.jpg"
+              alt="Swapnil Meshram"
+              class="profile-image"
+              loading="lazy"
+            />
           </div>
           <div class="text-container">
             <p class="text-justify para">When I was 14, I became captivated by how infants learn simply by observing the world around them. It left me wondering if machines could develop a similar curiosity and ability to learn from their surroundings. That question sparked a fascination that grew into a deep passion for robotics and machine learning.</p>
@@ -257,7 +224,12 @@
         <h2 class="name overline-underline">Career Chronicles: Unveiling My Tech Odyssey</h2>
         <p class="text-justify">Before starting my master’s degree in Robotics and Autonomous Systems at Arizona State University, I was eager to get my hands dirty and gain real-world experience. My early work experience in the field of robotics and electronics engineering was important because it not only deepened my passion for these domains but also set the stage for my academic journey. Throughout this time, I worked on many projects that challenged me: from designing intricate hardware systems to developing innovative robotics solutions, I constantly spent time sharpening my skills and pushing myself further.</p>
         <div class="slider">
-          <img src="images/AEPL logo.png" alt="AEPL Logo" style="width:200px; display:block; margin:0 auto;"/>
+          <img
+            src="images/AEPL logo.png"
+            alt="AEPL Logo"
+            style="width:200px; display:block; margin:0 auto;"
+            loading="lazy"
+          />
         </div>
         <ul class="actions"><li><a href="aepl.html" class="button">More Details</a></li></ul>
       </div>
@@ -270,7 +242,12 @@
       <div class="thumbnail-gallery">
         <div class="thumbnail">
           <a href="images/slam_thumbnail.png" onclick="showFullScreenImage('images/slam_thumbnail.png', event)">
-            <img src="images/slam_thumbnail.png" alt="SLAM Thumbnail" class="project-thumbnail zoomable"/>
+            <img
+              src="images/slam_thumbnail.png"
+              alt="SLAM Thumbnail"
+              class="project-thumbnail zoomable"
+              loading="lazy"
+            />
           </a>
         </div>
         <div class="content">
@@ -287,7 +264,12 @@
       <div class="thumbnail-gallery">
         <div class="thumbnail">
           <a href="images/edgevision_2.png" onclick="showFullScreenImage('images/edgevision_2.png', event)">
-            <img src="images/edgevision_2.png" alt="EdgeVision Thumbnail" class="project-thumbnail zoomable"/>
+            <img
+              src="images/edgevision_2.png"
+              alt="EdgeVision Thumbnail"
+              class="project-thumbnail zoomable"
+              loading="lazy"
+            />
           </a>
         </div>
         <div class="content">
@@ -300,11 +282,16 @@
         </div>
       </div>
 
-      <!-- Project 3 -->  
+      <!-- Project 3 -->
       <div class="thumbnail-gallery">
         <div class="thumbnail">
           <a href="images/project_1.jpeg" onclick="showFullScreenImage('images/project_1.jpeg', event)">
-            <img src="images/project_1_thumbnail.png" alt="PCB Project Thumbnail" class="project-thumbnail zoomable"/>
+            <img
+              src="images/project_1_thumbnail.png"
+              alt="PCB Project Thumbnail"
+              class="project-thumbnail zoomable"
+              loading="lazy"
+            />
           </a>
         </div>
         <div class="content">
@@ -321,7 +308,12 @@
       <div class="thumbnail-gallery">
         <div class="thumbnail">
           <a href="images/project_2.png" onclick="showFullScreenImage('images/project_2.png', event)">
-            <img src="images/project_2_thumbnail.png" alt="Battery Fuel Gauge Thumbnail" class="project-thumbnail zoomable"/>
+            <img
+              src="images/project_2_thumbnail.png"
+              alt="Battery Fuel Gauge Thumbnail"
+              class="project-thumbnail zoomable"
+              loading="lazy"
+            />
           </a>
         </div>
         <div class="content">
@@ -338,7 +330,12 @@
       <div class="thumbnail-gallery">
         <div class="thumbnail">
           <a href="images/project_3.jpeg" onclick="showFullScreenImage('images/project_3.jpeg', event)">
-            <img src="images/project_3_thumbnail.png" alt="LCD & Relay Board Thumbnail" class="project-thumbnail zoomable"/>
+            <img
+              src="images/project_3_thumbnail.png"
+              alt="LCD & Relay Board Thumbnail"
+              class="project-thumbnail zoomable"
+              loading="lazy"
+            />
           </a>
         </div>
         <div class="content">
@@ -355,7 +352,12 @@
       <div class="thumbnail-gallery">
         <div class="thumbnail">
           <a href="images/project_4.jpg" onclick="showFullScreenImage('images/project_4.jpg', event)">
-            <img src="images/project_4_thumbnail.png" alt="PCB Ruler Thumbnail" class="project-thumbnail zoomable"/>
+            <img
+              src="images/project_4_thumbnail.png"
+              alt="PCB Ruler Thumbnail"
+              class="project-thumbnail zoomable"
+              loading="lazy"
+            />
           </a>
         </div>
         <div class="content">
@@ -372,7 +374,12 @@
       <div class="thumbnail-gallery">
         <div class="thumbnail">
           <a href="images/project_5.png" onclick="showFullScreenImage('images/project_5.png', event)">
-            <img src="images/project_5_thumbnail.png" alt="Line Follower PCB Thumbnail" class="project-thumbnail zoomable"/>
+            <img
+              src="images/project_5_thumbnail.png"
+              alt="Line Follower PCB Thumbnail"
+              class="project-thumbnail zoomable"
+              loading="lazy"
+            />
           </a>
         </div>
         <div class="content">
@@ -389,7 +396,12 @@
       <div class="thumbnail-gallery">
         <div class="thumbnail">
           <a href="images/project_6_thumbnail_image.png" onclick="showFullScreenImage('images/project_6_thumbnail_image.png', event)">
-            <img src="images/project_6_thumbnail.png" alt="Electric Scooter Thumbnail" class="project-thumbnail zoomable"/>
+            <img
+              src="images/project_6_thumbnail.png"
+              alt="Electric Scooter Thumbnail"
+              class="project-thumbnail zoomable"
+              loading="lazy"
+            />
           </a>
         </div>
         <div class="content">
@@ -406,7 +418,12 @@
       <div class="thumbnail-gallery">
         <div class="thumbnail">
           <a href="images/Team Nikola.png" onclick="showFullScreenImage('images/Team Nikola.png', event)">
-            <img src="images/Team Nikola_thumbnail.png" alt="Team Nikola Thumbnail" class="project-thumbnail zoomable"/>
+            <img
+              src="images/Team Nikola_thumbnail.png"
+              alt="Team Nikola Thumbnail"
+              class="project-thumbnail zoomable"
+              loading="lazy"
+            />
           </a>
         </div>
         <div class="content">
@@ -422,7 +439,12 @@
       <div class="thumbnail-gallery">
         <div class="thumbnail">
           <a href="images/Team Vector.png" onclick="showFullScreenImage('images/Team Vector.png', event)">
-            <img src="images/Team Vector_thumbnail.png" alt="Team Vector Thumbnail" class="project-thumbnail zoomable"/>
+            <img
+              src="images/Team Vector_thumbnail.png"
+              alt="Team Vector Thumbnail"
+              class="project-thumbnail zoomable"
+              loading="lazy"
+            />
           </a>
         </div>
         <div class="content">
@@ -535,98 +557,83 @@
       });
     });
 
-function showFullScreenImage(src, e) {
-  e.preventDefault();
-
-  // Hide sidebar & blur page
-  document.getElementById('sidebar').style.display = 'none';
-  document.body.classList.add('fullscreen-mode');
-  document.getElementById('wrapper').classList.add('blurred-background');
-
-  // Create overlay
-  const overlay = document.createElement('div');
-  overlay.className = 'fullscreen-image';
-  overlay.style.touchAction = 'none'; // disable native pinch-zoom
-
-  overlay.innerHTML = `
-    <div class="close-button" onclick="closeFullScreen()"></div>
-    <div class="zoom-controls">
-      <button class="zoom-btn zoom-out" aria-label="Zoom out"><i class="fas fa-minus"></i></button>
-      <button class="zoom-btn zoom-reset" aria-label="Reset zoom"><i class="fas fa-search"></i></button>
-      <button class="zoom-btn zoom-in" aria-label="Zoom in"><i class="fas fa-plus"></i></button>
-    </div>
-    <img src="${src}" alt="Full Screen Image" class="zoomable"/>
-  `;
-  document.body.appendChild(overlay);
-
-  // Grab the image and set up initial scale
-  const img = overlay.querySelector('.zoomable');
-  img.style.transformOrigin = 'center center';
-  let scale = 1;
-  img.style.transform = `scale(${scale})`;
-
-  // 1) Wheel-to-zoom
-  overlay.addEventListener('wheel', evt => {
-    evt.preventDefault();
-    scale *= (evt.deltaY < 0 ? 1.1 : 0.9);
-    scale = Math.min(Math.max(scale, 0.5), 3);
-    img.style.transform = `scale(${scale})`;
-  }, { passive: false });
-
-  // 2) Button zoom-in/out/reset
-  overlay.querySelector('.zoom-in').onclick = () => {
-    scale = Math.min(scale * 1.2, 3);
-    img.style.transform = `scale(${scale})`;
-  };
-  overlay.querySelector('.zoom-out').onclick = () => {
-    scale = Math.max(scale * 0.8, 0.5);
-    img.style.transform = `scale(${scale})`;
-  };
-  overlay.querySelector('.zoom-reset').onclick = () => {
-    scale = 1;
-    img.style.transform = `scale(${scale})`;
-  };
-
-  // 3) Pinch-to-zoom
-  function getDistance(t1, t2) {
-    const dx = t1.clientX - t2.clientX;
-    const dy = t1.clientY - t2.clientY;
-    return Math.hypot(dx, dy);
-  }
-  let initialPinchDist = null;
-
-  overlay.addEventListener('touchstart', evt => {
-    if (evt.touches.length === 2) {
-      initialPinchDist = getDistance(evt.touches[0], evt.touches[1]);
-    }
-  }, { passive: false });
-
-  overlay.addEventListener('touchmove', evt => {
-    if (evt.touches.length === 2 && initialPinchDist !== null) {
-      evt.preventDefault();
-      const newDist = getDistance(evt.touches[0], evt.touches[1]);
-      const pinchRatio = newDist / initialPinchDist;
-      scale = Math.min(Math.max(scale * pinchRatio, 0.5), 3);
+    function showFullScreenImage(src, e) {
+      e.preventDefault();
+      document.getElementById('sidebar').style.display = 'none';
+      document.body.classList.add('fullscreen-mode');
+      document.getElementById('wrapper').classList.add('blurred-background');
+      const overlay = document.createElement('div');
+      overlay.className = 'fullscreen-image';
+      overlay.innerHTML = `
+        <div class="close-button" onclick="closeFullScreen()"></div>
+        <div class="zoom-controls">
+          <button class="zoom-btn zoom-out" aria-label="Zoom out"><i class="fas fa-minus"></i></button>
+          <button class="zoom-btn zoom-reset" aria-label="Reset zoom"><i class="fas fa-search"></i></button>
+          <button class="zoom-btn zoom-in" aria-label="Zoom in"><i class="fas fa-plus"></i></button>
+        </div>
+        <img src="${src}" alt="Full Screen Image" class="zoomable" loading="lazy"/>
+      `;
+      document.body.appendChild(overlay);
+      const img = overlay.querySelector('.zoomable');
+      img.style.transformOrigin = 'center center';
+      let scale = 1;
       img.style.transform = `scale(${scale})`;
-      initialPinchDist = newDist;
+      overlay.addEventListener('wheel', evt => {
+        evt.preventDefault();
+        scale *= (evt.deltaY < 0 ? 1.1 : 0.9);
+        scale = Math.min(Math.max(scale, 0.5), 3);
+        img.style.transform = `scale(${scale})`;
+      }, { passive: false });
+
+      overlay.querySelector('.zoom-in').onclick = () => {
+        scale = Math.min(scale * 1.2, 3);
+        img.style.transform = `scale(${scale})`;
+      };
+      overlay.querySelector('.zoom-out').onclick = () => {
+        scale = Math.max(scale * 0.8, 0.5);
+        img.style.transform = `scale(${scale})`;
+      };
+      overlay.querySelector('.zoom-reset').onclick = () => {
+        scale = 1;
+        img.style.transform = `scale(${scale})`;
+      };
+
+      function getDistance(t1, t2) {
+        const dx = t1.clientX - t2.clientX;
+        const dy = t1.clientY - t2.clientY;
+        return Math.hypot(dx, dy);
+      }
+      let initialPinchDist = null;
+      overlay.addEventListener('touchstart', evt => {
+        if (evt.touches.length === 2) {
+          initialPinchDist = getDistance(evt.touches[0], evt.touches[1]);
+        }
+      }, { passive: false });
+
+      overlay.addEventListener('touchmove', evt => {
+        if (evt.touches.length === 2 && initialPinchDist !== null) {
+          evt.preventDefault();
+          const newDist = getDistance(evt.touches[0], evt.touches[1]);
+          const pinchRatio = newDist / initialPinchDist;
+          scale = Math.min(Math.max(scale * pinchRatio, 0.5), 3);
+          img.style.transform = `scale(${scale})`;
+          initialPinchDist = newDist;
+        }
+      }, { passive: false });
+
+      overlay.addEventListener('touchend', evt => {
+        if (evt.touches.length < 2) initialPinchDist = null;
+      });
     }
-  }, { passive: false });
 
-  overlay.addEventListener('touchend', evt => {
-    if (evt.touches.length < 2) initialPinchDist = null;
-  });
-}
+    function closeFullScreen() {
+      const overlay = document.querySelector('.fullscreen-image');
+      if (overlay) document.body.removeChild(overlay);
+      document.body.classList.remove('fullscreen-mode');
+      document.getElementById('wrapper').classList.remove('blurred-background');
+      document.getElementById('sidebar').style.display = window.innerWidth > 736 ? 'block' : '';
+    }
 
-// Make sure you have this function too:
-function closeFullScreen() {
-  const overlay = document.querySelector('.fullscreen-image');
-  if (overlay) document.body.removeChild(overlay);
-  document.body.classList.remove('fullscreen-mode');
-  document.getElementById('wrapper').classList.remove('blurred-background');
-  document.getElementById('sidebar').style.display = window.innerWidth > 736 ? 'block' : '';
-}
-
-    // Hamburger toggle
     document.addEventListener('DOMContentLoaded', () => {
       const hb = document.querySelector('.hamburger'),
             sb = document.getElementById('sidebar');
