@@ -96,8 +96,10 @@
     align-items: center;
     touch-action: none;
   }
-  .fullscreen-video video, .fullscreen-image img {
-    max-width: 90%; max-height: 90%;
+  .fullscreen-video video,
+  .fullscreen-image img {
+    max-width: 90%;
+    max-height: 90%;
   }
 
   .blurred-background { filter: blur(5px); }
@@ -124,65 +126,57 @@
     #three.spotlights .thumbnail-gallery .content { padding:0; }
   }
 
-  /* Zoom-in/out/reset controls */
+  /* Zoom‐in/out/reset controls */
   .fullscreen-image img.zoomable {
-    cursor: grab;               /* original grab cursor */
-    touch-action: none;         /* still disable native pinch-zoom */
+    cursor: grab;
+    touch-action: none;
     transition: transform 0.1s ease-out;
   }
-
   .zoom-controls {
-    position: absolute;         /* take it out of the flow */
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.25rem 0.75rem;    /* vertical / horizontal padding */
-    background: rgba(0,0,0,0.6);
-    border-radius: 9999px;      /* fully rounded ends */
+    position: absolute;
     bottom: 1rem;
     left: 50%;
     transform: translateX(-50%);
-    z-index: 10001;
-
-    /* start hidden & fade-in on hover/focus */
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.25rem 0.75rem;
+    background: rgba(0,0,0,0.6);
+    border-radius: 9999px;
     opacity: 0;
     transition: opacity 0.3s ease;
   }
-
   .fullscreen-image:hover .zoom-controls,
   .zoom-controls:focus-within {
     opacity: 1;
   }
-
   .zoom-btn {
-    background: transparent;    /* remove per-button circle */
+    background: transparent;
     border: none;
-    width: auto; height: auto;  /* let padding define hit area */
-    padding: 0.25rem;           /* click-area around the icon */
+    padding: 0.25rem;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    color: #fff !important;     /* icon color */
-    font-size: 1rem;            /* scale the icon up a bit */
+    color: #fff !important;
+    font-size: 1rem;
   }
-
   .zoom-btn:hover {
     background: rgba(255,255,255,0.15);
     border-radius: 50%;
   }
 
-  /* === NEW: enable panning by removing flex and positioning the image === */
+  /* === NEW: Enable pan-and-zoom === */
 
-  /* 1) disable flex‐centering & clip overflow for panning */
+  /* 1) override flex & allow clipping */
   .fullscreen-image {
-    display: block;
+    display: block !important;
+    overflow: hidden;
     justify-content: unset;
     align-items: unset;
-    overflow: hidden;
   }
 
-  /* 2) position the zoomable image at top-left for translate() to work */
+  /* 2) absolute‐position the image so translate() pans it */
   .fullscreen-image img.zoomable {
     position: absolute;
     top: 0;
@@ -202,7 +196,6 @@
     .hamburger { position: fixed; top:20px; right:20px; z-index:10001; }
   }
 </style>
-
 
   <!-- Include Slick Carousel CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
