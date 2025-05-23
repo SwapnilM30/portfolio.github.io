@@ -144,9 +144,14 @@
   transform: translateX(-50%);
   z-index: 10001;
 
-  /* remove any fade-in */
-  opacity: 1 !important;
-  transition: none !important;
+  /* start hidden & fade-in on hover/focus */
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  }
+
+  .fullscreen-image:hover .zoom-controls,
+  .zoom-controls:focus-within {
+    opacity: 1;
 }
 
 .zoom-btn {
