@@ -124,29 +124,49 @@
       #three.spotlights .thumbnail-gallery .content { padding:0; }
     }
 
-    /* Zoom controls */
-    .zoom-controls {
-      position: absolute;
-      bottom: 1rem; left: 50%;
-      transform: translateX(-50%);
-      display: inline-flex; align-items: center;
-      gap: .5rem; padding: .25rem .75rem;
-      background: rgba(0,0,0,0.6);
-      border-radius: 9999px; z-index: 10001;
-      opacity: 0; transition: opacity .3s ease;
-    }
-    .fullscreen-image:hover .zoom-controls,
-    .zoom-controls:focus-within { opacity: 1; }
+/* Zoom‐in/out/reset controls */
+.fullscreen-image img.zoomable {
+  cursor: grab;               /* original grab cursor */
+  touch-action: none;         /* still disable native pinch-zoom */
+  transition: transform 0.1s ease-out;
+}
 
-    .zoom-btn {
-      background: transparent; border: none;
-      padding: .25rem; display: flex;
-      align-items: center; justify-content: center;
-      cursor: pointer; color: #fff !important;
-      font-size: 1rem;
-    }
-    .zoom-btn:hover { background: rgba(255,255,255,0.15); border-radius: 50%; }
-    .zoom-btn:focus { outline: 2px solid #fff; outline-offset: 2px; }
+.zoom-controls {
+  position: absolute;         /* take it out of the flow */
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.25rem 0.75rem;    /* vertical / horizontal padding */
+  background: rgba(0,0,0,0.6);
+  border-radius: 9999px;      /* fully rounded ends */
+  bottom: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10001;
+
+  /* remove any fade-in */
+  opacity: 1 !important;
+  transition: none !important;
+}
+
+.zoom-btn {
+  background: transparent;    /* remove per-button circle */
+  border: none;
+  width: auto; height: auto;  /* let padding define hit area */
+  padding: 0.25rem;           /* click‐area around the icon */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #fff !important;     /* icon color */
+  font-size: 1rem;            /* scale the icon up a bit */
+}
+
+.zoom-btn:hover {
+  background: rgba(255,255,255,0.15);
+  border-radius: 50%;
+}
+
 
     /* Hamburger Menu Icon */
     .hamburger { display: block; cursor: pointer; }
