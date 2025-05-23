@@ -559,32 +559,51 @@ function showFullScreenImage(src, e) {
   `;
   document.body.appendChild(overlay);
 
-  // Grab the image and set up initial scale
+  // Grab the image and set up initial state
   const img = overlay.querySelector('.zoomable');
-  img.style.transformOrigin = 'center center';
   let scale = 1;
-  img.style.transform = `scale(${scale})`;
+  let panOffset = { x: 0, y: 0 };
+
+  // Use top-left origin so panning math is straightforward
+  img.style.transformOrigin = '0 0';
+  img.style.transform = `translate(0px, 0px) scale(${scale})`;
+  img.style.cursor = 'grab';
+
+  // Helper to re-render both pan & zoom
+  function updateTransform() {
+    img.style.transform = `translate(${panOffset.x}px, ${panOffset.y}px) scale(${scale})`;
+  }
 
   // 1) Wheel-to-zoom
   overlay.addEventListener('wheel', evt => {
     evt.preventDefault();
+    const oldScale = scale;
     scale *= (evt.deltaY < 0 ? 1.1 : 0.9);
     scale = Math.min(Math.max(scale, 0.5), 3);
-    img.style.transform = `scale(${scale})`;
+
+    // Adjust panOffset so zoom centers on cursor
+    const rect = img.getBoundingClientRect();
+    const cx = evt.clientX - rect.left;
+    const cy = evt.clientY - rect.top;
+    panOffset.x -= (cx / oldScale) * (scale/oldScale - 1);
+    panOffset.y -= (cy / oldScale) * (scale/oldScale - 1);
+
+    updateTransform();
   }, { passive: false });
 
   // 2) Button zoom-in/out/reset
   overlay.querySelector('.zoom-in').onclick = () => {
     scale = Math.min(scale * 1.2, 3);
-    img.style.transform = `scale(${scale})`;
+    updateTransform();
   };
   overlay.querySelector('.zoom-out').onclick = () => {
     scale = Math.max(scale * 0.8, 0.5);
-    img.style.transform = `scale(${scale})`;
+    updateTransform();
   };
   overlay.querySelector('.zoom-reset').onclick = () => {
     scale = 1;
-    img.style.transform = `scale(${scale})`;
+    panOffset = { x: 0, y: 0 };
+    updateTransform();
   };
 
   // 3) Pinch-to-zoom
@@ -594,30 +613,58 @@ function showFullScreenImage(src, e) {
     return Math.hypot(dx, dy);
   }
   let initialPinchDist = null;
-
   overlay.addEventListener('touchstart', evt => {
     if (evt.touches.length === 2) {
       initialPinchDist = getDistance(evt.touches[0], evt.touches[1]);
     }
   }, { passive: false });
-
   overlay.addEventListener('touchmove', evt => {
     if (evt.touches.length === 2 && initialPinchDist !== null) {
       evt.preventDefault();
       const newDist = getDistance(evt.touches[0], evt.touches[1]);
-      const pinchRatio = newDist / initialPinchDist;
-      scale = Math.min(Math.max(scale * pinchRatio, 0.5), 3);
-      img.style.transform = `scale(${scale})`;
+      const ratio = newDist / initialPinchDist;
+      scale = Math.min(Math.max(scale * ratio, 0.5), 3);
       initialPinchDist = newDist;
+      updateTransform();
     }
   }, { passive: false });
-
   overlay.addEventListener('touchend', evt => {
     if (evt.touches.length < 2) initialPinchDist = null;
   });
+
+  // 4) Pointer-based drag-to-pan
+  let isPanning = false;
+  let panStart = { x: 0, y: 0 };
+
+  img.addEventListener('pointerdown', e => {
+    isPanning = true;
+    panStart.x = e.clientX;
+    panStart.y = e.clientY;
+    img.setPointerCapture(e.pointerId);
+    img.style.cursor = 'grabbing';
+  });
+
+  img.addEventListener('pointermove', e => {
+    if (!isPanning) return;
+    const dx = (e.clientX - panStart.x) / scale;
+    const dy = (e.clientY - panStart.y) / scale;
+    panOffset.x += dx;
+    panOffset.y += dy;
+    panStart.x = e.clientX;
+    panStart.y = e.clientY;
+    updateTransform();
+  });
+
+  ['pointerup', 'pointercancel'].forEach(ev =>
+    img.addEventListener(ev, e => {
+      isPanning = false;
+      img.releasePointerCapture(e.pointerId);
+      img.style.cursor = 'grab';
+    })
+  );
 }
 
-// Make sure you have this function too:
+// Make sure you have this too:
 function closeFullScreen() {
   const overlay = document.querySelector('.fullscreen-image');
   if (overlay) document.body.removeChild(overlay);
@@ -625,6 +672,7 @@ function closeFullScreen() {
   document.getElementById('wrapper').classList.remove('blurred-background');
   document.getElementById('sidebar').style.display = window.innerWidth > 736 ? 'block' : '';
 }
+
 
     // Hamburger toggle
     document.addEventListener('DOMContentLoaded', () => {
