@@ -588,82 +588,129 @@
       });
     });
 
-    function showFullScreenImage(src, e) {
-      e.preventDefault();
-      document.getElementById('sidebar').style.display = 'none';
-      document.body.classList.add('fullscreen-mode');
-      document.getElementById('wrapper').classList.add('blurred-background');
-      const overlay = document.createElement('div');
-      overlay.className = 'fullscreen-image';
-      overlay.innerHTML = `
-        <div class="close-button" onclick="closeFullScreen()"></div>
-        <div class="zoom-controls">
-          <button class="zoom-btn zoom-out" aria-label="Zoom out"><i class="fas fa-minus"></i></button>
-          <button class="zoom-btn zoom-reset" aria-label="Reset zoom"><i class="fas fa-search"></i></button>
-          <button class="zoom-btn zoom-in" aria-label="Zoom in"><i class="fas fa-plus"></i></button>
-        </div>
-        <img src="${src}" alt="Full Screen Image" class="zoomable" loading="lazy"/>
-      `;
-      document.body.appendChild(overlay);
-      const img = overlay.querySelector('.zoomable');
-      img.style.transformOrigin = 'center center';
-      let scale = 1;
-      img.style.transform = `scale(${scale})`;
-      overlay.addEventListener('wheel', evt => {
-        evt.preventDefault();
-        scale *= (evt.deltaY < 0 ? 1.1 : 0.9);
-        scale = Math.min(Math.max(scale, 0.5), 3);
-        img.style.transform = `scale(${scale})`;
-      }, { passive: false });
+function showFullScreenImage(src, e) {
+  e.preventDefault();
+  document.getElementById('sidebar').style.display = 'none';
+  document.body.classList.add('fullscreen-mode');
+  document.getElementById('wrapper').classList.add('blurred-background');
+  const overlay = document.createElement('div');
+  overlay.className = 'fullscreen-image';
+  overlay.innerHTML = `
+    <div class="close-button" onclick="closeFullScreen()"></div>
+    <div class="zoom-controls">
+      <button class="zoom-btn zoom-out" aria-label="Zoom out"><i class="fas fa-minus"></i></button>
+      <button class="zoom-btn zoom-reset" aria-label="Reset zoom"><i class="fas fa-search"></i></button>
+      <button class="zoom-btn zoom-in" aria-label="Zoom in"><i class="fas fa-plus"></i></button>
+    </div>
+    <img src="${src}" alt="Full Screen Image" class="zoomable" loading="lazy"/>
+  `;
+  document.body.appendChild(overlay);
 
-      overlay.querySelector('.zoom-in').onclick = () => {
-        scale = Math.min(scale * 1.2, 3);
-        img.style.transform = `scale(${scale})`;
-      };
-      overlay.querySelector('.zoom-out').onclick = () => {
-        scale = Math.max(scale * 0.8, 0.5);
-        img.style.transform = `scale(${scale})`;
-      };
-      overlay.querySelector('.zoom-reset').onclick = () => {
-        scale = 1;
-        img.style.transform = `scale(${scale})`;
-      };
+  const img = overlay.querySelector('.zoomable');
+  img.style.transformOrigin = 'center center';
+  let scale = 1;
+  let offsetX = 0, offsetY = 0;
+  img.style.transform = `translate(0px, 0px) scale(${scale})`;
 
-      function getDistance(t1, t2) {
-        const dx = t1.clientX - t2.clientX;
-        const dy = t1.clientY - t2.clientY;
-        return Math.hypot(dx, dy);
-      }
-      let initialPinchDist = null;
-      overlay.addEventListener('touchstart', evt => {
-        if (evt.touches.length === 2) {
-          initialPinchDist = getDistance(evt.touches[0], evt.touches[1]);
-        }
-      }, { passive: false });
+  // Wheel / mouse-wheel zoom
+  overlay.addEventListener('wheel', evt => {
+    evt.preventDefault();
+    scale *= (evt.deltaY < 0 ? 1.1 : 0.9);
+    scale = Math.min(Math.max(scale, 0.5), 3);
+    img.style.transform = `translate(${offsetX}px, ${offsetY}px) scale(${scale})`;
+  }, { passive: false });
 
-      overlay.addEventListener('touchmove', evt => {
-        if (evt.touches.length === 2 && initialPinchDist !== null) {
-          evt.preventDefault();
-          const newDist = getDistance(evt.touches[0], evt.touches[1]);
-          const pinchRatio = newDist / initialPinchDist;
-          scale = Math.min(Math.max(scale * pinchRatio, 0.5), 3);
-          img.style.transform = `scale(${scale})`;
-          initialPinchDist = newDist;
-        }
-      }, { passive: false });
+  // Button handlers
+  overlay.querySelector('.zoom-in').onclick = () => {
+    scale = Math.min(scale * 1.2, 3);
+    img.style.transform = `translate(${offsetX}px, ${offsetY}px) scale(${scale})`;
+  };
+  overlay.querySelector('.zoom-out').onclick = () => {
+    scale = Math.max(scale * 0.8, 0.5);
+    img.style.transform = `translate(${offsetX}px, ${offsetY}px) scale(${scale})`;
+  };
+  overlay.querySelector('.zoom-reset').onclick = () => {
+    scale = 1;
+    offsetX = 0;
+    offsetY = 0;
+    img.style.transform = `translate(0px, 0px) scale(${scale})`;
+  };
 
-      overlay.addEventListener('touchend', evt => {
-        if (evt.touches.length < 2) initialPinchDist = null;
-      });
+  // Click-and-drag panning
+  let isDragging = false;
+  let startX = 0, startY = 0;
+
+  img.style.cursor = 'grab';
+
+  img.addEventListener('mousedown', evt => {
+    evt.preventDefault();
+    isDragging = true;
+    startX = evt.clientX;
+    startY = evt.clientY;
+    img.style.cursor = 'grabbing';
+  });
+
+  document.addEventListener('mousemove', evt => {
+    if (!isDragging) return;
+    evt.preventDefault();
+    const dx = evt.clientX - startX;
+    const dy = evt.clientY - startY;
+    startX = evt.clientX;
+    startY = evt.clientY;
+    offsetX += dx;
+    offsetY += dy;
+    img.style.transform = `translate(${offsetX}px, ${offsetY}px) scale(${scale})`;
+  });
+
+  document.addEventListener('mouseup', () => {
+    if (!isDragging) return;
+    isDragging = false;
+    img.style.cursor = 'grab';
+  });
+
+  overlay.addEventListener('mouseleave', () => {
+    isDragging = false;
+    img.style.cursor = 'grab';
+  });
+
+  // Pinch-to-zoom (as before)
+  function getDistance(t1, t2) {
+    const dx = t1.clientX - t2.clientX;
+    const dy = t1.clientY - t2.clientY;
+    return Math.hypot(dx, dy);
+  }
+  let initialPinchDist = null;
+
+  overlay.addEventListener('touchstart', evt => {
+    if (evt.touches.length === 2) {
+      initialPinchDist = getDistance(evt.touches[0], evt.touches[1]);
     }
+  }, { passive: false });
 
-    function closeFullScreen() {
-      const overlay = document.querySelector('.fullscreen-image');
-      if (overlay) document.body.removeChild(overlay);
-      document.body.classList.remove('fullscreen-mode');
-      document.getElementById('wrapper').classList.remove('blurred-background');
-      document.getElementById('sidebar').style.display = window.innerWidth > 736 ? 'block' : '';
+  overlay.addEventListener('touchmove', evt => {
+    if (evt.touches.length === 2 && initialPinchDist !== null) {
+      evt.preventDefault();
+      const newDist = getDistance(evt.touches[0], evt.touches[1]);
+      const pinchRatio = newDist / initialPinchDist;
+      scale = Math.min(Math.max(scale * pinchRatio, 0.5), 3);
+      img.style.transform = `translate(${offsetX}px, ${offsetY}px) scale(${scale})`;
+      initialPinchDist = newDist;
     }
+  }, { passive: false });
+
+  overlay.addEventListener('touchend', evt => {
+    if (evt.touches.length < 2) initialPinchDist = null;
+  });
+}
+
+function closeFullScreen() {
+  const overlay = document.querySelector('.fullscreen-image');
+  if (overlay) document.body.removeChild(overlay);
+  document.body.classList.remove('fullscreen-mode');
+  document.getElementById('wrapper').classList.remove('blurred-background');
+  document.getElementById('sidebar').style.display = window.innerWidth > 736 ? 'block' : '';
+}
+
 
     document.addEventListener('DOMContentLoaded', () => {
       const hb = document.querySelector('.hamburger'),
