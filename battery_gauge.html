@@ -98,43 +98,53 @@
       z-index: 10000;
     }
 
-    .zoom-controls {
-      position: absolute;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.25rem 0.75rem;
-      background: rgba(0, 0, 0, 0.6);
-      border-radius: 9999px;
-      bottom: 1rem;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 10001;
-      opacity: 0;
-      transition: opacity 0.3s ease;
-    }
+/* Zoom‐in/out/reset controls */
+.fullscreen-image img.zoomable {
+  cursor: grab;               /* original grab cursor */
+  touch-action: none;         /* still disable native pinch-zoom */
+  transition: transform 0.1s ease-out;
+}
 
-    .fullscreen-image:hover .zoom-controls,
-    .zoom-controls:focus-within {
-      opacity: 1;
-    }
+.zoom-controls {
+  position: absolute;         /* take it out of the flow */
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.25rem 0.75rem;    /* vertical / horizontal padding */
+  background: rgba(0,0,0,0.6);
+  border-radius: 9999px;      /* fully rounded ends */
+  bottom: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10001;
 
-    .zoom-btn {
-      background: transparent;
-      border: none;
-      padding: 0.25rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      color: #fff;
-      font-size: 1rem;
-    }
+  /* start hidden & fade-in on hover/focus */
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  }
 
-    .zoom-btn:hover {
-      background: rgba(255, 255, 255, 0.15);
-      border-radius: 50%;
-    }
+  .fullscreen-image:hover .zoom-controls,
+  .zoom-controls:focus-within {
+    opacity: 1;
+}
+
+.zoom-btn {
+  background: transparent;    /* remove per-button circle */
+  border: none;
+  width: auto; height: auto;  /* let padding define hit area */
+  padding: 0.25rem;           /* click‐area around the icon */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #fff !important;     /* icon color */
+  font-size: 1rem;            /* scale the icon up a bit */
+}
+
+.zoom-btn:hover {
+  background: rgba(255,255,255,0.15);
+  border-radius: 50%;
+}
 
     .project-text {
       text-align: justify;
