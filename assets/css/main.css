@@ -4021,28 +4021,6 @@ button.slick-next:before {
 	}
   }
 
-  /* === Animated underline style for Slick dots === */
-.slick-dots {
-  bottom: 10px;
-}
-.slick-dots li {
-  margin: 0 8px;
-}
-.slick-dots li button {
-  padding: 0;
-}
-.slick-dots li button:before {
-  content: '';
-  display: block;
-  width: 0;
-  height: 3px;
-  background: linear-gradient(90deg, #7954d6, #da74b4);
-  transition: width 0.4s ease;
-  margin: 0 auto;
-}
-.slick-dots li.slick-active button:before {
-  width: 24px;
-}
 
   
 
