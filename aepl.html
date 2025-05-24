@@ -127,6 +127,7 @@
             opacity:0;
             transition:opacity 0.3s ease;
             z-index:10001;
+            pointer-events: auto;       /* ensure clicks */
         }
         .fullscreen-image:hover .zoom-controls,
         .zoom-controls:focus-within {
@@ -142,6 +143,7 @@
             cursor:pointer;
             color:#fff !important;
             font-size:1rem;
+            pointer-events: auto;
         }
         .zoom-btn:hover {
             background:rgba(255,255,255,0.15);
@@ -204,7 +206,7 @@
                     <p class="image-citation">
                       Image source: Vajiram &amp; Ravi (IAS Study Center), 2023,
                       <a href="https://vajiramias.com/current-affairs/what-is-neerakshi/64ce655c9c96bc7864378357/"
-                         target="_blank" rel="noopener noreferrer">vajiramias.com</a>
+                         target="_blank" rel="noopener noreferrer">https://vajiramias.com/</a>
                     </p>
                 </div>
                 <div class="slide-content">
@@ -219,7 +221,7 @@
                     <p class="image-citation">
                       Image source: The Indian Express, 2023,
                       <a href="https://indianexpress.com/article/cities/kolkata/drdo-chief-lauds-psus-launch-of-autonomous-vessel-8865855/"
-                         target="_blank" rel="noopener noreferrer">indianexpress.com</a>
+                         target="_blank" rel="noopener noreferrer">https://indianexpress.com/</a>
                     </p>
                 </div>
             </div>
@@ -301,6 +303,7 @@
             <img src="${src}" alt="" class="zoomable" loading="lazy"/>
         `;
         document.body.appendChild(overlay);
+        document.body.classList.add('fullscreen-mode');            // ← add
         document.getElementById('wrapper').classList.add('blurred-background');
 
         const img = overlay.querySelector('.zoomable');
@@ -392,6 +395,7 @@
     function closeFullScreen() {
         const ov = document.querySelector('.fullscreen-image') || document.querySelector('.fullscreen-video');
         if(ov) ov.remove();
+        document.body.classList.remove('fullscreen-mode');      // ← remove
         document.getElementById('wrapper').classList.remove('blurred-background');
     }
 </script>
