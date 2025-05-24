@@ -5,13 +5,26 @@
     <meta name="description" content="Swapnil Meshram's portfolio showcasing projects in Autonomous & Undersea Systems Division.">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <title>Swapnil Meshram</title>
+
     <!-- Favicon -->
     <link rel="icon" type="image/png" sizes="50x50" href="images/swapnil_fav.jpg" />
+
+    <!-- Core CSS -->
     <link rel="stylesheet" href="assets/css/main.css">
     <noscript><link rel="stylesheet" href="assets/css/noscript.css"></noscript>
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css">
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css">
+
+    <!-- FontAwesome for zoom icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+
+    <!-- Slick Carousel CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" />
+
     <style>
+        /* Labels & citations */
         .image-label,
         .video-label {
             text-align: center;
@@ -19,7 +32,6 @@
             margin-top: 5px;
             color: rgba(50, 50, 50);
         }
-
         .image-citation,
         .video-citation {
             margin-top: 5px;
@@ -27,126 +39,132 @@
             text-align: center;
         }
 
+        /* Slider layout */
         .slick-dots {
             position: absolute;
             bottom: 10px;
             width: 100%;
             text-align: center;
         }
-
         .slider {
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            height: 100%;
         }
-
         .slider .slide-content {
             display: flex;
             justify-content: center;
             align-items: center;
             flex-direction: column;
-            flex: 1;
-            max-height: 100%;
+            margin: 20px 0;
         }
-
         .slider .slide-content img,
         .slider .slide-content video {
             max-width: 600px;
+            width: 100%;
             height: auto;
             display: block;
             margin: 0 auto;
             border: 1px solid rgba(50, 50, 50);
             padding: 6px;
         }
-
-        .slider .slide-content {
-            margin: 20px 0;
-        }
-
         @media (max-width: 600px) {
             .slider .slide-content img,
             .slider .slide-content video {
-                max-width: 100%;
                 padding: 5px;
-            }
-
-            .image-citation,
-            .video-citation {
-                text-align: center;
-                margin-top: 5px;
             }
         }
 
+        /* Hover scale */
         .image,
         .video {
             cursor: pointer;
             transition: transform 0.25s ease;
         }
-
         .image:hover,
         .video:hover {
             transform: scale(1.01);
         }
 
-        /* Custom styles for video play icon */
-        .video-container {
-            position: relative;
-            display: inline-block;
-        }
-
-        .play-icon {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 64px;
-            height: 64px;
-            background: url('images/play-icon.png') no-repeat center center;
-            background-size: cover;
-            opacity: 0.8;
-            cursor: pointer;
-        }
-
-        .play-icon:hover {
-            transform: translate(-50%, -50%) scale(1.2);
-        }
-
-        /* Styles for fullscreen video with blurred background */
+        /* Fullscreen overlay */
         .fullscreen-video,
         .fullscreen-image {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.8);
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.8);
             z-index: 9999;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            display: flex; justify-content: center; align-items: center;
         }
-
         .fullscreen-video video,
         .fullscreen-image img {
-            max-width: 90%;
-            max-height: 90%;
+            max-width: 90%; max-height: 90%;
         }
-
         .blurred-background {
             filter: blur(5px);
         }
-
         .close-button {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            width: 32px;
-            height: 32px;
+            position: absolute; top: 20px; right: 20px;
+            width: 32px; height: 32px;
             background: url('images/close-icon.png') no-repeat center center;
-            background-size: cover;
+            background-size: cover; cursor: pointer; z-index: 10000;
+        }
+
+        /* Zoom & pan controls CSS */
+        .fullscreen-image img.zoomable {
+            cursor: grab;
+            touch-action: none;
+            transition: transform 0.1s ease-out;
+        }
+        .zoom-controls {
+            position: absolute;
+            bottom: 1rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.25rem 0.75rem;
+            background: rgba(0,0,0,0.6);
+            border-radius: 9999px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 10001;
+        }
+        .fullscreen-image:hover .zoom-controls,
+        .zoom-controls:focus-within {
+            opacity: 1;
+        }
+        .zoom-btn {
+            background: transparent;
+            border: none;
+            padding: 0.25rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             cursor: pointer;
-            z-index: 10000;
+            color: #fff !important;
+            font-size: 1rem;
+        }
+        .zoom-btn:hover {
+            background: rgba(255,255,255,0.15);
+            border-radius: 50%;
+        }
+
+        /* Responsive project text */
+        .project-text {
+            font-size: 1.175rem;
+            line-height: 1.6;
+        }
+        @media (max-width: 1280px) {
+            .project-text {
+                font-size: 1.1rem;
+            }
+        }
+        @media (max-width: 736px) {
+            .project-text {
+                font-size: 1rem;
+            }
         }
     </style>
 </head>
@@ -171,31 +189,77 @@
             <h1 class="major">Autonomous & Undersea Systems Division</h1>
             <div class="slider">
                 <div class="slide-content">
-                    <a href="images/Autonomous Surface Vessel_1.jpg" class="image" onclick="showFullScreenImage('images/Autonomous Surface Vessel_1.jpg'); return false;">
-                        <img src="images/Autonomous Surface Vessel_1.jpg" alt="Autonomous Surface Vessel">
+                    <a href="images/Autonomous Surface Vessel_1.jpg"
+                       class="image"
+                       onclick="showFullScreenImage('images/Autonomous Surface Vessel_1.jpg'); return false;">
+                        <img src="images/Autonomous Surface Vessel_1.jpg"
+                             alt="Autonomous Surface Vessel"
+                             loading="lazy">
                     </a>
                     <p class="image-label">Image 1: Autonomous Surface Vessel</p>
                     <p class="image-citation">Image source: Aerospace Engineers Private Limited, 2022</p>
                 </div>
                 <div class="slide-content">
-                    <a href="images/AUV3.0.jpg" class="image" onclick="showFullScreenImage('images/AUV3.0.jpg'); return false;">
-                        <img src="images/AUV3.0.jpg" alt="Autonomous Underwater Vehicle (named 'Neerakshi' AUV)">
+                    <a href="images/AUV3.0.jpg"
+                       class="image"
+                       onclick="showFullScreenImage('images/AUV3.0.jpg'); return false;">
+                        <img src="images/AUV3.0.jpg"
+                             alt="Autonomous Underwater Vehicle (named 'Neerakshi' AUV)"
+                             loading="lazy">
                     </a>
                     <p class="image-label">Image 2: Autonomous Underwater Vehicle (named 'Neerakshi' AUV)</p>
-                    <p class="image-citation">Image source: Vajiram & Ravi (IAS Study Center), 2023, <a href="https://vajiramias.com/current-affairs/what-is-neerakshi/64ce655c9c96bc7864378357/" target="_blank" rel="noopener noreferrer">https://vajiramias.com/</a></p>
+                    <p class="image-citation">
+                      Image source: Vajiram &amp; Ravi (IAS Study Center), 2023,
+                      <a href="https://vajiramias.com/current-affairs/what-is-neerakshi/64ce655c9c96bc7864378357/"
+                         target="_blank" rel="noopener noreferrer">
+                        vajiramias.com
+                      </a>
+                    </p>
                 </div>
                 <div class="slide-content">
-                    <a href="images/Neerakshi_1.jpg" class="image" onclick="showFullScreenImage('images/Neerakshi_1.jpg'); return false;">
-                        <img src="images/Neerakshi_1.jpg" alt="'Neerakshi' AUV maneuvering through water with surface current">
+                    <a href="images/Neerakshi_1.jpg"
+                       class="image"
+                       onclick="showFullScreenImage('images/Neerakshi_1.jpg'); return false;">
+                        <img src="images/Neerakshi_1.jpg"
+                             alt="'Neerakshi' AUV maneuvering through water with surface current"
+                             loading="lazy">
                     </a>
                     <p class="image-label">Image 3: 'Neerakshi' AUV maneuvering through water with surface current</p>
-                    <p class="image-citation">Image source: The Indian Express, 2023, <a href="https://indianexpress.com/article/cities/kolkata/drdo-chief-lauds-psus-launch-of-autonomous-vessel-8865855/" target="_blank" rel="noopener noreferrer">https://indianexpress.com/</a></p>
+                    <p class="image-citation">
+                      Image source: The Indian Express, 2023,
+                      <a href="https://indianexpress.com/article/cities/kolkata/drdo-chief-lauds-psus-launch-of-autonomous-vessel-8865855/"
+                         target="_blank" rel="noopener noreferrer">
+                        indianexpress.com
+                      </a>
+                    </p>
                 </div>
             </div>
-            <p style="text-align: justify; font-size: 1.175rem;">During my tenure at the Autonomous & Undersea Systems Division of Aerospace Engineers Private Limited (AEPL), I led research and development in unmanned marine vehicles, significantly improving project efficiency and achieving notable cost reductions through optimized designs and effective project management practices.</p>
-            <p style="text-align: justify; font-size: 1.175rem;">My responsibilities involved designing advanced electrical architectures and embedded electronic systems for various unmanned marine vehicles. A key highlight was the successful development of the Neerakshi Autonomous Underwater Vehicle (AUV), a 2.15-meter-long vehicle capable of operating at depths up to 300 meters with an endurance of nearly 4 hours, marking a substantial increase in operational endurance. Additionally, I contributed extensively to other marine platforms, including Remotely Operated Vehicles (ROVs) and Autonomous Surface Vessels (ASVs).</p>
-            <p style="text-align: justify; font-size: 1.175rem;">My role covered the entire development lifecycle, from initial hardware concept to fully integrated prototypes. Tasks included component selection, schematic creation, multi-layer PCB design, board bring-up, and comprehensive system-level integration. By closely collaborating with cross-functional engineering teams, I facilitated the integration of custom-designed electronics, advanced underwater sensors, payloads, and robust communication systems.</p>
-            <p style="text-align: justify; font-size: 1.175rem;">Moreover, I ensured thorough documentation at each stage, from design and development through testing and debugging. This approach enabled seamless knowledge transfer and continuous improvement across projects, fostering long-term innovation and reliability in marine robotic solutions.</p>
+
+            <p class="text-justify project-text">
+                During my tenure at the Autonomous & Undersea Systems Division of Aerospace Engineers Private Limited (AEPL),
+                I led research and development in unmanned marine vehicles, significantly improving project efficiency and
+                achieving notable cost reductions through optimized designs and effective project management practices.
+            </p>
+            <p class="text-justify project-text">
+                My responsibilities involved designing advanced electrical architectures and embedded electronic systems
+                for various unmanned marine vehicles. A key highlight was the successful development of the Neerakshi
+                Autonomous Underwater Vehicle (AUV), a 2.15-meter-long vehicle capable of operating at depths up to
+                300 meters with an endurance of nearly 4 hours, marking a substantial increase in operational endurance.
+                Additionally, I contributed extensively to other marine platforms, including Remotely Operated Vehicles (ROVs)
+                and Autonomous Surface Vessels (ASVs).
+            </p>
+            <p class="text-justify project-text">
+                My role covered the entire product development lifecycle, from initial hardware concept to fully integrated prototypes.
+                Tasks included component selection, schematic creation, multi-layer PCB design, board bring-up, and
+                comprehensive system-level integration. By closely collaborating with cross-functional engineering teams,
+                I facilitated the integration of custom-designed electronics, advanced underwater sensors, payloads, and
+                robust communication systems.
+            </p>
+            <p class="text-justify project-text">
+                Moreover, I ensured thorough documentation at each stage, from design and development through testing
+                and debugging. This approach enabled seamless knowledge transfer and continuous improvement across
+                projects, fostering long-term innovation and reliability in marine robotic solutions.
+            </p>
         </div>
     </section>
 
@@ -232,6 +296,76 @@
         });
     });
 
+    function showFullScreenImage(src) {
+        const overlay = document.createElement('div');
+        overlay.className = 'fullscreen-image';
+        overlay.innerHTML = `
+            <div class="close-button" onclick="closeFullScreen()"></div>
+            <div class="zoom-controls">
+                <button class="zoom-btn zoom-out" aria-label="Zoom out"><i class="fas fa-minus"></i></button>
+                <button class="zoom-btn zoom-reset" aria-label="Reset zoom"><i class="fas fa-search"></i></button>
+                <button class="zoom-btn zoom-in" aria-label="Zoom in"><i class="fas fa-plus"></i></button>
+            </div>
+            <img src="${src}" alt="" class="zoomable">
+        `;
+        document.body.appendChild(overlay);
+        document.getElementById('wrapper').classList.add('blurred-background');
+
+        const img = overlay.querySelector('img.zoomable');
+        let scale = 1, offsetX = 0, offsetY = 0;
+        img.style.transformOrigin = 'center center';
+        img.style.transform = `translate(0, 0) scale(${scale})`;
+
+        overlay.querySelector('.zoom-in').onclick = () => {
+            scale = Math.min(scale * 1.2, 3);
+            img.style.transform = `translate(${offsetX}px, ${offsetY}px) scale(${scale})`;
+        };
+        overlay.querySelector('.zoom-out').onclick = () => {
+            scale = Math.max(scale * 0.8, 0.5);
+            img.style.transform = `translate(${offsetX}px, ${offsetY}px) scale(${scale})`;
+        };
+        overlay.querySelector('.zoom-reset').onclick = () => {
+            scale = 1; offsetX = 0; offsetY = 0;
+            img.style.transform = `translate(0, 0) scale(1)`;
+        };
+
+        overlay.addEventListener('wheel', e => {
+            e.preventDefault();
+            scale *= (e.deltaY < 0 ? 1.1 : 0.9);
+            scale = Math.min(Math.max(scale, 0.5), 3);
+            img.style.transform = `translate(${offsetX}px, ${offsetY}px) scale(${scale})`;
+        }, { passive: false });
+
+        let dragging = false, startX, startY;
+        img.style.cursor = 'grab';
+        img.onmousedown = e => {
+            dragging = true;
+            startX = e.clientX;
+            startY = e.clientY;
+            img.style.cursor = 'grabbing';
+        };
+        document.onmousemove = e => {
+            if (!dragging) return;
+            e.preventDefault();
+            const dx = e.clientX - startX, dy = e.clientY - startY;
+            startX = e.clientX; startY = e.clientY;
+            offsetX += dx; offsetY += dy;
+            img.style.transform = `translate(${offsetX}px, ${offsetY}px) scale(${scale})`;
+        };
+        document.onmouseup = () => {
+            dragging = false;
+            img.style.cursor = 'grab';
+        };
+    }
+
+    function closeFullScreen() {
+        const overlay = document.querySelector('.fullscreen-video') || document.querySelector('.fullscreen-image');
+        if (overlay) {
+            document.body.removeChild(overlay);
+        }
+        document.getElementById('wrapper').classList.remove('blurred-background');
+    }
+
     function playFullScreen(videoSrc) {
         const fullscreenDiv = document.createElement('div');
         fullscreenDiv.className = 'fullscreen-video';
@@ -241,25 +375,6 @@
         `;
         document.body.appendChild(fullscreenDiv);
         document.getElementById('wrapper').classList.add('blurred-background');
-    }
-
-    function showFullScreenImage(imageSrc) {
-        const fullscreenDiv = document.createElement('div');
-        fullscreenDiv.className = 'fullscreen-image';
-        fullscreenDiv.innerHTML = `
-            <div class="close-button" onclick="closeFullScreen()"></div>
-            <img src="${imageSrc}" alt="Full Screen Image">
-        `;
-        document.body.appendChild(fullscreenDiv);
-        document.getElementById('wrapper').classList.add('blurred-background');
-    }
-
-    function closeFullScreen() {
-        const fullscreenDiv = document.querySelector('.fullscreen-video') || document.querySelector('.fullscreen-image');
-        if (fullscreenDiv) {
-            document.body.removeChild(fullscreenDiv);
-        }
-        document.getElementById('wrapper').classList.remove('blurred-background');
     }
 </script>
 </body>
