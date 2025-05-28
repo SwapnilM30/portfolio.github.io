@@ -72,6 +72,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      touch-action: none;
     }
 
     .fullscreen-image img.zoomable {
@@ -98,54 +99,44 @@
       z-index: 10000;
     }
 
-/* Zoom‐in/out/reset controls */
-.fullscreen-image img.zoomable {
-  cursor: grab;               /* original grab cursor */
-  touch-action: none;         /* still disable native pinch-zoom */
-  transition: transform 0.1s ease-out;
-}
+    .zoom-controls {
+      position: absolute;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.25rem 0.75rem;
+      background: rgba(0,0,0,0.6);
+      border-radius: 9999px;
+      bottom: 1rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 10001;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
 
-.zoom-controls {
-  position: absolute;         /* take it out of the flow */
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.25rem 0.75rem;    /* vertical / horizontal padding */
-  background: rgba(0,0,0,0.6);
-  border-radius: 9999px;      /* fully rounded ends */
-  bottom: 1rem;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 10001;
+    .fullscreen-image:hover .zoom-controls,
+    .zoom-controls:focus-within {
+      opacity: 1;
+    }
 
-  /* start hidden & fade-in on hover/focus */
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  }
+    .zoom-btn {
+      background: transparent;
+      border: none;
+      padding: 0.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: #fff !important;
+      font-size: 1rem;
+    }
 
-  .fullscreen-image:hover .zoom-controls,
-  .zoom-controls:focus-within {
-    opacity: 1;
-}
+    .zoom-btn:hover {
+      background: rgba(255,255,255,0.15);
+      border-radius: 50%;
+    }
 
-.zoom-btn {
-  background: transparent;    /* remove per-button circle */
-  border: none;
-  width: auto; height: auto;  /* let padding define hit area */
-  padding: 0.25rem;           /* click‐area around the icon */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  color: #fff !important;     /* icon color */
-  font-size: 1rem;            /* scale the icon up a bit */
-}
-
-.zoom-btn:hover {
-  background: rgba(255,255,255,0.15);
-  border-radius: 50%;
-}
-    /* Responsive project text */
     .project-text {
       text-align: justify;
       font-size: 1.175rem;
@@ -157,12 +148,10 @@
     @media (max-width:736px) {
     .project-text { font-size: 1rem; }
     }
-
   </style>
 </head>
 <body class="is-preload">
 
-<!-- Header -->
 <header id="header">
   <a href="battery_gauge.html" class="title">From Circuits to Machines: My Robotics & Hardware Journey</a>
   <nav>
@@ -172,7 +161,6 @@
   </nav>
 </header>
 
-<!-- Wrapper -->
 <div id="wrapper">
   <section id="main" class="wrapper">
     <div class="inner">
@@ -180,29 +168,29 @@
 
       <div class="slider">
         <div class="slide-content">
-          <a href="images/project_2_1.png" class="image" onclick="showFullScreenImage('images/project_2_1.png'); return false;">
-            <img src="images/project_2_1.png" alt="Battery Fuel Gauge (Top Side)">
+          <a href="images/project_2_1.png" class="image" onclick="showFullScreenImage('images/project_2_1.png', event); return false;">
+            <img src="images/project_2_1.png" alt="Battery Fuel Gauge (Top Side)" loading="lazy">
           </a>
           <p class="image-label">Image 1: Battery Fuel Gauge (Top Side)</p>
         </div>
 
         <div class="slide-content">
-          <a href="images/project_2_2.png" class="image" onclick="showFullScreenImage('images/project_2_2.png'); return false;">
-            <img src="images/project_2_2.png" alt="Battery Fuel Gauge (Assembled)">
+          <a href="images/project_2_2.png" class="image" onclick="showFullScreenImage('images/project_2_2.png', event); return false;">
+            <img src="images/project_2_2.png" alt="Battery Fuel Gauge (Assembled)" loading="lazy">
           </a>
           <p class="image-label">Image 2: Battery Fuel Gauge (Assembled)</p>
         </div>
 
         <div class="slide-content">
-          <a href="images/project_2.png" class="image" onclick="showFullScreenImage('images/project_2.png'); return false;">
-            <img src="images/project_2.png" alt="Battery Fuel Gauge (Testing)">
+          <a href="images/project_2.png" class="image" onclick="showFullScreenImage('images/project_2.png', event); return false;">
+            <img src="images/project_2.png" alt="Battery Fuel Gauge (Testing)" loading="lazy">
           </a>
           <p class="image-label">Image 3: Battery Fuel Gauge (Testing)</p>
         </div>
 
         <div class="slide-content">
-          <a href="images/project_2_4.png" class="image" onclick="showFullScreenImage('images/project_2_4.png'); return false;">
-            <img src="images/project_2_4.png" alt="Battery Fuel Gauge (LED Array)">
+          <a href="images/project_2_4.png" class="image" onclick="showFullScreenImage('images/project_2_4.png', event); return false;">
+            <img src="images/project_2_4.png" alt="Battery Fuel Gauge (LED Array)" loading="lazy">
           </a>
           <p class="image-label">Image 4: Battery Fuel Gauge (LED Array)</p>
         </div>
@@ -221,7 +209,6 @@
   </section>
 </div>
 
-<!-- Footer -->
 <footer id="footer" class="wrapper alt">
   <div class="inner">
     <ul class="menu">
@@ -252,19 +239,21 @@
     });
   });
 
-  function showFullScreenImage(src) {
+  function showFullScreenImage(src, evt) {
+    if (evt) evt.preventDefault();
     const overlay = document.createElement('div');
     overlay.className = 'fullscreen-image';
     overlay.innerHTML = `
       <div class="close-button" onclick="closeFullScreen()"></div>
       <div class="zoom-controls">
-        <button class="zoom-btn zoom-out"><i class="fas fa-minus"></i></button>
-        <button class="zoom-btn zoom-reset"><i class="fas fa-search"></i></button>
-        <button class="zoom-btn zoom-in"><i class="fas fa-plus"></i></button>
+        <button class="zoom-btn zoom-out" aria-label="Zoom out"><i class="fas fa-minus"></i></button>
+        <button class="zoom-btn zoom-reset" aria-label="Reset zoom"><i class="fas fa-search"></i></button>
+        <button class="zoom-btn zoom-in" aria-label="Zoom in"><i class="fas fa-plus"></i></button>
       </div>
       <img src="${src}" class="zoomable" alt="Zoomable Image" loading="lazy" />
     `;
     document.body.appendChild(overlay);
+    document.body.classList.add('fullscreen-mode'); // ✅ ADDED
     document.getElementById('wrapper').classList.add('blurred-background');
 
     const img = overlay.querySelector('.zoomable');
@@ -314,35 +303,30 @@
     function dist(t1, t2) {
       return Math.hypot(t1.clientX - t2.clientX, t1.clientY - t2.clientY);
     }
-
     let initialPinch = null, touchDrag = false, touchX, touchY;
     overlay.addEventListener('touchstart', e => {
       if (e.touches.length === 2) initialPinch = dist(e.touches[0], e.touches[1]);
       else if (e.touches.length === 1) {
         touchDrag = true;
-        touchX = e.touches[0].clientX;
-        touchY = e.touches[0].clientY;
+        touchX = e.touches[0].clientX; touchY = e.touches[0].clientY;
       }
     }, { passive: false });
-
     overlay.addEventListener('touchmove', e => {
       if (e.touches.length === 2 && initialPinch) {
         e.preventDefault();
-        const d = dist(e.touches[0], e.touches[1]);
-        const ratio = d / initialPinch;
+        let d = dist(e.touches[0], e.touches[1]), ratio = d / initialPinch;
         scale = Math.min(Math.max(scale * ratio, 0.5), 3);
         initialPinch = d;
         img.style.transform = `translate(${offsetX}px,${offsetY}px) scale(${scale})`;
       } else if (e.touches.length === 1 && touchDrag) {
         e.preventDefault();
-        const cx = e.touches[0].clientX, cy = e.touches[0].clientY;
-        const dx = cx - touchX, dy = cy - touchY;
+        let cx = e.touches[0].clientX, cy = e.touches[0].clientY;
+        let dx = cx - touchX, dy = cy - touchY;
         touchX = cx; touchY = cy;
         offsetX += dx; offsetY += dy;
         img.style.transform = `translate(${offsetX}px,${offsetY}px) scale(${scale})`;
       }
     }, { passive: false });
-
     overlay.addEventListener('touchend', e => {
       if (e.touches.length < 2) initialPinch = null;
       if (e.touches.length === 0) touchDrag = false;
@@ -352,9 +336,9 @@
   function closeFullScreen() {
     const overlay = document.querySelector('.fullscreen-image');
     if (overlay) overlay.remove();
+    document.body.classList.remove('fullscreen-mode'); // ✅ Ensure cleanup
     document.getElementById('wrapper').classList.remove('blurred-background');
   }
 </script>
-
 </body>
 </html>
