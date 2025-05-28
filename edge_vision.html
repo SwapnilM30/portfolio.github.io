@@ -195,15 +195,15 @@
         </div>
         <div class="slide-content">
           <div class="video-container">
-            <video class="video" muted>
-              <source src="images/edge_vision_4.mp4" type="video/mp4">
-              Your browser does not support the video tag.
-            </video>
-            <div class="play-icon" onclick="playFullScreen('images/edge_vision_4_1.mp4')"></div>
-          </div>
-          <p class="video-label">Video 1: EdgeVision Demonstration Video</p>
-          <p class="video-citation">Description: This video demonstrates the power of EdgeVision, highlighting its ability to detect objects in real-time with labeled annotations, even in different lighting conditions. You'll see how dynamic line drawing is used to count people as they cross virtual tripwires, showcasing its impressive tracking capabilities.</p>
+        <video class="video" muted loading="lazy">
+          <source src="images/edge_vision_4.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+        <div class="play-icon" onclick="playFullScreen('images/edge_vision_4_1.mp4')"></div>
         </div>
+        <p class="video-label">Video 1: EdgeVision Demonstration Video</p>
+        <p class="video-citation">Description: This video demonstrates the power of EdgeVision, highlighting its ability to detect objects in real-time with labeled annotations, even in different lighting conditions. You'll see how dynamic line drawing is used to count people as they cross virtual tripwires, showcasing its impressive tracking capabilities.</p>
+      </div>
       </div>
 
       <p class="project-text">EdgeVision is a real-time object detection and counting system designed for resource-constrained embedded platforms, leveraging the Raspberry Pi 4 paired with its high-resolution Camera Module V2. The system integrates the Faster R-CNN ResNet-50 deep learning model, enabling accurate object detection and tracking directly at the edge. EdgeVision is tailored for practical applications such as public safety monitoring, traffic analysis, and retail analytics, where real-time insights are critical.</p>
