@@ -2,160 +2,178 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="description" content="Swapnil Meshram's portfolio showcasing projects in Autonomous & Undersea Systems Division.">
+    <meta name="description" content="Swapnil Meshram's portfolio showcasing his work where he retro-convert a petrol-driven scooter and converted it into an electric scooter.">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <title>Swapnil Meshram</title>
     <!-- Favicon -->
     <link rel="icon" type="image/png" sizes="50x50" href="images/swapnil_fav.jpg" />
+
+    <!-- Core CSS -->
     <link rel="stylesheet" href="assets/css/main.css">
     <noscript><link rel="stylesheet" href="assets/css/noscript.css"></noscript>
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css">
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css">
+
+    <!-- FontAwesome for zoom icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+
+    <!-- Slick Carousel CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" />
+    
     <style>
-        .image-label,
-        .video-label {
+        /* Labels & citations */
+        .image-label, .video-label {
             text-align: center;
             font-size: 16px;
-            margin-top: 10px;
+            margin-top: 5px;
             color: rgba(50, 50, 50);
         }
-
-        .image-citation,
-        .video-citation {
+        .image-citation, .video-citation {
             margin-top: 5px;
             font-size: 12px;
             text-align: center;
         }
 
+        /* Slider layout */
         .slick-dots {
             position: absolute;
-            bottom: 5px;
+            bottom: 10px;
             width: 100%;
             text-align: center;
         }
-
         .slider {
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            height: 100%;
         }
-
         .slider .slide-content {
             display: flex;
             justify-content: center;
             align-items: center;
             flex-direction: column;
-            flex: 1;
-            max-height: 100%;
+            margin: 20px 0;
         }
-
         .slider .slide-content img,
         .slider .slide-content video {
             max-width: 600px;
+            width: 100%;
             height: auto;
             display: block;
             margin: 0 auto;
             border: 1px solid rgba(50, 50, 50);
             padding: 6px;
         }
-
-        .slider .slide-content {
-            margin: 20px 0;
-        }
-
-        @media (max-width: 600px) {
+        @media (max-width:600px) {
             .slider .slide-content img,
             .slider .slide-content video {
-                max-width: 100%;
                 padding: 5px;
-            }
-
-            .image-citation,
-            .video-citation {
-                text-align: center;
-                margin-top: 5px;
             }
         }
 
-        .image,
-        .video {
+        /* Hover scale */
+        .image, .video {
             cursor: pointer;
             transition: transform 0.25s ease;
         }
-
-        .image:hover,
-        .video:hover {
+        .image:hover, .video:hover {
             transform: scale(1.01);
         }
 
-        /* Custom styles for video play icon */
-        .video-container {
-            position: relative;
-            display: inline-block;
-        }
-
-        .play-icon {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 64px;
-            height: 64px;
-            background: url('images/play-icon.png') no-repeat center center;
-            background-size: cover;
-            opacity: 0.8;
-            cursor: pointer;
-            transition: transform 0.25s ease;
-        }
-
-        .play-icon:hover {
-            transform: translate(-50%, -50%) scale(1.2);
-        }
-
-        /* Styles for fullscreen video with blurred background */
-        .fullscreen-video,
-        .fullscreen-image {
+        /* Fullscreen overlay */
+        .fullscreen-video, .fullscreen-image {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            z-index: 9999;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            top:0; left:0;
+            width:100%; height:100%;
+            background: rgba(0,0,0,0.8);
+            z-index:9999;
+            display:flex; justify-content:center; align-items:center;
+            touch-action: none;
         }
-
-        .fullscreen-video video,
-        .fullscreen-image img {
-            max-width: 90%;
-            max-height: 90%;
+        .fullscreen-video video, .fullscreen-image img {
+            max-width:90%; max-height:90%;
         }
-
         .blurred-background {
             filter: blur(5px);
         }
-
         .close-button {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            width: 32px;
-            height: 32px;
+            position:absolute;
+            top:25px; right:25px;
+            width:32px; height:32px;
             background: url('images/close-icon.png') no-repeat center center;
-            background-size: cover;
-            cursor: pointer;
-            z-index: 10000;
+            background-size:cover;
+            cursor:pointer;
+            z-index:10000;
+        }
+
+/* Zoom‐in/out/reset controls */
+.fullscreen-image img.zoomable {
+  cursor: grab;               /* original grab cursor */
+  touch-action: none;         /* still disable native pinch-zoom */
+  transition: transform 0.1s ease-out;
+}
+
+.zoom-controls {
+  position: absolute;         /* take it out of the flow */
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.25rem 0.75rem;    /* vertical / horizontal padding */
+  background: rgba(0,0,0,0.6);
+  border-radius: 9999px;      /* fully rounded ends */
+  bottom: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10001;
+
+  /* start hidden & fade-in on hover/focus */
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  }
+
+  .fullscreen-image:hover .zoom-controls,
+  .zoom-controls:focus-within {
+    opacity: 1;
+}
+
+.zoom-btn {
+  background: transparent;    /* remove per-button circle */
+  border: none;
+  width: auto; height: auto;  /* let padding define hit area */
+  padding: 0.25rem;           /* click‐area around the icon */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #fff !important;     /* icon color */
+  font-size: 1rem;            /* scale the icon up a bit */
+}
+
+.zoom-btn:hover {
+  background: rgba(255,255,255,0.15);
+  border-radius: 50%;
+}
+
+        /* Responsive project text */
+        .project-text {
+            font-size:1.175rem;
+            line-height:1.6;
+        }
+        @media (max-width:1280px) {
+            .project-text { font-size:1.1rem; }
+        }
+        @media (max-width:736px) {
+            .project-text { font-size:1rem; }
         }
     </style>
+
 </head>
 <body class="is-preload">
 
 <!-- Header -->
 <header id="header">
-    <a href="electric_scooter.html" class="title">From Circuits to Machines: My Robotics & Hardware Journey</a>
+    <a href="index.html#three" class="title">From Circuits to Machines: My Robotics & Hardware Journey</a>
     <nav>
         <ul>
             <li><a href="index.html">Home</a></li>
@@ -173,31 +191,31 @@
             <div class="slider">
                 <div class="slide-content">
                     <a href="images/project_6_1.png" class="image" onclick="showFullScreenImage('images/project_6_1.png'); return false;">
-                        <img src="images/project_6_1.png" alt="Honda Aviator (Chassis)">
+                        <img src="images/project_6_1.png" alt="Honda Aviator (Chassis)" loading="lazy">
                     </a>
                     <p class="image-label">Image 1: Honda Aviator (Chassis)</p>
                 </div>
                 <div class="slide-content">
                     <a href="images/project_6_2.png" class="image" onclick="showFullScreenImage('images/project_6_2.png'); return false;">
-                        <img src="images/project_6_2.png" alt="Honda Aviator (Wire Harnessing)">
+                        <img src="images/project_6_2.png" alt="Honda Aviator (Wire Harnessing)" loading="lazy">
                     </a>
                     <p class="image-label">Image 2: Honda Aviator (Wire Harnessing)</p>
                 </div>
                 <div class="slide-content">
                     <a href="images/project_6.png" class="image" onclick="showFullScreenImage('images/project_6.png'); return false;">
-                        <img src="images/project_6.png" alt="Undergoing Retroconversion">
+                        <img src="images/project_6.png" alt="Undergoing Retroconversion" loading="lazy">
                     </a>
                     <p class="image-label">Image 3: Undergoing Retroconversion</p>
                 </div>
                 <div class="slide-content">
                     <a href="images/project_6_3.png" class="image" onclick="showFullScreenImage('images/project_6_3.png'); return false;">
-                        <img src="images/project_6_3.png" alt="Retro-converted Honda Aviator (Front View)">
+                        <img src="images/project_6_3.png" alt="Retro-converted Honda Aviator (Front View)" loading="lazy">
                     </a>
                     <p class="image-label">Image 4: Retro-converted Honda Aviator (Front View)</p>
                 </div>
                 <div class="slide-content">
                     <a href="images/project_6_5.png" class="image" onclick="showFullScreenImage('images/project_6_5.png'); return false;"> 
-                        <img src="images/project_6_5.png" alt="Retro-converted Honda Aviator (Side View)">
+                        <img src="images/project_6_5.png" alt="Retro-converted Honda Aviator (Side View)" loading="lazy">
                     </a>
                     <p class="image-label">Image 5: Retro-converted Honda Aviator (Side View)</p>
                 </div>
@@ -213,10 +231,10 @@
                     <p class="video-label">Video 1: Retro-converted Honda Aviator Testing</p>
                 </div>
             </div>
-            <p style="text-align: justify; font-size: 1.175rem;">To retro-convert the conventional Honda Aviator, which runs on petrol, into an electric scooter, it was essential to integrate several significant components. The integration process included the hub motor, controller, converter, rechargeable batteries, throttle, digital display, and main power supply switch, all of which played a vital role in the successful electric conversion.</p>
-            <p style="text-align: justify; font-size: 1.175rem;">The hub motor, rated at 48V and 23Ah, functioned as the electric equivalent of an internal combustion engine. Its design was waterproof, enhancing its durability and extending its lifespan. Additionally, the controller functioned as the 'brain' of the system, significantly impacting performance and maintenance costs. If advanced AI-based controllers were integrated, featuring efficient monitoring algorithms, this could greatly enhance the electric scooter's operational efficiency.</p>
-            <p style="text-align: justify; font-size: 1.175rem;">The electric scooter's power was stored in rechargeable lithium-phosphate batteries with a capacity of 48V and 25Ah. To ensure compatibility with various components like the lighting system and digital speedometer, the voltage was reduced from 48V to 12V by a step-down converter. The speedometer provided essential information, such as the distance covered and the battery's state of charge, which improved the overall user experience.</p>
-            <p style="text-align: justify; font-size: 1.175rem;">Safety was a top priority, and the scooter had a primary power supply switch and a miniature circuit breaker (MCB) to prevent short circuits and protect vital components during extended periods of inactivity. These measures made the scooter more reliable, efficient, and functional as a sustainable transportation option.</p>
+            <p class="text-justify project-text">To retro-convert the conventional Honda Aviator, which runs on petrol, into an electric scooter, it was essential to integrate several significant components. The integration process included the hub motor, controller, converter, rechargeable batteries, throttle, digital display, and main power supply switch, all of which played a vital role in the successful electric conversion.</p>
+            <p class="text-justify project-text">The hub motor, rated at 48V and 23Ah, functioned as the electric equivalent of an internal combustion engine. Its design was waterproof, enhancing its durability and extending its lifespan. Additionally, the controller functioned as the 'brain' of the system, significantly impacting performance and maintenance costs. If advanced AI-based controllers were integrated, featuring efficient monitoring algorithms, this could greatly enhance the electric scooter's operational efficiency.</p>
+            <p class="text-justify project-text">The electric scooter's power was stored in rechargeable lithium-phosphate batteries with a capacity of 48V and 25Ah. To ensure compatibility with various components like the lighting system and digital speedometer, the voltage was reduced from 48V to 12V by a step-down converter. The speedometer provided essential information, such as the distance covered and the battery's state of charge, which improved the overall user experience.</p>
+            <p class="text-justify project-text">Safety was a top priority, and the scooter had a primary power supply switch and a miniature circuit breaker (MCB) to prevent short circuits and protect vital components during extended periods of inactivity. These measures made the scooter more reliable, efficient, and functional as a sustainable transportation option.</p>
         </div>
     </section>
 
@@ -241,6 +259,7 @@
 <script src="assets/js/main.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 <script>
+    // Initialize Slick
     $(document).ready(function() {
         $('.slider').slick({
             autoplay: true,
@@ -253,35 +272,117 @@
         });
     });
 
-    function playFullScreen(videoSrc) {
-        const fullscreenDiv = document.createElement('div');
-        fullscreenDiv.className = 'fullscreen-video';
-        fullscreenDiv.innerHTML = `
+    // Full-screen image with zoom/pan/pinch
+    function showFullScreenImage(src, evt) {
+        if(evt) evt.preventDefault();
+        const overlay = document.createElement('div');
+        overlay.className = 'fullscreen-image';
+        overlay.innerHTML = `
             <div class="close-button" onclick="closeFullScreen()"></div>
-            <video src="${videoSrc}" controls autoplay></video>
+            <div class="zoom-controls">
+                <button class="zoom-btn zoom-out" aria-label="Zoom out"><i class="fas fa-minus"></i></button>
+                <button class="zoom-btn zoom-reset" aria-label="Reset zoom"><i class="fas fa-search"></i></button>
+                <button class="zoom-btn zoom-in" aria-label="Zoom in"><i class="fas fa-plus"></i></button>
+            </div>
+            <img src="${src}" alt="" class="zoomable" loading="lazy"/>
         `;
-        document.body.appendChild(fullscreenDiv);
+        document.body.appendChild(overlay);
+        document.body.classList.add('fullscreen-mode');            // ← add
         document.getElementById('wrapper').classList.add('blurred-background');
-    }
 
-    function showFullScreenImage(imageSrc) {
-        const fullscreenDiv = document.createElement('div');
-        fullscreenDiv.className = 'fullscreen-image';
-        fullscreenDiv.innerHTML = `
-            <div class="close-button" onclick="closeFullScreen()"></div>
-            <img src="${imageSrc}" alt="Full Screen Image">
-        `;
-        document.body.appendChild(fullscreenDiv);
-        document.getElementById('wrapper').classList.add('blurred-background');
+        const img = overlay.querySelector('.zoomable');
+        img.style.transformOrigin = 'center center';
+        let scale=1, offsetX=0, offsetY=0;
+        img.style.transform = `translate(0px,0px) scale(${scale})`;
+
+        // Mouse‐wheel zoom
+        overlay.addEventListener('wheel', e => {
+            e.preventDefault();
+            scale *= (e.deltaY < 0 ? 1.1 : 0.9);
+            scale = Math.min(Math.max(scale,0.5),3);
+            img.style.transform = `translate(${offsetX}px,${offsetY}px) scale(${scale})`;
+        }, {passive:false});
+
+        // Button handlers
+        overlay.querySelector('.zoom-in').onclick = () => {
+            scale = Math.min(scale*1.2,3);
+            img.style.transform = `translate(${offsetX}px,${offsetY}px) scale(${scale})`;
+        };
+        overlay.querySelector('.zoom-out').onclick = () => {
+            scale = Math.max(scale*0.8,0.5);
+            img.style.transform = `translate(${offsetX}px,${offsetY}px) scale(${scale})`;
+        };
+        overlay.querySelector('.zoom-reset').onclick = () => {
+            scale=1; offsetX=0; offsetY=0;
+            img.style.transform = `translate(0px,0px) scale(1)`;
+        };
+
+        // Drag panning
+        let dragging=false, startX, startY;
+        img.style.cursor='grab';
+        img.addEventListener('mousedown', e => {
+            e.preventDefault();
+            dragging=true;
+            startX=e.clientX; startY=e.clientY;
+            img.style.cursor='grabbing';
+        });
+        document.addEventListener('mousemove', e => {
+            if(!dragging) return;
+            e.preventDefault();
+            const dx=e.clientX-startX, dy=e.clientY-startY;
+            startX=e.clientX; startY=e.clientY;
+            offsetX+=dx; offsetY+=dy;
+            img.style.transform = `translate(${offsetX}px,${offsetY}px) scale(${scale})`;
+        });
+        document.addEventListener('mouseup', () => {
+            if(!dragging) return;
+            dragging=false;
+            img.style.cursor='grab';
+        });
+        overlay.addEventListener('mouseleave',()=>{
+            dragging=false;
+            img.style.cursor='grab';
+        });
+
+        // Touch pinch & pan
+        function dist(t1,t2){return Math.hypot(t1.clientX-t2.clientX,t1.clientY-t2.clientY);}
+        let initialPinch=null, touchDrag=false, touchX, touchY;
+        overlay.addEventListener('touchstart',e=> {
+            if(e.touches.length===2) initialPinch=dist(e.touches[0],e.touches[1]);
+            else if(e.touches.length===1){
+                touchDrag=true;
+                touchX=e.touches[0].clientX; touchY=e.touches[0].clientY;
+            }
+        },{passive:false});
+        overlay.addEventListener('touchmove',e=>{
+            if(e.touches.length===2 && initialPinch){
+                e.preventDefault();
+                let d=dist(e.touches[0],e.touches[1]), ratio=d/initialPinch;
+                scale=Math.min(Math.max(scale*ratio,0.5),3);
+                initialPinch=d;
+                img.style.transform = `translate(${offsetX}px,${offsetY}px) scale(${scale})`;
+            } else if(e.touches.length===1 && touchDrag){
+                e.preventDefault();
+                let cx=e.touches[0].clientX, cy=e.touches[0].clientY;
+                let dx=cx-touchX, dy=cy-touchY;
+                touchX=cx; touchY=cy;
+                offsetX+=dx; offsetY+=dy;
+                img.style.transform = `translate(${offsetX}px,${offsetY}px) scale(${scale})`;
+            }
+        },{passive:false});
+        overlay.addEventListener('touchend',e=>{
+            if(e.touches.length<2) initialPinch=null;
+            if(e.touches.length===0) touchDrag=false;
+        });
     }
 
     function closeFullScreen() {
-        const fullscreenDiv = document.querySelector('.fullscreen-video') || document.querySelector('.fullscreen-image');
-        if (fullscreenDiv) {
-            document.body.removeChild(fullscreenDiv);
-        }
+        const ov = document.querySelector('.fullscreen-image') || document.querySelector('.fullscreen-video');
+        if(ov) ov.remove();
+        document.body.classList.remove('fullscreen-mode');      // ← remove
         document.getElementById('wrapper').classList.remove('blurred-background');
     }
 </script>
+
 </body>
 </html>
