@@ -22,7 +22,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" />
     
-    <style>
+  <style>
         /* Labels & citations */
         .image-label, .video-label {
             text-align: center;
@@ -54,6 +54,12 @@
             align-items: center;
             flex-direction: column;
             margin: 20px 0;
+        }
+        .video-container {
+        position: relative;
+        width: 100%;
+        max-width: 600px;
+        margin: 0 auto;
         }
         .slider .slide-content img,
         .slider .slide-content video {
@@ -166,7 +172,32 @@
         @media (max-width:736px) {
             .project-text { font-size:1rem; }
         }
-    </style>
+            
+      /* Play Icon */
+      .play-icon {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 64px;
+      height: 64px;
+      background: url('images/play-icon.png') no-repeat center center;
+      background-size: cover;
+      opacity: 0.8;
+      cursor: pointer;
+    }
+
+    .play-icon:hover {
+      transform: translate(-50%, -50%) scale(1.2);
+    }
+
+  @media (max-width: 480px) {
+  .play-icon {
+    top: 45%;
+  }
+}
+
+  </style>
 
 </head>
 <body class="is-preload">
@@ -272,6 +303,18 @@
         });
     });
 
+// Full-screen video playback overlay with close button
+function playFullScreen(videoSrc) {
+    const overlay = document.createElement('div');
+    overlay.className = 'fullscreen-video';
+    overlay.innerHTML = `
+      <div class="close-button" onclick="closeFullScreen()"></div>
+      <video src="${videoSrc}" controls autoplay playsinline></video>
+    `;
+    document.body.appendChild(overlay);
+    document.body.classList.add('fullscreen-mode');  // Apply dark background overlay
+    document.getElementById('wrapper').classList.add('blurred-background');
+}
     // Full-screen image with zoom/pan/pinch
     function showFullScreenImage(src, evt) {
         if(evt) evt.preventDefault();
