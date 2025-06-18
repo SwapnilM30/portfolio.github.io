@@ -3844,33 +3844,6 @@ h6 { font-size: 0.6em; }
     padding-left: 25px; /* Adjust the padding as needed */
 }
 
-.slick-prev,
-.slick-next {
-  background: none;
-  border: none;
-  box-shadow: none;
-  outline: none;   /* keep if you don’t rely on the focus ring */
-  padding: 0;
-  width: auto;
-  height: auto;
-  cursor: pointer;
-}
-
-.slick-prev:before {           /* chevron-left */
-  content: "\f053";
-  font-family: "Font Awesome 5 Free";
-  font-weight: 900;
-  font-size: 1.8rem;
-  color: rgba(50, 50, 50);
-}
-.slick-next:before {           /* chevron-right */
-  content: "\f054";
-  font-family: "Font Awesome 5 Free";
-  font-weight: 900;
-  font-size: 1.8rem;
-  color: rgba(50, 50, 50);
-}
-
 /* Hamburger Menu Icon */
 .hamburger {
     display: block; /* Ensure the hamburger menu is always displayed */
