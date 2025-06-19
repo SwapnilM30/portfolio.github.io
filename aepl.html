@@ -81,6 +81,38 @@
             flex-direction: column;
             margin: 20px 0;
         }
+        
+        /* ----- Custom hollow rings for Slick dots ----- */
+.slick-dots li button {
+  /* strip away any global button styling */
+  border: none !important;
+  background: transparent !important;
+  padding: 0;
+  outline: none;
+}
+
+.slick-dots li button:before {
+  /* hollow ring */
+  content: '';
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border: 2px solid rgba(255,255,255,0.7);
+  border-radius: 50%;
+  margin: 0 6px;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.slick-dots li button:hover:before {
+  transform: scale(1.2);
+}
+
+.slick-dots li.slick-active button:before {
+  /* filled dot */
+  background: rgba(255,255,255,0.9);
+  border-color: rgba(255,255,255,0.9);
+}
+
         .video-container {
         position: relative;
         width: 100%;
