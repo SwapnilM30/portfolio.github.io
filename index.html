@@ -669,13 +669,16 @@
     });
 
     // Slick slider init
-    $(document).ready(() => {
-      $('.slider').slick({
-        autoplay: true, dots: true, arrows: true,
-        infinite: true, speed: 800,
-        slidesToShow: 1, slidesToScroll: 1
-      });
-    });
+ $('.slider').slick({
+  autoplay: true,
+  dots: true,
+  arrows: true,
+  infinite: true,
+  speed: 800,
+  cssEase: 'cubic-bezier(0.7, 0, 0.3, 1)',  // gentle “ease-in-out” style
+  slidesToShow: 1,
+  slidesToScroll: 1
+});
 
 function showFullScreenImage(src, e) {
   e.preventDefault();
