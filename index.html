@@ -44,6 +44,70 @@
 .slick-prev:hover:before,
 .slick-next:hover:before{color:#283a8b;}
 
+        /* Labels & citations */
+        .image-label, .video-label {
+            text-align: center;
+            font-size: 16px;
+            margin-top: 5px;
+            color: rgba(50, 50, 50);
+        }
+        .image-citation, .video-citation {
+            margin-top: 5px;
+            font-size: 12px;
+            text-align: center;
+        }
+
+        /* Slider layout */
+        .slick-dots {
+            position: absolute;
+            bottom: 10px;
+            width: 100%;
+            text-align: center;
+        }
+        .slider {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .slider .slide-content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            margin: 20px 0;
+        }
+        
+        /* ----- Custom hollow rings for Slick dots ----- */
+.slick-dots li button {
+  /* strip away any global button styling */
+  border: none !important;
+  background: transparent !important;
+  padding: 0;
+  outline: none;
+}
+
+.slick-dots li button:before {
+  /* hollow ring */
+  content: '';
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border: 2px solid rgba(50, 50, 50, 0.70);
+  border-radius: 50%;
+  margin: 0 6px;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.slick-dots li button:hover:before {
+  transform: scale(1.2);
+}
+
+.slick-dots li.slick-active button:before {
+  /* filled dot */
+  background: #283a8b;
+  border-color: #283a8b;
+}
+
     /* ClustrMaps: minimal styling */
     #visitor-map { width: 100%; }
     #clustrmaps { border: none; box-shadow: none; }
@@ -553,7 +617,7 @@
   <!-- Footer -->
   <footer id="footer" class="wrapper style1-alt">
     <div class="inner">
-      <ul class="menu"><li>&copy; 2023 Swapnil Meshram</li></ul>
+      <ul class="menu"><li>&copy; 2016-2025 Swapnil Meshram</li></ul>
     </div>
   </footer>
 
