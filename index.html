@@ -19,6 +19,31 @@
   <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 
   <style>
+
+    /* --- Slick arrows (Font-Awesome chevrons) --- */
+.slick-prev,
+.slick-next{
+  background:none;border:none;outline:0;box-shadow:none;
+  width:48px;height:48px;
+  cursor:pointer;position:absolute;top:50%;transform:translateY(-50%);
+}
+.slick-prev {left:-60px;}
+.slick-next {right:-60px;}
+
+/* replace Slick’s :before content                                */
+.slick-prev:before,
+.slick-next:before{
+  font-family:"Font Awesome 5 Free";   /* <-- use FA, not 'slick' */
+  font-weight:900;                     /* solid style            */
+  font-size:48px;line-height:1;
+  color:rgba(50,50,50,.9);
+}
+.slick-prev:before {content:"\f053";}  /* fa-chevron-left  */
+.slick-next:before {content:"\f054";}  /* fa-chevron-right */
+
+.slick-prev:hover:before,
+.slick-next:hover:before{color:#283a8b;}
+
     /* ClustrMaps: minimal styling */
     #visitor-map { width: 100%; }
     #clustrmaps { border: none; box-shadow: none; }
