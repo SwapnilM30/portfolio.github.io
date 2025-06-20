@@ -417,7 +417,7 @@
     const img = overlay.querySelector('.zoomable');
     img.style.transformOrigin = 'center center';
 
-    let scale = 0.8, offsetX = 0, offsetY = 0;
+    let scale = 0.85, offsetX = 0, offsetY = 0;
     img.style.transform = `translate(0px,0px) scale(${scale})`;
 
     // ESC key handler (self-removing)
@@ -447,7 +447,7 @@
       img.style.transform = `translate(${offsetX}px,${offsetY}px) scale(${scale})`;
     };
     overlay.querySelector('.zoom-reset').onclick = () => {
-      scale = 0.8; offsetX = 0; offsetY = 0;
+      scale = 0.85; offsetX = 0; offsetY = 0;
       img.style.transform = `translate(0px,0px) scale(${scale})`;
     };
 
