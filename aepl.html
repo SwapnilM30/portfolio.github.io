@@ -289,7 +289,20 @@
       display: none;
     }
     */
-  }
+    }
+
+/* —— LET SLIDER ARROWS PEEK OUT —— */
+/* 1) Allow arrows to escape the slick‐list’s clipping */
+.slider .slick-list {
+  overflow: visible !important;
+}
+
+/* 2) Ensure they sit above the image */
+.slick-prev,
+.slick-next {
+  z-index: 10 !important;
+}
+
 </style>
 
 </head>
