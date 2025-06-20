@@ -23,287 +23,238 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" />
 
-<style>
-  /* --- Slick arrows (Font-Awesome chevrons) --- */
-  .slick-prev,
-  .slick-next {
-    background: none;
-    border: none !important;
-    outline: 0;
-    box-shadow: none;
-    width: 50px;
-    height: 50px;
-    cursor: pointer;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-  }
-  .slick-prev { left: -60px; }
-  .slick-next { right: -60px; }
+  <style>
 
-  .slick-prev:before,
-  .slick-next:before {
-    font-family: "Font Awesome 5 Free";
-    font-weight: 900;
-    font-size: 48px;
-    line-height: 1;
-    color: rgba(50,50,50,.9);
-  }
-  .slick-prev:before { content: "\f053"; }  /* chevron-left */
-  .slick-next:before { content: "\f054"; }  /* chevron-right */
-  .slick-prev:hover:before,
-  .slick-next:hover:before {
-    color: #283a8b;
+    /* --- Slick arrows (Font-Awesome chevrons) --- */
+.slick-prev,
+.slick-next{
+  background:none;border:none!important;outline:0;box-shadow:none;
+  width:50px;height:50px;
+  cursor:pointer;position:absolute;top:50%;transform:translateY(-50%);
+}
+.slick-prev {left:-60px;}
+.slick-next {right:-60px;}
+
+/* replace Slick’s :before content                                */
+.slick-prev:before,
+.slick-next:before{
+  font-family:"Font Awesome 5 Free";   /* <-- use FA, not 'slick' */
+  font-weight:900;                     /* solid style            */
+  font-size:48px;line-height:1;
+  color:rgba(50,50,50,.9);
+}
+.slick-prev:before {content:"\f053";}  /* fa-chevron-left  */
+.slick-next:before {content:"\f054";}  /* fa-chevron-right */
+
+.slick-prev:hover:before,
+.slick-next:hover:before{color:#283a8b;}
+
+        /* Labels & citations */
+        .image-label, .video-label {
+            text-align: center;
+            font-size: 16px;
+            margin-top: 5px;
+            color: rgba(50, 50, 50);
+        }
+        .image-citation, .video-citation {
+            margin-top: 5px;
+            font-size: 12px;
+            text-align: center;
+        }
+
+        /* Slider layout */
+        .slick-dots {
+            position: absolute;
+            bottom: 10px;
+            width: 100%;
+            text-align: center;
+        }
+        .slider {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .slider .slide-content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            margin: 20px 0;
+        }
+
+                /* ----- Custom hollow rings for Slick dots ----- */
+.slick-dots li button {
+  /* strip away any global button styling */
+  border: none !important;
+  background: transparent !important;
+  padding: 0;
+  outline: none;
+}
+
+.slick-dots li button:before {
+  /* hollow ring */
+  content: '';
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border: 2px solid rgba(50, 50, 50, 0.70);
+  border-radius: 50%;
+  margin: 0 6px;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.slick-dots li button:hover:before {
+  transform: scale(1.2);
+}
+
+.slick-dots li.slick-active button:before {
+  /* filled dot */
+  background: #283a8b;
+  border-color: #283a8b;
+}
+        .video-container {
+        position: relative;
+        width: 100%;
+        max-width: 600px;
+        margin: 0 auto;
+        }
+        .slider .slide-content img,
+        .slider .slide-content video {
+            max-width: 600px;
+            width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+            border: 1px solid rgba(50, 50, 50);
+            padding: 6px;
+        }
+        @media (max-width:600px) {
+            .slider .slide-content img,
+            .slider .slide-content video {
+                padding: 5px;
+            }
+        }
+
+        /* Hover scale */
+        .image, .video {
+            cursor: pointer;
+            transition: transform 0.25s ease;
+        }
+        .image:hover, .video:hover {
+            transform: scale(1.01);
+        }
+
+        /* Fullscreen overlay */
+        .fullscreen-video, .fullscreen-image {
+            position: fixed;
+            top:0; left:0;
+            width:100%; height:100%;
+            background: rgba(0,0,0,0.8);
+            z-index:9999;
+            display:flex; justify-content:center; align-items:center;
+            touch-action: none;
+        }
+        .fullscreen-video video, .fullscreen-image img {
+            max-width:90%; max-height:90%;
+        }
+        .blurred-background {
+            filter: blur(5px);
+        }
+        .close-button {
+            position:absolute;
+            top:25px; right:25px;
+            width:32px; height:32px;
+            background: url('images/close-icon.png') no-repeat center center;
+            background-size:cover;
+            cursor:pointer;
+            z-index:10000;
+        }
+
+/* Zoom‐in/out/reset controls */
+.fullscreen-image img.zoomable {
+  cursor: grab;               /* original grab cursor */
+  touch-action: none;         /* still disable native pinch-zoom */
+  transition: transform 0.1s ease-out;
+}
+
+.zoom-controls {
+  position: absolute;         /* take it out of the flow */
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.25rem 0.75rem;    /* vertical / horizontal padding */
+  background: rgba(0,0,0,0.6);
+  border-radius: 9999px;      /* fully rounded ends */
+  bottom: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10001;
+
+  /* start hidden & fade-in on hover/focus */
+  opacity: 0;
+  transition: opacity 0.3s ease;
   }
 
-  /* Labels & citations */
-  .image-label, .video-label {
-    text-align: center;
-    font-size: 16px;
-    margin-top: 5px;
-    color: rgba(50,50,50);
-  }
-  .image-citation, .video-citation {
-    margin-top: 5px;
-    font-size: 12px;
-    text-align: center;
-  }
-
-  /* Slider layout */
-  .slider {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-  .slider .slide-content {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    margin: 20px 0;
-  }
-  .slick-dots {
-    position: absolute;
-    bottom: 10px;
-    width: 100%;
-    text-align: center;
-  }
-
-  /* Hollow rings for dots */
-  .slick-dots li button {
-    border: none !important;
-    background: transparent !important;
-    padding: 0;
-    outline: none;
-  }
-  .slick-dots li button:before {
-    content: '';
-    display: inline-block;
-    width: 12px;
-    height: 12px;
-    border: 2px solid rgba(50,50,50,0.7);
-    border-radius: 50%;
-    margin: 0 6px;
-    transition: background 0.2s ease, transform 0.2s ease;
-  }
-  .slick-dots li button:hover:before {
-    transform: scale(1.2);
-  }
-  .slick-dots li.slick-active button:before {
-    background: #283a8b;
-    border-color: #283a8b;
-  }
-
-  /* Desktop image/video styling */
-  .slider .slide-content img,
-  .slider .slide-content video {
-    max-width: 600px;
-    width: 100%;
-    height: auto;
-    display: block;
-    margin: 0 auto;
-    border: 1px solid rgba(50,50,50);
-    padding: 6px;
-  }
-
-  /* Hover scale */
-  .image, .video {
-    cursor: pointer;
-    transition: transform 0.25s ease;
-  }
-  .image:hover, .video:hover {
-    transform: scale(1.01);
-  }
-
-  /* Fullscreen overlay */
-  .fullscreen-video,
-  .fullscreen-image {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    background: rgba(0,0,0,0.8);
-    z-index: 9999;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    touch-action: none;
-  }
-  .fullscreen-video video,
-  .fullscreen-image img {
-    max-width: 90%;
-    max-height: 90%;
-  }
-  .blurred-background {
-    filter: blur(5px);
-  }
-  .close-button {
-    position: absolute;
-    top: 25px; right: 25px;
-    width: 32px; height: 32px;
-    background: url('images/close-icon.png') no-repeat center center;
-    background-size: cover;
-    cursor: pointer;
-    z-index: 10000;
-  }
-
-  /* Zoom controls */
-  .fullscreen-image img.zoomable {
-    cursor: grab;
-    touch-action: none;
-    transition: transform 0.1s ease-out;
-  }
-  .zoom-controls {
-    position: absolute;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.25rem 0.75rem;
-    background: rgba(0,0,0,0.6);
-    border-radius: 9999px;
-    bottom: 1rem;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 10001;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-  }
   .fullscreen-image:hover .zoom-controls,
   .zoom-controls:focus-within {
     opacity: 1;
-  }
-  .zoom-btn {
-    background: transparent;
-    border: none;
-    padding: 0.25rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    color: #fff !important;
-    font-size: 1rem;
-  }
-  .zoom-btn:hover {
-    background: rgba(255,255,255,0.15);
-    border-radius: 50%;
-  }
+}
 
-  /* Responsive project text */
-  .project-text {
-    font-size: 1.175rem;
-    line-height: 1.6;
-  }
-  @media (max-width:1280px) {
-    .project-text { font-size: 1.1rem; }
-  }
-  @media (max-width:736px) {
-    .project-text { font-size: 1rem; }
-  }
+.zoom-btn {
+  background: transparent;    /* remove per-button circle */
+  border: none;
+  width: auto; height: auto;  /* let padding define hit area */
+  padding: 0.25rem;           /* click‐area around the icon */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #fff !important;     /* icon color */
+  font-size: 1rem;            /* scale the icon up a bit */
+}
 
-  /* Play icon */
+.zoom-btn:hover {
+  background: rgba(255,255,255,0.15);
+  border-radius: 50%;
+}
+
+        /* Responsive project text */
+        .project-text {
+            font-size:1.175rem;
+            line-height:1.6;
+        }
+        @media (max-width:1280px) {
+            .project-text { font-size:1.1rem; }
+        }
+        @media (max-width:736px) {
+            .project-text { font-size:1rem; }
+        }
+            
+      /* Play Icon */
+      .play-icon {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 64px;
+      height: 64px;
+      background: url('images/play-icon.png') no-repeat center center;
+      background-size: cover;
+      opacity: 0.8;
+      cursor: pointer;
+    }
+
+    .play-icon:hover {
+      transform: translate(-50%, -50%) scale(1.2);
+    }
+
+  @media (max-width: 480px) {
   .play-icon {
-    position: absolute;
-    top: 50%; left: 50%;
-    transform: translate(-50%, -50%);
-    width: 64px; height: 64px;
-    background: url('images/play-icon.png') no-repeat center center;
-    background-size: cover;
-    opacity: 0.8;
-    cursor: pointer;
-    transition: transform .25s ease;
+    top: 50%;
   }
-  .play-icon:hover {
-    transform: translate(-50%,-50%) scale(1.2);
-  }
-  @media (max-width:480px) {
-    .play-icon { top: 50%; }
-  }
-
-  /* === MOBILE OVERRIDES === */
-  @media (max-width:600px) {
-    /* 1) edge-to-edge slider */
-    .slider {
-      max-width: 100%;
-      margin: 0;
-      padding: 0;
-      border: none;
-    }
-    .slider .slide-content {
-      margin: 0;
-    }
-    /* 2) full-width media */
-    .slider .slide-content img,
-    .slider .slide-content video {
-      width: 100%;
-      margin: 0;
-      padding: 0;
-      border: none;
-    }
-    /* 3) smaller inset arrows */
-    .slick-prev {
-      width: 36px;
-      height: 36px;
-      left: 8px;
-    }
-    .slick-next {
-      width: 36px;
-      height: 36px;
-      right: 8px;
-    }
-    .slick-prev:before,
-    .slick-next:before {
-      font-size: 20px;
-    }
-    /* 4) slim dots */
-    .slick-dots { bottom: 6px; }
-    .slick-dots li button:before {
-      width: 10px;
-      height: 10px;
-      margin: 0 4px;
-    }
-    /* 5) hide captions? un-comment to enable */
-    /*
-    .image-label,
-    .image-citation,
-    .video-label,
-    .video-citation {
-      display: none;
-    }
-    */
-    }
-
-/* —— LET SLIDER ARROWS PEEK OUT —— */
-/* 1) Allow arrows to escape the slick‐list’s clipping */
-.slider .slick-list {
-  overflow: visible !important;
 }
 
-/* 2) Ensure they sit above the image */
-.slick-prev,
-.slick-next {
-  z-index: 10 !important;
-}
-
-</style>
+  </style>
 
 </head>
 <body class="is-preload">
