@@ -398,7 +398,7 @@ function playFullScreen(videoSrc) {
         };
         overlay.querySelector('.zoom-reset').onclick = () => {
             scale=0.8; offsetX=0; offsetY=0;
-            img.style.transform = `translate(0px,0px) scale(1)`;
+            img.style.transform = `translate(0px,0px) scale(${scale})`;
         };
 
         // Drag panning
