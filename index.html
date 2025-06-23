@@ -43,6 +43,8 @@
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
+    /* always show arrows, even if only one slide */
+    display: block !important;
   }
   .slick-prev { left: -60px; }
   .slick-next { right: -60px; }
@@ -85,7 +87,7 @@
     justify-content: space-between;
     border: 1px solid rgba(50,50,50,0.5);
     padding: 15px;
-    margin: 0 auto;
+    margin: 2rem auto;
     max-width: 300px;
   }
   .slider .slide-content {
@@ -102,6 +104,8 @@
     bottom: 10px;
     width: 100%;
     text-align: center;
+    /* always show dots, even if only one slide */
+    display: block !important;
   }
   .slick-dots li button {
     border: none !important;
@@ -125,6 +129,15 @@
   .slick-dots li.slick-active button:before {
     background: #283a8b;
     border-color: #283a8b;
+  }
+
+  /* border + sizing for single-image carousel (AEPL) */
+  .work-logo {
+    border: 1px solid rgba(50,50,50,0.5);
+    padding: 15px;
+    margin: 2rem auto;
+    max-width: 200px;
+    position: relative; /* so its dots/arrows position correctly */
   }
 
   /* ClustrMaps: minimal styling */
@@ -340,13 +353,16 @@
       Before starting my master’s degree in Robotics and Autonomous Systems at Arizona State University, I was eager to get my hands dirty and gain real-world experience. My early work experience in the field of robotics and electronics engineering was important because it not only deepened my passion for these domains but also set the stage for my academic journey. Throughout this time, I worked on many projects that challenged me: from designing intricate hardware systems to developing innovative robotics solutions, I constantly spent time sharpening my skills and pushing myself further.
     </p>
 
-    <div class="work-logo" style="text-align:center; margin:2rem 0;">
-      <img
-        src="images/AEPL logo.png"
-        alt="AEPL Logo"
-        style="max-width:200px; width:100%; height:auto;"
-        loading="lazy"
-      />
+    <div class="slider">
+      <div class="slide-content">
+        <img
+          src="images/AEPL logo.png"
+          alt="AEPL Logo"
+          loading="lazy"
+        />
+        <!-- optional label -->
+        <p class="image-label">Aerospace Engineers Private Limited</p>
+      </div>
     </div>
 
     <ul class="actions">
@@ -354,7 +370,6 @@
     </ul>
   </div>
 </section>
-
 
     <!-- Projects -->
     <section id="three" class="wrapper style2 spotlights">
