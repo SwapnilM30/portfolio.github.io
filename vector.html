@@ -440,33 +440,16 @@
     const vid     = overlay.querySelector('video');
     const playBtn = overlay.querySelector('.play-icon');
 
-    // ─── detect if user clicked our overlay icon ───
-    let usedOverlayIcon = false;
-
     // if autoPlay flag is true, start and immediately hide the play icon
     if (autoPlay) {
-      usedOverlayIcon = true;
       vid.play();
       playBtn.style.display = 'none';
     }
 
     // when user clicks the overlaid play icon: play + hide it
     playBtn.addEventListener('click', () => {
-      usedOverlayIcon = true;
       vid.play();
       playBtn.style.display = 'none';
-    });
-
-    // if native controls are used, hand playback back to inline carousel
-    vid.addEventListener('play', () => {
-      if (!usedOverlayIcon) {
-        // 1) close the overlay
-        closeFullScreen();
-        // 2) play the inline video in the carousel
-        const $slide    = slickInst.$slides.eq(slickInst.currentSlide);
-        const inlineVid = $slide.find('video').get(0);
-        if (inlineVid) inlineVid.play();
-      }
     });
 
     // Prev arrow
