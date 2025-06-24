@@ -384,28 +384,61 @@
   // grab the Slick instance for later
   const slickInst = $('.slider').slick('getSlick');
 
-  // Full-screen video playback
+  // Full-screen video playback (with Prev/Next arrows)
   function playFullScreen(videoSrc) {
     const overlay = document.createElement('div');
     overlay.className = 'fullscreen-video';
     overlay.innerHTML = `
       <div class="close-button" onclick="closeFullScreen()"></div>
+      <div class="slick-prev fs-arrow" aria-label="Previous"></div>
+      <div class="slick-next fs-arrow" aria-label="Next"></div>
       <video src="${videoSrc}" controls autoplay playsinline></video>
     `;
     document.body.appendChild(overlay);
     document.body.classList.add('fullscreen-mode');
     document.getElementById('wrapper').classList.add('blurred-background');
+
+    // Prev arrow
+    overlay.querySelector('.slick-prev').onclick = () => {
+      closeFullScreen();
+      slickInst.slickPrev();
+      const slide = slickInst.$slides.eq(slickInst.currentSlide);
+      if (slide.find('video source').length) {
+        playFullScreen(slide.find('video source').attr('src'));
+      } else {
+        showFullScreenImage(slide.find('img').attr('src'));
+      }
+    };
+
+    // Next arrow
+    overlay.querySelector('.slick-next').onclick = () => {
+      closeFullScreen();
+      slickInst.slickNext();
+      const slide = slickInst.$slides.eq(slickInst.currentSlide);
+      if (slide.find('video source').length) {
+        playFullScreen(slide.find('video source').attr('src'));
+      } else {
+        showFullScreenImage(slide.find('img').attr('src'));
+      }
+    };
+
+    // ESC to close
+    document.addEventListener('keydown', function onKey(e) {
+      if (e.key === 'Escape') {
+        document.removeEventListener('keydown', onKey);
+        closeFullScreen();
+      }
+    });
   }
 
-  // Full-screen image (or delegate to video) with zoom/pan/pinch + carousel arrows + ESC to close
+  // Full-screen image (or delegate to video) with zoom/pan/pinch + Prev/Next + ESC
   function showFullScreenImage(src, evt) {
     if (evt) evt.preventDefault();
 
-    // figure out which slide we're on
     let currentIndex = slickInst.currentSlide;
     const slideEl = slickInst.$slides.eq(currentIndex);
 
-    // if it's a video slide, grab the <source> URL and play it
+    // If current slide has a <video>, delegate to playFullScreen
     const videoEl = slideEl.find('video');
     if (videoEl.length) {
       const videoSrc = videoEl.find('source').attr('src');
@@ -413,7 +446,7 @@
       return;
     }
 
-    // otherwise build the image overlay
+    // Build image overlay
     const overlay = document.createElement('div');
     overlay.className = 'fullscreen-image';
     overlay.innerHTML = `
@@ -436,39 +469,37 @@
     let scale = 0.85, offsetX = 0, offsetY = 0;
     img.style.transform = `translate(0px,0px) scale(${scale})`;
 
-    // handle stepping through slides
+    // Unified slide-change handler
     function handleSlideChange() {
       const slide = slickInst.$slides.eq(currentIndex);
       const maybeVideo = slide.find('video source').attr('src');
       if (maybeVideo) {
-        // video slide: switch to video overlay
         closeFullScreen();
         playFullScreen(maybeVideo);
       } else {
-        // image slide: fade-swap the <img>
         const newImgSrc = slide.find('img').attr('src');
         img.style.opacity = 0;
         img.addEventListener('transitionend', function handler() {
           img.removeEventListener('transitionend', handler);
           img.src = newImgSrc;
-          requestAnimationFrame(() => {
-            img.style.opacity = 1;
-          });
+          requestAnimationFrame(() => { img.style.opacity = 1; });
         });
       }
     }
 
-    // wire up Prev/Next arrows
+    // Prev arrow
     overlay.querySelector('.slick-prev').onclick = () => {
       currentIndex = (currentIndex - 1 + slickInst.slideCount) % slickInst.slideCount;
       handleSlideChange();
     };
+
+    // Next arrow
     overlay.querySelector('.slick-next').onclick = () => {
       currentIndex = (currentIndex + 1) % slickInst.slideCount;
       handleSlideChange();
     };
 
-    // ESC key to close
+    // ESC to close
     function onKeyDown(e) {
       if (e.key === 'Escape') {
         document.removeEventListener('keydown', onKeyDown);
@@ -571,7 +602,6 @@
     document.getElementById('wrapper').classList.remove('blurred-background');
   }
 </script>
-
 
 </body>
 </html>
