@@ -24,17 +24,11 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" />
 
 <style>
-  /* ───────────────────────────────────────────────────────────────────
-     𝗞𝗘𝗬𝗙𝗥𝗔𝗠𝗘𝗦 𝗙𝗢𝗥 𝗢𝗩𝗘𝗥𝗟𝗔𝗬 𝗖𝗔𝗥𝗢𝗨𝗦𝗘𝗟 𝗔𝗡𝗜𝗠𝗔𝗧𝗜𝗢𝗡
-  ─────────────────────────────────────────────────────────────────── */
-  @keyframes slide-out {
-    from { transform: translateX(0); }
-    to   { transform: translateX(-100%); }
-  }
-  @keyframes slide-in {
-    from { transform: translateX(100%); }
-    to   { transform: translateX(0); }
-  }
+
+/* Fade transition for overlay image swaps */
+.fullscreen-image img.zoomable {
+  transition: opacity 0.4s ease;
+}
 
   /* --- Slick arrows (Font-Awesome chevrons) --- */
   .slick-prev,
@@ -480,20 +474,23 @@
     let scale = 0.85, offsetX = 0, offsetY = 0;
     img.style.transform = `translate(0px,0px) scale(${scale})`;
 
-    // helper to load a new slide’s image with slide-out / slide-in animations
     function loadSlide() {
       const slide = slickInst.$slides.eq(currentIndex);
       const newSrc = slide.find('img').attr('src');
-      // slide current image out
-      img.style.animation = 'slide-out 0.8s cubic-bezier(0.7,0,0.3,1) forwards';
-      img.addEventListener('animationend', function handler() {
-        img.removeEventListener('animationend', handler);
-        // swap src and slide new image in
-        img.src = newSrc;
-        img.style.animation = 'slide-in 0.8s cubic-bezier(0.7,0,0.3,1) forwards';
-      });
-    }
 
+    // fade out
+    img.style.opacity = 0;
+    // once faded out, swap the src and fade back in
+    img.addEventListener('transitionend', function handler() {
+    img.removeEventListener('transitionend', handler);
+    img.src = newSrc;
+    // ensure a tiny timeout so the browser sees the src change separately
+    requestAnimationFrame(() => {
+      img.style.opacity = 1;
+        });
+      }); 
+    }
+    
     // wire up Prev/Next arrows
     overlay.querySelector('.slick-prev').onclick = () => {
       currentIndex = (currentIndex - 1 + slickInst.slideCount) % slickInst.slideCount;
