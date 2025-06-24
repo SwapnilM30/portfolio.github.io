@@ -429,16 +429,28 @@
       <div class="close-button" onclick="closeFullScreen()"></div>
       <div class="slick-prev fs-arrow" aria-label="Previous"></div>
       <div class="slick-next fs-arrow" aria-label="Next"></div>
-      <div class="play-icon" onclick="overlay.querySelector('video').play()"></div>
+      <div class="play-icon"></div>
       <video src="${videoSrc}" controls playsinline></video>
     `;
     document.body.appendChild(overlay);
     document.body.classList.add('fullscreen-mode');
     document.getElementById('wrapper').classList.add('blurred-background');
 
-    // only start playback when explicitly requested
-    const vid = overlay.querySelector('video');
-    if (autoPlay) vid.play();
+    // grab the video element and the overlay play-button
+    const vid     = overlay.querySelector('video');
+    const playBtn = overlay.querySelector('.play-icon');
+
+    // if autoPlay flag is true, start and immediately hide the play icon
+    if (autoPlay) {
+      vid.play();
+      playBtn.style.display = 'none';
+    }
+
+    // when user clicks the overlaid play icon: play + hide it
+    playBtn.addEventListener('click', () => {
+      vid.play();
+      playBtn.style.display = 'none';
+    });
 
     // Prev arrow
     overlay.querySelector('.slick-prev').onclick = () => {
@@ -645,7 +657,6 @@
     document.getElementById('wrapper').classList.remove('blurred-background');
   }
 </script>
-
 
 </body>
 </html>
