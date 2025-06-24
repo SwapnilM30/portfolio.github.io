@@ -421,56 +421,57 @@
   // grab the Slick instance for later
   const slickInst = $('.slider').slick('getSlick');
 
-  // Full-screen video playback (with Prev/Next arrows)
-function playFullScreen(videoSrc, autoPlay = false) {
-  const overlay = document.createElement('div');
-  overlay.className = 'fullscreen-video';
-  overlay.innerHTML = `
-    <div class="close-button" onclick="closeFullScreen()"></div>
-    <div class="slick-prev fs-arrow" aria-label="Previous"></div>
-    <div class="slick-next fs-arrow" aria-label="Next"></div>
-    <video src="${videoSrc}" controls playsinline></video>
-  `;
-  document.body.appendChild(overlay);
-  document.body.classList.add('fullscreen-mode');
-  document.getElementById('wrapper').classList.add('blurred-background');
+  // Full-screen video playback (with Prev/Next arrows + play-icon)
+  function playFullScreen(videoSrc, autoPlay = false) {
+    const overlay = document.createElement('div');
+    overlay.className = 'fullscreen-video';
+    overlay.innerHTML = `
+      <div class="close-button" onclick="closeFullScreen()"></div>
+      <div class="slick-prev fs-arrow" aria-label="Previous"></div>
+      <div class="slick-next fs-arrow" aria-label="Next"></div>
+      <div class="play-icon" onclick="overlay.querySelector('video').play()"></div>
+      <video src="${videoSrc}" controls playsinline></video>
+    `;
+    document.body.appendChild(overlay);
+    document.body.classList.add('fullscreen-mode');
+    document.getElementById('wrapper').classList.add('blurred-background');
 
-  // only start playback when explicitly requested
-  const vid = overlay.querySelector('video');
-  if (autoPlay) vid.play();
+    // only start playback when explicitly requested
+    const vid = overlay.querySelector('video');
+    if (autoPlay) vid.play();
 
-  // Prev arrow
-  overlay.querySelector('.slick-prev').onclick = () => {
-    closeFullScreen();
-    slickInst.slickPrev();
-    const slide = slickInst.$slides.eq(slickInst.currentSlide);
-    if (slide.find('video source').length) {
-      playFullScreen(slide.find('video source').attr('src'), false);
-    } else {
-      showFullScreenImage(slide.find('a.image').attr('href'));
-    }
-  };
-
-  // Next arrow
-  overlay.querySelector('.slick-next').onclick = () => {
-    closeFullScreen();
-    slickInst.slickNext();
-    const slide = slickInst.$slides.eq(slickInst.currentSlide);
-    if (slide.find('video source').length) {
-      playFullScreen(slide.find('video source').attr('src'), false);
-    } else {
-      showFullScreenImage(slide.find('a.image').attr('href'));
-    }
-  };
-
-  // ESC to close
-  document.addEventListener('keydown', function onKey(e) {
-    if (e.key === 'Escape') {
-      document.removeEventListener('keydown', onKey);
+    // Prev arrow
+    overlay.querySelector('.slick-prev').onclick = () => {
       closeFullScreen();
-    }
-  });
-}
+      slickInst.slickPrev();
+      const slide = slickInst.$slides.eq(slickInst.currentSlide);
+      if (slide.find('video source').length) {
+        playFullScreen(slide.find('video source').attr('src'), false);
+      } else {
+        showFullScreenImage(slide.find('a.image').attr('href'));
+      }
+    };
+
+    // Next arrow
+    overlay.querySelector('.slick-next').onclick = () => {
+      closeFullScreen();
+      slickInst.slickNext();
+      const slide = slickInst.$slides.eq(slickInst.currentSlide);
+      if (slide.find('video source').length) {
+        playFullScreen(slide.find('video source').attr('src'), false);
+      } else {
+        showFullScreenImage(slide.find('a.image').attr('href'));
+      }
+    };
+
+    // ESC to close
+    document.addEventListener('keydown', function onKey(e) {
+      if (e.key === 'Escape') {
+        document.removeEventListener('keydown', onKey);
+        closeFullScreen();
+      }
+    });
+  }
 
   // Full-screen image (or delegate to video) with zoom/pan/pinch + Prev/Next + ESC
   function showFullScreenImage(src, evt) {
@@ -483,7 +484,7 @@ function playFullScreen(videoSrc, autoPlay = false) {
     const videoEl = slideEl.find('video');
     if (videoEl.length) {
       const videoSrc = videoEl.find('source').attr('src');
-      playFullScreen(videoSrc);
+      playFullScreen(videoSrc, false);
       return;
     }
 
@@ -511,27 +512,23 @@ function playFullScreen(videoSrc, autoPlay = false) {
     img.style.transform = `translate(0px,0px) scale(${scale})`;
 
     // Unified slide-change handler
-  function handleSlideChange() {
-  const slide = slickInst.$slides.eq(currentIndex);
-  const maybeVideo = slide.find('video source').attr('src');
+    function handleSlideChange() {
+      const slide = slickInst.$slides.eq(currentIndex);
+      const maybeVideo = slide.find('video source').attr('src');
 
-  if (maybeVideo) {
-    // If it’s a video slide, delegate to video fullscreen
-    closeFullScreen();
-    playFullScreen(maybeVideo);
-  } else {
-    // Otherwise grab the full-size image URL from the <a> tag
-    const fullImg = slide.find('a.image').attr('href');
-
-    // Fade out → swap src → fade in
-    img.style.opacity = 0;
-    img.addEventListener('transitionend', function handler() {
-      img.removeEventListener('transitionend', handler);
-      img.src = fullImg;
-      requestAnimationFrame(() => { img.style.opacity = 1; });
-    });
-  }
-}
+      if (maybeVideo) {
+        closeFullScreen();
+        playFullScreen(maybeVideo, false);
+      } else {
+        const fullImg = slide.find('a.image').attr('href');
+        img.style.opacity = 0;
+        img.addEventListener('transitionend', function handler() {
+          img.removeEventListener('transitionend', handler);
+          img.src = fullImg;
+          requestAnimationFrame(() => { img.style.opacity = 1; });
+        });
+      }
+    }
 
     // Prev arrow
     overlay.querySelector('.slick-prev').onclick = () => {
@@ -648,6 +645,7 @@ function playFullScreen(videoSrc, autoPlay = false) {
     document.getElementById('wrapper').classList.remove('blurred-background');
   }
 </script>
+
 
 </body>
 </html>
