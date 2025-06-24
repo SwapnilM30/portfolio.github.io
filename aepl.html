@@ -254,6 +254,33 @@
   }
 }
 
+/* ────── 𝗢𝗩𝗘𝗥𝗟𝗔𝗬 𝗔𝗥𝗥𝗢𝗪 𝗦𝗧𝗬𝗟𝗜𝗡𝗚 ──────*/
+.fullscreen-image .slick-prev,
+.fullscreen-video  .slick-prev {
+  left: 1rem !important;     /* pull into view */
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10001 !important; /* above the image */
+}
+
+.fullscreen-image .slick-next,
+.fullscreen-video  .slick-next {
+  right: 1rem !important;    /* pull into view */
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10001 !important;
+}
+
+/* brighten the chevrons for contrast */
+.fullscreen-image .slick-prev:before,
+.fullscreen-image .slick-next:before,
+.fullscreen-video  .slick-prev:before,
+.fullscreen-video  .slick-next:before {
+  color: #fff !important;
+  font-size: 2rem;
+  opacity: 0.85;
+}
+  
   </style>
 
 </head>
