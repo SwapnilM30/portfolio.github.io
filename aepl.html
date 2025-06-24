@@ -27,7 +27,10 @@
 
 /* Fade transition for overlay image swaps */
 .fullscreen-image img.zoomable {
-  transition: opacity 0.4s ease;
+  cursor: grab;
+  touch-action: none;
+  transform-origin: center center;
+  transition: opacity 0.4s ease, transform 0.1s ease-out;
 }
 
   /* --- Slick arrows (Font-Awesome chevrons) --- */
@@ -183,46 +186,46 @@
     z-index: 10000;
   }
 
-  /* Zoom‐in/out/reset controls */
-  .fullscreen-image img.zoomable {
-    cursor: grab;
-    touch-action: none;
-    transition: transform 0.1s ease-out;
+.zoom-controls {
+  position: absolute;         /* take it out of the flow */
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.25rem 0.75rem;    /* vertical / horizontal padding */
+  background: rgba(0,0,0,0.6);
+  border-radius: 9999px;      /* fully rounded ends */
+  bottom: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10001;
+
+  /* start hidden & fade-in on hover/focus */
+  opacity: 0;
+  transition: opacity 0.3s ease;
   }
-  .zoom-controls {
-    position: absolute;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.25rem 0.75rem;
-    background: rgba(0,0,0,0.6);
-    border-radius: 9999px;
-    bottom: 1rem;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 10001;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-  }
+
   .fullscreen-image:hover .zoom-controls,
   .zoom-controls:focus-within {
     opacity: 1;
-  }
-  .zoom-btn {
-    background: transparent;
-    border: none;
-    padding: 0.25rem;
-    cursor: pointer;
-    color: #fff !important;
-    font-size: 1rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .zoom-btn:hover {
-    background: rgba(255,255,255,0.15);
-    border-radius: 50%;
-  }
+}
+
+.zoom-btn {
+  background: transparent;    /* remove per-button circle */
+  border: none;
+  width: auto; height: auto;  /* let padding define hit area */
+  padding: 0.25rem;           /* click‐area around the icon */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #fff !important;     /* icon color */
+  font-size: 1rem;            /* scale the icon up a bit */
+}
+
+.zoom-btn:hover {
+  background: rgba(255,255,255,0.15);
+  border-radius: 50%;
+}
 
   /* Responsive project text */
   .project-text {
