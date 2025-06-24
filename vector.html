@@ -435,29 +435,31 @@
     document.body.classList.add('fullscreen-mode');
     document.getElementById('wrapper').classList.add('blurred-background');
 
-    // Prev arrow
-    overlay.querySelector('.slick-prev').onclick = () => {
-      closeFullScreen();
-      slickInst.slickPrev();
-      const slide = slickInst.$slides.eq(slickInst.currentSlide);
-      if (slide.find('video source').length) {
-        playFullScreen(slide.find('video source').attr('src'));
-      } else {
-        showFullScreenImage(slide.find('img').attr('src'));
-      }
-    };
+// Prev arrow
+overlay.querySelector('.slick-prev').onclick = () => {
+  closeFullScreen();
+  slickInst.slickPrev();
+  const slide = slickInst.$slides.eq(slickInst.currentSlide);
+  if (slide.find('video source').length) {
+    playFullScreen(slide.find('video source').attr('src'));
+  } else {
+    const href = slide.find('a.image').attr('href');
+    showFullScreenImage(href);
+  }
+};
 
-    // Next arrow
-    overlay.querySelector('.slick-next').onclick = () => {
-      closeFullScreen();
-      slickInst.slickNext();
-      const slide = slickInst.$slides.eq(slickInst.currentSlide);
-      if (slide.find('video source').length) {
-        playFullScreen(slide.find('video source').attr('src'));
-      } else {
-        showFullScreenImage(slide.find('img').attr('src'));
-      }
-    };
+// Next arrow
+overlay.querySelector('.slick-next').onclick = () => {
+  closeFullScreen();
+  slickInst.slickNext();
+  const slide = slickInst.$slides.eq(slickInst.currentSlide);
+  if (slide.find('video source').length) {
+    playFullScreen(slide.find('video source').attr('src'));
+  } else {
+    const href = slide.find('a.image').attr('href');
+    showFullScreenImage(href);
+  }
+};
 
     // ESC to close
     document.addEventListener('keydown', function onKey(e) {
@@ -507,22 +509,27 @@
     img.style.transform = `translate(0px,0px) scale(${scale})`;
 
     // Unified slide-change handler
-    function handleSlideChange() {
-      const slide = slickInst.$slides.eq(currentIndex);
-      const maybeVideo = slide.find('video source').attr('src');
-      if (maybeVideo) {
-        closeFullScreen();
-        playFullScreen(maybeVideo);
-      } else {
-        const newImgSrc = slide.find('img').attr('src');
-        img.style.opacity = 0;
-        img.addEventListener('transitionend', function handler() {
-          img.removeEventListener('transitionend', handler);
-          img.src = newImgSrc;
-          requestAnimationFrame(() => { img.style.opacity = 1; });
-        });
-      }
-    }
+  function handleSlideChange() {
+  const slide = slickInst.$slides.eq(currentIndex);
+  const maybeVideo = slide.find('video source').attr('src');
+
+  if (maybeVideo) {
+    // If it’s a video slide, delegate to video fullscreen
+    closeFullScreen();
+    playFullScreen(maybeVideo);
+  } else {
+    // Otherwise grab the full-size image URL from the <a> tag
+    const fullImg = slide.find('a.image').attr('href');
+
+    // Fade out → swap src → fade in
+    img.style.opacity = 0;
+    img.addEventListener('transitionend', function handler() {
+      img.removeEventListener('transitionend', handler);
+      img.src = fullImg;
+      requestAnimationFrame(() => { img.style.opacity = 1; });
+    });
+  }
+}
 
     // Prev arrow
     overlay.querySelector('.slick-prev').onclick = () => {
