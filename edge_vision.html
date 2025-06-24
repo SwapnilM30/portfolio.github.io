@@ -397,40 +397,34 @@
     document.getElementById('wrapper').classList.add('blurred-background');
   }
 
-  // Full-screen image (or delegate video) with zoom/pan/pinch + carousel arrows + ESC to close
+  // Full-screen image (or delegate to video) with zoom/pan/pinch + carousel arrows + ESC to close
   function showFullScreenImage(src, evt) {
     if (evt) evt.preventDefault();
 
-    // determine which slide we're on
+    // figure out which slide we're on
     let currentIndex = slickInst.currentSlide;
     const slideEl = slickInst.$slides.eq(currentIndex);
 
-    // detect a <video> tag on this slide
+    // if it's a video slide, grab the <source> URL and play it
     const videoEl = slideEl.find('video');
     if (videoEl.length) {
-      // if it's a video slide, hand off to the video overlay
-      playFullScreen(videoEl.attr('src'));
+      const videoSrc = videoEl.find('source').attr('src');
+      playFullScreen(videoSrc);
       return;
     }
 
-    // otherwise, build the image overlay
+    // otherwise build the image overlay
     const overlay = document.createElement('div');
     overlay.className = 'fullscreen-image';
     overlay.innerHTML = `
       <div class="close-button" onclick="closeFullScreen()"></div>
-
-      <!-- Prev/Next arrows reusing Slick’s classes -->
       <div class="slick-prev fs-arrow" aria-label="Previous"></div>
       <div class="slick-next fs-arrow" aria-label="Next"></div>
-
-      <!-- Zoom controls -->
       <div class="zoom-controls">
         <button class="zoom-btn zoom-out"  aria-label="Zoom out"><i class="fas fa-minus"></i></button>
         <button class="zoom-btn zoom-reset" aria-label="Reset zoom"><i class="fas fa-search"></i></button>
         <button class="zoom-btn zoom-in"   aria-label="Zoom in"><i class="fas fa-plus"></i></button>
       </div>
-
-      <!-- Image -->
       <img src="${src}" alt="" class="zoomable" loading="lazy"/>
     `;
     document.body.appendChild(overlay);
@@ -442,31 +436,36 @@
     let scale = 0.85, offsetX = 0, offsetY = 0;
     img.style.transform = `translate(0px,0px) scale(${scale})`;
 
-    function loadSlide() {
+    // handle stepping through slides
+    function handleSlideChange() {
       const slide = slickInst.$slides.eq(currentIndex);
-      const newSrc = slide.find('img').attr('src');
-
-    // fade out
-    img.style.opacity = 0;
-    // once faded out, swap the src and fade back in
-    img.addEventListener('transitionend', function handler() {
-    img.removeEventListener('transitionend', handler);
-    img.src = newSrc;
-    // ensure a tiny timeout so the browser sees the src change separately
-    requestAnimationFrame(() => {
-      img.style.opacity = 1;
+      const maybeVideo = slide.find('video source').attr('src');
+      if (maybeVideo) {
+        // video slide: switch to video overlay
+        closeFullScreen();
+        playFullScreen(maybeVideo);
+      } else {
+        // image slide: fade-swap the <img>
+        const newImgSrc = slide.find('img').attr('src');
+        img.style.opacity = 0;
+        img.addEventListener('transitionend', function handler() {
+          img.removeEventListener('transitionend', handler);
+          img.src = newImgSrc;
+          requestAnimationFrame(() => {
+            img.style.opacity = 1;
+          });
         });
-      }); 
+      }
     }
-    
+
     // wire up Prev/Next arrows
     overlay.querySelector('.slick-prev').onclick = () => {
       currentIndex = (currentIndex - 1 + slickInst.slideCount) % slickInst.slideCount;
-      loadSlide();
+      handleSlideChange();
     };
     overlay.querySelector('.slick-next').onclick = () => {
       currentIndex = (currentIndex + 1) % slickInst.slideCount;
-      loadSlide();
+      handleSlideChange();
     };
 
     // ESC key to close
@@ -572,6 +571,7 @@
     document.getElementById('wrapper').classList.remove('blurred-background');
   }
 </script>
+
 
 </body>
 </html>
