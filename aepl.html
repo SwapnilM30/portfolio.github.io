@@ -25,12 +25,35 @@
 
 <style>
 
-/* Fade transition for overlay image swaps */
+/* Define keyframes first */
+@keyframes flipOut {
+  to { transform: rotateY(90deg); }
+}
+@keyframes flipIn {
+  from { transform: rotateY(-90deg); }
+  to   { transform: rotateY(0); }
+}
+
+/* Then your flip classes that use them */
+.flip-out {
+  animation: flipOut 0.3s ease forwards;
+}
+.flip-in {
+  animation: flipIn 0.3s ease 0.3s forwards; /* delay = flip-out duration */
+}
+
+/* 3D flip transition for overlay image swaps */
+.fullscreen-image {
+  perspective: 1000px; /* enable the 3D space */
+}
+
 .fullscreen-image img.zoomable {
   cursor: grab;
   touch-action: none;
   transform-origin: center center;
-  transition: opacity 0.4s ease, transform 0.1s ease-out;
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+  transition: transform 0.6s ease;
 }
 
   /* --- Slick arrows (Font-Awesome chevrons) --- */
@@ -416,10 +439,9 @@
     slidesToShow: 1,
     slidesToScroll: 1
   });
-  // grab the Slick instance for later
   const slickInst = $('.slider').slick('getSlick');
 
-  // Full-screen video playback
+  // Full-screen video overlay
   function playFullScreen(videoSrc) {
     const overlay = document.createElement('div');
     overlay.className = 'fullscreen-video';
@@ -432,40 +454,32 @@
     document.getElementById('wrapper').classList.add('blurred-background');
   }
 
-  // Full-screen image (or delegate video) with zoom/pan/pinch + carousel arrows + ESC to close
+  // Full-screen image overlay with 3D flip transitions
   function showFullScreenImage(src, evt) {
     if (evt) evt.preventDefault();
 
-    // determine which slide we're on
     let currentIndex = slickInst.currentSlide;
     const slideEl = slickInst.$slides.eq(currentIndex);
 
-    // detect a <video> tag on this slide
+    // If it's a video slide, delegate
     const videoEl = slideEl.find('video');
     if (videoEl.length) {
-      // if it's a video slide, hand off to the video overlay
       playFullScreen(videoEl.attr('src'));
       return;
     }
 
-    // otherwise, build the image overlay
+    // Build overlay
     const overlay = document.createElement('div');
     overlay.className = 'fullscreen-image';
     overlay.innerHTML = `
       <div class="close-button" onclick="closeFullScreen()"></div>
-
-      <!-- Prev/Next arrows reusing Slick’s classes -->
       <div class="slick-prev fs-arrow" aria-label="Previous"></div>
       <div class="slick-next fs-arrow" aria-label="Next"></div>
-
-      <!-- Zoom controls -->
       <div class="zoom-controls">
         <button class="zoom-btn zoom-out"  aria-label="Zoom out"><i class="fas fa-minus"></i></button>
         <button class="zoom-btn zoom-reset" aria-label="Reset zoom"><i class="fas fa-search"></i></button>
         <button class="zoom-btn zoom-in"   aria-label="Zoom in"><i class="fas fa-plus"></i></button>
       </div>
-
-      <!-- Image -->
       <img src="${src}" alt="" class="zoomable" loading="lazy"/>
     `;
     document.body.appendChild(overlay);
@@ -475,26 +489,28 @@
     const img = overlay.querySelector('img.zoomable');
     img.style.transformOrigin = 'center center';
     let scale = 0.85, offsetX = 0, offsetY = 0;
-    img.style.transform = `translate(0px,0px) scale(${scale})`;
 
+    // Flip‐out / swap / flip‐in sequence
     function loadSlide() {
-      const slide = slickInst.$slides.eq(currentIndex);
-      const newSrc = slide.find('img').attr('src');
-
-    // fade out
-    img.style.opacity = 0;
-    // once faded out, swap the src and fade back in
-    img.addEventListener('transitionend', function handler() {
-    img.removeEventListener('transitionend', handler);
-    img.src = newSrc;
-    // ensure a tiny timeout so the browser sees the src change separately
-    requestAnimationFrame(() => {
-      img.style.opacity = 1;
-        });
-      }); 
+      img.classList.add('flip-out');
+      img.addEventListener('animationend', function handler(e) {
+        if (e.animationName === 'flipOut') {
+          img.removeEventListener('animationend', handler);
+          // swap the image at midpoint
+          const newSrc = slickInst.$slides.eq(currentIndex).find('img').attr('src');
+          img.src = newSrc;
+          // then flip back in
+          img.classList.remove('flip-out');
+          img.classList.add('flip-in');
+        }
+        else if (e.animationName === 'flipIn') {
+          img.removeEventListener('animationend', handler);
+          img.classList.remove('flip-in');
+        }
+      });
     }
-    
-    // wire up Prev/Next arrows
+
+    // Prev / Next controls
     overlay.querySelector('.slick-prev').onclick = () => {
       currentIndex = (currentIndex - 1 + slickInst.slideCount) % slickInst.slideCount;
       loadSlide();
@@ -599,7 +615,7 @@
     });
   }
 
-  // Close handler (shared by video & image)
+  // Close handler
   function closeFullScreen() {
     const ov = document.querySelector('.fullscreen-image') || document.querySelector('.fullscreen-video');
     if (ov) ov.remove();
@@ -607,7 +623,6 @@
     document.getElementById('wrapper').classList.remove('blurred-background');
   }
 </script>
-
 
 </body>
 </html>
