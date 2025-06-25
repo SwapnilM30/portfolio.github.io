@@ -440,13 +440,19 @@
     const vid     = overlay.querySelector('video');
     const playBtn = overlay.querySelector('.play-icon');
 
-    // if autoPlay flag is true, start and immediately hide the play icon
+    // whenever the video actually starts playing, hide/remove the overlay icon
+    vid.addEventListener('play', () => {
+      playBtn.style.display = 'none';
+      // or: playBtn.remove();
+    });
+
+    // if autoPlay flag is true, start playback immediately
     if (autoPlay) {
       vid.play();
-      playBtn.style.display = 'none';
+      // playBtn.style.display = 'none';  // redundant, 'play' event will catch it
     }
 
-    // when user clicks the overlaid play icon: play + hide it
+    // when user clicks the overlaid play icon: play + (redundantly) hide it
     playBtn.addEventListener('click', () => {
       vid.play();
       playBtn.style.display = 'none';
