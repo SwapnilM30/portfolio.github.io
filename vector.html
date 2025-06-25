@@ -430,7 +430,8 @@
       <div class="slick-prev fs-arrow" aria-label="Previous"></div>
       <div class="slick-next fs-arrow" aria-label="Next"></div>
       <div class="play-icon"></div>
-      <video src="${videoSrc}" playsinline></video>
+      <!-- added muted attribute here -->
+      <video src="${videoSrc}" playsinline muted></video>
     `;
     document.body.appendChild(overlay);
     document.body.classList.add('fullscreen-mode');
@@ -444,6 +445,8 @@
     vid.addEventListener('play', () => {
       playBtn.style.display = 'none';
       vid.setAttribute('controls', '');
+      // if you want sound after play begins, you can unmute here:
+      // vid.muted = false;
     });
 
     // if autoPlay flag is true, start playback immediately
