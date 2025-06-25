@@ -31,6 +31,10 @@
   transform-origin: center center;
   transition: opacity 0.4s ease, transform 0.1s ease-out;
 }
+.fullscreen-video {
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
 
   /* --- Slick arrows (Font-Awesome chevrons) --- */
   .slick-prev,
@@ -419,15 +423,13 @@
     slidesToScroll: 1
   });
 
-  /* keep a handle to the Slick instance */
+  /* handle to the Slick instance */
   const slickInst = $('.slider').slick('getSlick');
 
-  /* ────────────── 2. Full-screen VIDEO overlay ────────────── */
+  /* ────────────── 2. Full-screen VIDEO overlay (with fade) ────────────── */
   function playFullScreen(videoSrc, autoPlay = false) {
     const overlay = document.createElement('div');
     overlay.className = 'fullscreen-video';
-    /*  NOTE:  video element now appears BEFORE the play-icon,
-        so the icon sits on top and receives clicks. */
     overlay.innerHTML = `
       <div class="close-button" onclick="closeFullScreen()"></div>
       <div class="slick-prev fs-arrow" aria-label="Previous"></div>
@@ -437,76 +439,73 @@
       <div class="play-icon"></div>
     `;
     document.body.appendChild(overlay);
+
+    /* fade the overlay in */
+    requestAnimationFrame(() => { overlay.style.opacity = 1; });
+
     document.body.classList.add('fullscreen-mode');
     document.getElementById('wrapper').classList.add('blurred-background');
 
     const vid     = overlay.querySelector('video');
     const playBtn = overlay.querySelector('.play-icon');
 
-    /* hide icon & show controls once playback begins */
     vid.addEventListener('play', () => {
       playBtn.style.display = 'none';
       vid.setAttribute('controls', '');
-      /*  unmute here if desired:
-          vid.muted = false; */
     });
 
-    /* optional autoplay */
-    if (autoPlay) {
-      const p = vid.play();
-      if (p) p.catch(() => {/* ignore autoplay block */});
-    }
-
-    /* click the icon to start */
+    if (autoPlay) vid.play().catch(() => { /* autoplay blocked */ });
     playBtn.addEventListener('click', () => vid.play());
 
-    /* Prev / Next arrows inside overlay */
-    overlay.querySelector('.slick-prev').onclick = () => {
-      closeFullScreen();
-      slickInst.slickPrev();
-      openCorrespondingSlide();
-    };
-    overlay.querySelector('.slick-next').onclick = () => {
-      closeFullScreen();
-      slickInst.slickNext();
-      openCorrespondingSlide();
-    };
+    /* helper that moves Slick and shows the right content */
+    function jump(dir /* -1 prev, +1 next */) {
+      overlay.style.opacity = 0;                       /* fade out */
+      overlay.addEventListener('transitionend', function handle() {
+        overlay.removeEventListener('transitionend', handle);
 
-    /* close on ESC */
+        dir < 0 ? slickInst.slickPrev() : slickInst.slickNext();
+        const slide = slickInst.$slides.eq(slickInst.currentSlide);
+
+        /* if next slide is a video, swap src in-place; else delegate to image */
+        const vSrc = slide.find('video source').attr('src');
+        if (vSrc) {
+          vid.pause();
+          vid.removeAttribute('controls');
+          playBtn.style.display = '';                  /* show icon again */
+          vid.src = vSrc;
+          vid.load();
+          requestAnimationFrame(() => { overlay.style.opacity = 1; }); /* fade up */
+        } else {
+          closeFullScreen();
+          showFullScreenImage(slide.find('a.image').attr('href'));
+        }
+      });
+    }
+
+    overlay.querySelector('.slick-prev').onclick = () => jump(-1);
+    overlay.querySelector('.slick-next').onclick = () => jump(1);
+
     document.addEventListener('keydown', function onKey(e) {
       if (e.key === 'Escape') {
         document.removeEventListener('keydown', onKey);
         closeFullScreen();
       }
     });
-
-    /* helper: open whatever the new slide contains */
-    function openCorrespondingSlide() {
-      const slide = slickInst.$slides.eq(slickInst.currentSlide);
-      const source = slide.find('video source');
-      if (source.length) {
-        playFullScreen(source.attr('src'), false);
-      } else {
-        showFullScreenImage(slide.find('a.image').attr('href'));
-      }
-    }
   }
 
-  /* ────────────── 3. Full-screen IMAGE overlay ────────────── */
+  /* ────────────── 3. Full-screen IMAGE overlay (unchanged) ────────────── */
   function showFullScreenImage(src, evt) {
     if (evt) evt.preventDefault();
 
     let currentIndex = slickInst.currentSlide;
     const slideEl = slickInst.$slides.eq(currentIndex);
 
-    /* if the slide is actually a video, delegate */
     const videoEl = slideEl.find('video');
     if (videoEl.length) {
       playFullScreen(videoEl.find('source').attr('src'), false);
       return;
     }
 
-    /* build image overlay */
     const overlay = document.createElement('div');
     overlay.className = 'fullscreen-image';
     overlay.innerHTML = `
@@ -524,22 +523,19 @@
     document.body.classList.add('fullscreen-mode');
     document.getElementById('wrapper').classList.add('blurred-background');
 
-    /* ----- zoom / pan state ----- */
     const img = overlay.querySelector('img.zoomable');
     let scale = 0.85, offsetX = 0, offsetY = 0;
     img.style.transform = `translate(0px,0px) scale(${scale})`;
     img.style.transformOrigin = 'center center';
 
-    /* helper for slide changes inside overlay */
     function handleSlideChange() {
-      const slide = slickInst.$slides.eq(currentIndex);
-      const maybeVideo = slide.find('video source').attr('src');
-
-      if (maybeVideo) {
+      const s = slickInst.$slides.eq(currentIndex);
+      const v = s.find('video source').attr('src');
+      if (v) {
         closeFullScreen();
-        playFullScreen(maybeVideo, false);
+        playFullScreen(v, false);
       } else {
-        const fullImg = slide.find('a.image').attr('href');
+        const fullImg = s.find('a.image').attr('href');
         img.style.opacity = 0;
         img.addEventListener('transitionend', function t() {
           img.removeEventListener('transitionend', t);
@@ -549,7 +545,6 @@
       }
     }
 
-    /* Prev / Next inside image overlay */
     overlay.querySelector('.slick-prev').onclick = () => {
       currentIndex = (currentIndex - 1 + slickInst.slideCount) % slickInst.slideCount;
       handleSlideChange();
@@ -559,29 +554,25 @@
       handleSlideChange();
     };
 
-    /* close on ESC */
-    function onKeyDown(e) {
+    document.addEventListener('keydown', function onKey(e) {
       if (e.key === 'Escape') {
-        document.removeEventListener('keydown', onKeyDown);
+        document.removeEventListener('keydown', onKey);
         closeFullScreen();
       }
-    }
-    document.addEventListener('keydown', onKeyDown);
+    });
 
-    /* ---------- zoom controls ---------- */
     overlay.addEventListener('wheel', e => {
       e.preventDefault();
       scale *= (e.deltaY < 0 ? 1.1 : 0.9);
       scale = Math.min(Math.max(scale, 0.5), 3);
-      img.style.transform = `translate(${offsetX}px,${offsetY}px) scale(${scale})`;
+      update();
     }, { passive: false });
 
-    overlay.querySelector('.zoom-in').onclick  = () => { scale = Math.min(scale * 1.2, 3); update(); };
-    overlay.querySelector('.zoom-out').onclick = () => { scale = Math.max(scale * 0.8, 0.5); update(); };
+    overlay.querySelector('.zoom-in').onclick    = () => { scale = Math.min(scale * 1.2, 3); update(); };
+    overlay.querySelector('.zoom-out').onclick   = () => { scale = Math.max(scale * 0.8, 0.5); update(); };
     overlay.querySelector('.zoom-reset').onclick = () => { scale = 0.85; offsetX = offsetY = 0; update(); };
     function update() { img.style.transform = `translate(${offsetX}px,${offsetY}px) scale(${scale})`; }
 
-    /* drag-to-pan (mouse) */
     let dragging = false, startX, startY;
     img.style.cursor = 'grab';
     img.addEventListener('mousedown', e => {
@@ -598,7 +589,6 @@
     document.addEventListener('mouseup', () => { dragging = false; img.style.cursor = 'grab'; });
     overlay.addEventListener('mouseleave', () => { dragging = false; img.style.cursor = 'grab'; });
 
-    /* pinch-to-zoom & pan (touch) */
     function dist(t1, t2) { return Math.hypot(t1.clientX - t2.clientX, t1.clientY - t2.clientY); }
     let pinchStart = null, touchDragging = false, tx, ty;
     overlay.addEventListener('touchstart', e => {
@@ -624,7 +614,7 @@
     });
   }
 
-  /* ────────────── 4. Close (shared) ────────────── */
+  /* ────────────── 4. Close overlay (shared) ────────────── */
   function closeFullScreen() {
     const ov = document.querySelector('.fullscreen-image') || document.querySelector('.fullscreen-video');
     if (ov) ov.remove();
@@ -632,6 +622,7 @@
     document.getElementById('wrapper').classList.remove('blurred-background');
   }
 </script>
+
 
 </body>
 </html>
