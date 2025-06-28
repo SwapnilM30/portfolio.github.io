@@ -72,6 +72,22 @@
     color: #283a8b;
   }
 
+      @media (max-width: 480px) {
+    .slick-prev,
+    .slick-next {
+      width: 30px;                /* smaller button */
+      height: 30px;
+    }
+    .slick-prev:before,
+    .slick-next:before {
+      font-size: 26px;            /* smaller icon  */
+    }
+
+    /* Pull them closer to the edge */
+    .slick-prev  { left: -30px; } /* <<< was -40px (outside) */
+    .slick-next  { right: -30px; } /* <<< was -40px (outside) */
+  }
+
   /* Labels & citations */
   .image-label, .video-label {
     text-align: center;
