@@ -113,6 +113,7 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    position: relative; /* arrows are positioned *inside* the slider */
   }
   .slider .slide-content {
     display: flex;
@@ -394,7 +395,8 @@
 
 <script>
   /* ────────────── 1. Slick carousel ────────────── */
-  $('.slider').slick({
+  const $slider = $('.slider');
+  $slider.slick({
     autoplay: true,
     dots: true,
     arrows: true,
@@ -406,7 +408,22 @@
   });
 
   /* handle to the Slick instance */
-  const slickInst = $('.slider').slick('getSlick');
+  const slickInst = $slider.slick('getSlick');
+
+  /* ────────────── 1 b. Keep arrows centered on the current image ────────────── */
+  function positionArrows() {
+    const $img = $slider.find('.slick-current img');
+    if (!$img.length) return;
+
+    const imgRect    = $img[0].getBoundingClientRect();
+    const sliderRect = $slider[0].getBoundingClientRect();
+    const mid        = imgRect.top + imgRect.height / 2 - sliderRect.top;
+
+    $slider.find('.slick-prev, .slick-next').css('top', mid + 'px');
+  }
+  positionArrows();                                   /* first run */
+  $slider.on('init reInit afterChange', positionArrows);
+  $(window).on('resize', positionArrows);
 
   /* ────────────── 2. Full-screen VIDEO overlay (image-style cross-fade) ────────────── */
   function playFullScreen(videoSrc, autoPlay = false) {
@@ -418,11 +435,10 @@
       <div class="slick-next fs-arrow" aria-label="Next"></div>
 
       <video src="${videoSrc}" playsinline muted style="opacity:0"></video>
-      <div class="play-icon"></div>
+      <div class="play-icon" aria-hidden="true"></div>
     `;
     document.body.appendChild(overlay);
 
-    /* fade the video in (overlay stays) */
     const vid     = overlay.querySelector('video');
     const playBtn = overlay.querySelector('.play-icon');
     requestAnimationFrame(() => { vid.style.opacity = 1; });
@@ -439,8 +455,8 @@
     playBtn.addEventListener('click', () => vid.play());
 
     /* cross-fade helper */
-    function jump(dir /* -1 prev, +1 next */) {
-      vid.style.opacity = 0;                          /* fade current video out */
+    function jump(dir) {                             /* dir = -1 prev, +1 next */
+      vid.style.opacity = 0;
       vid.addEventListener('transitionend', function handle() {
         vid.removeEventListener('transitionend', handle);
 
@@ -448,14 +464,14 @@
         const slide = slickInst.$slides.eq(slickInst.currentSlide);
         const vSrc  = slide.find('video source').attr('src');
 
-        if (vSrc) {                                   /* next is video */
+        if (vSrc) {                                 /* next is video */
           vid.pause();
           vid.removeAttribute('controls');
-          playBtn.style.display = '';                 /* show icon again */
+          playBtn.style.display = '';
           vid.src = vSrc;
           vid.load();
-          requestAnimationFrame(() => { vid.style.opacity = 1; }); /* fade in new clip */
-        } else {                                      /* next is image */
+          requestAnimationFrame(() => { vid.style.opacity = 1; });
+        } else {                                    /* next is image */
           closeFullScreen();
           showFullScreenImage(slide.find('a.image').attr('href'));
         }
@@ -473,7 +489,7 @@
     });
   }
 
-  /* ────────────── 3. Full-screen IMAGE overlay (unchanged) ────────────── */
+  /* ────────────── 3. Full-screen IMAGE overlay ────────────── */
   function showFullScreenImage(src, evt) {
     if (evt) evt.preventDefault();
 
