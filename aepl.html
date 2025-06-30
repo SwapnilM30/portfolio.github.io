@@ -26,291 +26,261 @@
 <style>
 
 /* Fade transition for overlay image swaps */
-.fullscreen-image img.zoomable {
-  cursor: grab;
-  touch-action: none;
-  transform-origin: center center;
-  transition: opacity 0.4s ease, transform 0.1s ease-out;
+.fullscreen-image img.zoomable{
+  cursor:grab;
+  touch-action:none;
+  transform-origin:center center;
+  transition:opacity .4s ease,transform .1s ease-out;
 }
 
-/* Fade each <video> exactly like each <img> ===== */
-.fullscreen-video video {
-  opacity: 1;                          /* start visible */
-  transition: opacity 0.4s ease;       /* same speed as images */
+/* Fade each <video> exactly like each <img> */
+.fullscreen-video video{
+  opacity:1;
+  transition:opacity .4s ease;
 }
 
-  /* --- Slick arrows (Font-Awesome chevrons) --- */
+/* ───── Slick arrows (Font-Awesome chevrons) ───── */
+.slick-prev,
+.slick-next{
+  background:none;
+  border:none!important;
+  outline:0;
+  box-shadow:none;
+  width:50px;
+  height:50px;
+  cursor:pointer;
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+}
+.slick-prev{left:-60px;}
+.slick-next{right:-60px;}
+
+.slick-prev:before,
+.slick-next:before{
+  font-family:"Font Awesome 5 Free";
+  font-weight:900;
+  font-size:48px;
+  line-height:1;
+  color:rgba(50,50,50,.9);
+}
+.slick-prev:before{content:"\f053";}
+.slick-next:before{content:"\f054";}
+
+.slick-prev:hover:before,
+.slick-next:hover:before{color:#283a8b;}
+
+@media(max-width:480px){
   .slick-prev,
-  .slick-next {
-    background: none;
-    border: none !important;
-    outline: 0;
-    box-shadow: none;
-    width: 50px;
-    height: 50px;
-    cursor: pointer;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-  }
-  .slick-prev { left: -60px; }
-  .slick-next { right: -60px; }
-
-  /* replace Slick’s :before content */
+  .slick-next{width:30px;height:30px;}
   .slick-prev:before,
-  .slick-next:before {
-    font-family: "Font Awesome 5 Free";
-    font-weight: 900;
-    font-size: 48px;
-    line-height: 1;
-    color: rgba(50,50,50,0.9);
-  }
-  .slick-prev:before { content: "\f053"; }
-  .slick-next:before { content: "\f054"; }
+  .slick-next:before{font-size:26px;}
+  .slick-prev{left:-30px;}
+  .slick-next{right:-30px;}
+}
 
-  .slick-prev:hover:before,
-  .slick-next:hover:before {
-    color: #283a8b;
-  }
+/* Labels & citations */
+.image-label,.video-label{
+  text-align:center;
+  font-size:16px;
+  margin-top:5px;
+  color:rgba(50,50,50);
+}
+.image-citation,.video-citation{
+  margin-top:5px;
+  font-size:12px;
+  text-align:center;
+}
 
-    @media (max-width: 480px) {
-    .slick-prev,
-    .slick-next {
-      width: 30px;                /* smaller button */
-      height: 30px;
-    }
-    .slick-prev:before,
-    .slick-next:before {
-      font-size: 26px;            /* smaller icon  */
-    }
+/* Slider layout */
+.slick-dots{
+  position:absolute;
+  bottom:10px;
+  width:100%;
+  text-align:center;
+}
+.slider{
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  position:relative;/* arrows live inside slider */
+}
+.slider .slide-content{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  flex-direction:column;
+  margin:20px 0;
+}
 
-    /* Pull them closer to the edge */
-    .slick-prev  { left: -30px; } /* <<< was -40px (outside) */
-    .slick-next  { right: -30px; } /* <<< was -40px (outside) */
-  }
+/* Custom hollow rings for Slick dots */
+.slick-dots li button{
+  border:none!important;
+  background:transparent!important;
+  padding:0;
+  outline:none;
+}
+.slick-dots li button:before{
+  content:'';
+  display:inline-block;
+  width:12px;
+  height:12px;
+  border:2px solid rgba(50,50,50,.7);
+  border-radius:50%;
+  margin:0 6px;
+  transition:background .2s ease,transform .2s ease;
+}
+.slick-dots li button:hover:before{transform:scale(1.2);}
+.slick-dots li.slick-active button:before{
+  background:#283a8b;
+  border-color:#283a8b;
+}
 
-  /* Labels & citations */
-  .image-label, .video-label {
-    text-align: center;
-    font-size: 16px;
-    margin-top: 5px;
-    color: rgba(50, 50, 50);
-  }
-  .image-citation, .video-citation {
-    margin-top: 5px;
-    font-size: 12px;
-    text-align: center;
-  }
-
-  /* Slider layout */
-  .slick-dots {
-    position: absolute;
-    bottom: 10px;
-    width: 100%;
-    text-align: center;
-  }
-  .slider {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    position: relative; /* arrows are positioned *inside* the slider */
-  }
-  .slider .slide-content {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    margin: 20px 0;
-  }
-
-  /* Custom hollow rings for Slick dots */
-  .slick-dots li button {
-    border: none !important;
-    background: transparent !important;
-    padding: 0;
-    outline: none;
-  }
-  .slick-dots li button:before {
-    content: '';
-    display: inline-block;
-    width: 12px;
-    height: 12px;
-    border: 2px solid rgba(50, 50, 50, 0.7);
-    border-radius: 50%;
-    margin: 0 6px;
-    transition: background 0.2s ease, transform 0.2s ease;
-  }
-  .slick-dots li button:hover:before {
-    transform: scale(1.2);
-  }
-  .slick-dots li.slick-active button:before {
-    background: #283a8b;
-    border-color: #283a8b;
-  }
-
-  .video-container {
-    position: relative;
-    width: 100%;
-    max-width: 600px;
-    margin: 0 auto;
-  }
+.video-container{position:relative;width:100%;max-width:600px;margin:0 auto;}
+.slider .slide-content img,
+.slider .slide-content video{
+  max-width:600px;
+  width:100%;
+  height:auto;
+  display:block;
+  margin:0 auto;
+  border:1px solid rgba(50,50,50);
+  padding:6px;
+}
+@media(max-width:600px){
   .slider .slide-content img,
-  .slider .slide-content video {
-    max-width: 600px;
-    width: 100%;
-    height: auto;
-    display: block;
-    margin: 0 auto;
-    border: 1px solid rgba(50, 50, 50);
-    padding: 6px;
-  }
-  @media (max-width:600px) {
-    .slider .slide-content img,
-    .slider .slide-content video {
-      padding: 5px;
-    }
-  }
-
-  /* Hover scale */
-  .image, .video {
-    cursor: pointer;
-    transition: transform 0.25s ease;
-  }
-  .image:hover, .video:hover {
-    transform: scale(1.01);
-  }
-
-  /* Fullscreen overlay */
-  .fullscreen-video, .fullscreen-image {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    background: rgba(0,0,0,0.8);
-    z-index: 9999;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    touch-action: none;
-  }
-  .fullscreen-video video, .fullscreen-image img {
-    max-width: 90%;
-    max-height: 90%;
-  }
-  .blurred-background {
-    filter: blur(5px);
-  }
-  .close-button {
-    position: absolute;
-    top: 25px; right: 25px;
-    width: 32px; height: 32px;
-    background: url('images/close-icon.png') no-repeat center center;
-    background-size: cover;
-    cursor: pointer;
-    z-index: 10000;
-  }
-
-.zoom-controls {
-  position: absolute;         /* take it out of the flow */
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.25rem 0.75rem;    /* vertical / horizontal padding */
-  background: rgba(0,0,0,0.6);
-  border-radius: 9999px;      /* fully rounded ends */
-  bottom: 1rem;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 10001;
-
-  /* start hidden & fade-in on hover/focus */
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  }
-
-  .fullscreen-image:hover .zoom-controls,
-  .zoom-controls:focus-within {
-    opacity: 1;
+  .slider .slide-content video{padding:5px;}
 }
 
-.zoom-btn {
-  background: transparent;    /* remove per-button circle */
-  border: none;
-  width: auto; height: auto;  /* let padding define hit area */
-  padding: 0.25rem;           /* click‐area around the icon */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  color: #fff !important;     /* icon color */
-  font-size: 1rem;            /* scale the icon up a bit */
+/* Hover scale */
+.image,.video{
+  cursor:pointer;
+  transition:transform .25s ease;
+}
+.image:hover,.video:hover{transform:scale(1.01);}
+
+/* Fullscreen overlay */
+.fullscreen-video,
+.fullscreen-image{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100vh;               /* base - works everywhere */
+  background:rgba(0,0,0,.8);
+  z-index:9999;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  touch-action:none;
+}
+/* Modern browsers – use the dynamic viewport so iOS chrome collapse doesn’t jump */
+@supports(height:100dvh){
+  .fullscreen-video,
+  .fullscreen-image{height:100dvh;}
 }
 
-.zoom-btn:hover {
-  background: rgba(255,255,255,0.15);
-  border-radius: 50%;
+.fullscreen-video video,
+.fullscreen-image img{
+  max-width:90%;
+  max-height:90%;
 }
 
-  /* Responsive project text */
-  .project-text {
-    font-size: 1.175rem;
-    line-height: 1.6;
-  }
-  @media (max-width:1280px) {
-    .project-text { font-size: 1.1rem; }
-  }
-  @media (max-width:736px) {
-    .project-text { font-size: 1rem; }
-  }
+.blurred-background{filter:blur(5px);}
+.close-button{
+  position:absolute;
+  top:25px;
+  right:25px;
+  width:32px;
+  height:32px;
+  background:url('images/close-icon.png') no-repeat center/cover;
+  cursor:pointer;
+  z-index:10000;
+}
 
-  /* Play Icon */
-  .play-icon {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 64px;
-    height: 64px;
-    background: url('images/play-icon.png') no-repeat center center;
-    background-size: cover;
-    opacity: 0.8;
-    cursor: pointer;
-  }
-  .play-icon:hover {
-    transform: translate(-50%, -50%) scale(1.2);
-  }
-  @media (max-width: 480px) {
-    .play-icon { top: 50%; }
-  }
+/* Zoom controls */
+.zoom-controls{
+  position:absolute;
+  display:inline-flex;
+  align-items:center;
+  gap:.5rem;
+  padding:.25rem .75rem;
+  background:rgba(0,0,0,.6);
+  border-radius:9999px;
+  bottom:1rem;
+  left:50%;
+  transform:translateX(-50%);
+  z-index:10001;
+  opacity:0;
+  transition:opacity .3s ease;
+}
+.fullscreen-image:hover .zoom-controls,
+.zoom-controls:focus-within{opacity:1;}
 
-  /* ───────────────────────────────────────────────────────────────────
-     𝗢𝗩𝗘𝗥𝗟𝗔𝗬 𝗔𝗥𝗥𝗢𝗪 𝗥𝗘𝗣𝗢𝗦𝗜𝗧𝗜𝗢𝗡𝗜𝗡𝗚
-  ─────────────────────────────────────────────────────────────────── */
-  .fullscreen-image .slick-prev,
-  .fullscreen-video  .slick-prev {
-    left:  calc((100% - 90%) / 2 + 0.5rem) !important;
-    right: auto !important;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 10001 !important;
-  }
-  .fullscreen-image .slick-next,
-  .fullscreen-video  .slick-next {
-    right: calc((100% - 90%) / 2 + 0.5rem) !important;
-    left:  auto !important;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 10001 !important;
-  }
+.zoom-btn{
+  background:transparent;
+  border:none;
+  padding:.25rem;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+  color:#fff!important;
+  font-size:1rem;
+}
+.zoom-btn:hover{
+  background:rgba(255,255,255,.15);
+  border-radius:50%;
+}
 
-  /* Brighten the chevrons for contrast */
-  .fullscreen-image .slick-prev:before,
-  .fullscreen-image .slick-next:before,
-  .fullscreen-video  .slick-prev:before,
-  .fullscreen-video  .slick-next:before {
-    color: #fff !important;
-    font-size: 2rem;
-    opacity: 0.85;
-  }
+/* Responsive project text */
+.project-text{
+  font-size:1.175rem;
+  line-height:1.6;
+}
+@media(max-width:1280px){.project-text{font-size:1.1rem;}}
+@media(max-width:736px){.project-text{font-size:1rem;}}
+
+/* Play icon */
+.play-icon{
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  width:64px;
+  height:64px;
+  background:url('images/play-icon.png') no-repeat center/cover;
+  opacity:.8;
+  cursor:pointer;
+}
+.play-icon:hover{transform:translate(-50%,-50%) scale(1.2);}
+@media(max-width:480px){.play-icon{top:50%;}}
+
+/* ───── Overlay arrow repositioning ───── */
+.fullscreen-image .slick-prev,
+.fullscreen-video .slick-prev{
+  left:calc((100% - 90%)/2 + .5rem)!important;
+  top:50%;
+  transform:translateY(-50%);
+  z-index:10001!important;
+}
+.fullscreen-image .slick-next,
+.fullscreen-video .slick-next{
+  right:calc((100% - 90%)/2 + .5rem)!important;
+  top:50%;
+  transform:translateY(-50%);
+  z-index:10001!important;
+}
+
+/* Brighten chevrons for contrast */
+.fullscreen-image .slick-prev:before,
+.fullscreen-image .slick-next:before,
+.fullscreen-video .slick-prev:before,
+.fullscreen-video .slick-next:before{
+  color:#fff!important;
+  font-size:2rem;
+  opacity:.85;
+}
 
 </style>
 
@@ -429,14 +399,20 @@
 
 <script>
   /* ────────────── 1. Slick carousel ────────────── */
+
   const $slider = $('.slider');
+
+  /* bind BEFORE slick() so we catch the very first layout */
+  $slider.on('init setPosition afterChange', positionArrows);
+
+  /* create the carousel */
   $slider.slick({
     autoplay: true,
     dots: true,
     arrows: true,
     infinite: true,
     speed: 800,
-    cssEase: 'cubic-bezier(0.7, 0, 0.3, 1)',
+    cssEase: 'cubic-bezier(0.7,0,0.3,1)',
     slidesToShow: 1,
     slidesToScroll: 1
   });
@@ -444,23 +420,29 @@
   /* handle to the Slick instance */
   const slickInst = $slider.slick('getSlick');
 
-  /* ────────────── 1 b. Keep arrows centered on the current image ────────────── */
-  function positionArrows() {
+  /* keep arrows centred on the current image */
+  function positionArrows () {
     const $img = $slider.find('.slick-current img');
-    if (!$img.length) return;
+    if (!$img.length) return;                       /* video slide */
 
-    const imgRect    = $img[0].getBoundingClientRect();
-    const sliderRect = $slider[0].getBoundingClientRect();
-    const mid        = imgRect.top + imgRect.height / 2 - sliderRect.top;
+    /* wait until the image really has dimensions */
+    if (!$img[0].naturalHeight) {
+      $img.on('load', positionArrows);              /* once, then recalc */
+      return;
+    }
+
+    const imgBox    = $img[0].getBoundingClientRect();
+    const sliderBox = $slider[0].getBoundingClientRect();
+    const mid       = imgBox.top + imgBox.height / 2 - sliderBox.top;
 
     $slider.find('.slick-prev, .slick-next').css('top', mid + 'px');
   }
-  positionArrows();                                   /* first run */
-  $slider.on('init reInit afterChange', positionArrows);
-  $(window).on('resize', positionArrows);
 
-  /* ────────────── 2. Full-screen VIDEO overlay (image-style cross-fade) ────────────── */
-  function playFullScreen(videoSrc, autoPlay = false) {
+  /* also run on viewport changes */
+  $(window).on('resize orientationchange', positionArrows);
+
+  /* ────────────── 2. Full-screen VIDEO overlay ────────────── */
+  function playFullScreen (videoSrc, autoPlay = false) {
     const overlay = document.createElement('div');
     overlay.className = 'fullscreen-video';
     overlay.innerHTML = `
@@ -475,7 +457,7 @@
 
     const vid     = overlay.querySelector('video');
     const playBtn = overlay.querySelector('.play-icon');
-    requestAnimationFrame(() => { vid.style.opacity = 1; });
+    requestAnimationFrame(() => (vid.style.opacity = 1));
 
     document.body.classList.add('fullscreen-mode');
     document.getElementById('wrapper').classList.add('blurred-background');
@@ -488,10 +470,10 @@
     if (autoPlay) vid.play().catch(() => {});
     playBtn.addEventListener('click', () => vid.play());
 
-    /* cross-fade helper */
-    function jump(dir) {                             /* dir = -1 prev, +1 next */
+    /* next / prev with cross-fade */
+    function jump (dir) {
       vid.style.opacity = 0;
-      vid.addEventListener('transitionend', function handle() {
+      vid.addEventListener('transitionend', function handle () {
         vid.removeEventListener('transitionend', handle);
 
         dir < 0 ? slickInst.slickPrev() : slickInst.slickNext();
@@ -504,18 +486,17 @@
           playBtn.style.display = '';
           vid.src = vSrc;
           vid.load();
-          requestAnimationFrame(() => { vid.style.opacity = 1; });
+          requestAnimationFrame(() => (vid.style.opacity = 1));
         } else {                                    /* next is image */
           closeFullScreen();
           showFullScreenImage(slide.find('a.image').attr('href'));
         }
       });
     }
-
     overlay.querySelector('.slick-prev').onclick = () => jump(-1);
     overlay.querySelector('.slick-next').onclick = () => jump(1);
 
-    document.addEventListener('keydown', function onKey(e) {
+    document.addEventListener('keydown', function onKey (e) {
       if (e.key === 'Escape') {
         document.removeEventListener('keydown', onKey);
         closeFullScreen();
@@ -524,16 +505,16 @@
   }
 
   /* ────────────── 3. Full-screen IMAGE overlay ────────────── */
-  function showFullScreenImage(src, evt) {
+  function showFullScreenImage (src, evt) {
     if (evt) evt.preventDefault();
 
     let currentIndex = slickInst.currentSlide;
-    const slideEl = slickInst.$slides.eq(currentIndex);
+    const slideEl    = slickInst.$slides.eq(currentIndex);
 
-    /* If the slide is a video, delegate */
+    /* if current slide is video, delegate */
     const videoEl = slideEl.find('video');
     if (videoEl.length) {
-      playFullScreen(videoEl.find('source').attr('src'), false);
+      playFullScreen(videoEl.find('source').attr('src'));
       return;
     }
 
@@ -548,34 +529,40 @@
         <button class="zoom-btn zoom-reset" aria-label="Reset zoom"><i class="fas fa-search"></i></button>
         <button class="zoom-btn zoom-in"   aria-label="Zoom in"><i class="fas fa-plus"></i></button>
       </div>
-      <img src="${src}" alt="" class="zoomable" loading="lazy"/>
+      <img src="${src}" alt="" class="zoomable" loading="lazy">
     `;
     document.body.appendChild(overlay);
     document.body.classList.add('fullscreen-mode');
     document.getElementById('wrapper').classList.add('blurred-background');
 
-    const img = overlay.querySelector('img.zoomable');
-    let scale = 0.85, offsetX = 0, offsetY = 0;
-    img.style.transform = `translate(0px,0px) scale(${scale})`;
+    const img   = overlay.querySelector('img.zoomable');
+    let scale   = 0.85,
+        offsetX = 0,
+        offsetY = 0;
+
+    img.style.transform       = `translate(0px,0px) scale(${scale})`;
     img.style.transformOrigin = 'center center';
 
-    function handleSlideChange() {
+    /* helper to update / swap slide */
+    function handleSlideChange () {
       const s = slickInst.$slides.eq(currentIndex);
       const v = s.find('video source').attr('src');
-      if (v) {
+
+      if (v) {                   /* next is video */
         closeFullScreen();
-        playFullScreen(v, false);
+        playFullScreen(v);
       } else {
         const fullImg = s.find('a.image').attr('href');
         img.style.opacity = 0;
-        img.addEventListener('transitionend', function t() {
+        img.addEventListener('transitionend', function t () {
           img.removeEventListener('transitionend', t);
           img.src = fullImg;
-          requestAnimationFrame(() => { img.style.opacity = 1; });
+          requestAnimationFrame(() => (img.style.opacity = 1));
         });
       }
     }
 
+    /* next / prev arrows */
     overlay.querySelector('.slick-prev').onclick = () => {
       currentIndex = (currentIndex - 1 + slickInst.slideCount) % slickInst.slideCount;
       handleSlideChange();
@@ -585,49 +572,56 @@
       handleSlideChange();
     };
 
-    document.addEventListener('keydown', function onKey(e) {
+    document.addEventListener('keydown', function onKey (e) {
       if (e.key === 'Escape') {
         document.removeEventListener('keydown', onKey);
         closeFullScreen();
       }
     });
 
+    /* zoom wheel */
     overlay.addEventListener('wheel', e => {
       e.preventDefault();
-      scale *= (e.deltaY < 0 ? 1.1 : 0.9);
-      scale = Math.min(Math.max(scale, 0.5), 3);
+      scale *= e.deltaY < 0 ? 1.1 : 0.9;
+      scale  = Math.min(Math.max(scale, 0.5), 3);
       update();
     }, { passive: false });
 
+    /* zoom buttons */
     overlay.querySelector('.zoom-in').onclick    = () => { scale = Math.min(scale * 1.2, 3); update(); };
     overlay.querySelector('.zoom-out').onclick   = () => { scale = Math.max(scale * 0.8, 0.5); update(); };
     overlay.querySelector('.zoom-reset').onclick = () => { scale = 0.85; offsetX = offsetY = 0; update(); };
-    function update() { img.style.transform = `translate(${offsetX}px,${offsetY}px) scale(${scale})`; }
+    function update () { img.style.transform = `translate(${offsetX}px,${offsetY}px) scale(${scale})`; }
 
     /* drag-to-pan (mouse) */
     let dragging = false, startX, startY;
     img.style.cursor = 'grab';
     img.addEventListener('mousedown', e => {
-      e.preventDefault(); dragging = true;
-      startX = e.clientX; startY = e.clientY;
+      e.preventDefault();
+      dragging   = true;
+      startX     = e.clientX;
+      startY     = e.clientY;
       img.style.cursor = 'grabbing';
     });
     document.addEventListener('mousemove', e => {
       if (!dragging) return;
-      offsetX += e.clientX - startX; offsetY += e.clientY - startY;
-      startX = e.clientX; startY = e.clientY;
+      offsetX += e.clientX - startX;
+      offsetY += e.clientY - startY;
+      startX   = e.clientX;
+      startY   = e.clientY;
       update();
     });
     document.addEventListener('mouseup', () => { dragging = false; img.style.cursor = 'grab'; });
     overlay.addEventListener('mouseleave', () => { dragging = false; img.style.cursor = 'grab'; });
 
     /* pinch-to-zoom (touch) */
-    function dist(t1, t2) { return Math.hypot(t1.clientX - t2.clientX, t1.clientY - t2.clientY); }
+    function dist (t1, t2) { return Math.hypot(t1.clientX - t2.clientX, t1.clientY - t2.clientY); }
     let pinchStart = null, touchDragging = false, tx, ty;
     overlay.addEventListener('touchstart', e => {
       if (e.touches.length === 2)      pinchStart = dist(e.touches[0], e.touches[1]);
       else if (e.touches.length === 1) { touchDragging = true; tx = e.touches[0].clientX; ty = e.touches[0].clientY; }
     }, { passive: false });
+
     overlay.addEventListener('touchmove', e => {
       if (e.touches.length === 2 && pinchStart !== null) {
         e.preventDefault();
@@ -636,19 +630,22 @@
         update();
       } else if (e.touches.length === 1 && touchDragging) {
         e.preventDefault();
-        offsetX += e.touches[0].clientX - tx; offsetY += e.touches[0].clientY - ty;
-        tx = e.touches[0].clientX; ty = e.touches[0].clientY;
+        offsetX += e.touches[0].clientX - tx;
+        offsetY += e.touches[0].clientY - ty;
+        tx = e.touches[0].clientX;
+        ty = e.touches[0].clientY;
         update();
       }
     }, { passive: false });
+
     overlay.addEventListener('touchend', e => {
       if (e.touches.length < 2) pinchStart = null;
       if (e.touches.length === 0) touchDragging = false;
     });
   }
 
-  /* ────────────── 4. Close overlay (shared) ────────────── */
-  function closeFullScreen() {
+  /* ────────────── 4. Close overlay ────────────── */
+  function closeFullScreen () {
     const ov = document.querySelector('.fullscreen-image') || document.querySelector('.fullscreen-video');
     if (ov) ov.remove();
     document.body.classList.remove('fullscreen-mode');
