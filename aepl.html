@@ -478,9 +478,9 @@ function positionFsArrows (ov) {
   const next = ov.querySelector('.slick-next');
 
   /* gap from the edge of the image → responsive */
-  const gap = window.innerWidth <= 480 ? 8      // phones
-            : window.innerWidth <= 768 ? 12     // small tablets
-            : 20;                               // desktops / large screens
+  const gap = window.innerWidth <= 480 ? 14      // phones
+            : window.innerWidth <= 768 ? 24     // small tablets
+            : 36;                               // desktops / large screens
 
   prev.style.left  = Math.max(box.left - prev.offsetWidth  - gap, gap) + 'px';
   next.style.right = Math.max(window.innerWidth - box.right -
