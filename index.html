@@ -704,8 +704,11 @@
       </div>
     </section> <!-- end #four -->
 
-    <!-- ClustrMaps (map injected lazily by JS) -->
-    <div id="visitor-map"></div>
+    <!-- ClustrMaps -->
+  <div id="visitor-map"></div>
+  <script type='text/javascript' id='clustrmaps' src='//cdn.clustrmaps.com/map_v2.js?cl=ffffff&w=a&t=tt&d=BtnTG-J7EyPAd3PMvp8QHdXHhRUlSKyg_ZZOy3_ADDU'></script>
+  </script>
+
 
   </div> <!-- end #wrapper -->
 
@@ -953,7 +956,7 @@
     });
 
     /* ClustrMaps lazy-loader */
-    const vm = document.getElementById('visitor-map');
+    /*const vm = document.getElementById('visitor-map');
     if (vm) {
       const io = new IntersectionObserver(([entry]) => {
         if (entry.isIntersecting) {
@@ -965,8 +968,9 @@
         }
       });
       io.observe(vm);
-    }
+    }*/
   });
+
 </script>
 
 </body>
