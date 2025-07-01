@@ -310,6 +310,17 @@
 .fullscreen-video .slick-prev:before,
 .fullscreen-video .slick-next:before{content:none!important;}
 
+/* Slick’s default glyph ONLY for fullscreen-video overlays */
+.fullscreen-video .slick-prev:before{
+  content:"\f053" !important;          /* ← Font-Awesome left chevron */
+  color:rgba(0,0,0,.55);               /* slightly darker shadow */
+}
+.fullscreen-video .slick-next:before{
+  content:"\f054" !important;          /* ← Font-Awesome right chevron */
+  color:rgba(0,0,0,.55);
+}
+
+
 </style>
 
 </head>
@@ -463,9 +474,9 @@ function positionFsArrows (ov) {
   const next = ov.querySelector('.slick-next');
 
   /* gap from the edge of the image → responsive */
-  const gap = window.innerWidth <= 480 ? 14      // phones
-            : window.innerWidth <= 768 ? 24     // small tablets
-            : 36;                               // desktops / large screens
+  const gap = window.innerWidth <= 480 ? 16      // phones
+            : window.innerWidth <= 768 ? 26     // small tablets
+            : 40;                               // desktops / large screens
 
   prev.style.left  = Math.max(box.left - prev.offsetWidth  - gap, gap) + 'px';
   next.style.right = Math.max(window.innerWidth - box.right -
@@ -716,6 +727,9 @@ function showFullScreenImage (src, evt) {
   });
 
   document.addEventListener('keydown', function esc (e) {
+    /* keyboard navigation */
+    if (e.key === 'ArrowLeft')  { ov.querySelector('.slick-prev' ).click(); return; }
+    if (e.key === 'ArrowRight') { ov.querySelector('.slick-next' ).click(); return; }
     if (e.key === 'Escape') {
       document.removeEventListener('keydown', esc);
       closeFullScreen();
