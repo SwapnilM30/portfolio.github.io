@@ -525,10 +525,15 @@ function positionFsArrows (ov) {
   const box  = media.getBoundingClientRect();
   const prev = ov.querySelector('.slick-prev');
   const next = ov.querySelector('.slick-next');
-  const gap  = 20;                                /* px from edge of media */
 
-  prev.style.left  = Math.max(box.left - prev.offsetWidth - gap, gap) + 'px';
-  next.style.right = Math.max(window.innerWidth - box.right - next.offsetWidth - gap, gap) + 'px';
+  /* gap from the edge of the image → responsive */
+  const gap = window.innerWidth <= 480 ? 8      // phones
+            : window.innerWidth <= 768 ? 12     // small tablets
+            : 20;                               // desktops / large screens
+
+  prev.style.left  = Math.max(box.left - prev.offsetWidth  - gap, gap) + 'px';
+  next.style.right = Math.max(window.innerWidth - box.right -
+                               next.offsetWidth - gap,        gap) + 'px';
 
   const vMid = box.top + box.height / 2 - prev.offsetHeight / 2;
   prev.style.top = next.style.top = vMid + 'px';
