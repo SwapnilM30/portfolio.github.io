@@ -76,7 +76,7 @@
 .slick-prev:hover:before,
 .slick-next:hover:before{color:#283a8b;}
 
-/* Inline–carousel arrow sizing */
+/* Inline-carousel arrow sizing */
 @media (max-width:768px){
   .slick-prev,.slick-next{width:34px;height:34px;}
   .slick-prev:before,.slick-next:before{font-size:30px;}
@@ -106,7 +106,7 @@
 .fs-arrow:active i,
 .fs-arrow:hover  i{transform:scale(1.15);}
 
-/* Icon style; size will be set with a variable later */
+/* Icon style; size is set with a variable later */
 .fs-arrow i{
   color:#fff;
   line-height:1;
@@ -261,7 +261,7 @@
 /* Responsive project text */
 .project-text{font-size:1.175rem;line-height:1.6;}
 @media(max-width:1280px){.project-text{font-size:1.1rem;}}
-@media(max-width:736px){ .project-text{font-size:1rem;}}
+@media(max-width:736px){.project-text{font-size:1rem;}}
 
 /* Play icon overlay on videos */
 .play-icon{
@@ -274,18 +274,19 @@
 .play-icon:hover{transform:translate(-50%,-50%) scale(1.2);}
 @media(max-width:480px){.play-icon{top:50%;}}
 
-/* ─── Overlay arrow positioning inside wrapper ─── */
+/* ─── Base overlay-arrow positioning ─── */
 .fullscreen-image .slick-prev,
 .fullscreen-video .slick-prev,
 .fullscreen-image .slick-next,
 .fullscreen-video .slick-next{
-  top:50%;transform:translateY(-50%);z-index:10001;
+  top:50%;
+  transform:translateY(-50%);
+  z-index:10001;
 }
 
 /* ───────── FULL-SCREEN-ONLY arrow sizing (single variable) ───────── */
 .fullscreen-image,
 .fullscreen-video{ --fs-arrow-size:48px; }      /* desktop */
-
 @media (max-width:768px){
   .fullscreen-image,
   .fullscreen-video{ --fs-arrow-size:34px; }    /* tablets */
@@ -294,15 +295,14 @@
   .fullscreen-image,
   .fullscreen-video{ --fs-arrow-size:28px; }    /* phones */
 }
-
 .fullscreen-image .fs-arrow,
 .fullscreen-video .fs-arrow{
-  width:  var(--fs-arrow-size);
-  height: var(--fs-arrow-size);
+  width:var(--fs-arrow-size);
+  height:var(--fs-arrow-size);
 }
 .fullscreen-image .fs-arrow i,
 .fullscreen-video .fs-arrow i{
-  font-size: var(--fs-arrow-size);
+  font-size:var(--fs-arrow-size);
 }
 
 /* Absolutely hide any Slick pseudo-glyph that might still appear */
@@ -311,6 +311,37 @@
 .fullscreen-video .slick-prev:before,
 .fullscreen-video .slick-next:before{content:none!important;}
 
+/* ────────────────────────────────────────────────
+   𝗙𝗶𝘅𝗲𝗱-𝗼𝗳𝗳𝘀𝗲𝘁 𝗮𝗿𝗿𝗼𝘄 𝗹𝗮𝘆𝗼𝘂𝘁  (matches SLAM page)
+   ──────────────────────────────────────────────── */
+
+/* Desktop / large screens */
+.fullscreen-image .slick-prev,
+.fullscreen-video .slick-prev{
+  left:calc((100% - 90%) / 2 + .5rem)!important;
+  right:auto!important;
+}
+.fullscreen-image .slick-next,
+.fullscreen-video .slick-next{
+  right:calc((100% - 90%) / 2 + .5rem)!important;
+  left:auto!important;
+}
+
+/* Tablets ≤ 768 px */
+@media (max-width:768px){
+  .fullscreen-image .slick-prev,
+  .fullscreen-video .slick-prev{left:1rem!important;}
+  .fullscreen-image .slick-next,
+  .fullscreen-video .slick-next{right:1rem!important;}
+}
+
+/* Phones ≤ 480 px */
+@media (max-width:480px){
+  .fullscreen-image .slick-prev,
+  .fullscreen-video .slick-prev{left:.5rem!important;}
+  .fullscreen-image .slick-next,
+  .fullscreen-video .slick-next{right:.5rem!important;}
+}
 </style>
 
 </head>
@@ -432,7 +463,21 @@
 ────────────────────────────────────────── */
 const $slider = $('.slider');
 
-/* hook BEFORE .slick() so init fires */
+/* centre inline-carousel arrows on the active image */
+function positionArrows () {
+  const $img = $slider.find('.slick-current img');
+  if (!$img.length) return;                       /* current slide is video */
+
+  if (!$img[0].naturalHeight) {                   /* wait for lazy-loaded img */
+    $img.on('load', positionArrows);
+    return;
+  }
+  const imgBox   = $img[0].getBoundingClientRect();
+  const slideBox = $slider[0].getBoundingClientRect();
+  const mid      = imgBox.top + imgBox.height / 2 - slideBox.top;
+  $slider.find('.slick-prev, .slick-next').css('top', mid + 'px');
+}
+
 $slider.on('init setPosition afterChange', positionArrows);
 
 $slider.slick({
@@ -447,67 +492,18 @@ $slider.slick({
 });
 
 const slickInst = $slider.slick('getSlick');
-
-/* centre desktop arrows on the active image */
-function positionArrows () {
-  const $img = $slider.find('.slick-current img');
-  if (!$img.length) return;                     /* current slide is video */
-
-  if (!$img[0].naturalHeight) {                 /* image not loaded yet */
-    $img.on('load', positionArrows);
-    return;
-  }
-  const imgBox   = $img[0].getBoundingClientRect();
-  const slideBox = $slider[0].getBoundingClientRect();
-  const mid      = imgBox.top + imgBox.height / 2 - slideBox.top;
-  $slider.find('.slick-prev, .slick-next').css('top', mid + 'px');
-}
 $(window).on('resize orientationchange', positionArrows);
 
 /* ──────────────────────────────────────────
-   2.  SHARED HELPERS FOR FULLSCREEN OVERLAYS
+   2.  UTILITY  – blur background when overlay is open
 ────────────────────────────────────────── */
-
-/* place the overlay chevrons flush with the actual media bounds */
-function positionFsArrows (ov) {
-  const media = ov.querySelector('img.zoomable, video');
-  if (!media) return;
-
-  const box  = media.getBoundingClientRect();
-  const prev = ov.querySelector('.slick-prev');
-  const next = ov.querySelector('.slick-next');
-
-  /* gap from the edge of the image → responsive */
-  const gap = window.innerWidth <= 480 ? 14      // phones
-            : window.innerWidth <= 768 ? 24     // small tablets
-            : 36;                               // desktops / large screens
-
-  prev.style.left  = Math.max(box.left - prev.offsetWidth  - gap, gap) + 'px';
-  next.style.right = Math.max(window.innerWidth - box.right -
-                               next.offsetWidth - gap,        gap) + 'px';
-
-  const vMid = box.top + box.height / 2 - prev.offsetHeight / 2;
-  prev.style.top = next.style.top = vMid + 'px';
-}
-
-/* add / remove window-resize listener so we don’t leak it */
-function addFsResizeHook (ov) {
-  const fn = () => positionFsArrows(ov);
-  window.addEventListener('resize', fn);
-  ov._resizeHook = fn;
-}
-function removeFsResizeHook (ov) {
-  if (ov && ov._resizeHook) window.removeEventListener('resize', ov._resizeHook);
-}
-
-/* convenience: blur page when overlay open */
 function blurPage (on) {
   document.body.classList.toggle('fullscreen-mode', on);
   document.getElementById('wrapper').classList.toggle('blurred-background', on);
 }
 
 /* ──────────────────────────────────────────
-   3.  FULLSCREEN VIDEO OVERLAY
+   3.  FULL-SCREEN VIDEO OVERLAY
 ────────────────────────────────────────── */
 function playFullScreen (videoSrc, autoPlay = false) {
   const ov = document.createElement('div');
@@ -529,19 +525,17 @@ function playFullScreen (videoSrc, autoPlay = false) {
 
   const vid     = ov.querySelector('video');
   const playBtn = ov.querySelector('.play-icon');
-  requestAnimationFrame(() => (vid.style.opacity = 1));
-
-  addFsResizeHook(ov);
-  positionFsArrows(ov);
+  requestAnimationFrame(() => { vid.style.opacity = 1; });
 
   vid.addEventListener('play', () => {
     playBtn.style.display = 'none';
     vid.setAttribute('controls', '');
   });
+
   if (autoPlay) vid.play().catch(() => {});
   playBtn.addEventListener('click', () => vid.play());
 
-  /* next / prev with cross-fade */
+  /* cross-fade to next / prev slide */
   function jump (dir) {
     vid.style.opacity = 0;
     vid.addEventListener('transitionend', function handle () {
@@ -551,17 +545,14 @@ function playFullScreen (videoSrc, autoPlay = false) {
       const slide = slickInst.$slides.eq(slickInst.currentSlide);
       const vSrc  = slide.find('video source').attr('src');
 
-      if (vSrc) {                                   /* next is video */
+      if (vSrc) {                            /* next is video  */
         vid.pause();
         vid.removeAttribute('controls');
         playBtn.style.display = '';
         vid.src = vSrc;
         vid.load();
-        requestAnimationFrame(() => {
-          vid.style.opacity = 1;
-          positionFsArrows(ov);
-        });
-      } else {                                      /* next is image */
+        requestAnimationFrame(() => { vid.style.opacity = 1; });
+      } else {                               /* next is image */
         closeFullScreen();
         showFullScreenImage(slide.find('a.image').attr('href'));
       }
@@ -579,17 +570,17 @@ function playFullScreen (videoSrc, autoPlay = false) {
 }
 
 /* ──────────────────────────────────────────
-   4.  FULLSCREEN IMAGE OVERLAY
+   4.  FULL-SCREEN IMAGE OVERLAY
 ────────────────────────────────────────── */
 function showFullScreenImage (src, evt) {
   if (evt) evt.preventDefault();
 
-  let idx    = slickInst.currentSlide;
-  const slideEl = slickInst.$slides.eq(idx);
+  let idx      = slickInst.currentSlide;
+  const slide  = slickInst.$slides.eq(idx);
 
   /* if current slide is video, delegate */
-  if (slideEl.find('video').length) {
-    playFullScreen(slideEl.find('video source').attr('src'));
+  if (slide.find('video').length) {
+    playFullScreen(slide.find('video source').attr('src'));
     return;
   }
 
@@ -614,31 +605,26 @@ function showFullScreenImage (src, evt) {
   blurPage(true);
 
   const img = ov.querySelector('img.zoomable');
+
+  /* ----- zoom & pan state ----- */
   let scale   = 0.85,
       offsetX = 0,
       offsetY = 0;
   img.style.transform = `translate(0,0) scale(${scale})`;
 
-  addFsResizeHook(ov);
-  img.onload = () => positionFsArrows(ov);
-  positionFsArrows(ov);
-
-  /* helper to swap slide & keep arrows aligned */
+  /* swap slides (image or video) */
   function swapSlide () {
-    const s = slickInst.$slides.eq(idx);
-    const v = s.find('video source').attr('src');
+    const s   = slickInst.$slides.eq(idx);
+    const vid = s.find('video source').attr('src');
 
-    if (v) { closeFullScreen(); playFullScreen(v); return; }
+    if (vid) { closeFullScreen(); playFullScreen(vid); return; }
 
     const newSrc = s.find('a.image').attr('href');
     img.style.opacity = 0;
     img.addEventListener('transitionend', function t () {
       img.removeEventListener('transitionend', t);
       img.src = newSrc;
-      requestAnimationFrame(() => {
-        img.style.opacity = 1;
-        positionFsArrows(ov);
-      });
+      requestAnimationFrame(() => { img.style.opacity = 1; });
     });
   }
 
@@ -651,21 +637,13 @@ function showFullScreenImage (src, evt) {
     swapSlide();
   };
 
-  /* ─── zoom & pan ─── */
+  /* ----- zoom helpers ----- */
   function update () {
-    img.style.transform =
-      `translate(${offsetX}px,${offsetY}px) scale(${scale})`;
+    img.style.transform = `translate(${offsetX}px,${offsetY}px) scale(${scale})`;
   }
-
-  ov.querySelector('.zoom-in').onclick    = () => {
-    scale = Math.min(scale * 1.2, 3); update();
-  };
-  ov.querySelector('.zoom-out').onclick   = () => {
-    scale = Math.max(scale * 0.8, 0.5); update();
-  };
-  ov.querySelector('.zoom-reset').onclick = () => {
-    scale = 0.85; offsetX = offsetY = 0; update();
-  };
+  ov.querySelector('.zoom-in').onclick    = () => { scale = Math.min(scale * 1.2, 3); update(); };
+  ov.querySelector('.zoom-out').onclick   = () => { scale = Math.max(scale * 0.8, 0.5); update(); };
+  ov.querySelector('.zoom-reset').onclick = () => { scale = 0.85; offsetX = offsetY = 0; update(); };
 
   ov.addEventListener('wheel', e => {
     e.preventDefault();
@@ -678,7 +656,7 @@ function showFullScreenImage (src, evt) {
   let dragging = false, sx, sy;
   img.addEventListener('mousedown', e => {
     e.preventDefault();
-    dragging  = true;
+    dragging = true;
     sx = e.clientX; sy = e.clientY;
     img.style.cursor = 'grabbing';
   });
@@ -696,32 +674,24 @@ function showFullScreenImage (src, evt) {
   });
 
   /* pinch-to-zoom (touch) */
-  function dist(t1, t2) {
-    return Math.hypot(t1.clientX - t2.clientX, t1.clientY - t2.clientY);
-  }
+  function dist(t1, t2) { return Math.hypot(t1.clientX - t2.clientX,
+                                           t1.clientY - t2.clientY); }
   let pinchStart = null, touchDrag = false, tx, ty;
   ov.addEventListener('touchstart', e => {
-    if (e.touches.length === 2) {
-      pinchStart = dist(e.touches[0], e.touches[1]);
-    } else if (e.touches.length === 1) {
-      touchDrag = true;
-      tx = e.touches[0].clientX;
-      ty = e.touches[0].clientY;
-    }
+    if (e.touches.length === 2)      pinchStart = dist(e.touches[0], e.touches[1]);
+    else if (e.touches.length === 1) { touchDrag = true; tx = e.touches[0].clientX; ty = e.touches[0].clientY; }
   }, { passive:false });
   ov.addEventListener('touchmove', e => {
     if (e.touches.length === 2 && pinchStart !== null) {
       e.preventDefault();
-      scale = Math.min(Math.max(
-        scale * dist(e.touches[0], e.touches[1]) / pinchStart, 0.5), 3);
+      scale = Math.min(Math.max(scale * (dist(e.touches[0], e.touches[1]) / pinchStart), 0.5), 3);
       pinchStart = dist(e.touches[0], e.touches[1]);
       update();
     } else if (e.touches.length === 1 && touchDrag) {
       e.preventDefault();
       offsetX += e.touches[0].clientX - tx;
       offsetY += e.touches[0].clientY - ty;
-      tx = e.touches[0].clientX;
-      ty = e.touches[0].clientY;
+      tx = e.touches[0].clientX; ty = e.touches[0].clientY;
       update();
     }
   }, { passive:false });
@@ -746,7 +716,6 @@ function closeFullScreen () {
     document.querySelector('.fullscreen-image') ||
     document.querySelector('.fullscreen-video');
   if (!ov) return;
-  removeFsResizeHook(ov);
   ov.remove();
   blurPage(false);
 }
