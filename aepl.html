@@ -13,6 +13,11 @@
     <link rel="stylesheet" href="assets/css/main.css">
     <noscript><link rel="stylesheet" href="assets/css/noscript.css"></noscript>
 
+    <!-- Preload the chevron font so it’s cached early -->
+    <link rel="preload"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/webfonts/fa-solid-900.woff2"
+      as="font" type="font/woff2" crossorigin>
+    
     <!-- FontAwesome for zoom icons -->
     <link
       rel="stylesheet"
@@ -332,17 +337,17 @@
 /* ───── Overlay arrow repositioning ───── */
 .fullscreen-image .slick-prev,
 .fullscreen-video .slick-prev{
-  left:calc((100% - 90%)/2 + .5rem)!important;
+  /* left:calc((100% - 90%)/2 + .5rem)!important; */
   top:50%;
   transform:translateY(-50%);
-  z-index:10001!important;
+  z-index:10001;
 }
 .fullscreen-image .slick-next,
 .fullscreen-video .slick-next{
-  right:calc((100% - 90%)/2 + .5rem)!important;
+  /* right:calc((100% - 90%)/2 + .5rem)!important; */
   top:50%;
   transform:translateY(-50%);
-  z-index:10001!important;
+  z-index:10001;
 }
 
 /* Brighten chevrons for contrast */
@@ -520,7 +525,7 @@ function positionFsArrows (ov) {
   const box  = media.getBoundingClientRect();
   const prev = ov.querySelector('.slick-prev');
   const next = ov.querySelector('.slick-next');
-  const gap  = 8;                                /* px from edge of media */
+  const gap  = 20;                                /* px from edge of media */
 
   prev.style.left  = Math.max(box.left - prev.offsetWidth - gap, gap) + 'px';
   next.style.right = Math.max(window.innerWidth - box.right - next.offsetWidth - gap, gap) + 'px';
