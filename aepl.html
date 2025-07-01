@@ -79,6 +79,72 @@
   .slick-next{right:-30px;}
 }
 
+/* ---------- Mobile arrow sizing ≤ 768 px ---------- */
+@media (max-width: 768px) {
+  /* shrink *all* Slick arrows – base slider + overlays */
+  .slick-prev,
+  .slick-next {
+    width: 34px;
+    height: 34px;
+  }
+  .slick-prev:before,
+  .slick-next:before {
+    font-size: 30px;
+  }
+}
+
+/* ---------- Overlay arrow look ---------- */
+.fs-arrow {
+  background: none;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  cursor: pointer;
+}
+
+.fs-arrow i {
+  font-size: 2rem;
+  color: #fff;
+  line-height: 1;
+}
+
+/* stop Slick's :before from painting under our new buttons */
+.fs-arrow:before{content:none!important;}
+
+.fs-arrow:active i,
+.fs-arrow:hover i {
+  transform: scale(1.15);
+}
+
+/* ---------- Phones ≤ 480 px ---------- */
+@media (max-width: 480px) {
+
+  /* Base slider + full-screen overlays */
+  .slick-prev,
+  .slick-next,
+  .fs-arrow {
+    width: 28px;
+    height: 28px;
+  }
+
+  /* Slick’s built-in pseudo-element arrows */
+  .slick-prev:before,
+  .slick-next:before {
+    font-size: 24px;
+  }
+
+  /* Font-Awesome chevrons inside .fs-arrow */
+  .fs-arrow i {
+    font-size: 1.45rem; /* ≈ 23 px */
+  }
+
+  /* Optional: push arrows a bit farther out */
+  .slick-prev { left: -34px; }
+  .slick-next { right: -34px; }
+}
+
 /* Labels & citations */
 .image-label,.video-label{
   text-align:center;
@@ -435,9 +501,9 @@ function positionArrows () {
     $img.on('load', positionArrows);
     return;
   }
-  const imgBox = $img[0].getBoundingClientRect();
+  const imgBox   = $img[0].getBoundingClientRect();
   const slideBox = $slider[0].getBoundingClientRect();
-  const mid = imgBox.top + imgBox.height / 2 - slideBox.top;
+  const mid      = imgBox.top + imgBox.height / 2 - slideBox.top;
   $slider.find('.slick-prev, .slick-next').css('top', mid + 'px');
 }
 $(window).on('resize orientationchange', positionArrows);
@@ -451,10 +517,10 @@ function positionFsArrows (ov) {
   const media = ov.querySelector('img.zoomable, video');
   if (!media) return;
 
-  const box    = media.getBoundingClientRect();
-  const prev   = ov.querySelector('.slick-prev');
-  const next   = ov.querySelector('.slick-next');
-  const gap    = 8;                                /* px from edge of media */
+  const box  = media.getBoundingClientRect();
+  const prev = ov.querySelector('.slick-prev');
+  const next = ov.querySelector('.slick-next');
+  const gap  = 8;                                /* px from edge of media */
 
   prev.style.left  = Math.max(box.left - prev.offsetWidth - gap, gap) + 'px';
   next.style.right = Math.max(window.innerWidth - box.right - next.offsetWidth - gap, gap) + 'px';
@@ -487,8 +553,12 @@ function playFullScreen (videoSrc, autoPlay = false) {
   ov.className = 'fullscreen-video';
   ov.innerHTML = `
     <div class="close-button" onclick="closeFullScreen()"></div>
-    <div class="slick-prev fs-arrow" aria-label="Previous"></div>
-    <div class="slick-next fs-arrow" aria-label="Next"></div>
+    <button class="slick-prev fs-arrow" aria-label="Previous">
+      <i class="fas fa-chevron-left"></i>
+    </button>
+    <button class="slick-next fs-arrow" aria-label="Next">
+      <i class="fas fa-chevron-right"></i>
+    </button>
 
     <video src="${videoSrc}" playsinline muted style="opacity:0"></video>
     <div class="play-icon" aria-hidden="true"></div>
@@ -496,7 +566,7 @@ function playFullScreen (videoSrc, autoPlay = false) {
   document.body.appendChild(ov);
   blurPage(true);
 
-  const vid = ov.querySelector('video');
+  const vid     = ov.querySelector('video');
   const playBtn = ov.querySelector('.play-icon');
   requestAnimationFrame(() => (vid.style.opacity = 1));
 
@@ -520,7 +590,7 @@ function playFullScreen (videoSrc, autoPlay = false) {
       const slide = slickInst.$slides.eq(slickInst.currentSlide);
       const vSrc  = slide.find('video source').attr('src');
 
-      if (vSrc) {                                   /* next still video */
+      if (vSrc) {                                   /* next is video */
         vid.pause();
         vid.removeAttribute('controls');
         playBtn.style.display = '';
@@ -540,7 +610,10 @@ function playFullScreen (videoSrc, autoPlay = false) {
   ov.querySelector('.slick-next').onclick = () => jump(1);
 
   document.addEventListener('keydown', function esc (e) {
-    if (e.key === 'Escape') { document.removeEventListener('keydown', esc); closeFullScreen(); }
+    if (e.key === 'Escape') {
+      document.removeEventListener('keydown', esc);
+      closeFullScreen();
+    }
   });
 }
 
@@ -550,7 +623,7 @@ function playFullScreen (videoSrc, autoPlay = false) {
 function showFullScreenImage (src, evt) {
   if (evt) evt.preventDefault();
 
-  let idx = slickInst.currentSlide;
+  let idx    = slickInst.currentSlide;
   const slideEl = slickInst.$slides.eq(idx);
 
   /* if current slide is video, delegate */
@@ -563,8 +636,12 @@ function showFullScreenImage (src, evt) {
   ov.className = 'fullscreen-image';
   ov.innerHTML = `
     <div class="close-button" onclick="closeFullScreen()"></div>
-    <div class="slick-prev fs-arrow" aria-label="Previous"></div>
-    <div class="slick-next fs-arrow" aria-label="Next"></div>
+    <button class="slick-prev fs-arrow" aria-label="Previous">
+      <i class="fas fa-chevron-left"></i>
+    </button>
+    <button class="slick-next fs-arrow" aria-label="Next">
+      <i class="fas fa-chevron-right"></i>
+    </button>
     <div class="zoom-controls">
       <button class="zoom-btn zoom-out"  aria-label="Zoom out"><i class="fas fa-minus"></i></button>
       <button class="zoom-btn zoom-reset" aria-label="Reset zoom"><i class="fas fa-search"></i></button>
@@ -576,7 +653,9 @@ function showFullScreenImage (src, evt) {
   blurPage(true);
 
   const img = ov.querySelector('img.zoomable');
-  let scale = 0.85, offsetX = 0, offsetY = 0;
+  let scale   = 0.85,
+      offsetX = 0,
+      offsetY = 0;
   img.style.transform = `translate(0,0) scale(${scale})`;
 
   addFsResizeHook(ov);
@@ -602,59 +681,99 @@ function showFullScreenImage (src, evt) {
     });
   }
 
-  ov.querySelector('.slick-prev').onclick = () => { idx = (idx - 1 + slickInst.slideCount) % slickInst.slideCount; swapSlide(); };
-  ov.querySelector('.slick-next').onclick = () => { idx = (idx + 1) % slickInst.slideCount; swapSlide(); };
+  ov.querySelector('.slick-prev').onclick = () => {
+    idx = (idx - 1 + slickInst.slideCount) % slickInst.slideCount;
+    swapSlide();
+  };
+  ov.querySelector('.slick-next').onclick = () => {
+    idx = (idx + 1) % slickInst.slideCount;
+    swapSlide();
+  };
 
-  /* ─── zoom & pan (unchanged) ─── */
-  function update () { img.style.transform = `translate(${offsetX}px,${offsetY}px) scale(${scale})`; }
+  /* ─── zoom & pan ─── */
+  function update () {
+    img.style.transform =
+      `translate(${offsetX}px,${offsetY}px) scale(${scale})`;
+  }
 
-  ov.querySelector('.zoom-in').onclick    = () => { scale = Math.min(scale * 1.2, 3); update(); };
-  ov.querySelector('.zoom-out').onclick   = () => { scale = Math.max(scale * 0.8, 0.5); update(); };
-  ov.querySelector('.zoom-reset').onclick = () => { scale = 0.85; offsetX = offsetY = 0; update(); };
+  ov.querySelector('.zoom-in').onclick    = () => {
+    scale = Math.min(scale * 1.2, 3); update();
+  };
+  ov.querySelector('.zoom-out').onclick   = () => {
+    scale = Math.max(scale * 0.8, 0.5); update();
+  };
+  ov.querySelector('.zoom-reset').onclick = () => {
+    scale = 0.85; offsetX = offsetY = 0; update();
+  };
 
   ov.addEventListener('wheel', e => {
     e.preventDefault();
     scale *= e.deltaY < 0 ? 1.1 : 0.9;
-    scale = Math.min(Math.max(scale, 0.5), 3);
+    scale  = Math.min(Math.max(scale, 0.5), 3);
     update();
   }, { passive:false });
 
   /* drag-to-pan (mouse) */
   let dragging = false, sx, sy;
-  img.addEventListener('mousedown', e => { e.preventDefault(); dragging = true; sx = e.clientX; sy = e.clientY; img.style.cursor='grabbing'; });
+  img.addEventListener('mousedown', e => {
+    e.preventDefault();
+    dragging  = true;
+    sx = e.clientX; sy = e.clientY;
+    img.style.cursor = 'grabbing';
+  });
   document.addEventListener('mousemove', e => {
     if (!dragging) return;
     offsetX += e.clientX - sx; offsetY += e.clientY - sy;
-    sx = e.clientX; sy = e.clientY; update();
+    sx = e.clientX; sy = e.clientY;
+    update();
   });
-  document.addEventListener('mouseup',   () => { dragging = false; img.style.cursor='grab'; });
-  ov.addEventListener       ('mouseleave',() => { dragging = false; img.style.cursor='grab'; });
+  document.addEventListener('mouseup', () => {
+    dragging = false; img.style.cursor = 'grab';
+  });
+  ov.addEventListener('mouseleave', () => {
+    dragging = false; img.style.cursor = 'grab';
+  });
 
   /* pinch-to-zoom (touch) */
-  function dist(t1,t2){ return Math.hypot(t1.clientX-t2.clientX,t1.clientY-t2.clientY); }
-  let pinchStart = null, touchDrag=false, tx,ty;
-  ov.addEventListener('touchstart', e=>{
-    if(e.touches.length===2) pinchStart=dist(e.touches[0],e.touches[1]);
-    else if(e.touches.length===1){ touchDrag=true; tx=e.touches[0].clientX; ty=e.touches[0].clientY; }
-  },{passive:false});
-  ov.addEventListener('touchmove', e=>{
-    if(e.touches.length===2 && pinchStart!==null){
-      e.preventDefault();
-      scale = Math.min(Math.max(scale*dist(e.touches[0],e.touches[1])/pinchStart,0.5),3);
-      pinchStart=dist(e.touches[0],e.touches[1]); update();
-    }else if(e.touches.length===1 && touchDrag){
-      e.preventDefault();
-      offsetX+=e.touches[0].clientX-tx; offsetY+=e.touches[0].clientY-ty;
-      tx=e.touches[0].clientX; ty=e.touches[0].clientY; update();
+  function dist(t1, t2) {
+    return Math.hypot(t1.clientX - t2.clientX, t1.clientY - t2.clientY);
+  }
+  let pinchStart = null, touchDrag = false, tx, ty;
+  ov.addEventListener('touchstart', e => {
+    if (e.touches.length === 2) {
+      pinchStart = dist(e.touches[0], e.touches[1]);
+    } else if (e.touches.length === 1) {
+      touchDrag = true;
+      tx = e.touches[0].clientX;
+      ty = e.touches[0].clientY;
     }
-  },{passive:false});
-  ov.addEventListener('touchend', e=>{
-    if(e.touches.length<2) pinchStart=null;
-    if(e.touches.length===0) touchDrag=false;
+  }, { passive:false });
+  ov.addEventListener('touchmove', e => {
+    if (e.touches.length === 2 && pinchStart !== null) {
+      e.preventDefault();
+      scale = Math.min(Math.max(
+        scale * dist(e.touches[0], e.touches[1]) / pinchStart, 0.5), 3);
+      pinchStart = dist(e.touches[0], e.touches[1]);
+      update();
+    } else if (e.touches.length === 1 && touchDrag) {
+      e.preventDefault();
+      offsetX += e.touches[0].clientX - tx;
+      offsetY += e.touches[0].clientY - ty;
+      tx = e.touches[0].clientX;
+      ty = e.touches[0].clientY;
+      update();
+    }
+  }, { passive:false });
+  ov.addEventListener('touchend', e => {
+    if (e.touches.length < 2) pinchStart = null;
+    if (e.touches.length === 0) touchDrag = false;
   });
 
-  document.addEventListener('keydown', function esc(e){
-    if(e.key==='Escape'){ document.removeEventListener('keydown',esc); closeFullScreen(); }
+  document.addEventListener('keydown', function esc (e) {
+    if (e.key === 'Escape') {
+      document.removeEventListener('keydown', esc);
+      closeFullScreen();
+    }
   });
 }
 
@@ -662,7 +781,9 @@ function showFullScreenImage (src, evt) {
    5.  CLOSE OVERLAY
 ────────────────────────────────────────── */
 function closeFullScreen () {
-  const ov = document.querySelector('.fullscreen-image') || document.querySelector('.fullscreen-video');
+  const ov =
+    document.querySelector('.fullscreen-image') ||
+    document.querySelector('.fullscreen-video');
   if (!ov) return;
   removeFsResizeHook(ov);
   ov.remove();
