@@ -4014,6 +4014,15 @@ h6 { font-size: 0.6em; }
   }
 
 
+/* Footer overrides */
+
+#footer > .inner {
+  padding: 1em 5em;      /* shrink top/bottom padding */
+  margin: 0 auto;        /* center it if you constrain width */
+  max-width: 1225px;     /* optional – keep it in line with your other sections */
+}
+
+
   
 
 
