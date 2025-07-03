@@ -127,6 +127,16 @@
     border-color: #283a8b;
   }
 
+/* ───────── ClustrMaps Intro Text ───────── */
+.map-intro-text {
+  text-align: center;
+  margin: 1.5rem auto 1rem;  /* space above/below the intro */
+  font-style: italic;
+  color: rgba(0,0,0,0.7);     /* tweak for contrast on your bg */
+  max-width: 750px;           /* match your map’s max-width */
+  padding: 0 1rem;            /* horizontal padding on small screens */
+}
+
 /* ───────── ClustrMaps: minimal styling ───────── */
 #visitor-map {
   width: 100%;
@@ -714,6 +724,13 @@
       </div>
     </section> <!-- end #four -->
 
+    <!-- Map intro text -->
+    <p class="map-intro-text">
+      <em>
+        Take a quick trip around the globe and see where visitors to my portfolio are coming from.  
+        This map tracks my worldwide audience in real time!
+      </em>
+    </p>
     <!-- ClustrMaps (map injected lazily by JS) -->
     <div id="visitor-map"></div>
     <!-- ClustrMaps Legend -->
