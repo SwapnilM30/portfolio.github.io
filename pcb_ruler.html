@@ -199,6 +199,13 @@
   display:flex;justify-content:center;align-items:center;
   touch-action:none;
 }
+.fullscreen-video video {
+  opacity: 1;
+  transition: opacity .4s ease;
+  transform: scale(0.85);
+  transform-origin: center center;
+}
+
 @supports(height:100dvh){
   .fullscreen-video,
   .fullscreen-image{height:100dvh;}  /* iOS Chrome fix */
@@ -479,6 +486,8 @@ function playFullScreen (videoSrc, autoPlay = false) {
 
   const vid     = ov.querySelector('video');
   const playBtn = ov.querySelector('.play-icon');
+  vid.style.transform       = 'translate(0,0) scale(0.85)';
+  vid.style.transformOrigin = 'center center';
   requestAnimationFrame(() => { vid.style.opacity = 1; });
 
   vid.addEventListener('play', () => {
