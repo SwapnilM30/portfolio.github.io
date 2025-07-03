@@ -128,44 +128,54 @@
   }
 
 /* ───────── ClustrMaps: minimal styling ───────── */
-#visitor-map{
-  width:100%;
-  max-width:750px;      /* change or remove if you want full width */
-  margin:0 auto 2rem;   /* centers + 2 rem space before footer */
+#visitor-map {
+  width: 100%;
+  max-width: 750px;      /* change or remove if you want full width */
+  margin: 0 auto 2rem;   /* centers + 2 rem space before footer */
 }
 
 /* If ClustrMaps injects an <iframe> */
-#visitor-map iframe{
-  width:100%!important;
-  height:auto;
-  border:none!important;
-  box-shadow:none!important;
-  display:block;
+#visitor-map iframe {
+  width: 100% !important;
+  height: auto;
+  border: none !important;
+  box-shadow: none !important;
+  display: block;
 }
 
 /* If ClustrMaps falls back to a plain <img> */
-#visitor-map img{
-  width:100%!important;
-  height:auto!important;
-  display:block;
+#visitor-map img {
+  width: 100% !important;
+  height: auto !important;
+  display: block;
 }
 
-/* (Optional legend block, if you add one) */
-.map-legend{
-  margin-top:20px;
-  text-align:center;
-}
-.map-legend h3{
-  margin-bottom:10px;
-  font-size:1.125rem;
-}
-.map-legend span{
-  display:inline-block;
-  width:20px; height:20px;
-  border-radius:50%;
-  margin-right:8px;
+/* ───────── ClustrMaps Legend ───────── */
+.map-legend {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;         /* space between items */
+  margin: 1rem auto;   /* space above the legend */
+  font-size: 0.9rem;   /* adjust as needed */
+  color: #ffffff;      /* text color */
 }
 
+.legend-dot {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  margin-right: 0.4rem;
+}
+
+.legend-dot.past {
+  background: #ff5353;  /* red = past visitors */
+}
+
+.legend-dot.recent {
+  background: #3acc3a;  /* green = recent visitors */
+}
 
   /* Existing/General Styles */
   #one { padding-top: 20px; padding-bottom: 20px; }
@@ -706,6 +716,11 @@
 
     <!-- ClustrMaps (map injected lazily by JS) -->
     <div id="visitor-map"></div>
+    <!-- ClustrMaps Legend -->
+    <div class="map-legend">
+      <span class="legend-dot past"></span> Past visitors
+      <span class="legend-dot recent"></span> Recent visitors
+    </div>
 
   </div> <!-- end #wrapper -->
 
