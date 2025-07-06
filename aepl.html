@@ -349,6 +349,28 @@
   .fullscreen-image .slick-next,
   .fullscreen-video .slick-next{right:.5rem!important;}
 }
+    /* ── news-links rules ── */
+    .news-links {
+      margin-top: 2rem;
+    }
+    .news-links h3 {
+      margin-bottom: 0.5rem;
+    }
+    .news-links ul {
+      list-style: disc inside;
+      padding-left: 0;
+      margin-bottom: 2rem;
+    }
+    .news-links li + li {
+      margin-top: 0.25rem;
+    }
+    
+    /* Mobile tweaks for news-links */
+    @media (max-width: 480px) {
+      .news-links h3 { font-size: 1rem; }
+      .news-links a  { font-size: 0.9rem; }
+    }
+
 </style>
 
 </head>
@@ -440,10 +462,35 @@
                 and debugging. This approach enabled seamless knowledge transfer and continuous improvement across
                 projects, fostering long-term innovation and reliability in marine robotic solutions.
             </p>
+
+            <!-- Neerakshi AUV News Links -->
+            <section class="news-links">
+              <h3>Media Highlights</h3>
+              <ul>
+                <li>
+                  <a href="https://www.youtube.com/watch?v=eL8hMJeOAOo"
+                     target="_blank" rel="noopener noreferrer">
+                    Neerakshi AUV by GRSE
+                  </a>
+                </li>
+                <li>
+                  <a href="https://www.defencewatch.in/defence-news/latest-defence-news/grse-launches-autonomous-underwater-vehicle-neerakshi"
+                     target="_blank" rel="noopener noreferrer">
+                    GRSE launches Autonomous Underwater Vehicle Neerakshi
+                  </a>
+                </li>
+                <li>
+                  <a href="https://indianexpress.com/article/cities/kolkata/drdo-chief-lauds-psus-launch-of-autonomous-vessel-8865855/"
+                     target="_blank" rel="noopener noreferrer">
+                    DRDO chief lauds PSU’s launch of autonomous vessel
+                  </a>
+                </li>
+              </ul>
+            </section>
         </div>
     </section>
-
 </div>
+
 
 <!-- Footer -->
 <footer id="footer" class="wrapper alt">
