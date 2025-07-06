@@ -4022,8 +4022,38 @@ h6 { font-size: 0.6em; }
   max-width: 1225px;     /* optional – keep it in line with your other sections */
 }
 
+/* Contact information on smaller screens */
+@media screen and (max-width: 736px) {
+  /* turn the contact <ul> into a flex row */
+  ul.contact {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0;
+    margin: 1em 0;
+  }
 
-  
+  /* let each <li> shrink/expand and center its contents */
+  ul.contact li {
+    flex: 1 1 auto;
+    text-align: center;
+    margin: 0.5em 0;
+  }
+
+  /* tighten up the heading/value spacing */
+  ul.contact li h3 {
+    margin-bottom: 0.25em;
+    font-size: 0.9em;  /* you can tweak this */
+  }
+
+  ul.contact li a,
+  ul.contact li span {
+    display: block;
+    margin: 0;
+  }
+}
+
 
 
 
