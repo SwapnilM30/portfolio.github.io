@@ -4022,38 +4022,52 @@ h6 { font-size: 0.6em; }
   max-width: 1225px;     /* optional – keep it in line with your other sections */
 }
 
-/* Contact information on smaller screens */
+/* Contact info: single row, compact text on small screens */
 @media screen and (max-width: 736px) {
-  /* Layout the list as a tight, wrap-friendly row */
   ul.contact {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-start;  /* pack items to the left */
-    gap: 1.5em;                    /* space between items */
-    padding: 0;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+    gap: 1em;
     margin: 1em 0;
+    padding: 0;
   }
 
-  /* Let each item only take up as much room as it needs */
   ul.contact li {
-    flex: 0 1 auto;
+    flex: 1 1 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     text-align: center;
     margin: 0.5em 0;
   }
 
-  /* Tighter spacing under each heading */
+  /* Heading above each value */
   ul.contact li h3 {
-    margin-bottom: 0.25em;
+    margin: 0 0 0.25em;
     font-size: 0.9em;
+    white-space: nowrap;
   }
 
-  /* Keep the link/text values inline inside each item */
+  /* Shrink these values, no wrap, ellipsis if needed */
   ul.contact li a,
   ul.contact li span {
-    display: inline-block;
-    margin: 0;
+    display: block;
+    font-size: 0.9em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+  }
+
+  /* Inline your icons for LinkedIn/Resume */
+  ul.contact li ul.icons {
+    display: inline-flex;
+    gap: 0.5em;
+    margin: 0.25em 0 0;
   }
 }
+
 
 
 
