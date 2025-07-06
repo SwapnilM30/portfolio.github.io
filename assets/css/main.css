@@ -4022,7 +4022,7 @@ h6 { font-size: 0.6em; }
   max-width: 1225px;     /* optional – keep it in line with your other sections */
 }
 
-/* Contact info: single row, compact text on small screens */
+/* Contact info: single row, perfectly aligned values on small screens */
 @media screen and (max-width: 736px) {
   ul.contact {
     display: flex;
@@ -4042,31 +4042,37 @@ h6 { font-size: 0.6em; }
     margin: 0.5em 0;
   }
 
-  /* Heading above each value */
+  /* Label above value */
   ul.contact li h3 {
     margin: 0 0 0.25em;
     font-size: 0.9em;
     white-space: nowrap;
   }
 
-  /* Shrink these values, no wrap, ellipsis if needed */
+  /* Email & phone: inline-block, no wrap, ellipsis if super tight */
   ul.contact li a,
   ul.contact li span {
-    display: block;
+    display: inline-block;
+    vertical-align: middle;
     font-size: 0.9em;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
     max-width: 100%;
+    margin: 0;
   }
 
-  /* Inline your icons for LinkedIn/Resume */
+  /* Icons: inline-flex, no extra offset */
   ul.contact li ul.icons {
     display: inline-flex;
+    align-items: center;
     gap: 0.5em;
-    margin: 0.25em 0 0;
+    margin: 0;
+    padding: 0;
+    vertical-align: middle;
   }
 }
+
 
 
 
