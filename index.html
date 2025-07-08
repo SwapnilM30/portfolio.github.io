@@ -326,22 +326,94 @@
   border-radius: 50%;
 }
 
-  /* Hamburger */
-  .hamburger { display: block; cursor: pointer; }
-  .hamburger div {
-    width: 35px; height: 5px; background-color: #283a8b;
-    margin: 5px; transition: all .3s ease;
+/* hide on larger screens */
+.menu-overlay,
+.hamburger {
+  display: none;
+}
+
+@media (max-width: 736px) {
+  /* ───────── Menu Overlay ───────── */
+  .menu-overlay {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.4);
+    backdrop-filter: blur(5px);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .4s ease;
+    z-index: 999;
   }
-  .hamburger.active div:nth-child(1) {
-    transform: rotate(-45deg) translate(-5px,6px);
+  .menu-overlay.active {
+    opacity: 1;
+    pointer-events: all;
   }
-  .hamburger.active div:nth-child(2) { opacity: 0; }
-  .hamburger.active div:nth-child(3) {
-    transform: rotate(45deg) translate(-5px,-6px);
+
+  /* ───────── Hamburger Button ───────── */
+  .hamburger {
+    display: flex;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 35px;
+    height: 30px;
+    flex-direction: column;
+    justify-content: space-between;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    z-index: 1000;
   }
-  @media (max-width:736px) {
-    .hamburger { position: fixed; top:20px; right:20px; z-index:10001; }
+  .hamburger span {
+    display: block;
+    width: 100%;
+    height: 4px;
+    background: #283a8b;
+    border-radius: 2px;
+    transition: transform .4s ease, opacity .4s ease;
+    transform-origin: center;
   }
+  .hamburger:focus {
+    outline: 2px solid #283a8b;
+  }
+
+  /* ───────── Hamburger → X ───────── */
+  .hamburger.active span:nth-child(1) {
+    transform: translateY(13px) rotate(45deg);
+  }
+  .hamburger.active span:nth-child(2) {
+    opacity: 0;
+  }
+  .hamburger.active span:nth-child(3) {
+    transform: translateY(-13px) rotate(-45deg);
+  }
+
+  /* ───────── Sidebar Slide-In ───────── */
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 250px;
+    height: 100%;
+    background: #fff;
+    padding: 2rem 1rem;
+    box-shadow: 2px 0 8px rgba(0,0,0,0.2);
+    transform: translateX(-100%);
+    transition: transform .4s ease;
+    z-index: 998;
+  }
+  .sidebar.active {
+    transform: translateX(0);
+  }
+
+  /* ───────── Prevent Background Scroll ───────── */
+  body.menu-open {
+    overflow: hidden;
+  }
+}
+
 </style>
 
 </head>
@@ -349,11 +421,19 @@
 
 <body class="is-preload">
 
-  <!-- Hamburger -->
-  <div class="hamburger"><div></div><div></div><div></div></div>
+<!-- Menu overlay for blur & click-to-close -->
+<div class="menu-overlay"></div>
+
+<!-- Hamburger -->
+<button class="hamburger" aria-label="Toggle menu">
+  <span></span>
+  <span></span>
+  <span></span>
+</button>
+
 
   <!-- Sidebar -->
-  <section id="sidebar">
+  <section id="sidebar" class="sidebar">
     <div class="inner">
       <nav>
         <ul>
@@ -759,6 +839,7 @@
   <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
   
 <script>
+document.addEventListener('DOMContentLoaded', () => {
   /* ───────── Contact form ───────── */
   const form         = document.getElementById('contact-form');
   const submitButton = form.querySelector('button[type="submit"]');
@@ -792,12 +873,12 @@
 
     formMsg.textContent = '';
     formMsg.classList.remove('error');
-    submitButton.disabled  = true;
+    submitButton.disabled   = true;
     submitButton.textContent = "Sending…";
 
     fetch(form.action, { method: 'POST', body: new FormData(form) })
       .then(res => {
-        submitButton.disabled  = false;
+        submitButton.disabled   = false;
         submitButton.textContent = "Send Message";
         if (res.ok) {
           formMsg.textContent = "Thanks for your message! I'll get back to you soon.";
@@ -805,7 +886,7 @@
         } else throw new Error();
       })
       .catch(() => {
-        submitButton.disabled  = false;
+        submitButton.disabled   = false;
         submitButton.textContent = "Send Message";
         formMsg.textContent = "Oops, something went wrong. Please try again later or email me directly.";
         formMsg.classList.add('error');
@@ -825,7 +906,7 @@
   });
 
   /* ───────── Lightbox helpers ───────── */
-  function showFullScreenImage(src, e) {
+  window.showFullScreenImage = function(src, e) {
     e.preventDefault();
     document.getElementById('sidebar').style.display = 'none';
     document.body.classList.add('fullscreen-mode');
@@ -844,7 +925,6 @@
     `;
     document.body.appendChild(overlay);
 
-    /* escape-key close */
     function onKeyDown(evt) {
       if (evt.key === 'Escape') {
         closeFullScreen();
@@ -897,7 +977,6 @@
 
     document.addEventListener('mousemove', evt => {
       if (!isDragging) return;
-      evt.preventDefault();
       const dx = evt.clientX - startX;
       const dy = evt.clientY - startY;
       startX = evt.clientX;
@@ -906,14 +985,12 @@
       offsetY += dy;
       img.style.transform = `translate(${offsetX}px, ${offsetY}px) scale(${scale})`;
     });
-
     document.addEventListener('mouseup', () => {
-      if (!isDragging) return;
-      isDragging  = false;
+      isDragging = false;
       img.style.cursor = 'grab';
     });
     overlay.addEventListener('mouseleave', () => {
-      isDragging  = false;
+      isDragging = false;
       img.style.cursor = 'grab';
     });
 
@@ -949,11 +1026,10 @@
         img.style.transform = `translate(${offsetX}px, ${offsetY}px) scale(${scale})`;
       } else if (evt.touches.length === 1 && touchDrag) {
         evt.preventDefault();
-        const cx = evt.touches[0].clientX;
-        const cy = evt.touches[0].clientY;
-        const dx = cx - touchStartX;
-        const dy = cy - touchStartY;
-        touchStartX = cx; touchStartY = cy;
+        const dx = evt.touches[0].clientX - touchStartX;
+        const dy = evt.touches[0].clientY - touchStartY;
+        touchStartX = evt.touches[0].clientX;
+        touchStartY = evt.touches[0].clientY;
         offsetX += dx; offsetY += dy;
         img.style.transform = `translate(${offsetX}px, ${offsetY}px) scale(${scale})`;
       }
@@ -963,43 +1039,47 @@
       if (evt.touches.length < 2) initialPinchDist = null;
       if (!evt.touches.length) touchDrag = false;
     });
-  }
+  };
 
-  function closeFullScreen() {
-    const overlay = document.querySelector('.fullscreen-image');
-    if (overlay) document.body.removeChild(overlay);
+  window.closeFullScreen = function() {
+    const overlayEl = document.querySelector('.fullscreen-image');
+    if (overlayEl) overlayEl.remove();
     document.body.classList.remove('fullscreen-mode');
     document.getElementById('wrapper').classList.remove('blurred-background');
     document.getElementById('sidebar').style.display =
       window.innerWidth > 736 ? 'block' : '';
-  }
+  };
 
-  /* ───────── DOM-ready helpers ───────── */
-  document.addEventListener('DOMContentLoaded', () => {
-    /* hamburger */
-    const hb = document.querySelector('.hamburger');
-    const sb = document.getElementById('sidebar');
-    hb.addEventListener('click', () => {
-      hb.classList.toggle('active');
-      sb.classList.toggle('active');
-    });
+  /* ───────── Hamburger & overlay toggle ───────── */
+  const hamburger = document.querySelector('.hamburger');
+  const sidebar   = document.getElementById('sidebar');
+  const overlayEl = document.querySelector('.menu-overlay');
 
-    /* ClustrMaps lazy-loader */
-    const vm = document.getElementById('visitor-map');
-    if (vm) {
-      const io = new IntersectionObserver(([entry]) => {
-        if (entry.isIntersecting) {
-          const s = document.createElement('script');
-          s.src   = '//cdn.clustrmaps.com/map_v2.js?cl=c68c53&w=a&t=tt&d=3-UXGvFfSoRg27tAm-xeAKDPh14fjVW_SHoaoq50coI&co=003c8d&cmo=ff5353&cmn=3acc3a'; 
-          s.id    = 'clustrmaps';
-          vm.appendChild(s);
-          io.disconnect();
-        }
-      });
-      io.observe(vm);
-    }
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('active');
+    sidebar.classList.toggle('active');
+    overlayEl.classList.toggle('active');
+    document.body.classList.toggle('menu-open');
   });
-  
+
+  overlayEl.addEventListener('click', () => hamburger.click());
+
+  /* ───────── ClustrMaps lazy-loader ───────── */
+  const vm = document.getElementById('visitor-map');
+  if (vm) {
+    const io = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        const s = document.createElement('script');
+        s.src = '//cdn.clustrmaps.com/map_v2.js?cl=c68c53&w=a&t=tt&d=3-UXGvFfSoRg27tAm-xeAKDPh14fjVW_SHoaoq50coI&co=003c8d&cmo=ff5353&cmn=3acc3a';
+        s.id  = 'clustrmaps';
+        vm.appendChild(s);
+        io.disconnect();
+      }
+    });
+    io.observe(vm);
+  }
+});
+
 </script>
 
 </body>
