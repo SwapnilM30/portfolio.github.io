@@ -851,58 +851,80 @@
   <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
   
 <script>
+  
 document.addEventListener('DOMContentLoaded', () => {
   /* ───────── Contact form ───────── */
   const form         = document.getElementById('contact-form');
   const submitButton = form.querySelector('button[type="submit"]');
   const formMsg      = document.getElementById('form-message');
 
+  // record when the user first loaded the form
+  const startTime = Date.now();
+
+  // helper to show feedback
+  function showMessage(text, isError = true) {
+    formMsg.textContent = text;
+    formMsg.classList.toggle('error', isError);
+    formMsg.classList.toggle('success', !isError);
+  }
+
   form.addEventListener('submit', e => {
     e.preventDefault();
 
-    /* honeypot */
-    if (form.querySelector('input[name="_gotcha"]').value) {
-      formMsg.textContent = "Spam detected. Form not submitted.";
-      formMsg.classList.add('error');
-      return;
+    // clear any old messages
+    formMsg.classList.remove('error', 'success');
+    formMsg.textContent = '';
+
+    // time‑based honeypot: bots often submit in <2s
+    if (Date.now() - startTime < 2000) {
+      return showMessage("Please take a moment to complete the form.");
     }
 
-    const nameF  = document.getElementById('name');
-    const emailF = document.getElementById('email');
+    // existing honeypot field
+    if (form.querySelector('input[name=\"_gotcha\"]').value) {
+      return showMessage("Spam detected. Form not submitted.");
+    }
 
+    // name validation
+    const nameF = document.getElementById('name');
     if (!nameF.value.trim()) {
-      formMsg.textContent = "Please enter your name.";
-      formMsg.classList.add('error');
-      return;
+      return showMessage("Please enter your name.");
     }
 
+    // email validation
+    const emailF = document.getElementById('email');
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(emailF.value.trim())) {
-      formMsg.textContent = "Please enter a valid email address.";
-      formMsg.classList.add('error');
-      return;
+      return showMessage("Please enter a valid email address.");
     }
 
-    formMsg.textContent = '';
-    formMsg.classList.remove('error');
+    // disable the button & show sending state
     submitButton.disabled   = true;
     submitButton.textContent = "Sending…";
 
-    fetch(form.action, { method: 'POST', body: new FormData(form) })
-      .then(res => {
-        submitButton.disabled   = false;
-        submitButton.textContent = "Send Message";
-        if (res.ok) {
-          formMsg.textContent = "Thanks for your message! I'll get back to you soon.";
-          form.reset();
-        } else throw new Error();
-      })
-      .catch(() => {
-        submitButton.disabled   = false;
-        submitButton.textContent = "Send Message";
-        formMsg.textContent = "Oops, something went wrong. Please try again later or email me directly.";
-        formMsg.classList.add('error');
-      });
+    // submit via fetch
+    fetch(form.action, {
+      method: 'POST',
+      body: new FormData(form)
+    })
+    .then(res => {
+      // restore button
+      submitButton.disabled   = false;
+      submitButton.textContent = "Send Message";
+
+      if (res.ok) {
+        showMessage("Thanks for your message! I'll get back to you soon.", false);
+        form.reset();
+      } else {
+        return Promise.reject();
+      }
+    })
+    .catch(() => {
+      // on network/error, restore button and show error
+      submitButton.disabled   = false;
+      submitButton.textContent = "Send Message";
+      showMessage("Oops, something went wrong. Please try again later or email me directly.");
+    });
   });
 
   /* ───────── Slick slider ───────── */
