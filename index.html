@@ -267,6 +267,27 @@
   .form-message { margin-top: 15px; font-size: 1.1rem; color: #4caf50; }
   .form-message.error { color: #f44336; }
 
+/* Contact Form Spinner */
+.spinner {
+  display: inline-block;
+  width: 1rem;
+  height: 1rem;
+  border: 2px solid transparent;
+  border-top-color: #fff;
+  border-radius: 50%;
+  margin-left: 0.5rem;
+  animation: spin 0.8s linear infinite;
+  vertical-align: text-bottom;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+button.loading .spinner {
+  opacity: 1;
+}
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
   /* Projects Section */
   #three.spotlights .thumbnail-gallery {
     display: flex; align-items: center;
@@ -749,72 +770,115 @@
 
     </section> <!-- end #three -->
 
-    <!-- Contact Information -->
-    <section id="four" class="wrapper style1 fade-up">
-      <div class="inner">
-        <h1>Get in Touch</h1>
-        <p>I’m always open to conversations, collaborations, and exploring opportunities. Whether you’re looking to connect for internships, full-time positions, or just to discuss innovative ideas, reach out. I’m just a message away!</p>
+<!-- Contact Information -->
+<section id="four" class="wrapper style1 fade-up">
+  <div class="inner">
+    <h1>Get in Touch</h1>
+    <p>I’m always open to conversations, collaborations, and exploring opportunities. Whether you’re looking to connect for internships, full-time positions, or just to discuss innovative ideas, reach out. I’m just a message away!</p>
 
-        <div class="split style1">
-          <!-- Contact-form column -->
-          <section>
-            <form id="contact-form" method="POST" action="https://formspree.io/f/mbjvpbqa">
-              <div style="display:none;">
-                <label>Do not fill this out if you're human:</label>
-                <input name="_gotcha" tabindex="-1" />
-              </div>
+    <div class="split style1">
+      <!-- Contact-form column -->
+      <section>
+        <form
+          id="contact-form"
+          method="POST"
+          action="https://formspree.io/f/mbjvpbqa"
+          novalidate
+        >
+          <!-- Honeypot (invisible to humans) -->
+          <div style="display: none;">
+            <label for="gotcha">Leave this empty if you’re human:</label>
+            <input
+              type="text"
+              name="_gotcha"
+              id="gotcha"
+              tabindex="-1"
+              autocomplete="off"
+            />
+          </div>
 
-              <div class="fields">
-                <div class="field half">
-                  <label for="name">Name</label>
-                  <input type="text" name="name" id="name" required />
-                </div>
+          <div class="fields">
+            <div class="field half">
+              <label for="name">Name</label>
+              <input
+                type="text"
+                name="name"
+                id="name"
+                required
+                maxlength="100"
+              />
+            </div>
 
-                <div class="field half">
-                  <label for="email">Email</label>
-                  <input type="email" name="email" id="email" required />
-                </div>
+            <div class="field half">
+              <label for="email">Email</label>
+              <input
+                type="email"
+                name="email"
+                id="email"
+                required
+              />
+            </div>
 
-                <div class="field">
-                  <label for="message">Message</label>
-                  <textarea name="message" id="message" rows="5" required></textarea>
-                </div>
-              </div>
+            <div class="field">
+              <label for="message">Message</label>
+              <textarea
+                name="message"
+                id="message"
+                rows="5"
+                required
+                minlength="20"
+                maxlength="2000"
+              ></textarea>
+            </div>
+          </div>
 
-              <div id="form-message" class="form-message"></div>
-              <button type="submit">Send Message</button>
-            </form>
-          </section>
+          <!-- reCAPTCHA widget (add your site key when ready) -->
+          <div class="g-recaptcha" data-sitekey="6LfYtYorAAAAAHdoOeJv-7gKTOAVDWzlWKduGQ2g"></div>
 
-          <!-- Static contact-info column -->
-          <section>
-            <ul class="contact">
+          <!-- Live region for errors/success -->
+          <div
+            id="form-message"
+            class="form-message"
+            aria-live="polite"
+          ></div>
+
+          <!-- Submit with spinner -->
+          <button type="submit" id="submit-button">
+            <span class="btn-text">Send Message</span>
+            <span class="spinner" aria-hidden="true"></span>
+          </button>
+        </form>
+      </section>
+
+      <!-- Static contact-info column -->
+      <section>
+        <ul class="contact">
+          <li>
+            <h3>Email</h3>
+            <a href="mailto:sbmeshra@asu.edu">sbmeshra@asu.edu</a>
+          </li>
+          <li>
+            <h3>Phone</h3>
+            <span>+1 (480) 919-5621</span>
+          </li>
+          <li>
+            <h3>LinkedIn &amp; Resume</h3>
+            <ul class="icons">
               <li>
-                <h3>Email</h3>
-                <a href="mailto:sbmeshra@asu.edu">sbmeshra@asu.edu</a>
+                <a href="https://www.linkedin.com/in/swapnilmeshram98/"
+                   class="icon brands fa-linkedin-in"><span class="label">LinkedIn</span></a>
               </li>
               <li>
-                <h3>Phone</h3>
-                <span>+1 (480) 919-5621</span>
-              </li>
-              <li>
-                <h3>LinkedIn &amp; Resume</h3>
-                <ul class="icons">
-                  <li>
-                    <a href="https://www.linkedin.com/in/swapnilmeshram98/"
-                       class="icon brands fa-linkedin-in"><span class="label">LinkedIn</span></a>
-                  </li>
-                  <li>
-                    <a href="pdf/Swapnil_Meshram_Resume.pdf"
-                       class="icon fa-file"><span class="label">Resume</span></a>
-                  </li>
-                </ul>
+                <a href="pdf/Swapnil_Meshram_Resume.pdf"
+                   class="icon fa-file"><span class="label">Resume</span></a>
               </li>
             </ul>
-          </section>
-        </div>
-      </div>
-    </section> <!-- end #four -->
+          </li>
+        </ul>
+      </section>
+    </div>
+  </div>
+</section>
 
     <!-- Map intro text -->
     <p class="map-intro-text">
@@ -851,81 +915,86 @@
   <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
   
 <script>
-  
+
 document.addEventListener('DOMContentLoaded', () => {
+
   /* ───────── Contact form ───────── */
-  const form         = document.getElementById('contact-form');
-  const submitButton = form.querySelector('button[type="submit"]');
-  const formMsg      = document.getElementById('form-message');
+const form         = document.getElementById('contact-form');
+const submitButton = document.getElementById('submit-button');
+const btnText      = submitButton.querySelector('.btn-text');
+const formMsg      = document.getElementById('form-message');
 
-  // record when the user first loaded the form
-  const startTime = Date.now();
+// record when the user first loaded the form
+const startTime = Date.now();
 
-  // helper to show feedback
-  function showMessage(text, isError = true) {
-    formMsg.textContent = text;
-    formMsg.classList.toggle('error', isError);
-    formMsg.classList.toggle('success', !isError);
+// helper to show feedback
+function showMessage(text, isError = true) {
+  formMsg.textContent = text;
+  formMsg.classList.toggle('error', isError);
+  formMsg.classList.toggle('success', !isError);
+}
+
+form.addEventListener('submit', e => {
+  e.preventDefault();
+
+  // clear any old messages
+  formMsg.classList.remove('error','success');
+  formMsg.textContent = '';
+
+  // time‑based honeypot: bots often submit in <2s
+  if (Date.now() - startTime < 2000) {
+    return showMessage("Please take a moment to complete the form.");
   }
 
-  form.addEventListener('submit', e => {
-    e.preventDefault();
+  // existing honeypot field
+  if (form.querySelector('input[name="_gotcha"]').value) {
+    return showMessage("Spam detected. Form not submitted.");
+  }
 
-    // clear any old messages
-    formMsg.classList.remove('error', 'success');
-    formMsg.textContent = '';
+  // name validation
+  const nameF = document.getElementById('name');
+  if (!nameF.value.trim()) {
+    return showMessage("Please enter your name.");
+  }
 
-    // time‑based honeypot: bots often submit in <2s
-    if (Date.now() - startTime < 2000) {
-      return showMessage("Please take a moment to complete the form.");
+  // email validation
+  const emailF = document.getElementById('email');
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRegex.test(emailF.value.trim())) {
+    return showMessage("Please enter a valid email address.");
+  }
+
+  // disable the button, show spinner & sending text
+  submitButton.disabled = true;
+  submitButton.classList.add('loading');
+  btnText.textContent = "Sending…";
+
+  // submit via fetch
+  fetch(form.action, {
+    method: 'POST',
+    body: new FormData(form)
+  })
+  .then(res => {
+    // restore button
+    submitButton.disabled = false;
+    submitButton.classList.remove('loading');
+    btnText.textContent = "Send Message";
+
+    if (res.ok) {
+      showMessage("Thanks for your message! I'll get back to you soon.", false);
+      form.reset();
+    } else {
+      return Promise.reject();
     }
-
-    // existing honeypot field
-    if (form.querySelector('input[name=\"_gotcha\"]').value) {
-      return showMessage("Spam detected. Form not submitted.");
-    }
-
-    // name validation
-    const nameF = document.getElementById('name');
-    if (!nameF.value.trim()) {
-      return showMessage("Please enter your name.");
-    }
-
-    // email validation
-    const emailF = document.getElementById('email');
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(emailF.value.trim())) {
-      return showMessage("Please enter a valid email address.");
-    }
-
-    // disable the button & show sending state
-    submitButton.disabled   = true;
-    submitButton.textContent = "Sending…";
-
-    // submit via fetch
-    fetch(form.action, {
-      method: 'POST',
-      body: new FormData(form)
-    })
-    .then(res => {
-      // restore button
-      submitButton.disabled   = false;
-      submitButton.textContent = "Send Message";
-
-      if (res.ok) {
-        showMessage("Thanks for your message! I'll get back to you soon.", false);
-        form.reset();
-      } else {
-        return Promise.reject();
-      }
-    })
-    .catch(() => {
-      // on network/error, restore button and show error
-      submitButton.disabled   = false;
-      submitButton.textContent = "Send Message";
-      showMessage("Oops, something went wrong. Please try again later or email me directly.");
-    });
+  })
+  .catch(() => {
+    // on network/error, restore button and show error
+    submitButton.disabled = false;
+    submitButton.classList.remove('loading');
+    btnText.textContent = "Send Message";
+    showMessage("Oops, something went wrong. Please try again later or email me directly.");
   });
+});
 
   /* ───────── Slick slider ───────── */
   $('.slider').slick({
@@ -1115,6 +1184,9 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 </script>
+
+  <!-- reCAPTCHA loader (must come after your form and before </body>) -->
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
 </body>
 </html>
