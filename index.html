@@ -832,8 +832,8 @@ button.loading .spinner {
             </div>
           </div>
 
-          <!-- reCAPTCHA widget (add your site key when ready) -->
-          <div class="g-recaptcha" data-sitekey="6LfYtYorAAAAAHdoOeJv-7gKTOAVDWzlWKduGQ2g"></div>
+          <!-- reCAPTCHA widget -->
+          <div id="recaptcha" class="g-recaptcha" data-sitekey="6LfYtYorAAAAAHdoOeJv-7gKTOAVDWzlWKduGQ2g"></div>
 
           <!-- Live region for errors/success -->
           <div
@@ -915,98 +915,149 @@ button.loading .spinner {
   <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
   
 <script>
-
 document.addEventListener('DOMContentLoaded', () => {
 
   /* ───────── Contact form ───────── */
-const form         = document.getElementById('contact-form');
-const submitButton = document.getElementById('submit-button');
-const btnText      = submitButton.querySelector('.btn-text');
-const formMsg      = document.getElementById('form-message');
+  const form         = document.getElementById('contact-form');
+  const submitButton = document.getElementById('submit-button');
+  const btnText      = submitButton.querySelector('.btn-text');
+  const formMsg      = document.getElementById('form-message');
 
-// record when the user first loaded the form
-const startTime = Date.now();
+  // record when the user first loaded the form
+  const startTime = Date.now();
 
-// helper to show feedback
-function showMessage(text, isError = true) {
-  formMsg.textContent = text;
-  formMsg.classList.toggle('error', isError);
-  formMsg.classList.toggle('success', !isError);
-}
-
-form.addEventListener('submit', e => {
-  e.preventDefault();
-
-  // clear any old messages
-  formMsg.classList.remove('error','success');
-  formMsg.textContent = '';
-
-  // time‑based honeypot: bots often submit in <2s
-  if (Date.now() - startTime < 2000) {
-    return showMessage("Please take a moment to complete the form.");
+  // helper to show feedback
+  function showMessage(text, isError = true) {
+    formMsg.textContent = text;
+    formMsg.classList.toggle('error', isError);
+    formMsg.classList.toggle('success', !isError);
   }
 
-  // existing honeypot field
-  if (form.querySelector('input[name="_gotcha"]').value) {
-    return showMessage("Spam detected. Form not submitted.");
+  /* ───────── reCAPTCHA lazy load + gating ───────── */
+  let recaptchaWidgetId = null;
+
+  function loadRecaptchaScript() {
+    if (window.grecaptcha || document.getElementById('recaptcha-api')) return;
+    const s = document.createElement('script');
+    s.src   = 'https://www.google.com/recaptcha/api.js?onload=onRecaptchaApiLoaded&render=explicit';
+    s.async = true;
+    s.defer = true;
+    s.id    = 'recaptcha-api';
+    document.body.appendChild(s);
   }
 
-  // name validation
-  const nameF = document.getElementById('name');
-  if (!nameF.value.trim()) {
-    return showMessage("Please enter your name.");
+  // Called by Google API after it loads
+  window.onRecaptchaApiLoaded = function() {
+    const el = document.getElementById('recaptcha');
+    if (!el) return;
+    recaptchaWidgetId = grecaptcha.render(el, {
+      sitekey: el.getAttribute('data-sitekey'),
+      callback:  () => {/* token will be present */},
+      'error-callback':   () => {/* keep default gating */},
+      'expired-callback': () => {/* user must solve again */}
+    });
+  };
+
+  // Lazy load the API when the form comes into view or on first interaction
+  if (form) {
+    const io = new IntersectionObserver(([entry], obs) => {
+      if (entry.isIntersecting) { loadRecaptchaScript(); obs.disconnect(); }
+    });
+    io.observe(form);
+    form.addEventListener('pointerdown', loadRecaptchaScript, { once: true });
   }
 
-  // email validation
-  const emailF = document.getElementById('email');
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  if (!emailRegex.test(emailF.value.trim())) {
-    return showMessage("Please enter a valid email address.");
-  }
+  /* ───────── Submit handler ───────── */
+  form.addEventListener('submit', async e => {
+    e.preventDefault();
 
-  // disable the button, show spinner & sending text
-  submitButton.disabled = true;
-  submitButton.classList.add('loading');
-  btnText.textContent = "Sending…";
+    // clear any old messages
+    formMsg.classList.remove('error','success');
+    formMsg.textContent = '';
 
-  // submit via fetch
-  fetch(form.action, {
-    method: 'POST',
-    body: new FormData(form)
-  })
-  .then(res => {
-    // restore button
-    submitButton.disabled = false;
-    submitButton.classList.remove('loading');
-    btnText.textContent = "Send Message";
-
-    if (res.ok) {
-      showMessage("Thanks for your message! I'll get back to you soon.", false);
-      form.reset();
-    } else {
-      return Promise.reject();
+    // time-based honeypot: bots often submit in <2s
+    if (Date.now() - startTime < 2000) {
+      return showMessage("Please take a moment to complete the form.");
     }
-  })
-  .catch(() => {
-    // on network/error, restore button and show error
-    submitButton.disabled = false;
-    submitButton.classList.remove('loading');
-    btnText.textContent = "Send Message";
-    showMessage("Oops, something went wrong. Please try again later or email me directly.");
-  });
-});
 
-  /* ───────── Slick slider ───────── */
-  $('.slider').slick({
-    autoplay: true,
-    dots: true,
-    arrows: true,
-    infinite: true,
-    speed: 800,
-    cssEase: 'cubic-bezier(0.7, 0, 0.3, 1)',
-    slidesToShow: 1,
-    slidesToScroll: 1
+    // existing honeypot field
+    if (form.querySelector('input[name="_gotcha"]').value) {
+      return showMessage("Spam detected. Form not submitted.");
+    }
+
+    // name validation
+    const nameF = document.getElementById('name');
+    if (!nameF.value.trim()) {
+      return showMessage("Please enter your name.");
+    }
+
+    // email validation
+    const emailF = document.getElementById('email');
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(emailF.value.trim())) {
+      return showMessage("Please enter a valid email address.");
+    }
+
+    // Ensure the reCAPTCHA API & token exist
+    if (!window.grecaptcha || recaptchaWidgetId === null) {
+      return showMessage("Loading security check… please try again in a moment.");
+    }
+    const token = grecaptcha.getResponse(recaptchaWidgetId);
+    if (!token) {
+      return showMessage("Please complete the reCAPTCHA challenge.");
+    }
+
+    // disable the button, show spinner & sending text
+    submitButton.disabled = true;
+    submitButton.classList.add('loading');
+    btnText.textContent = "Sending…";
+
+    // submit via fetch (ask for JSON so we can surface Formspree errors)
+    try {
+      const res = await fetch(form.action, {
+        method: 'POST',
+        headers: { 'Accept': 'application/json' },
+        body: new FormData(form)
+      });
+
+      // restore button
+      submitButton.disabled = false;
+      submitButton.classList.remove('loading');
+      btnText.textContent = "Send Message";
+
+      if (res.ok) {
+        showMessage("Thanks for your message! I'll get back to you soon.", false);
+        form.reset();
+        grecaptcha.reset(recaptchaWidgetId); // reset the checkbox
+      } else {
+        const data = await res.json().catch(() => ({}));
+        const msg =
+          (data && data.errors && data.errors[0] && data.errors[0].message)
+            ? data.errors[0].message
+            : "Submission failed. Please try again later.";
+        showMessage(msg);
+      }
+    } catch (err) {
+      submitButton.disabled = false;
+      submitButton.classList.remove('loading');
+      btnText.textContent = "Send Message";
+      showMessage("Oops, something went wrong. Please try again later or email me directly.");
+    }
   });
+
+  /* ───────── Slick slider (kept as-is; remove if unused) ───────── */
+  if (window.jQuery && $('.slider').length) {
+    $('.slider').slick({
+      autoplay: true,
+      dots: true,
+      arrows: true,
+      infinite: true,
+      speed: 800,
+      cssEase: 'cubic-bezier(0.7, 0, 0.3, 1)',
+      slidesToShow: 1,
+      slidesToScroll: 1
+    });
+  }
 
   /* ───────── Lightbox helpers ───────── */
   window.showFullScreenImage = function(src, e) {
@@ -1173,7 +1224,7 @@ form.addEventListener('submit', e => {
     const io = new IntersectionObserver(([entry]) => {
       if (entry.isIntersecting) {
         const s = document.createElement('script');
-        s.src = '//cdn.clustrmaps.com/map_v2.js?cl=c68c53&w=a&t=tt&d=3-UXGvFfSoRg27tAm-xeAKDPh14fjVW_SHoaoq50coI&co=003c8d&cmo=ff5353&cmn=3acc3a';
+        s.src = 'https://cdn.clustrmaps.com/map_v2.js?cl=c68c53&w=a&t=tt&d=3-UXGvFfSoRg27tAm-xeAKDPh14fjVW_SHoaoq50coI&co=003c8d&cmo=ff5353&cmn=3acc3a';
         s.id  = 'clustrmaps';
         vm.appendChild(s);
         io.disconnect();
@@ -1184,9 +1235,8 @@ form.addEventListener('submit', e => {
 });
 
 </script>
-
-  <!-- reCAPTCHA loader (must come after your form and before </body>) -->
-  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+<!-- IMPORTANT: remove your old global loader -->
+<!-- (delete) <script src="https://www.google.com/recaptcha/api.js" async defer></script> -->
 
 </body>
 </html>
