@@ -438,6 +438,26 @@ button.loading .spinner {
   }
 }
 
+/* ───────── Work Experience Section ───────── */
+.work-logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 2rem 0;
+}
+
+.work-logo img {
+  max-width: 200px;
+  width: 100%;
+  height: auto;
+  margin-bottom: 0.75rem; /* small gap between image and button */
+}
+
+.work-logo .button {
+  margin: 0; /* removes extra spacing */
+}
+
 </style>
 
 <!-- Microsoft Clarity tracking snippet ↓ -->
@@ -532,20 +552,16 @@ button.loading .spinner {
       Before starting my master’s degree in Robotics and Autonomous Systems at Arizona State University, I was eager to get my hands dirty and gain real-world experience. My early work experience in the field of robotics and electronics engineering was important because it not only deepened my passion for these domains but also set the stage for my academic journey. Throughout this time, I worked on many projects that challenged me: from designing intricate hardware systems to developing innovative robotics solutions, I constantly spent time sharpening my skills and pushing myself further.
     </p>
 
-    <div class="work-logo" style="text-align:center; margin:2rem 0;">
+    <div class="work-logo">
       <img
         src="images/AEPL logo.png"
         alt="AEPL Logo"
-        style="max-width:200px; width:100%; height:auto;"
         loading="lazy"
       />
-      <ul class="actions" style="margin-top: 1rem;">
-        <li><a href="aepl.html" class="button">View Experience</a></li>
-      </ul>
+      <a href="aepl.html" class="button">View Experience</a>
     </div>
   </div>
 </section>
-
 
     <!-- Projects -->
     <section id="three" class="wrapper style2 spotlights">
