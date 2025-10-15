@@ -1642,7 +1642,7 @@ h6 { font-size: 0.6em; }
 
 	.box {
 		border-radius: 0.25em;
-		border: solid 1px rgba(50, 50, 50);
+		border: solid 1px rgb(50, 50, 50);
 		margin-bottom: 2em;
 		padding: 1.5em;
 	}
@@ -1676,9 +1676,9 @@ h6 { font-size: 0.6em; }
 		transition: border-color 0.5s ease;
 		background-color: transparent;
 		border: solid 1px !important;
-		border-color: rgba(50, 50, 50) !important;
+		border-color: rgb(50, 50, 50) !important;
 		border-radius: 2.25em;
-		color: rgba(50, 50, 50) !important;
+		color: rgb(50, 50, 50) !important;
 		cursor: pointer;
 		display: inline-block;
 		font-size: 0.61em;
@@ -1831,15 +1831,15 @@ h6 { font-size: 0.6em; }
 		-ms-flex-wrap: wrap;
 		flex-wrap: wrap;
 		border-radius: 0.25em;
-		border: solid 1px rgba(50, 50, 50);
-		background: rgba(50, 50, 50);
+		border: solid 1px rgb(50, 50, 50);
+		background: rgb(50, 50, 50);
 		margin: 0 0 2em 0;
 	}
 
 		.features section {
 			padding: 3.5em 3em 1em 7em ;
 			width: 50%;
-			border-top: solid 1px rgba(50, 50, 50);
+			border-top: solid 1px rgb(50, 50, 50);
 			position: relative;
 		}
 
@@ -1848,7 +1848,7 @@ h6 { font-size: 0.6em; }
 			}
 
 			.features section:nth-child(2n) {
-				border-left: solid 1px rgba(50, 50, 50);
+				border-left: solid 1px rgb(50, 50, 50);
 			}
 
 			.features section .icon {
@@ -2138,7 +2138,7 @@ h6 { font-size: 0.6em; }
 		}
 
 	label {
-		color: rgba(50, 50, 50);
+		color: rgb(50, 50, 50);
 		font-weight: bold;
 		line-height: 1.5;
 		margin: 0 0 0.7em 0;
@@ -2159,7 +2159,7 @@ h6 { font-size: 0.6em; }
 		background: rgba(50, 50, 50, 0.15);
 		border-radius: 0.25em;
 		border: none;
-		border: solid 1px rgba(50, 50, 50);
+		border: solid 1px rgb(50, 50, 50);
 		color: inherit;
 		display: block;
 		outline: 0;
@@ -2183,7 +2183,7 @@ h6 { font-size: 0.6em; }
 		input[type="tel"]:focus,
 		select:focus,
 		textarea:focus {
-			border-color: rgba(50, 50, 50);
+			border-color: rgb(50, 50, 50);
 			box-shadow: 0 0 0 1px #283a8b;
 		}
 
@@ -2268,9 +2268,9 @@ h6 { font-size: 0.6em; }
 
 			input[type="checkbox"] + label:before,
 			input[type="radio"] + label:before {
-				background: rgba(50, 50, 50);
+				background: rgb(50, 50, 50);
 				border-radius: 0.25em;
-				border: solid 1px rgba(50, 50, 50);
+				border: solid 1px rgb(50, 50, 50);
 				content: '';
 				display: inline-block;
 				font-size: 0.8em;
@@ -2306,22 +2306,22 @@ h6 { font-size: 0.6em; }
 	}
 
 	::-webkit-input-placeholder {
-		color: rgba(50, 50, 50) !important;
+		color: rgb(50, 50, 50) !important;
 		opacity: 1.0;
 	}
 
 	:-moz-placeholder {
-		color: rgba(50, 50, 50) !important;
+		color: rgb(50, 50, 50) !important;
 		opacity: 1.0;
 	}
 
 	::-moz-placeholder {
-		color: rgba(50, 50, 50) !important;
+		color: rgb(50, 50, 50) !important;
 		opacity: 1.0;
 	}
 
 	:-ms-input-placeholder {
-		color: rgba(50, 50, 50) !important;
+		color: rgb(50, 50, 50) !important;
 		opacity: 1.0;
 	}
 
@@ -2366,7 +2366,7 @@ h6 { font-size: 0.6em; }
 			width: 2.5em;
 			height: 2.5em;
 			display: block;
-			background: rgba(50, 50, 50);
+			background: rgb(50, 50, 50);
 			border-radius: 100%;
 			color: #283a8b;
 			text-align: center;
@@ -2484,7 +2484,7 @@ h6 { font-size: 0.6em; }
 		}
 
 			ul.alt li {
-				border-top: solid 1px rgba(50, 50, 50);
+				border-top: solid 1px rgb(50, 50, 50);
 				padding: 0.5em 0;
 			}
 
@@ -2688,7 +2688,7 @@ h6 { font-size: 0.6em; }
 	}
 
 		ul.menu > li {
-			border-left: solid 1px rgba(50, 50, 50);
+			border-left: solid 1px rgb(50, 50, 50);
 			display: inline-block;
 			line-height: 1;
 			margin-left: 1.5em;
@@ -2760,7 +2760,7 @@ h6 { font-size: 0.6em; }
 
 		.split > :nth-child(2n - 1) {
 			padding-right: 2.5em;
-			border-right: solid 1px rgba(50, 50, 50);
+			border-right: solid 1px rgb(50, 50, 50);
 		}
 
 		.split > :nth-child(2n) {
@@ -2806,7 +2806,7 @@ h6 { font-size: 0.6em; }
 			}
 
 				.split > * {
-					border-top: solid 1px rgba(50, 50, 50);
+					border-top: solid 1px rgb(50, 50, 50);
 					margin: 4em 0 0 0;
 					padding: 4em 0 0 0;
 					width: 100% !important;
@@ -2921,7 +2921,7 @@ h6 { font-size: 0.6em; }
 		}
 
 		.spotlights > section:nth-child(3) {
-			background-color: rgb(0, 0, 0, 0.1);
+			background-color: rgba(0, 0, 0, 0.1);
 		}
 
 		.spotlights > section.inactive > .image:before,
@@ -2997,13 +2997,13 @@ h6 { font-size: 0.6em; }
 	}
 
 		table tbody tr {
-			border: solid 1px rgba(50, 50, 50);
+			border: solid 1px rgb(50, 50, 50);
 			border-left: 0;
 			border-right: 0;
 		}
 
 			table tbody tr:nth-child(2n + 1) {
-				background-color: rgba(50, 50, 50, 50);
+				background-color: rgb(50, 50, 50);
 			}
 
 		table td {
@@ -3019,11 +3019,11 @@ h6 { font-size: 0.6em; }
 		}
 
 		table thead {
-			border-bottom: solid 2px rgba(50, 50, 50);
+			border-bottom: solid 2px rgb(50, 50, 50);
 		}
 
 		table tfoot {
-			border-top: solid 2px rgba(50, 50, 50);
+			border-top: solid 2px rgb(50, 50, 50);
 		}
 
 		table.alt {
@@ -3031,7 +3031,7 @@ h6 { font-size: 0.6em; }
 		}
 
 			table.alt tbody tr td {
-				border: solid 1px rgba(50, 50, 50);
+				border: solid 1px rgb(50, 50, 50);
 				border-left-width: 0;
 				border-top-width: 0;
 			}
@@ -3362,7 +3362,7 @@ h6 { font-size: 0.6em; }
 		}
 
 	#footer > .inner a {
-		border-bottom-color: rgba(50, 50, 50);
+		border-bottom-color: rgb(50, 50, 50);
 	}
 
 		#footer > .inner a:hover {
@@ -3379,48 +3379,54 @@ h6 { font-size: 0.6em; }
 	}
 
 /* Sidebar */
+#sidebar {
+  padding: 2.5em 1.5em 1.5em 2.5em;
 
-	#sidebar {
-		padding: 2.5em 1.5em 1.5em 2.5em ;
-		background: rgba(31, 24, 21, 0.9) url("images/pcb.png") no-repeat center center;
-		cursor: default;
-		background-size: cover; /* Ensure the entire image covers the sidebar */
-		height: 100vh;
-		left: 0;
-		overflow-x: hidden;
-		overflow-y: auto;
-		position: fixed;
-		text-align: right;
-		top: 0;
-		width: 16.5em;
-		z-index: 10000;
-	}
+  /* overlay + image as two layers */
+  background-image:
+    linear-gradient(rgba(31, 24, 21, 0.9), rgba(31, 24, 21, 0.9)),
+    url("images/pcb.png");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-clip: padding-box;
 
-		#sidebar > .inner {
-			display: -moz-flex;
-			display: -webkit-flex;
-			display: -ms-flex;
-			display: flex;
-			-moz-flex-direction: column;
-			-webkit-flex-direction: column;
-			-ms-flex-direction: column;
-			flex-direction: column;
-			-moz-justify-content: center;
-			-webkit-justify-content: center;
-			-ms-justify-content: center;
-			justify-content: center;
-			-moz-transform: translateY(0);
-			-webkit-transform: translateY(0);
-			-ms-transform: translateY(0);
-			transform: translateY(0);
-			-moz-transition: opacity 1s ease;
-			-webkit-transition: opacity 1s ease;
-			-ms-transition: opacity 1s ease;
-			transition: opacity 1s ease;
-			min-height: 100%;
-			opacity: 1;
-			width: 100%;
-		}
+  cursor: default;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 16.5em;
+
+  /* Height: safe across browsers */
+  height: 100vh;
+  height: 100dvh;
+
+  overflow-x: hidden;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+
+  text-align: right;
+  z-index: 10000;
+}
+
+/* Inner container */
+#sidebar > .inner {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;  /* top-aligned for long menus */
+  min-height: 100%;
+  width: 100%;
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* Accessibility / reduced-motion support */
+@media (prefers-reduced-motion: reduce) {
+  #sidebar,
+  #sidebar > .inner {
+    transition: none !important;
+  }
+}
 
 			body.is-ie #sidebar > .inner {
 				height: 100%;
@@ -3721,14 +3727,6 @@ h6 { font-size: 0.6em; }
 
 		}
 
-		@media screen and (max-width: 736px) {
-
-			#sidebar {
-				display: none;
-			}
-
-		}
-
 /* Intro */
 
 	#intro {
@@ -3784,8 +3782,8 @@ h6 { font-size: 0.6em; }
 }
 
 .overline-underline {
-    border-top: 1px solid rgba(50, 50, 50); /* Adjust the color as needed */
-    border-bottom: 1px solid rgba(50, 50, 50); /* Adjust the color as needed */
+    border-top: 1px solid rgb(50, 50, 50); /* Adjust the color as needed */
+    border-bottom: 1px solid rgb(50, 50, 50); /* Adjust the color as needed */
     display: inline-block;
     padding-top: 0.1em;
     padding-bottom: 0.1em;
@@ -3858,133 +3856,148 @@ h6 { font-size: 0.6em; }
     transition: all 0.3s ease;
 }
 
-/* Media Query for Mobile */
+/* ===== Mobile sidebar (≤736px) – improved ===== */
 @media screen and (max-width: 736px) {
-    .hamburger {
-        position: fixed;
-        top: 20px;
-        right: 20px;
-        z-index: 10001;
-    }
+  .hamburger {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 10001;
+    cursor: pointer;
+  }
 
-    #sidebar {
-        display: none;
-    }
+  /* Hide the desktop/topbar version on mobile by default */
+  #sidebar {
+    display: block;                 /* keep it in DOM for transform animation */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 14.5em;
+    height: 100dvh;                 /* better than 100vh on mobile browsers */
+    z-index: 10000;
+    padding: 2.5em 1.5em 1.5em 2.5em;
 
-    #sidebar.active {
-        display: flex;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 14.5em;
-        height: 100%;
-        background: rgba(31, 24, 21, 0.9) url("images/pcb.png") no-repeat center center;
-        background-size: cover;
-        z-index: 10000;
-        padding: 2.5em 1.5em 1.5em 2.5em;
-        overflow: hidden; /* Ensure no scrollbars are shown */
-        flex-direction: column;
-    }
-
-    #sidebar > .inner {
-        flex: 1; /* Ensure the inner content takes up the remaining space */
-        overflow: hidden; /* Ensure inner content doesn't overflow */
-        display: flex;
-        flex-direction: column;
-    }
-
-    #sidebar nav ul {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-        flex: 1; /* Allow the list to take up remaining space */
-        display: flex;
-        flex-direction: column;
-        justify-content: center; /* Center the items vertically */
-        padding-top: 1em; /* Add padding at the top */
-        padding-bottom: 1em; /* Add padding at the bottom */
-    }
-
-    /* ───────── Tighten up the sidebar separators on mobile ───────── */
-    #sidebar nav ul li {
-        margin: 0.4em 0;       /* was 0.5em 0 */
-        padding-top: 0.2em;    /* was 0.2em */
-        padding-bottom: 0.2em; /* was 0.2em */
-        transform: translateY(0);
-        transition: opacity 0.15s ease, transform 0.75s ease;
-        opacity: 1;
-        position: relative;
-        text-align: right;
-    }
-
-    #sidebar nav a {
-        padding: 0.2em 0;      /* was 0.3em 0 */
-        transition: color 0.5s ease;
-        border: 0;
-        color: rgba(255, 255, 255, 0.55);
-        display: block;
-        font-size: 0.61em;
-        font-weight: bold;
-        letter-spacing: 0.25em;
-        line-height: 1.75;
-        outline: 0;
-        position: relative;
-        text-decoration: none;
-        text-transform: uppercase;
-    }
-
-    #sidebar nav a:before,
-    #sidebar nav a:after {
-        bottom: 0;             /* was -0.2em */
-        height: 1px;           /* was 0.2em */
-        border-radius: 0.2em;
-        content: '';
-        position: absolute;
-        right: 0;
-        width: 100%;
-    }
-
-    #sidebar nav a:before {
-        background: #283a8b;
-    }
-
-    #sidebar nav a:after {
-        background-image: linear-gradient(to right, #7954d6, #da74b4);
-        transition: max-width 0.2s ease;
-        max-width: 0;
-    }
-
-    #sidebar nav a:hover {
-        color: #ffffff;
-    }
-
-    #sidebar nav a.active {
-        color: #ffffff;
-    }
-
-    #sidebar nav a.active:after {
-        max-width: 100%;
-    }
-}
-
-/* Hamburger “X” animation */
-.hamburger.active div:nth-child(1) {
-    transform: rotate(-45deg) translate(-5px, 6px);
-}
-
-.hamburger.active div:nth-child(2) {
+    /* Drawer baseline (off-canvas) */
+    transform: translateX(-100%);   /* hidden off screen */
     opacity: 0;
+    pointer-events: none;
+    will-change: transform;         /* hint GPU */
+    transition:
+      transform 250ms ease,
+      opacity 150ms ease;
+
+    /* Background (overlay + image) */
+    background-image:
+      linear-gradient(rgba(31,24,21,0.9), rgba(31,24,21,0.9)),
+      url("images/pcb.png");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    /* Scrolling inside, not on body */
+    overflow-x: hidden;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+
+    /* Override any ≤1280px "topbar" line-height/height */
+    line-height: normal;
+  }
+
+  /* Open state */
+  #sidebar.active {
+    transform: translateX(0);
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  /* Internal layout */
+  #sidebar > .inner {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+    /* Don’t clip children; let the container scroll instead */
+    overflow: visible;
+  }
+
+  #sidebar nav {
+    height: auto;        /* override ≤1280px topbar */
+    line-height: normal; /* override ≤1280px topbar */
+  }
+
+  #sidebar nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 1em 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.6em;          /* simpler than margin/padding per <li> */
+  }
+
+  /* LIs: remove translate/opacity animations (cheaper to not animate each row) */
+  #sidebar nav ul li {
+    position: relative;
+    text-align: right;
+  }
+
+  #sidebar nav a {
+    display: block;
+    padding: 0.2em 0;
+    color: rgba(255, 255, 255, 0.55);
+    font-size: 0.61em;
+    font-weight: bold;
+    letter-spacing: 0.25em;
+    line-height: 1.75;
+    text-decoration: none;
+    text-transform: uppercase;
+    border: 0;
+    outline: 0;
+    transition: color 150ms ease;   /* lighter than 500ms */
+  }
+
+  #sidebar nav a:before,
+  #sidebar nav a:after {
+    content: '';
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 1px;
+    border-radius: 0.2em;
+  }
+
+  #sidebar nav a:before {
+    background: #283a8b;
+  }
+
+  #sidebar nav a:after {
+    background-image: linear-gradient(to right, #7954d6, #da74b4);
+    max-width: 0;
+    transition: max-width 200ms ease;
+  }
+
+  #sidebar nav a:hover,
+  #sidebar nav a.active {
+    color: #ffffff;
+  }
+
+  #sidebar nav a.active:after {
+    max-width: 100%;
+  }
 }
 
-.hamburger.active div:nth-child(3) {
-    transform: rotate(45deg) translate(-5px, -6px);
-}
+/* Lock page scroll when menu is open (toggle this class in JS) */
+body.menu-open { overflow: hidden; }
 
-/* Hide hamburger menu when fullscreen image is active */
-.fullscreen-image .hamburger,
-.fullscreen-image.active .hamburger,
-.fullscreen-mode .hamburger {
-    display: none;
+/* Hamburger “X” animation (unchanged) */
+.hamburger.active div:nth-child(1) { transform: rotate(-45deg) translate(-5px, 6px); }
+.hamburger.active div:nth-child(2) { opacity: 0; }
+.hamburger.active div:nth-child(3) { transform: rotate(45deg) translate(-5px, -6px); }
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  #sidebar { transition: none !important; }
+  #sidebar nav a { transition: none !important; }
 }
 
 
@@ -3995,22 +4008,21 @@ h6 { font-size: 0.6em; }
 #four .inner,
 #visitor-map-section .inner {
   margin: 0 auto;
-  max-width: 1225px; /* Adjust as desired */
+  max-width: 1225px;
 }
 
+/* Extra-wide screens */
 @media screen and (min-width: 1600px) {
-	/* Constrain the main content container */
-	.wrapper > .inner,
-	#three .inner,
-	.content-with-image {
-	  max-width: 1400px;  /* Or another value that suits your design */
-	  margin-left: auto;
-	  margin-right: auto;
-	  padding-left: 20px;  /* Optional: keep some padding */
-	  padding-right: 20px;
-	}
+  .wrapper > .inner,
+  #three .inner,
+  .content-with-image {
+    max-width: 1400px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 20px;
+    padding-right: 20px;
   }
-
+}
 
 /* Footer overrides */
 
