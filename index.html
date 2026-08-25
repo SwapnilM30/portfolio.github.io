@@ -130,66 +130,6 @@
     border-color: #283a8b;
   }
 
-/* ───────── ClustrMaps Intro Text ───────── */
-.map-intro-text {
-  text-align: center;
-  margin: 1.5rem auto 1rem;  /* space above/below the intro */
-  font-style: italic;
-  color: rgba(0,0,0,0.7);     /* tweak for contrast on your bg */
-  max-width: 750px;           /* match your map’s max-width */
-  padding: 0 1rem;            /* horizontal padding on small screens */
-}
-
-/* ───────── ClustrMaps: minimal styling ───────── */
-#visitor-map {
-  width: 100%;
-  max-width: 750px;      /* change or remove if you want full width */
-  margin: 0 auto 2rem;   /* centers + 2 rem space before footer */
-}
-
-/* If ClustrMaps injects an <iframe> */
-#visitor-map iframe {
-  width: 100% !important;
-  height: auto;
-  border: none !important;
-  box-shadow: none !important;
-  display: block;
-}
-
-/* If ClustrMaps falls back to a plain <img> */
-#visitor-map img {
-  width: 100% !important;
-  height: auto !important;
-  display: block;
-}
-
-/* ───────── ClustrMaps Legend ───────── */
-.map-legend {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 1.5rem;         /* space between items */
-  margin: 1rem auto;   /* space above the legend */
-  font-size: 0.9rem;   /* adjust as needed */
-  color: #1f1f1f;      /* text color */
-}
-
-.legend-dot {
-  display: inline-block;
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  margin-right: 0.4rem;
-}
-
-.legend-dot.past {
-  background: #ff5353;  /* red = past visitors */
-}
-
-.legend-dot.recent {
-  background: #3acc3a;  /* green = recent visitors */
-}
-
   /* Existing/General Styles */
   #one { padding-top: 20px; padding-bottom: 20px; }
   .text-justify { margin-top: 10px; }
@@ -459,16 +399,6 @@ button.loading .spinner {
 }
 
 </style>
-
-<!-- Microsoft Clarity tracking snippet ↓ -->
-<script type="text/javascript">
-    (function(c,l,a,r,i,t,y){
-        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-    })(window, document, "clarity", "script", "sgyakcv286");
-</script>
-
 </head>
 
 
@@ -896,20 +826,6 @@ button.loading .spinner {
   </div>
 </section>
 
-    <!-- Map intro text -->
-    <p class="map-intro-text">
-      <em>
-        Take a quick trip around the globe and see where visitors to my portfolio are coming from.  
-        This map tracks my worldwide audience in real time!
-      </em>
-    </p>
-    <!-- ClustrMaps (map injected lazily by JS) -->
-    <div id="visitor-map"></div>
-    <!-- ClustrMaps Legend -->
-    <div class="map-legend">
-      <span class="legend-dot past"></span> Past visitors
-      <span class="legend-dot recent"></span> Recent visitors
-    </div>
 
   </div> <!-- end #wrapper -->
 
@@ -1234,20 +1150,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   overlayEl.addEventListener('click', () => hamburger.click());
 
-  /* ───────── ClustrMaps lazy-loader ───────── */
-  const vm = document.getElementById('visitor-map');
-  if (vm) {
-    const io = new IntersectionObserver(([entry]) => {
-      if (entry.isIntersecting) {
-        const s = document.createElement('script');
-        s.src = 'https://cdn.clustrmaps.com/map_v2.js?cl=c68c53&w=a&t=tt&d=3-UXGvFfSoRg27tAm-xeAKDPh14fjVW_SHoaoq50coI&co=003c8d&cmo=ff5353&cmn=3acc3a';
-        s.id  = 'clustrmaps';
-        vm.appendChild(s);
-        io.disconnect();
-      }
-    });
-    io.observe(vm);
-  }
 });
 
 </script>
