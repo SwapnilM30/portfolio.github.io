@@ -264,10 +264,6 @@
   border-radius: 50%;
 }
 
-/* Responsive project text */
-.project-text{font-size:1.175rem;line-height:1.6;}
-@media(max-width:1280px){.project-text{font-size:1.1rem;}}
-@media(max-width:736px){.project-text{font-size:1rem;}}
 
 /* Play icon overlay on videos */
 .play-icon{
@@ -415,16 +411,16 @@
                     <p class="image-citation">Description: Comparison of GMapping SLAM's map with the ground truth, demonstrating good performance in simpler environments with some deviations.</p>
                 </div>
             </div>
-            <p class="text-justify project-text">This project investigates the performance and accuracy of two widely used Simultaneous Localization and Mapping (SLAM) algorithms, GMapping and Cartographer, for indoor robotic navigation. SLAM plays a crucial role in enabling autonomous systems to map their environment and localize themselves within unfamiliar surroundings. In this study, we focused on GMapping, which utilizes a 2D grid-based particle filter approach, and Cartographer, which employs a graph-based method capable of both 2D and 3D mapping.</p>
-            <p class="text-justify project-text">The experimental setup involved the Yahboom ROS Master X3 robot equipped with an RPLIDAR sensor, collecting real-time data across controlled indoor environments with varying levels of complexity. Mapping accuracy was quantitatively evaluated using Mean Squared Error (MSE) and Mean Absolute Error (MAE) by comparing the generated maps against ground truth references.</p>
-            <p class="text-justify project-text">The key findings from this comparative analysis were:</p>
-            <ul class="text-justify project-text">
+            <p class="text-justify para">This project investigates the performance and accuracy of two widely used Simultaneous Localization and Mapping (SLAM) algorithms, GMapping and Cartographer, for indoor robotic navigation. SLAM plays a crucial role in enabling autonomous systems to map their environment and localize themselves within unfamiliar surroundings. In this study, we focused on GMapping, which utilizes a 2D grid-based particle filter approach, and Cartographer, which employs a graph-based method capable of both 2D and 3D mapping.</p>
+            <p class="text-justify para">The experimental setup involved the Yahboom ROS Master X3 robot equipped with an RPLIDAR sensor, collecting real-time data across controlled indoor environments with varying levels of complexity. Mapping accuracy was quantitatively evaluated using Mean Squared Error (MSE) and Mean Absolute Error (MAE) by comparing the generated maps against ground truth references.</p>
+            <p class="text-justify para">The key findings from this comparative analysis were:</p>
+            <ul class="text-justify para">
                 <li>GMapping demonstrated superior performance in structured, simpler environments with fewer obstacles.</li>
                 <li>Cartographer achieved higher accuracy in complex layouts containing multiple obstacles.</li>
             </ul>
-            <p class="text-justify project-text">A significant challenge identified during this study was the presence of blind spots caused by the LIDAR's fixed mounting height (7 inches), which limited the detection of lower obstacles. Additionally, the absence of standardized evaluation methodologies for SLAM systems posed difficulties in achieving consistent quantitative comparisons.</p>
-            <p class="text-justify project-text">To address these limitations, the project proposes the integration of additional depth sensors or cameras to enhance obstacle detection coverage and improve overall mapping reliability. This research provides valuable insights into algorithm selection, sensor configuration, and evaluation strategies, contributing to the development of more robust and adaptive autonomous systems.</p>
-            <p class="text-justify project-text">By critically analyzing the performance of these SLAM algorithms under real-world constraints, the project emphasizes the importance of aligning algorithm capabilities with environmental challenges, reinforcing the vital role of SLAM in modern robotics.</p>
+            <p class="text-justify para">A significant challenge identified during this study was the presence of blind spots caused by the LIDAR's fixed mounting height (7 inches), which limited the detection of lower obstacles. Additionally, the absence of standardized evaluation methodologies for SLAM systems posed difficulties in achieving consistent quantitative comparisons.</p>
+            <p class="text-justify para">To address these limitations, the project proposes the integration of additional depth sensors or cameras to enhance obstacle detection coverage and improve overall mapping reliability. This research provides valuable insights into algorithm selection, sensor configuration, and evaluation strategies, contributing to the development of more robust and adaptive autonomous systems.</p>
+            <p class="text-justify para">By critically analyzing the performance of these SLAM algorithms under real-world constraints, the project emphasizes the importance of aligning algorithm capabilities with environmental challenges, reinforcing the vital role of SLAM in modern robotics.</p>
         </div>
     </section>
 
