@@ -1,5 +1,10 @@
 @import url(fontawesome-all.min.css);
 
+/* Smooth Scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
 /*
 	Hyperspace by HTML5 UP
 	html5up.net | @ajlkn
