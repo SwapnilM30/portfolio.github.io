@@ -3237,6 +3237,12 @@ h6 { font-size: 0.6em; }
 			display: block;
 			font-size: 1.35em;
 			font-weight: bold;
+			text-decoration: none;
+			transition: opacity 0.2s ease-in-out; /* Adds a smooth fade */
+		}
+
+		#header > .title:hover {
+			opacity: 0.75; /* Fades slightly on hover so it feels clickable */
 		}
 
 		#header > nav {
@@ -3271,12 +3277,13 @@ h6 { font-size: 0.6em; }
 						font-weight: bold;
 						letter-spacing: 0.25em;
 						text-transform: uppercase;
+						text-decoration: none;
+						transition: color 0.2s ease, transform 0.2s ease; /* Smoothly animates hover */
 					}
 
 						#header > nav > ul > li a:hover {
 							color: rgb(255, 255, 255);
-							font-weight: bold;
-							font-size: 0.80em;
+							transform: scale(1.1); /* Smoothly scales up without breaking layout */
 						}
 
 						#header > nav > ul > li a.active {
