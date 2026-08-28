@@ -3902,10 +3902,11 @@ h6 { font-size: 0.6em; }
         position: fixed;
         top: 20px;
         right: 20px;
-        width: 35px;
-        height: 30px;
+        width: 35px !important;
+        height: 30px !important;
         background: none;
-        border: none;
+        border: none !important;
+        border-radius: 0 !important;
         padding: 0;
         z-index: 10001;
     }
@@ -3914,7 +3915,11 @@ h6 { font-size: 0.6em; }
         outline: none;
     }
 
-#sidebar {
+    .hamburger:after {
+        display: none !important;
+    }
+
+    #sidebar {
           display: flex; /* Overrides the template's 'none' */
           position: fixed;
           top: 0;
@@ -3964,6 +3969,7 @@ h6 { font-size: 0.6em; }
         opacity: 1;
         position: relative;
         text-align: right;
+        height: auto !important;
     }
 
     #sidebar nav a {
@@ -3980,6 +3986,7 @@ h6 { font-size: 0.6em; }
         position: relative;
         text-decoration: none;
         text-transform: uppercase;
+        height: auto !important;
     }
 
     #sidebar nav a:before,
@@ -4048,17 +4055,17 @@ h6 { font-size: 0.6em; }
 }
 
 @media screen and (min-width: 1600px) {
-	/* Constrain the main content container */
-	.wrapper > .inner,
-	#three .inner,
-	.content-with-image {
-	  max-width: 1400px;  /* Or another value that suits your design */
-	  margin-left: auto;
-	  margin-right: auto;
-	  padding-left: 20px;  /* Optional: keep some padding */
-	  padding-right: 20px;
-	}
-  }
+    /* Constrain the main content container */
+    .wrapper > .inner,
+    #three .inner,
+    .content-with-image {
+      max-width: 1400px;  /* Or another value that suits your design */
+      margin-left: auto;
+      margin-right: auto;
+      padding-left: 20px;  /* Optional: keep some padding */
+      padding-right: 20px;
+    }
+}
 
 
 /* Footer overrides */
