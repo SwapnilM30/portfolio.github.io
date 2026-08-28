@@ -3961,7 +3961,7 @@ h6 { font-size: 0.6em; }
 
     /* ───────── Tighten up the sidebar separators on mobile ───────── */
     #sidebar nav ul li {
-        margin: 2em 0;       /* was 0.5em 0 */
+        margin: 1.5em 0;       /* was 0.5em 0 */
         padding-top: 0.2em;    /* was 0.2em */
         padding-bottom: 0.2em; /* was 0.2em */
         transform: translateY(0);
