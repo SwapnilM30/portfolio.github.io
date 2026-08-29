@@ -3808,11 +3808,7 @@ h6 { font-size: 0.6em; }
 }
 
 .para {
-	margin: 0;
-}
-
-.para {
-	margin-bottom: 25px;
+    margin: 0 0 25px 0; /* Sets Top, Right, Bottom, Left */
 }
 
 /* Apply styles to the thumbnail gallery */
@@ -4046,13 +4042,12 @@ h6 { font-size: 0.6em; }
 
 
 /* Center inner containers for key sections */
-#intro .inner,
 #one .inner,
 #two .inner,
-#four .inner,
-#visitor-map-section .inner {
-  margin: 0 auto;
-  max-width: 1225px; /* Adjust as desired */
+#four .inner {
+    margin: 0 auto;
+    max-width: 1225px; 
+    width: 100%; 
 }
 
 @media screen and (min-width: 1600px) {
@@ -4079,11 +4074,6 @@ h6 { font-size: 0.6em; }
 
 /* ───────── Prevent Horizontal Wobble & Overlapping on iOS ───────── */
 html, body {
-    overflow-x: hidden !important;
-    max-width: 100%;
-}
-
-#wrapper, #footer {
     overflow-x: hidden !important;
     max-width: 100%;
 }
