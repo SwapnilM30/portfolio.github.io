@@ -3833,12 +3833,13 @@ h6 { font-size: 0.6em; }
 /* Apply styles to the thumbnail images */
 .project-thumbnail {
     max-width: 325px; /* Adjust this value to control the maximum width of the thumbnail image */
+    width: 100%; /* Force image to shrink on tiny screens */
+    box-sizing: border-box; /* Absorb padding so it doesn't bleed off screen */
     height: auto;
     display: block;
     border: 1px solid rgba(50, 50, 50);
     padding: 6px;
-    margin-bottom: 25px; /* Add spacing between images and content */
-	margin: 1em 1em 1em; /* Adjust the margins as needed */
+    margin: 1em auto; /* Center the image perfectly */
 }
 
 /* Apply styles to the content (text) */
@@ -4074,6 +4075,17 @@ h6 { font-size: 0.6em; }
   padding: 1em 5em;      /* shrink top/bottom padding */
   margin: 0 auto;        /* center it if you constrain width */
   max-width: 1225px;     /* optional – keep it in line with your other sections */
+}
+
+/* ───────── Prevent Horizontal Wobble & Overlapping on iOS ───────── */
+html, body {
+    overflow-x: hidden !important;
+    max-width: 100%;
+}
+
+#wrapper, #footer {
+    overflow-x: hidden !important;
+    max-width: 100%;
 }
 
 
