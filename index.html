@@ -268,23 +268,27 @@
     padding: 0; 
   }
 
-  /* Perfectly Align Title, Text, and Button */
+/* ───────── Perfectly Align Title, Text, and Button ───────── */
   #three.spotlights .thumbnail-gallery .content .inner {
-    padding: 0; 
+    padding: 0; /* Strips any invisible template padding */
   }
   
   .thumbnail-gallery p {
     text-align: justify;
-    padding: 0; 
+    padding: 0; /* Removes the old 25px offset to flush left */
   }
   
   .project-title {
-    padding: 0; 
+    padding: 0; /* Removes the offset to flush left */
   }
   
   #three.spotlights .thumbnail-gallery .content ul.actions {
-    margin: 1.5rem 0 0 0; 
+    margin: 1.5rem 0 0 0; /* Adds space above the button, forces flush left */
     padding: 0;
+  }
+
+  #three.spotlights .thumbnail-gallery .content ul.actions li {
+    padding-left: 0; /* Removes the hidden template padding pushing the button right */
   }
   
   /* Mobile Override */
