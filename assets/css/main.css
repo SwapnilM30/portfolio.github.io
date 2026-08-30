@@ -3812,50 +3812,10 @@ h6 { font-size: 0.6em; }
     margin: 0 0 25px 0; /* Sets Top, Right, Bottom, Left */
 }
 
-/* Apply styles to the thumbnail gallery */
-.thumbnail-gallery {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center; /* Center the thumbnails horizontally */
-}
-
-/* Apply styles to the individual thumbnails */
-.thumbnail {
-    flex: 0 0 calc(35% - 60px); /* Adjust this value to control the width of each thumbnail */
-    margin: 1px 5px 20px; /* Add margin to the sides and bottom of each thumbnail */
-    display: flex;
-    flex-direction: column; /* Display content in a column */
-}
-
-/* Apply styles to the thumbnail images */
-.project-thumbnail {
-    max-width: 325px; /* Adjust this value to control the maximum width of the thumbnail image */
-    width: 100%; /* Force image to shrink on tiny screens */
-    box-sizing: border-box; /* Absorb padding so it doesn't bleed off screen */
-    height: auto;
-    display: block;
-    border: 1px solid rgba(50, 50, 50);
-    padding: 6px;
-    margin: 1em auto; /* Center the image perfectly */
-}
-
-/* Apply styles to the content (text) */
-.content {
-    flex: 1; /* Take remaining width for content */
-}
-/* Justify the text inside the <p> tags */
-.thumbnail-gallery p {
-    text-align: justify;
-	padding-right: 25px;
-	padding-left: 25px;
-}
 .center-image {
     display: block;
     margin: 0 auto;
     text-align: center; /* Center the image horizontally */
-}
-.project-title{
-    padding-left: 25px; /* Adjust the padding as needed */
 }
 
 /* ───────── Hamburger Menu Icon (Hidden on Desktop) ───────── */

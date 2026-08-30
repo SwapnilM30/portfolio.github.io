@@ -213,185 +213,226 @@
   .form-message { margin-top: 15px; font-size: 1.1rem; color: #4caf50; }
   .form-message.error { color: #f44336; }
 
-/* Contact Form Spinner */
-.spinner {
-  position: absolute;
-  right: 1.5em; /* Places the spinner neatly inside the button's right padding */
-  top: calc(50% - 0.5rem); /* Perfectly centers it vertically without conflicting with the spin animation */
-  width: 1rem;
-  height: 1rem;
-  border: 2px solid transparent;
-  border-top-color: #283a8b; /* Changed from #fff to dark blue so it is visible on the light button! */
-  border-radius: 50%;
-  animation: spin 0.8s linear infinite;
-  opacity: 0;
-  transition: opacity 0.2s ease;
-}
-
-button.loading .spinner {
-  opacity: 1;
-}
-
-@keyframes spin {
-  to { transform: rotate(360deg); }
-}
-
-  /* Projects Section */
-  #three.spotlights .thumbnail-gallery {
-    display: flex; align-items: center;
-    gap: 1rem; margin-bottom: 2rem;
-    border: none; padding: 1rem; border-radius: 0;
+  /* Contact Form Spinner */
+  .spinner {
+    position: absolute;
+    right: 1.5em; 
+    top: calc(50% - 0.5rem); 
+    width: 1rem;
+    height: 1rem;
+    border: 2px solid transparent;
+    border-top-color: #283a8b; 
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+    opacity: 0;
+    transition: opacity 0.2s ease;
   }
-  #three.spotlights .thumbnail-gallery .thumbnail { flex: 1; padding-right: .5rem; }
-  #three.spotlights .thumbnail-gallery .content   { flex: 2; padding-left: .5rem; }
+
+  button.loading .spinner {
+    opacity: 1;
+  }
+
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+
+  /* ───────── Projects Section Layout ───────── */
+  #three.spotlights .thumbnail-gallery { 
+    display: flex; 
+    align-items: center;
+    max-width: 1225px; 
+    margin: 0 auto 4rem auto; 
+    gap: 4rem; 
+    padding: 0 20px; 
+    border: none; 
+  }
+  
+  #three.spotlights .thumbnail-gallery .thumbnail { 
+    flex: 1; 
+    padding: 0; 
+  }
+  
+  /* The thumbnail image itself */
+  .project-thumbnail {
+    max-width: 325px; 
+    width: 100%; 
+    height: auto;
+    display: block;
+    border: 1px solid rgba(50, 50, 50);
+    padding: 6px;
+    margin: 0 auto; 
+  }
+
+  #three.spotlights .thumbnail-gallery .content { 
+    flex: 2; 
+    padding: 0; 
+  }
+
+  /* Perfectly Align Title, Text, and Button */
+  #three.spotlights .thumbnail-gallery .content .inner {
+    padding: 0; 
+  }
+  
+  .thumbnail-gallery p {
+    text-align: justify;
+    padding: 0; 
+  }
+  
+  .project-title {
+    padding: 0; 
+  }
+  
+  #three.spotlights .thumbnail-gallery .content ul.actions {
+    margin: 1.5rem 0 0 0; 
+    padding: 0;
+  }
+  
+  /* Mobile Override */
   @media (max-width: 768px) {
-    #three.spotlights .thumbnail-gallery { flex-direction: column; gap:1rem; }
-    #three.spotlights .thumbnail-gallery .thumbnail,
-    #three.spotlights .thumbnail-gallery .content { padding:0; }
+    #three.spotlights .thumbnail-gallery { 
+      flex-direction: column; 
+      gap: 1.5rem; 
+    }
   }
 
-/* Zoom‐in/out/reset controls */
-.fullscreen-image img.zoomable {
-  cursor: grab;               /* original grab cursor */
-  touch-action: none;         /* still disable native pinch-zoom */
-  transition: transform 0.1s ease-out;
-}
+  /* Zoom‐in/out/reset controls */
+  .fullscreen-image img.zoomable {
+    cursor: grab;
+    touch-action: none;
+    transition: transform 0.1s ease-out;
+  }
 
-.zoom-controls {
-  position: absolute;         /* take it out of the flow */
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.25rem 0.75rem;    /* vertical / horizontal padding */
-  background: rgba(0,0,0,0.6);
-  border-radius: 9999px;      /* fully rounded ends */
-  bottom: 1rem;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 10001;
-
-  /* start hidden & fade-in on hover/focus */
-  opacity: 0;
-  transition: opacity 0.3s ease;
+  .zoom-controls {
+    position: absolute;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.25rem 0.75rem;
+    background: rgba(0,0,0,0.6);
+    border-radius: 9999px;
+    bottom: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10001;
+    opacity: 0;
+    transition: opacity 0.3s ease;
   }
 
   .fullscreen-image:hover .zoom-controls,
   .zoom-controls:focus-within {
     opacity: 1;
-}
-
-.zoom-btn {
-  background: transparent;    /* remove per-button circle */
-  border: none;
-  width: auto; height: auto;  /* let padding define hit area */
-  padding: 0.25rem;           /* click‐area around the icon */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  color: #fff !important;     /* icon color */
-  font-size: 1rem;            /* scale the icon up a bit */
-}
-
-.zoom-btn:hover {
-  background: rgba(255,255,255,0.15);
-  border-radius: 50%;
-}
-
-/* hide on larger screens */
-.menu-overlay,
-.hamburger {
-  display: none;
-}
-
-@media (max-width: 736px) {
-  /* ───────── Menu Overlay ───────── */
-  .menu-overlay {
-    display: block;
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.4);
-    backdrop-filter: blur(5px);
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity .4s ease;
-    z-index: 999;
-  }
-  .menu-overlay.active {
-    opacity: 1;
-    pointer-events: all;
   }
 
-  /* ───────── Hamburger Button ───────── */
-  .hamburger {
-    display: flex;
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    width: 35px;
-    height: 30px;
-    flex-direction: column;
-    justify-content: space-between;
-    background: none;
+  .zoom-btn {
+    background: transparent;
     border: none;
-    padding: 0;
+    width: auto; height: auto;
+    padding: 0.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     cursor: pointer;
-    z-index: 1000;
+    color: #fff !important;
+    font-size: 1rem;
   }
-  .hamburger span {
-    display: block;
+
+  .zoom-btn:hover {
+    background: rgba(255,255,255,0.15);
+    border-radius: 50%;
+  }
+
+  /* hide on larger screens */
+  .menu-overlay,
+  .hamburger {
+    display: none;
+  }
+
+  @media (max-width: 736px) {
+    /* ───────── Menu Overlay ───────── */
+    .menu-overlay {
+      display: block;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.4);
+      backdrop-filter: blur(5px);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .4s ease;
+      z-index: 999;
+    }
+    .menu-overlay.active {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    /* ───────── Hamburger Button ───────── */
+    .hamburger {
+      display: flex;
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      width: 35px;
+      height: 30px;
+      flex-direction: column;
+      justify-content: space-between;
+      background: none;
+      border: none;
+      padding: 0;
+      cursor: pointer;
+      z-index: 1000;
+    }
+    .hamburger span {
+      display: block;
+      width: 100%;
+      height: 4px;
+      background: #283a8b;
+      border-radius: 2px;
+      transition: transform .4s ease, opacity .4s ease;
+      transform-origin: center;
+    }
+    .hamburger:focus {
+      outline: none;
+    }
+
+    /* ───────── Hamburger → X ───────── */
+    .hamburger.active span:nth-child(1) {
+      transform: translateY(13px) rotate(45deg);
+    }
+    .hamburger.active span:nth-child(2) {
+      opacity: 0;
+    }
+    .hamburger.active span:nth-child(3) {
+      transform: translateY(-13px) rotate(-45deg);
+    }
+
+    /* ───────── Prevent Background Scroll ───────── */
+    body.menu-open {
+      overflow: hidden;
+    }
+  }
+
+  /* ───────── Work Experience Section ───────── */
+  .work-logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 2rem 0;
+  }
+
+  .work-logo img {
+    max-width: 200px;
     width: 100%;
-    height: 4px;
-    background: #283a8b;
-    border-radius: 2px;
-    transition: transform .4s ease, opacity .4s ease;
-    transform-origin: center;
-  }
-  .hamburger:focus {
-    outline: none;
+    height: auto;
+    margin-bottom: 1.25rem; 
   }
 
-  /* ───────── Hamburger → X ───────── */
-  .hamburger.active span:nth-child(1) {
-    transform: translateY(13px) rotate(45deg);
+  .work-logo .button {
+    margin: 0; 
   }
-  .hamburger.active span:nth-child(2) {
-    opacity: 0;
-  }
-  .hamburger.active span:nth-child(3) {
-    transform: translateY(-13px) rotate(-45deg);
-  }
-
-
-  /* ───────── Prevent Background Scroll ───────── */
-  body.menu-open {
-    overflow: hidden;
-  }
-}
-
-/* ───────── Work Experience Section ───────── */
-.work-logo {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  margin: 2rem 0;
-}
-
-.work-logo img {
-  max-width: 200px;
-  width: 100%;
-  height: auto;
-  margin-bottom: 1.25rem; /* small gap between image and button */
-}
-
-.work-logo .button {
-  margin: 0; /* removes extra spacing */
-}
 
 </style>
 </head>
-
 
 <body class="is-preload">
 
@@ -404,7 +445,6 @@ button.loading .spinner {
   <span></span>
   <span></span>
 </button>
-
 
 <!-- Sidebar -->
   <section id="sidebar" class="sidebar">
@@ -420,19 +460,16 @@ button.loading .spinner {
     </div>
   </section>
 
-
   <!-- Wrapper -->
   <div id="wrapper">
 
 <!-- About Me -->
     <section id="one" class="wrapper style1 fullscreen fade-up">
       <div class="inner">
-        <!-- ONLY the title goes in the inner-heading -->
         <div class="inner-heading">
           <h2 class="name overline-underline">A Curious Journey into Robotics</h2>
         </div>
         
-        <!-- The rest of the content sits normally inside the inner wrapper -->
         <div class="content-with-image">
           <div class="image-container">
             <img
@@ -451,17 +488,14 @@ button.loading .spinner {
       </div>
     </section>
 
-
 <!-- Work Experience -->
 <section id="two" class="wrapper style3 fullscreen fade-up">
   <div class="inner">
     
-    <!-- Uniform heading wrapper -->
     <div class="inner-heading">
       <h2 class="name overline-underline">How Real-World Experiences Shaped My Path</h2>
     </div>
     
-    <!-- Added the 'para' class for uniform margin spacing -->
     <p class="text-justify para">
     Before starting my master's degree in Robotics and Autonomous Systems at Arizona State University, I wanted to gain hands-on experience and understand what it really meant to build systems that could operate beyond the lab. My early work in robotics and electronics engineering gave me the opportunity to turn my curiosity into practical experience. I worked across a range of projects, from designing intricate hardware systems to developing robotics solutions, while constantly learning, experimenting, and pushing the limits of what I could build.
     </p>
@@ -706,7 +740,7 @@ button.loading .spinner {
 <section id="four" class="wrapper style1 fullscreen fade-up">
   <div class="inner">
     <h1>Get in Touch</h1>
-    <p>I’m always open to conversations, collaborations, and exploring opportunities. Whether you’re looking to connect for internships, full-time positions, or just to discuss innovative ideas, reach out. I’m just a message away!</p>
+    <p>I'm always open to conversations, collaborations, and exploring opportunities. Whether you're looking to connect for internships, full-time positions, or just to discuss innovative ideas, reach out. I'm just a message away!</p>
 
     <div class="split style1">
       <!-- Contact-form column -->
@@ -719,7 +753,7 @@ button.loading .spinner {
         >
           <!-- Honeypot (invisible to humans) -->
           <div style="display: none;">
-            <label for="gotcha">Leave this empty if you’re human:</label>
+            <label for="gotcha">Leave this empty if you're human:</label>
             <input
               type="text"
               name="_gotcha"
@@ -811,7 +845,6 @@ button.loading .spinner {
     </div>
   </div>
 </section>
-
 
   </div> <!-- end #wrapper -->
 
@@ -1125,8 +1158,5 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 </script>
-<!-- IMPORTANT: remove your old global loader -->
-<!-- (delete) <script src="https://www.google.com/recaptcha/api.js" async defer></script> -->
-
 </body>
 </html>
