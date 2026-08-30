@@ -138,37 +138,43 @@
 
   /* About Me Section */
   .content-with-image {
-    display: flex;
-    align-items: stretch;
-    gap: 1rem;
+    display: block;
     max-width: 1225px;
     margin: 0 auto;
     padding: 0 20px;
   }
+  .content-with-image::after {
+    content: "";
+    display: table;
+    clear: both;
+  }
   .content-with-image .image-container {
-    flex: 0 0 28.5%;
-    max-width: 28.5%;
+    float: left;
+    width: 32%;
+    max-width: 325px;
+    margin: 0.5rem 2rem 1rem 0;
     border: 1px solid rgba(50,50,50,0.5);
     border-radius: 4px;
     padding: 0.5rem;
-    overflow: hidden;
   }
   .content-with-image .profile-image {
     display: block;
     width: 100%;
-    height: 100%;
-    object-fit: cover;
+    height: auto;
   }
   .content-with-image .text-container {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    display: block;
   }
-  @media (max-width: 768px) {
-    .content-with-image { flex-direction: column; }
-    .content-with-image .image-container,
-    .content-with-image .text-container { width: 100%; max-width: none; }
+  @media (max-width: 980px) {
+    .content-with-image .image-container {
+      float: none;
+      width: 100%;
+      max-width: none;
+      margin: 0 auto 20px auto;
+    }
+    .content-with-image .text-container p {
+      text-align: left !important;
+    }
   }
 
   .underline { margin-top: 20px; margin-bottom: 10px; }

@@ -3076,12 +3076,13 @@ h6 { font-size: 0.6em; }
 			}
 
 			@media screen and (max-width: 1280px) {
-
+    			
 				.wrapper > .inner {
-					width: 100%;
-				}
-
+        			width: 100%;
+        			padding-top: 4em; 
+    			}
 			}
+
 
 			@media screen and (max-width: 736px) {
 
