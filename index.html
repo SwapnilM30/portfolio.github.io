@@ -291,6 +291,72 @@
     padding-left: 0; /* Removes the hidden template padding pushing the button right */
   }
   
+  /* ───────── Contact Info Right Side ───────── */
+  .contact-info-blocks {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0 0 0;
+  }
+
+  .contact-info-blocks li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 2.5rem;
+    padding: 0;
+  }
+
+  .contact-info-blocks .icon-wrapper {
+    flex-shrink: 0;
+    width: 50px;
+    height: 50px;
+    background: #283a8b; /* Matches your theme color */
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    font-size: 1.25rem;
+    margin-right: 1.5rem;
+    box-shadow: 0 4px 10px rgba(40, 58, 139, 0.2);
+  }
+
+  .contact-info-blocks .text-wrapper h3 {
+    margin: 0 0 0.25rem 0;
+    font-size: 0.85rem;
+    color: rgba(50, 50, 50, 0.6);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  .contact-info-blocks .text-wrapper a,
+  .contact-info-blocks .text-wrapper span {
+    font-size: 1.15rem;
+    color: #283a8b;
+    font-weight: bold;
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .contact-info-blocks .text-wrapper a:hover {
+    color: #1a2559;
+  }
+
+  /* Specific tweak for the social icons inside the block */
+  .contact-info-blocks .text-wrapper .icons {
+    margin: 0.5rem 0 0 0;
+  }
+  
+  .contact-info-blocks .text-wrapper .icons a:before {
+    color: rgba(50, 50, 50, 0.7);
+    font-size: 1.5rem;
+    transition: color 0.2s ease, transform 0.2s ease;
+  }
+
+  .contact-info-blocks .text-wrapper .icons a:hover:before {
+    color: #283a8b;
+    transform: scale(1.1);
+  }
+
   /* Mobile Override */
   @media (max-width: 768px) {
     #three.spotlights .thumbnail-gallery { 
@@ -820,29 +886,39 @@
         </form>
       </section>
 
-      <!-- Static contact-info column -->
+<!-- Static contact-info column -->
       <section>
-        <ul class="contact">
+        <ul class="contact-info-blocks">
           <li>
-            <h3>Email</h3>
-            <a href="mailto:sbmeshra@asu.edu">sbmeshra@asu.edu</a>
+            <div class="icon-wrapper"><i class="fas fa-envelope"></i></div>
+            <div class="text-wrapper">
+              <h3>Email</h3>
+              <a href="mailto:sbmeshra@asu.edu">sbmeshra@asu.edu</a>
+            </div>
           </li>
           <li>
-            <h3>Phone</h3>
-            <span>+1 (480) 919-5621</span>
+            <div class="icon-wrapper"><i class="fas fa-phone"></i></div>
+            <div class="text-wrapper">
+              <h3>Phone</h3>
+              <span style="display: block; margin-bottom: 0.25rem;">🇺🇸 +1 (480) 919-5621</span>
+              <span style="display: block;">🇮🇳 +91 88306 88493</span>
+            </div>
           </li>
           <li>
-            <h3>LinkedIn &amp; Resume</h3>
-            <ul class="icons">
-              <li>
-                <a href="https://www.linkedin.com/in/swapnilmeshram98/"
-                   class="icon brands fa-linkedin-in"><span class="label">LinkedIn</span></a>
-              </li>
-              <li>
-                <a href="pdf/Swapnil_Meshram_Resume.pdf"
-                   class="icon fa-file"><span class="label">Resume</span></a>
-              </li>
-            </ul>
+            <div class="icon-wrapper"><i class="fas fa-share-alt"></i></div>
+            <div class="text-wrapper">
+              <h3>Connect</h3>
+              <ul class="icons">
+                <li>
+                  <a href="https://www.linkedin.com/in/swapnilmeshram98/"
+                     class="icon brands fa-linkedin-in" title="LinkedIn"><span class="label">LinkedIn</span></a>
+                </li>
+                <li>
+                  <a href="pdf/Swapnil_Meshram_Resume.pdf"
+                     class="icon fa-file" title="Resume"><span class="label">Resume</span></a>
+                </li>
+              </ul>
+            </div>
           </li>
         </ul>
       </section>
