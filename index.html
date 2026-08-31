@@ -339,16 +339,6 @@
     color: #1a2559;
   }
 
-  /* Handles stacked phone numbers cleanly without inline styles */
-  .contact-info-blocks .text-wrapper .phone-link {
-    display: block;
-    margin-bottom: 0.25rem;
-  }
-  
-  .contact-info-blocks .text-wrapper .phone-link:last-child {
-    margin-bottom: 0;
-  }
-
   /* Specific tweak for the social icons inside the block */
   .contact-info-blocks .text-wrapper .icons {
     margin: 0.5rem 0 0 0;
@@ -953,20 +943,12 @@
 <!-- Static contact-info column -->
       <section>
         <ul class="contact-info-blocks">
+
           <li>
             <div class="icon-wrapper"><i class="fas fa-envelope"></i></div>
             <div class="text-wrapper">
               <h3>Email</h3>
-              <a href="mailto:sbmeshra@asu.edu">sbmeshra@asu.edu</a>
-            </div>
-          </li>
-
-          <li>
-            <div class="icon-wrapper"><i class="fas fa-phone"></i></div>
-            <div class="text-wrapper">
-              <h3>Phone</h3>
-              <a href="tel:+14809195621" class="phone-link">🇺🇸 +1 (480) 919-5621</a>
-              <a href="tel:+918830688493" class="phone-link">🇮🇳 +91 88306 88493</a>
+              <span id="secure-email"></span>
             </div>
           </li>
           <li>
@@ -1012,6 +994,19 @@
   
 <script>
 document.addEventListener('DOMContentLoaded', () => {
+
+  /* ───────── Secure Email Injection ───────── */
+  const user = "sbmeshra";
+  const domain = "asu.edu";
+  const emailWrapper = document.getElementById("secure-email");
+  
+  if (emailWrapper) {
+    const mailLink = document.createElement("a");
+    mailLink.href = "mailto:" + user + "@" + domain;
+    mailLink.textContent = user + "@" + domain;
+    emailWrapper.appendChild(mailLink);
+  }
+
 
   /* ───────── Contact form ───────── */
   const form         = document.getElementById('contact-form');
