@@ -502,51 +502,6 @@
     margin: 0; 
   }
 
-  /* ───────── MOBILE GRID & ALIGNMENT FIXES ───────── */
-  @media (max-width: 768px) {
-    /* 1. Unified Central Grid Container */
-    /* Forces every major section to share the exact same left/right invisible boundaries */
-    #one .inner,
-    #two .inner,
-    #three.spotlights .thumbnail-gallery,
-    #four .inner {
-      padding-left: 20px !important;
-      padding-right: 20px !important;
-      width: 100% !important;
-      box-sizing: border-box;
-      margin-left: auto !important;
-      margin-right: auto !important;
-    }
-
-    /* Strips conflicting nested paddings to prevent double-indentation */
-    .content-with-image, 
-    #three.spotlights .thumbnail-gallery .content .inner {
-      padding-left: 0 !important;
-      padding-right: 0 !important;
-    }
-
-    /* 2. Strict Vertical Alignment & Justified Edges */
-    /* Fixes the jagged right margin and perfectly aligns the left text axis */
-    p, .para {
-      text-align: justify !important;
-      margin-left: 0 !important;
-      padding-left: 0 !important;
-    }
-    
-    /* Forces titles and headings to snap perfectly to the text below them */
-    h1, h2, h3, h4, h5, h6, .project-title, p.underline {
-      text-align: left !important;
-      margin-left: 0 !important;
-      padding-left: 0 !important;
-    }
-    
-    /* Forces buttons to align strictly with the text axis */
-    ul.actions, ul.actions li {
-      margin-left: 0 !important;
-      padding-left: 0 !important;
-    }
-  }
-  
 </style>
 </head>
 
