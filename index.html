@@ -342,6 +342,16 @@
     color: #1a2559;
   }
 
+  /* Handles stacked phone numbers cleanly without inline styles */
+  .contact-info-blocks .text-wrapper .phone-link {
+    display: block;
+    margin-bottom: 0.25rem;
+  }
+  
+  .contact-info-blocks .text-wrapper .phone-link:last-child {
+    margin-bottom: 0;
+  }
+
   /* Specific tweak for the social icons inside the block */
   .contact-info-blocks .text-wrapper .icons {
     margin: 0.5rem 0 0 0;
@@ -500,6 +510,54 @@
 
   .work-logo .button {
     margin: 0; 
+  }
+
+  /* ───────── MOBILE GRID & ALIGNMENT FIXES ───────── */
+  @media (max-width: 768px) {
+    /* 1. Unified Central Grid Container (Dynamic Class Routing) */
+    #wrapper > section > .inner,
+    #wrapper > .spotlights .thumbnail-gallery {
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+      width: 100%;
+      box-sizing: border-box;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* Prevent double-indentation natively */
+    .content-with-image, 
+    .spotlights .thumbnail-gallery .content .inner {
+      padding-left: 0;
+      padding-right: 0;
+    }
+
+    /* 2. Strict Vertical Alignment & Justified Edges */
+    #wrapper p, 
+    #wrapper .para {
+      text-align: justify;
+      margin-left: 0;
+      padding-left: 0;
+    }
+    
+    #wrapper h1, 
+    #wrapper h2, 
+    #wrapper h3, 
+    #wrapper h4, 
+    #wrapper h5, 
+    #wrapper h6, 
+    #wrapper .project-title, 
+    #wrapper p.underline {
+      text-align: left;
+      margin-left: 0;
+      padding-left: 0;
+    }
+    
+    #wrapper ul.actions, 
+    #wrapper ul.actions li {
+      margin-left: 0;
+      padding-left: 0;
+    }
   }
 
 </style>
@@ -897,12 +955,13 @@
               <a href="mailto:sbmeshra@asu.edu">sbmeshra@asu.edu</a>
             </div>
           </li>
+
           <li>
             <div class="icon-wrapper"><i class="fas fa-phone"></i></div>
             <div class="text-wrapper">
               <h3>Phone</h3>
-              <span style="display: block; margin-bottom: 0.25rem;">🇺🇸 +1 (480) 919-5621</span>
-              <span style="display: block;">🇮🇳 +91 88306 88493</span>
+              <a href="tel:+14809195621" class="phone-link">🇺🇸 +1 (480) 919-5621</a>
+              <a href="tel:+918830688493" class="phone-link">🇮🇳 +91 88306 88493</a>
             </div>
           </li>
           <li>
