@@ -529,7 +529,7 @@
       padding-right: 0;
     }
 
-/* 2. Strict Vertical Alignment & Justified Edges */
+    /* 2. Strict Vertical Alignment & Justified Edges */
     #wrapper p, 
     #wrapper .para {
       text-align: justify;
@@ -550,17 +550,12 @@
       padding-left: 0;
     }
 
-    /* Keeps About Me & Work Experience headings perfectly centered */
-    #wrapper .inner-heading {
+    /* Keeps About Me & Work Experience headings perfectly centered and allows natural line breaks */
+    #wrapper .inner-heading,
+    #wrapper .inner-heading h2 {
       text-align: center;
       padding-left: 0;
       padding-right: 0;
-    }
-    
-    /* Proportionally scales down the template's native mobile font size */
-    #wrapper .inner-heading h2 {
-      font-size: 1.6em; 
-      line-height: 1.3;
     }
     
     #wrapper ul.actions, 
