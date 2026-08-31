@@ -169,11 +169,8 @@
     .content-with-image .image-container {
       float: none;
       width: 100%;
-      max-width: none;
+      max-width: 325px;
       margin: 0 auto 20px auto;
-    }
-    .content-with-image .text-container p {
-      text-align: left !important;
     }
   }
 
@@ -532,7 +529,7 @@
       padding-right: 0;
     }
 
-    /* 2. Strict Vertical Alignment & Justified Edges */
+/* 2. Strict Vertical Alignment & Justified Edges */
     #wrapper p, 
     #wrapper .para {
       text-align: justify;
@@ -551,6 +548,13 @@
       text-align: left;
       margin-left: 0;
       padding-left: 0;
+    }
+
+    /* Keeps About Me & Work Experience headings perfectly centered */
+    #wrapper .inner-heading {
+      text-align: center;
+      padding-left: 0;
+      padding-right: 0;
     }
     
     #wrapper ul.actions, 
