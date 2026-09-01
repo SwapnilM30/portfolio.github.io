@@ -4024,12 +4024,12 @@ h6 { font-size: 0.6em; }
     }
 }
 
-/* ───────── Modern Minimalist Footer ───────── */
+/* ───────── Blue & White Footer ───────── */
 #footer {
-  background-color: transparent !important;
-  border-top: 1px solid rgba(50, 50, 50, 0.1);
+  background-color: #283a8b !important;
   padding: 2.5rem 0 !important;
   text-align: center;
+  border-top: none; 
 }
 
 #footer > .inner {
@@ -4044,8 +4044,8 @@ h6 { font-size: 0.6em; }
 }
 
 #footer .menu li {
-  color: rgba(50, 50, 50, 0.6) !important; /* Forces the text to dark grey */
-  font-size: 0.85rem;
+  color: #ffffff !important; /* Crisp white text */
+  font-size: 0.9rem;
   letter-spacing: 0.05em;
   border: none !important;
 }
