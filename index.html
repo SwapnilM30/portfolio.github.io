@@ -292,13 +292,13 @@
   .contact-info-blocks {
     list-style: none;
     padding: 0;
-    margin: 1rem 0 0 0;
+    margin: 2.5rem 0 0 0; /* Pushes the whole block down slightly */
   }
 
   .contact-info-blocks li {
     display: flex;
-    align-items: flex-start; /* This pins the icon to the top instead of the middle */
-    margin-bottom: 4rem;
+    align-items: flex-start;
+    margin-bottom: 2.5rem; /* Pulls the items back together */
     padding: 0;
   }
 
@@ -339,20 +339,38 @@
     color: #1a2559;
   }
 
-  /* Specific tweak for the social icons inside the block */
+/* ───────── Modern Interactive Social Icons ───────── */
   .contact-info-blocks .text-wrapper .icons {
-    margin: 0.5rem 0 0 0;
+    display: flex;
+    gap: 1rem; /* Space between the buttons */
+    margin: 0.75rem 0 0 0;
+    padding: 0;
   }
   
-  .contact-info-blocks .text-wrapper .icons a:before {
-    color: rgba(50, 50, 50, 0.7);
-    font-size: 1.5rem;
-    transition: color 0.2s ease, transform 0.2s ease;
+  .contact-info-blocks .text-wrapper .icons a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 45px;
+    height: 45px;
+    background: #ffffff;
+    border: 1px solid rgba(50, 50, 50, 0.15);
+    border-radius: 6px;
+    color: #283a8b !important;
+    text-decoration: none;
+    transition: all 0.2s ease;
   }
 
-  .contact-info-blocks .text-wrapper .icons a:hover:before {
-    color: #283a8b;
-    transform: scale(1.1);
+  .contact-info-blocks .text-wrapper .icons a:before {
+    color: inherit;
+    font-size: 1.25rem;
+  }
+
+  .contact-info-blocks .text-wrapper .icons a:hover {
+    background: #283a8b;
+    color: #ffffff !important;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(40, 58, 139, 0.2);
   }
 
   /* Mobile Override */
@@ -986,7 +1004,13 @@
 <!-- Static contact-info column -->
       <section>
         <ul class="contact-info-blocks">
-
+          <li>
+            <div class="icon-wrapper"><i class="fas fa-map-marker-alt"></i></div>
+            <div class="text-wrapper">
+              <h3>Location</h3>
+              <span>Tempe, AZ</span>
+            </div>
+          </li>
           <li>
             <div class="icon-wrapper"><i class="fas fa-envelope"></i></div>
             <div class="text-wrapper">
@@ -995,7 +1019,7 @@
             </div>
           </li>
           <li>
-            <div class="icon-wrapper"><i class="fas fa-address-card"></i></div>
+            <div class="icon-wrapper"><i class="fas fa-link"></i></div>
             <div class="text-wrapper">
               <h3>Professional Links & Resume</h3>
               <ul class="icons">
