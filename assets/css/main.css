@@ -3775,7 +3775,7 @@ h6 { font-size: 0.6em; }
 
 		}
 		
-		/* Other CSS rules above */
+/*----------- Other CSS rules above ----------*/
 
 /* Styling for the .name class */
 .name {
@@ -4024,13 +4024,30 @@ h6 { font-size: 0.6em; }
     }
 }
 
-
-/* Footer overrides */
+/* ───────── Modern Minimalist Footer ───────── */
+#footer {
+  background-color: transparent !important;
+  border-top: 1px solid rgba(50, 50, 50, 0.1);
+  padding: 2.5rem 0 !important;
+  text-align: center;
+}
 
 #footer > .inner {
-  padding: 1em 5em;      /* shrink top/bottom padding */
-  margin: 0 auto;        /* center it if you constrain width */
-  max-width: 1225px;     /* optional – keep it in line with your other sections */
+  padding: 0 !important;
+  margin: 0 auto;
+}
+
+#footer .menu {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+#footer .menu li {
+  color: rgba(50, 50, 50, 0.6) !important; /* Forces the text to dark grey */
+  font-size: 0.85rem;
+  letter-spacing: 0.05em;
+  border: none !important;
 }
 
 /* ───────── Prevent Horizontal Wobble & Overlapping on iOS ───────── */
