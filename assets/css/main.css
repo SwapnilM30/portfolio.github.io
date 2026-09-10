@@ -4011,12 +4011,16 @@ h6 { font-size: 0.6em; }
     width: 100%; 
 }
 
+
 @media screen and (min-width: 1600px) {
     /* Constrain the main content container */
     .wrapper > .inner,
+    #one .inner,
+    #two .inner,
     #three .inner,
+    #four .inner,
     .content-with-image {
-      max-width: 1400px;  /* Or another value that suits your design */
+      max-width: 1400px; 
       margin-left: auto;
       margin-right: auto;
     }
