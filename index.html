@@ -231,17 +231,26 @@
     to { transform: rotate(360deg); }
   }
 
-  /* ───────── Projects Section Layout ───────── */
+/* ───────── Projects Section Layout ───────── */
+  /* Center the section and widen the max cap to fix the right-side gap */
+  #three.spotlights > .inner {
+    margin: 0 auto;
+    width: 100%;
+    max-width: 1350px; 
+  }
+
   #three.spotlights .thumbnail-gallery { 
     display: flex; 
     align-items: center; 
     margin: 0 auto 4rem auto; 
     gap: 4rem; 
     border: none; 
+    width: 100%;
   }
   
   #three.spotlights .thumbnail-gallery .thumbnail { 
-    flex: 1; 
+    flex: 0 0 350px; /* Caps the image wrapper so it doesn't steal dead space */
+    max-width: 350px;
     padding: 0; 
   }
   
@@ -257,8 +266,9 @@
   }
 
   #three.spotlights .thumbnail-gallery .content { 
-    flex: 2; 
+    flex: 1; /* Forces the text column to stretch and fill all remaining screen space */
     padding: 0; 
+    width: 100%;
   }
 
 /* ───────── Perfectly Align Title, Text, and Button ───────── */
