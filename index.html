@@ -139,9 +139,7 @@
   /* About Me Section */
   .content-with-image {
     display: block;
-    max-width: 1225px;
     margin: 0 auto;
-    padding: 0 20px;
   }
   .content-with-image::after {
     content: "";
@@ -236,11 +234,9 @@
   /* ───────── Projects Section Layout ───────── */
   #three.spotlights .thumbnail-gallery { 
     display: flex; 
-    align-items: center;
-    max-width: 1225px; 
+    align-items: center; 
     margin: 0 auto 4rem auto; 
     gap: 2rem; 
-    padding: 0 20px; 
     border: none; 
   }
   
@@ -519,9 +515,9 @@
 
   /* ───────── MOBILE GRID & ALIGNMENT FIXES ───────── */
   @media (max-width: 768px) {
+
     /* 1. Unified Central Grid Container (Dynamic Class Routing) */
-    #wrapper > section > .inner,
-    #wrapper > .spotlights .thumbnail-gallery {
+    #wrapper > section > .inner {
       padding-left: 1.5rem;
       padding-right: 1.5rem;
       width: 100%;
@@ -694,6 +690,7 @@
 
     <!-- Projects -->
     <section id="three" class="wrapper style2 spotlights">
+      <div class="inner">
 
       <!-- Project 1 -->
       <div class="thumbnail-gallery">
@@ -918,7 +915,7 @@
           </div>
         </div>
       </div>
-
+      </div>
     </section> <!-- end #three -->
 
 <!-- Contact Information -->
