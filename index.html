@@ -379,11 +379,17 @@
     box-shadow: 0 4px 10px rgba(40, 58, 139, 0.2);
   }
 
-  /* Mobile Override */
+/* Mobile Override */
   @media (max-width: 768px) {
     #three.spotlights .thumbnail-gallery { 
       flex-direction: column; 
       gap: 1.5rem; 
+    }
+    
+    /* Safely reset the thumbnail so it doesn't become 350px tall */
+    #three.spotlights .thumbnail-gallery .thumbnail {
+      flex: auto;
+      max-width: 100%; 
     }
   }
 
