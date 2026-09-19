@@ -4,10 +4,10 @@
   <title>Swapnil Meshram</title>
 
   <!-- Favicon -->
-  <link rel="icon" type="image/png" sizes="50x50" href="images/swapnil_fav.jpg" />
+  <link rel="icon" type="image/jpeg" sizes="50x50" href="images/swapnil_fav.jpg" />
 
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <!-- Google verifies this site with the line below: -->
   <meta name="google-site-verification" content="google228260cba825d5c8.html" />
@@ -509,25 +509,31 @@
     }
   }
 
-  /* ───────── Work Experience Section ───────── */
-  .work-logo {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin: 2rem 0;
-  }
+/* ───────── Work Experience Section ───────── */
 
-  .work-logo img {
-    max-width: 200px;
-    width: 100%;
-    height: auto;
-    margin-bottom: 1.25rem; 
-  }
+.work-logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 2rem 0;
+}
 
-  .work-logo .button {
-    margin: 0; 
-  }
+.work-logo img {
+  width: 100%;
+  max-width: 500px;
+  height: auto;
+  display: block;
+  margin-bottom: 1.5rem;
+
+  border: 1px solid rgba(50, 50, 50, 0.5);
+  border-radius: 4px;
+  padding: 6px;
+}
+
+.work-logo .button {
+  margin: 0;
+}
 
   /* ───────── MOBILE GRID & ALIGNMENT FIXES ───────── */
   @media (max-width: 768px) {
@@ -688,12 +694,12 @@
       <h2 class="name overline-underline">Research &amp; Development Experience</h2>
     </div>
     
-    <p class="text-justify para">At the Autonomous &amp; Undersea Systems Division of Aerospace Engineers Private Limited (AEPL), I led the research and development of electrical and embedded systems for unmanned marine vehicles, including Autonomous Underwater Vehicles (AUVs), Remotely Operated Vehicles (ROVs), and Autonomous Surface Vessels (ASVs). I worked across the complete electrical and embedded development cycle, from schematic and multilayer PCB design to board bring-up, power distribution, propulsion electronics, sensor and payload integration, and final hardware integration. A major part of this experience was the Neerakshi AUV, where I contributed to improving the electrical architecture, thermal management, propulsion system, and overall hardware integration.</p>
+    <p class="text-justify para">At the Autonomous &amp; Undersea Systems Division of Aerospace Engineers Private Limited (AEPL), I led the research and development of electrical and embedded systems for unmanned marine vehicles, including Autonomous Underwater Vehicles (AUVs), Remotely Operated Vehicles (ROVs), and Autonomous Surface Vessels (ASVs). I worked across the complete electrical and embedded development cycle, from schematic and multilayer PCB design to board bring-up, power distribution, propulsion electronics, sensor and payload integration, and final hardware integration. A major part of this experience was the Neerakshi AUV, where I contributed to improving the electrical architecture, thermal management, propulsion system, and overall vehicle integration.</p>
 
     <div class="work-logo">
       <img
-        src="images/AUV3.0.jpg"
-        alt="AEPL Logo"
+        src="images/AUV3.0.png"
+        alt="Neerakshi Autonomous Underwater Vehicle"
       />
       <a href="aepl.html" class="button">Explore My AEPL Work</a>
     </div>
