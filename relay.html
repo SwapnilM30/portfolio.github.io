@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <title>Swapnil Meshram</title>
     <!-- Favicon -->
-    <link rel="icon" type="image/png" sizes="50x50" href="images/swapnil_fav.jpg" />
+    <link rel="icon" type="image/jpeg" sizes="50x50" href="images/swapnil_fav.jpg" />
 
     <!-- Core CSS -->
     <link rel="stylesheet" href="assets/css/main.css">
@@ -430,7 +430,7 @@
 <footer id="footer" class="wrapper alt">
     <div class="inner">
         <ul class="menu">
-            <li>&copy; 2016-2025 Swapnil Meshram</li>
+            <li>&copy; 2016-2026 Swapnil Meshram</li>
         </ul>
     </div>
 </footer>
@@ -447,22 +447,38 @@
 
 <script>
 /* ──────────────────────────────────────────
-   1.  MAIN SLIDER
+   1. MAIN SLIDER
 ────────────────────────────────────────── */
 const $slider = $('.slider');
 
-/* centre inline-carousel arrows on the active image */
+/* Centre inline-carousel arrows on the active image or video */
 function positionArrows () {
-  const $img = $slider.find('.slick-current img');
-  if (!$img.length) return;                       /* current slide is video */
+  const $media = $slider
+    .find('.slick-current img, .slick-current video')
+    .first();
 
-  if (!$img[0].naturalHeight) {                   /* wait for lazy-loaded img */
-    $img.on('load', positionArrows);
+  if (!$media.length) return;
+
+  const media = $media[0];
+
+  /* Wait for lazy-loaded images */
+  if (media.tagName === 'IMG' && !media.naturalHeight) {
+    $media.off('load.positionArrows')
+          .one('load.positionArrows', positionArrows);
     return;
   }
-  const imgBox   = $img[0].getBoundingClientRect();
+
+  /* Wait for video metadata */
+  if (media.tagName === 'VIDEO' && media.readyState < 1) {
+    $media.off('loadedmetadata.positionArrows')
+          .one('loadedmetadata.positionArrows', positionArrows);
+    return;
+  }
+
+  const mediaBox = media.getBoundingClientRect();
   const slideBox = $slider[0].getBoundingClientRect();
-  const mid      = imgBox.top + imgBox.height / 2 - slideBox.top;
+  const mid = mediaBox.top + mediaBox.height / 2 - slideBox.top;
+
   $slider.find('.slick-prev, .slick-next').css('top', mid + 'px');
 }
 
@@ -480,27 +496,41 @@ $slider.slick({
 });
 
 const slickInst = $slider.slick('getSlick');
+
 $(window).on('resize orientationchange', positionArrows);
 
+
 /* ──────────────────────────────────────────
-   2.  UTILITY  – blur background when overlay is open
+   2. UTILITY – blur background when overlay is open
 ────────────────────────────────────────── */
 function blurPage (on) {
   document.body.classList.toggle('fullscreen-mode', on);
-  document.getElementById('wrapper').classList.toggle('blurred-background', on);
+
+  const wrapper = document.getElementById('wrapper');
+  if (wrapper) {
+    wrapper.classList.toggle('blurred-background', on);
+  }
 }
 
+
 /* ──────────────────────────────────────────
-   3.  FULL-SCREEN VIDEO OVERLAY
+   3. FULL-SCREEN VIDEO OVERLAY
 ────────────────────────────────────────── */
 function playFullScreen (videoSrc, autoPlay = false) {
+
+  /* Stop background carousel while fullscreen is open */
+  $slider.slick('slickPause');
+
   const ov = document.createElement('div');
   ov.className = 'fullscreen-video';
+
   ov.innerHTML = `
     <div class="close-button" onclick="closeFullScreen()"></div>
+
     <button class="slick-prev fs-arrow" aria-label="Previous">
       <i class="fas fa-chevron-left"></i>
     </button>
+
     <button class="slick-next fs-arrow" aria-label="Next">
       <i class="fas fa-chevron-right"></i>
     </button>
@@ -508,207 +538,428 @@ function playFullScreen (videoSrc, autoPlay = false) {
     <video src="${videoSrc}" playsinline muted style="opacity:0"></video>
     <div class="play-icon" aria-hidden="true"></div>
   `;
+
   document.body.appendChild(ov);
   blurPage(true);
 
-  const vid     = ov.querySelector('video');
+  const vid = ov.querySelector('video');
   const playBtn = ov.querySelector('.play-icon');
-  vid.style.transform       = 'translate(0,0) scale(0.85)';
+
+  vid.style.transform = 'translate(0,0) scale(0.85)';
   vid.style.transformOrigin = 'center center';
-  requestAnimationFrame(() => { vid.style.opacity = 1; });
+
+  requestAnimationFrame(() => {
+    vid.style.opacity = 1;
+  });
 
   vid.addEventListener('play', () => {
     playBtn.style.display = 'none';
     vid.setAttribute('controls', '');
   });
 
-  if (autoPlay) vid.play().catch(() => {});
-  playBtn.addEventListener('click', () => vid.play());
+  if (autoPlay) {
+    vid.play().catch(() => {});
+  }
 
-  /* cross-fade to next / prev slide */
+  playBtn.addEventListener('click', () => {
+    vid.play().catch(() => {});
+  });
+
+
+  /* Cross-fade to next / previous slide */
   function jump (dir) {
     vid.style.opacity = 0;
+
     vid.addEventListener('transitionend', function handle () {
       vid.removeEventListener('transitionend', handle);
 
-      dir < 0 ? slickInst.slickPrev() : slickInst.slickNext();
-      const slide = slickInst.$slides.eq(slickInst.currentSlide);
-      const vSrc  = slide.find('video source').attr('src');
+      const nextIdx =
+        (slickInst.currentSlide + dir + slickInst.slideCount) %
+        slickInst.slideCount;
 
-      if (vSrc) {                            /* next is video  */
+      /* Keep Slick synchronized with fullscreen navigation */
+      $slider.slick('slickGoTo', nextIdx, true);
+
+      const slide = slickInst.$slides.eq(nextIdx);
+      const vSrc = slide.find('video source').attr('src');
+
+      if (vSrc) {
+        /* Next slide is another video */
         vid.pause();
         vid.removeAttribute('controls');
         playBtn.style.display = '';
+
         vid.src = vSrc;
         vid.load();
-        requestAnimationFrame(() => { vid.style.opacity = 1; });
-      } else {                               /* next is image */
-        closeFullScreen();
-        showFullScreenImage(slide.find('a.image').attr('href'));
+
+        requestAnimationFrame(() => {
+          vid.style.opacity = 1;
+        });
+
+      } else {
+        /* Next slide is an image */
+        const imageSrc = slide.find('a.image').attr('href');
+
+        closeFullScreen(false, true);
+        showFullScreenImage(imageSrc);
       }
     });
   }
+
   ov.querySelector('.slick-prev').onclick = () => jump(-1);
   ov.querySelector('.slick-next').onclick = () => jump(1);
-
-  document.addEventListener('keydown', function esc (e) {
-    if (e.key === 'Escape') {
-      document.removeEventListener('keydown', esc);
-      closeFullScreen();
-    }
-  });
 }
 
+
 /* ──────────────────────────────────────────
-   4.  FULL-SCREEN IMAGE OVERLAY
+   4. FULL-SCREEN IMAGE OVERLAY
 ────────────────────────────────────────── */
 function showFullScreenImage (src, evt) {
   if (evt) evt.preventDefault();
 
-  let idx      = slickInst.currentSlide;
-  const slide  = slickInst.$slides.eq(idx);
+  /* Stop background carousel while fullscreen is open */
+  $slider.slick('slickPause');
 
-  /* if current slide is video, delegate */
+  let idx = slickInst.currentSlide;
+  const slide = slickInst.$slides.eq(idx);
+
+  /* If current slide is a video, delegate to video overlay */
   if (slide.find('video').length) {
-    playFullScreen(slide.find('video source').attr('src'));
+    playFullScreen(
+      slide.find('video source').attr('src')
+    );
     return;
   }
 
   const ov = document.createElement('div');
   ov.className = 'fullscreen-image';
+
   ov.innerHTML = `
     <div class="close-button" onclick="closeFullScreen()"></div>
+
     <button class="slick-prev fs-arrow" aria-label="Previous">
       <i class="fas fa-chevron-left"></i>
     </button>
+
     <button class="slick-next fs-arrow" aria-label="Next">
       <i class="fas fa-chevron-right"></i>
     </button>
+
     <div class="zoom-controls">
-      <button class="zoom-btn zoom-out"  aria-label="Zoom out"><i class="fas fa-minus"></i></button>
-      <button class="zoom-btn zoom-reset" aria-label="Reset zoom"><i class="fas fa-search"></i></button>
-      <button class="zoom-btn zoom-in"   aria-label="Zoom in"><i class="fas fa-plus"></i></button>
+      <button class="zoom-btn zoom-out" aria-label="Zoom out">
+        <i class="fas fa-minus"></i>
+      </button>
+
+      <button class="zoom-btn zoom-reset" aria-label="Reset zoom">
+        <i class="fas fa-search"></i>
+      </button>
+
+      <button class="zoom-btn zoom-in" aria-label="Zoom in">
+        <i class="fas fa-plus"></i>
+      </button>
     </div>
+
     <img src="${src}" alt="" class="zoomable" loading="lazy">
   `;
+
   document.body.appendChild(ov);
   blurPage(true);
 
   const img = ov.querySelector('img.zoomable');
 
-  /* ----- zoom & pan state ----- */
-  let scale   = 0.85,
-      offsetX = 0,
-      offsetY = 0;
-  img.style.transform = `translate(0,0) scale(${scale})`;
 
-  /* swap slides (image or video) */
+  /* ───── Zoom & pan state ───── */
+  let scale = 0.85;
+  let offsetX = 0;
+  let offsetY = 0;
+
+  function update () {
+    img.style.transform =
+      `translate(${offsetX}px, ${offsetY}px) scale(${scale})`;
+  }
+
+  update();
+
+
+  /* ───── Swap fullscreen slides ───── */
   function swapSlide () {
-    const s   = slickInst.$slides.eq(idx);
-    const vid = s.find('video source').attr('src');
 
-    if (vid) { closeFullScreen(); playFullScreen(vid); return; }
+    /* Keep Slick synchronized with fullscreen navigation */
+    $slider.slick('slickGoTo', idx, true);
+
+    const s = slickInst.$slides.eq(idx);
+    const videoSrc = s.find('video source').attr('src');
+
+    if (videoSrc) {
+      closeFullScreen(false, true);
+      playFullScreen(videoSrc);
+      return;
+    }
 
     const newSrc = s.find('a.image').attr('href');
+
+    if (!newSrc) return;
+
     img.style.opacity = 0;
+
     img.addEventListener('transitionend', function t () {
       img.removeEventListener('transitionend', t);
+
       img.src = newSrc;
-      requestAnimationFrame(() => { img.style.opacity = 1; });
+
+      /* Reset zoom and pan for each new image */
+      scale = 0.85;
+      offsetX = 0;
+      offsetY = 0;
+      update();
+
+      requestAnimationFrame(() => {
+        img.style.opacity = 1;
+      });
     });
   }
 
+
+  /* Previous slide */
   ov.querySelector('.slick-prev').onclick = () => {
-    idx = (idx - 1 + slickInst.slideCount) % slickInst.slideCount;
+    idx =
+      (idx - 1 + slickInst.slideCount) %
+      slickInst.slideCount;
+
     swapSlide();
   };
+
+
+  /* Next slide */
   ov.querySelector('.slick-next').onclick = () => {
-    idx = (idx + 1) % slickInst.slideCount;
+    idx =
+      (idx + 1) %
+      slickInst.slideCount;
+
     swapSlide();
   };
 
-  /* ----- zoom helpers ----- */
-  function update () {
-    img.style.transform = `translate(${offsetX}px,${offsetY}px) scale(${scale})`;
-  }
-  ov.querySelector('.zoom-in').onclick    = () => { scale = Math.min(scale * 1.2, 3); update(); };
-  ov.querySelector('.zoom-out').onclick   = () => { scale = Math.max(scale * 0.8, 0.5); update(); };
-  ov.querySelector('.zoom-reset').onclick = () => { scale = 0.85; offsetX = offsetY = 0; update(); };
 
+  /* ───── Zoom controls ───── */
+  ov.querySelector('.zoom-in').onclick = () => {
+    scale = Math.min(scale * 1.2, 3);
+    update();
+  };
+
+  ov.querySelector('.zoom-out').onclick = () => {
+    scale = Math.max(scale * 0.8, 0.5);
+    update();
+  };
+
+  ov.querySelector('.zoom-reset').onclick = () => {
+    scale = 0.85;
+    offsetX = 0;
+    offsetY = 0;
+    update();
+  };
+
+
+  /* Mouse-wheel zoom */
   ov.addEventListener('wheel', e => {
     e.preventDefault();
-    scale *= e.deltaY < 0 ? 1.1 : 0.9;
-    scale  = Math.min(Math.max(scale, 0.5), 3);
-    update();
-  }, { passive:false });
 
-  /* drag-to-pan (mouse) */
-  let dragging = false, sx, sy;
+    scale *= e.deltaY < 0 ? 1.1 : 0.9;
+    scale = Math.min(Math.max(scale, 0.5), 3);
+
+    update();
+  }, { passive: false });
+
+
+  /* ───── Drag-to-pan (mouse) ───── */
+  let dragging = false;
+  let sx;
+  let sy;
+
   img.addEventListener('mousedown', e => {
     e.preventDefault();
+
     dragging = true;
-    sx = e.clientX; sy = e.clientY;
+
+    sx = e.clientX;
+    sy = e.clientY;
+
     img.style.cursor = 'grabbing';
   });
-  document.addEventListener('mousemove', e => {
+
+  /*
+   * These listeners are attached to the overlay rather than document.
+   * They are therefore automatically removed when the overlay is removed.
+   */
+  ov.addEventListener('mousemove', e => {
     if (!dragging) return;
-    offsetX += e.clientX - sx; offsetY += e.clientY - sy;
-    sx = e.clientX; sy = e.clientY;
+
+    offsetX += e.clientX - sx;
+    offsetY += e.clientY - sy;
+
+    sx = e.clientX;
+    sy = e.clientY;
+
     update();
   });
-  document.addEventListener('mouseup', () => {
-    dragging = false; img.style.cursor = 'grab';
-  });
-  ov.addEventListener('mouseleave', () => {
-    dragging = false; img.style.cursor = 'grab';
+
+  ov.addEventListener('mouseup', () => {
+    dragging = false;
+    img.style.cursor = 'grab';
   });
 
-  /* pinch-to-zoom (touch) */
-  function dist(t1, t2) { return Math.hypot(t1.clientX - t2.clientX,
-                                           t1.clientY - t2.clientY); }
-  let pinchStart = null, touchDrag = false, tx, ty;
+  ov.addEventListener('mouseleave', () => {
+    dragging = false;
+    img.style.cursor = 'grab';
+  });
+
+
+  /* ───── Pinch-to-zoom / touch pan ───── */
+  function dist (t1, t2) {
+    return Math.hypot(
+      t1.clientX - t2.clientX,
+      t1.clientY - t2.clientY
+    );
+  }
+
+  let pinchStart = null;
+  let touchDrag = false;
+  let tx;
+  let ty;
+
   ov.addEventListener('touchstart', e => {
-    if (e.touches.length === 2)      pinchStart = dist(e.touches[0], e.touches[1]);
-    else if (e.touches.length === 1) { touchDrag = true; tx = e.touches[0].clientX; ty = e.touches[0].clientY; }
-  }, { passive:false });
+
+    if (e.touches.length === 2) {
+      pinchStart = dist(
+        e.touches[0],
+        e.touches[1]
+      );
+
+    } else if (e.touches.length === 1) {
+      touchDrag = true;
+
+      tx = e.touches[0].clientX;
+      ty = e.touches[0].clientY;
+    }
+
+  }, { passive: false });
+
+
   ov.addEventListener('touchmove', e => {
-    if (e.touches.length === 2 && pinchStart !== null) {
+
+    if (
+      e.touches.length === 2 &&
+      pinchStart !== null
+    ) {
       e.preventDefault();
-      scale = Math.min(Math.max(scale * (dist(e.touches[0], e.touches[1]) / pinchStart), 0.5), 3);
-      pinchStart = dist(e.touches[0], e.touches[1]);
+
+      const newDistance = dist(
+        e.touches[0],
+        e.touches[1]
+      );
+
+      scale *= newDistance / pinchStart;
+
+      scale = Math.min(
+        Math.max(scale, 0.5),
+        3
+      );
+
+      pinchStart = newDistance;
+
       update();
-    } else if (e.touches.length === 1 && touchDrag) {
+
+    } else if (
+      e.touches.length === 1 &&
+      touchDrag
+    ) {
       e.preventDefault();
+
       offsetX += e.touches[0].clientX - tx;
       offsetY += e.touches[0].clientY - ty;
-      tx = e.touches[0].clientX; ty = e.touches[0].clientY;
+
+      tx = e.touches[0].clientX;
+      ty = e.touches[0].clientY;
+
       update();
     }
-  }, { passive:false });
-  ov.addEventListener('touchend', e => {
-    if (e.touches.length < 2) pinchStart = null;
-    if (e.touches.length === 0) touchDrag = false;
-  });
 
-  document.addEventListener('keydown', function esc (e) {
-    if (e.key === 'Escape') {
-      document.removeEventListener('keydown', esc);
-      closeFullScreen();
+  }, { passive: false });
+
+
+  ov.addEventListener('touchend', e => {
+
+    if (e.touches.length < 2) {
+      pinchStart = null;
+    }
+
+    if (e.touches.length === 0) {
+      touchDrag = false;
     }
   });
 }
 
+
 /* ──────────────────────────────────────────
-   5.  CLOSE OVERLAY
+   5. CLOSE OVERLAY
 ────────────────────────────────────────── */
-function closeFullScreen () {
+
+/*
+ * resumeAutoplay:
+ *   true  = normal fullscreen close
+ *   false = switching from image ↔ video fullscreen
+ *
+ * keepBlur:
+ *   true  = keep page blurred while switching overlay type
+ */
+function closeFullScreen (
+  resumeAutoplay = true,
+  keepBlur = false
+) {
   const ov =
     document.querySelector('.fullscreen-image') ||
     document.querySelector('.fullscreen-video');
+
   if (!ov) return;
+
+  /* Pause any fullscreen video before removing it */
+  const vid = ov.querySelector('video');
+
+  if (vid) {
+    vid.pause();
+  }
+
   ov.remove();
-  blurPage(false);
+
+  if (!keepBlur) {
+    blurPage(false);
+  }
+
+  if (resumeAutoplay) {
+    $slider.slick('slickPlay');
+  }
 }
+
+
+/* ──────────────────────────────────────────
+   6. GLOBAL KEYBOARD CONTROLS
+────────────────────────────────────────── */
+
+/*
+ * One permanent Escape listener is used instead of
+ * creating a new listener every time fullscreen opens.
+ */
+document.addEventListener('keydown', e => {
+
+  if (
+    e.key === 'Escape' &&
+    (
+      document.querySelector('.fullscreen-image') ||
+      document.querySelector('.fullscreen-video')
+    )
+  ) {
+    closeFullScreen();
+  }
+});
 </script>
 
 </body>
