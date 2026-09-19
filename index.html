@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html>
+<html lang="en">
 <head>
   <title>Swapnil Meshram</title>
 
@@ -674,7 +674,7 @@
             <div class="text-container">
             <p class="text-justify para">Hey there! I am an Electronics and Robotics Engineer with an interdisciplinary background spanning hardware, software, robotics, and machine learning. I really enjoy working at the intersection of these areas, particularly in understanding how autonomous systems can perceive and interact with the world around them.</p>
             <p class="text-justify para">This fascination started when I was 14. I became captivated by how infants learn simply by observing their environment, which left me wondering if machines could develop a similar curiosity. During my undergraduate years, I turned this curiosity into action by designing robot circuitry, writing embedded firmware, and building robots from scratch. Nothing felt more rewarding than watching an idea I had poured hours into come to life.</p>
-            <p class="text-justify para">Today, as I pursue my master's degree in Robotics and Autonomous Systems at Arizona State University, my early curiosity has evolved into a dedicated academic pursuit. My research interests are centered around leveraging deep neural networks to learn visual representations and support decision-making in dynamic and unstructured environments. I am deeply interested in how these capabilities can allow robots to better understand their surroundings and make informed decisions in real-world settings.</p>
+            <p class="text-justify para">Today, after completing my master's degree in Robotics and Autonomous Systems at Arizona State University, my early curiosity has evolved into a focused research interest in autonomous systems and machine learning. My research interests are centered around leveraging deep neural networks to learn visual representations and support decision-making in dynamic and unstructured environments. I am deeply interested in how these capabilities can allow robots to better understand their surroundings and make informed decisions in real-world settings.</p>
           </div>
         </div>
       </div>
@@ -708,28 +708,28 @@
     <section id="three" class="wrapper style2 spotlights">
       <div class="inner">
 
-      <!-- Project 1 -->
+      <!-- Project 0 -->
       <div class="thumbnail-gallery">
         <div class="thumbnail">
-          <a href="images/slam_thumbnail.png" onclick="showFullScreenImage('images/slam_thumbnail.png', event)">
+          <a href="images/project_0_2_fs.png" onclick="showFullScreenImage('images/project_0_2_fs.png', event)">
             <img
-              src="images/slam_thumbnail.png"
-              alt="SLAM Thumbnail"
+              src="images/project_0_2.jpg"
+              alt="Semiconductor Capacitance Extraction Tool Thumbnail"
               class="project-thumbnail zoomable"
             />
           </a>
         </div>
         <div class="content">
           <div class="inner">
-            <h2 class="project-title">Comparative Analysis of SLAM Algorithms</h2>
+            <h2 class="project-title">Semiconductor Capacitance Extraction &amp; Linearization Tool</h2>
             <p class="underline">Problem Statement and Solution:</p>
-            <p style="margin-top:0; margin-bottom:20px;">This project compares GMapping and Cartographer SLAM for indoor mapping using a Yahboom ROS Master X3 robot equipped with an RPLIDAR. Mapping accuracy was evaluated by comparing room dimensions with dimensions extracted from occupancy-grid maps using quantitative error analysis. GMapping performed better in simpler, structured environments, while Cartographer performed better in complex layouts. Testing also identified blind spots caused by the 2D LIDAR's mounting height, leading to a proposed depth-camera sensor-fusion approach for detecting low-lying obstacles.</p>
-            <ul class="actions"><li><a href="slam_comparison.html" class="button">Project details</a></li></ul>
+            <p style="margin-top:0; margin-bottom:20px;">In a power electronics research lab at Arizona State University, researchers needed to extract voltage-dependent capacitance characteristics from semiconductor datasheet plots for further analysis. Manually digitizing these curves can be time-consuming and error-prone, especially with nonlinear characteristics, logarithmic axes, and overlapping curves. To address this research requirement, I developed a human-in-the-loop computer vision pipeline that combines interactive graph calibration, centroid-refined seed selection, and 8-connected BFS pathfinding to trace the desired curve. The extracted pixel data is converted into physical voltage and capacitance values and used to calculate energy- and charge-equivalent capacitances through numerical integration.</p>
+            <ul class="actions"><li><a href="curve_tool.html" class="button">Project details</a></li></ul>
           </div>
         </div>
       </div>
 
-      <!-- Project 2 -->
+      <!-- Project 1 -->
       <div class="thumbnail-gallery">
         <div class="thumbnail">
           <a href="images/edgevision_2.png" onclick="showFullScreenImage('images/edgevision_2.png', event)">
@@ -746,6 +746,27 @@
             <p class="underline">Problem Statement and Solution:</p>
             <p style="margin-top:0; margin-bottom:20px;">This project develops a real-time object detection and tracking system on a Raspberry Pi for monitoring and counting objects in video streams. A key challenge was automatically determining when a tracked object crosses a specific region of the video without relying on a fixed counting area. To address this, the system combines real-time object detection, centroid-based tracking, and geometric line-crossing logic. Users can draw line segments directly on the video feed, and the system detects when tracked objects cross these lines and automatically updates the object count.</p>
             <ul class="actions"><li><a href="edge_vision.html" class="button">Project details</a></li></ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 2 -->
+      <div class="thumbnail-gallery">
+        <div class="thumbnail">
+          <a href="images/slam_thumbnail.png" onclick="showFullScreenImage('images/slam_thumbnail.png', event)">
+            <img
+              src="images/slam_thumbnail.png"
+              alt="SLAM Thumbnail"
+              class="project-thumbnail zoomable"
+            />
+          </a>
+        </div>
+        <div class="content">
+          <div class="inner">
+            <h2 class="project-title">Comparative Analysis of SLAM Algorithms</h2>
+            <p class="underline">Problem Statement and Solution:</p>
+            <p style="margin-top:0; margin-bottom:20px;">This project compares GMapping and Cartographer SLAM for indoor mapping using a Yahboom ROS Master X3 robot equipped with an RPLIDAR. Mapping accuracy was evaluated by comparing room dimensions with dimensions extracted from occupancy-grid maps using quantitative error analysis. GMapping performed better in simpler, structured environments, while Cartographer performed better in complex layouts. Testing also identified blind spots caused by the 2D LIDAR's mounting height, leading to a proposed depth-camera sensor-fusion approach for detecting low-lying obstacles.</p>
+            <ul class="actions"><li><a href="slam_comparison.html" class="button">Project details</a></li></ul>
           </div>
         </div>
       </div>
@@ -802,7 +823,7 @@
           <a href="images/project_3.jpeg" onclick="showFullScreenImage('images/project_3.jpeg', event)">
             <img
               src="images/project_3_thumbnail.png"
-              alt="LCD & Relay Board Thumbnail"
+              alt="LCD &amp; Relay Board Thumbnail"
               class="project-thumbnail zoomable"
               loading="lazy"
               decoding="async"
@@ -811,7 +832,7 @@
         </div>
         <div class="content">
           <div class="inner">
-            <h2 class="project-title">LCD & Relay Breakout Board</h2>
+            <h2 class="project-title">LCD &amp; Relay Breakout Board</h2>
             <p class="underline">Problem Statement and Solution:</p>
             <p style="margin-top:0; margin-bottom:20px;">After integrating the "Battery Fuel Gauge" system, Team Vector wanted to monitor the battery pack status without accessing the robot's internal electronics. To address this, I developed an external LCD display that provided a clear view of the battery status from outside the robot. The display was also designed for other system-status and control applications, while the breakout board included relays to support additional switching and control functions. This made the board a flexible interface for both battery monitoring and other robot subsystems.</p>
             <ul class="actions"><li><a href="relay.html" class="button">Project details</a></li></ul>
@@ -904,7 +925,7 @@
         <div class="content">
           <div class="inner">
             <h2 class="project-title">Team Nikola Racing</h2>
-            <p style="margin-top:0; margin-bottom:20px;">A team of 20 students from K. K. Wagh Institute of Engineering Education & Research, Nashik, came together to design and build an electric bike as a collaborative EV project. The team worked across the design, manufacturing, and fabrication of the vehicle. As part of the core electrical team, my friend and I worked on the vehicle's electrical system, including battery-pack development, BMS integration, and charging. The bike achieved a charging time of approximately 20 minutes and a battery lifespan of more than 8 years.</p>
+            <p style="margin-top:0; margin-bottom:20px;">A team of 20 students from K. K. Wagh Institute of Engineering Education &amp; Research, Nashik, came together to design and build an electric bike as a collaborative EV project. The team worked across the design, manufacturing, and fabrication of the vehicle. As part of the core electrical team, my friend and I worked on the vehicle's electrical system, including battery-pack development, BMS integration, and charging. The bike achieved a charging time of approximately 20 minutes and a battery lifespan of more than 8 years.</p>
             <ul class="actions"><li><a href="nikola.html" class="button">More Details</a></li></ul>
           </div>
         </div>
@@ -926,7 +947,7 @@
         <div class="content">
           <div class="inner">
             <h2 class="project-title">Team Vector</h2>
-            <p style="margin-top:0; margin-bottom:20px;">Team Vector is a robotics club comprising 40 students from different engineering disciplines at K. K. Wagh Institute of Engineering Education & Research, Nashik. The team brings together students with diverse technical skills and experience in robotics, working collaboratively across different areas of robot design and development. Team Vector has participated in ABU Robocon-India since 2016, building its technical skills, experience, and competitive performance over the years.</p>
+            <p style="margin-top:0; margin-bottom:20px;">Team Vector is a robotics club comprising 40 students from different engineering disciplines at K. K. Wagh Institute of Engineering Education &amp; Research, Nashik. The team brings together students with diverse technical skills and experience in robotics, working collaboratively across different areas of robot design and development. Team Vector has participated in ABU Robocon-India since 2016, building its technical skills, experience, and competitive performance over the years.</p>
             <ul class="actions"><li><a href="vector.html" class="button">More Details</a></li></ul>
           </div>
         </div>
@@ -1034,7 +1055,7 @@
           <li>
             <div class="icon-wrapper"><i class="fas fa-link"></i></div>
             <div class="text-wrapper">
-              <h3>Professional Links & Resume</h3>
+              <h3>Professional Links &amp; Resume</h3>
               <ul class="icons">
                 <li>
                   <a href="https://www.linkedin.com/in/swapnilmeshram98/"
@@ -1058,7 +1079,7 @@
   <!-- Footer -->
   <footer id="footer" class="wrapper style1-alt">
     <div class="inner">
-      <ul class="menu"><li>&copy; 2016-2025 Swapnil Meshram</li></ul>
+      <ul class="menu"><li>&copy; 2016-2026 Swapnil Meshram</li></ul>
     </div>
   </footer>
 
